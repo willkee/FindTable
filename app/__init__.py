@@ -29,7 +29,7 @@ for i in range(10):
     # details = requests.get(f'https://maps.googleapis.com/maps/api/place/details/json?fields=name%2Cformatted_phone_number%2Cwebsite&place_id={new_id}&key={maps_api}')
     photos = requests.get(f'https://maps.googleapis.com/maps/api/place/details/json?fields=photos&place_id={new_id}&key={maps_api}')
 
-    photo_ref = photos.json()['result']['photos']
+    photo_ref = photos.json()['result']['photos'][0]
     photo_url = requests.get(f'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference={photo_ref}&key={maps_api}').url
     print(photo_ref)
 
