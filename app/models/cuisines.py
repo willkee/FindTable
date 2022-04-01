@@ -54,3 +54,9 @@
 #     ponies = relationship("Pony",
 #                           secondary=pony_handlers,
 #                           back_populates="handlers")
+
+
+# @app.route('/')
+# @app.route('/restaurants')
+# def view_restaurants():
+#     return render_template('abc.html')
