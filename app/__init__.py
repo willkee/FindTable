@@ -5,8 +5,7 @@ app = Flask(__name__)
 
 import requests
 import json
-# maps_api = os.environ.get('GOOGLE_MAPS_API')
-maps_api = "AIzaSyBmAabg-5zejuEEsoodJEw11RyIpYLsF7Q"
+maps_api = os.environ.get('GOOGLE_MAPS_API')
 
 lower_manhattan = "40.7193%2C-74.0019"
 mid_manhattan = "40.7578%2C-73.9856"
