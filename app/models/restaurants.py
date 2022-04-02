@@ -19,6 +19,7 @@ class Restaurant(db.model):
     __tablename__ = 'restaurants'
 
     id = db.Column(db.Integer, primary_key=True)
+    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     name = db.Column(db.String(255), nullable=False)
     price_rating = db.Column(db.Integer, nullable=False)
     description = db.Column(db.Text)
@@ -31,12 +32,15 @@ class Restaurant(db.model):
     created_at = db.Column(db.DateTime, server_default=db.func.now()) # FORMAT: 2022-04-02 13:27:25.457314
     updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
+    owner = db.relationship("User", back_populates="users")
     settings = db.relationship('Setting', secondary=restaurant_settings, back_populates="settings")
     cuisines = db.relationship('Cuisine', secondary=restaurant_cuisines, back_populates="cuisines")
+
 
     def to_dict(self):
         return {
             'id': self.id,
+            'owner': self.owner,
             'name': self.name,
             'price_rating': self.price_rating,
             'description': self.description,

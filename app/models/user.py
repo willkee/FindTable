@@ -13,6 +13,8 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     business_owner = db.Column(db.Boolean, default=False)
 
+    restaurants = db.relationship('Restaurant', back_populates="restaurants")
+
     @property
     def password(self):
         return self.hashed_password
@@ -28,5 +30,6 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'restaurants': self.restaurants
         }
