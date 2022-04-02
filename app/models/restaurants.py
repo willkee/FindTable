@@ -4,18 +4,18 @@ import datetime
 # Join table for restaurants/settings
 restaurant_settings = db.Table(
     "restaurant_settings",
-    db.Column("restaurant_id", db.Integer, db.ForeignKey("restaurants.id"), primary_key=True),
-    db.Column("settings_id", db.Integer, db.ForeignKey("settings.id"), primary_key=True)
+    db.Column("restaurant_id", db.ForeignKey("restaurants.id"), primary_key=True),
+    db.Column("settings_id", db.ForeignKey("settings.id"), primary_key=True)
 )
 
 # Join table for restaurants/cuisines
 restaurant_cuisines = db.Table(
     "restaurant_cuisines",
-    db.Column("restaurant_id", db.Integer, db.ForeignKey("restaurants.id"), primary_key=True),
-    db.Column("cuisines_id", db.Integer, db.ForeignKey("cuisines.id"), primary_key=True)
+    db.Column("restaurant_id", db.ForeignKey("restaurants.id"), primary_key=True),
+    db.Column("cuisines_id", db.ForeignKey("cuisines.id"), primary_key=True)
 )
 
-class Restaurant(db.model):
+class Restaurant(db.Model):
     __tablename__ = 'restaurants'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -29,12 +29,12 @@ class Restaurant(db.model):
     street_address = db.Column(db.String(255), unique=True, nullable=False)
     borough = db.Column(db.String(30), nullable=False)
     accessible = db.Column(db.Boolean, default=False)
-    created_at = db.Column(db.DateTime, server_default=db.func.now()) # FORMAT: 2022-04-02 13:27:25.457314
-    updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
+    created_at = db.Column(db.DateTime, default=db.func.now()) # FORMAT: 2022-04-02 13:27:25.457314
+    updated_at = db.Column(db.DateTime, default=db.func.now(), onupdate=db.func.now())
 
-    owner = db.relationship("User", back_populates="users")
-    settings = db.relationship('Setting', secondary=restaurant_settings, back_populates="settings")
-    cuisines = db.relationship('Cuisine', secondary=restaurant_cuisines, back_populates="cuisines")
+    owner = db.relationship("User", back_populates="restaurants")
+    settings = db.relationship('Setting', secondary=restaurant_settings, back_populates="restaurants")
+    cuisines = db.relationship('Cuisine', secondary=restaurant_cuisines, back_populates="restaurants")
 
 
     def to_dict(self):

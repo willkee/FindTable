@@ -2,7 +2,7 @@ import datetime
 from .db import db
 from .restaurants import restaurant_cuisines
 
-class Cuisine(db.model):
+class Cuisine(db.Model):
     __tablename__ = 'cuisines'
 
     id = db.Column(db.Integer, primary_key=True)

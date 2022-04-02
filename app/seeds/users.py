@@ -1,18 +1,36 @@
 from app.models import db, User
-
+from werkzeug.security import generate_password_hash
+from faker import Faker
+fake = Faker()
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    demo = User(
-        username='Demo', email='demo@aa.io', password='password')
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+    demo_user = User(
+        first_name='Demo',
+        last_name='User',
+        email='demo@user.com',
+        hashed_password=generate_password_hash('password'),
+        business_owner=True)
 
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
+    db.session.add(demo_user)
+
+    for i in range(1, 25):
+        owners = User(
+            first_name=fake.first_name(),
+            last_name=fake.last_name(),
+            email=fake.email(),
+            hashed_password=generate_password_hash(fake.password()),
+            business_owner=True)
+        db.session.add(owners)
+
+    for i in range(25, 100):
+        non_owners = User(
+            first_name=fake.first_name(),
+            last_name=fake.last_name(),
+            email=fake.email(),
+            hashed_password=generate_password_hash(fake.password()),
+            business_owner=False)
+        db.session.add(non_owners)
 
     db.session.commit()
 
