@@ -55,7 +55,7 @@ jobs:
     - name: Clear Seed Data
       env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku run -a ${{ secrets.HEROKU_APP_NAME }} flask undo all
+      run: heroku run -a ${{ secrets.HEROKU_APP_NAME }} flask seed undo
 
     - name: Seed New Data
       env:
