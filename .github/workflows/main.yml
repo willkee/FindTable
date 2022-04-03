@@ -50,7 +50,14 @@ jobs:
     - name: Run DB Migration
       env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run:
-        heroku run -a ${{ secrets.HEROKU_APP_NAME }} flask db upgrade
-        heroku run -a ${{ secrets.HEROKU_APP_NAME }} flask undo all
-        heroku run -a ${{ secrets.HEROKU_APP_NAME }} flask seed all
+      run: heroku run -a ${{ secrets.HEROKU_APP_NAME }} flask db upgrade
+
+    - name: Clear Seed Data
+      env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: heroku run -a ${{ secrets.HEROKU_APP_NAME }} flask undo all
+
+    - name: Seed New Data
+      env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: heroku run -a ${{ secrets.HEROKU_APP_NAME }} flask seed all
