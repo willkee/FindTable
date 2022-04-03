@@ -18,7 +18,7 @@ def seed_users():
         owners = User(
             first_name=fake.first_name(),
             last_name=fake.last_name(),
-            email=fake.email(),
+            email=fake.unique.email(),
             hashed_password=generate_password_hash(fake.password()),
             business_owner=True)
         db.session.add(owners)
