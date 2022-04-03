@@ -19,4 +19,5 @@ def restaurant(id):
 @restaurant_routes.route('/<int:id>')
 def restaurantUpdate(id):
   restaurant = Restaurants.query.get(id)
-  
+
+ 
