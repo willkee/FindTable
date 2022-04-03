@@ -1,37 +1,36 @@
 // constants
-const GET_USERS = "/users/GET_USERS"
-const ADD_USER = "/users/ADD_USER"
-// const UPDATE_USER = "/users/UPDATE_USER"
-// const DELETE_USER = "/users/DELETE_USER"
+const RETRIEVED_USERS = "/users/RETRIEVED_USERS"
+const ADDED_USER = "/users/ADDED_USER"
+// const UPDATED_USER = "/users/UPDATED_USER"
+// const DELETED_USER = "/users/DELETED_USER"
 
-const getUsers = (data) => ({
-  type: GET_USERS,
+const retrievedUsers = (users_data) => ({
+  type: RETRIEVED_USERS,
   users_data
 });
 
-const AddUser = (data) => ({
-  type: ADD_USER,
+const AddedUser = (data) => ({
+  type: ADDED_USER,
   data
 })
 
 export const allUsers = () => async dispatch => {
-    const res = await fetch('/api/users', {
-        headers: {'Content-Type': 'application/json'}
-    })
+    const res = await fetch('/api/users/')
 
     if (res.ok) {
         const data = await res.json()
-
-        if (data.errors) return
-
-        dispatch(getUsers(data))
+        dispatch(retrievedUsers(Object.values(data)[0]))
+        return data
     }
 }
 
 export default function userReducer(state = {}, action) {
+    const newState = { ...state }
     switch(action.type) {
-        case GET_USERS:
-            newState = { ...state, users: action.users_data }
+
+        case RETRIEVED_USERS:
+            console.log(action.users_data)
+            action.users_data.forEach(user => newState[user.id] = user)
             return newState
         default:
             return state

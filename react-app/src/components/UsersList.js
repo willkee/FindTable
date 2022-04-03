@@ -1,31 +1,45 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'
+import { allUsers } from '../store/users';
 
 function UsersList() {
-  const [users, setUsers] = useState([]);
+  const users = useSelector(state => Object.values(state.users))
+  console.log(users)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch('/api/users/');
-      const responseData = await response.json();
-      setUsers(responseData.users);
-    }
-    fetchData();
+    dispatch(allUsers())
   }, []);
 
   const userComponents = users.map((user) => {
     return (
-      <li key={user.id}>
-        <NavLink to={`/users/${user.id}`}>{user.username}</NavLink>
-      </li>
+      <tr key={user.id}>
+        <NavLink to={`/users/${user.id}`}>{user.id}</NavLink>
+        <td>{user.first_name}</td>
+        <td>{user.last_name}</td>
+        <td>{user.email}</td>
+        <td>{user.business_owner ? "Yes" : "No"}</td>
+      </tr>
     );
   });
 
   return (
-    <>
+    <div>
       <h1>User List: </h1>
-      <ul>{userComponents}</ul>
-    </>
+      <table>
+          <thead>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Business Owner</th>
+          </thead>
+        <tbody>
+          {userComponents}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
