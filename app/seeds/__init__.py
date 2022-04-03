@@ -2,6 +2,7 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .restaurants import seed_restaurants, undo_restaurants
 from .settings import seed_settings, undo_settings
+from .cuisines import seed_cuisines, undo_cuisines
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -14,6 +15,7 @@ def seed():
     seed_users()
     # seed_restaurants()
     seed_settings()
+    seed_cuisines()
     # Add other seed functions here
 
 
@@ -23,4 +25,5 @@ def undo():
     undo_users()
     # undo_restaurants()
     undo_settings()
+    undo_cuisines()
     # Add other undo functions here
