@@ -12,10 +12,12 @@ RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/
 RUN sudo apt update
 RUN sudo apt install postgresql -y && \
 sudo service postgresql start && \
+
 sudo -u postgres psql -c "CREATE USER vscode WITH PASSWORD 'password';" && \
+sudo -u postgres psql -c "CREATE USER ftdev WITH PASSWORD 'findtabledev';" && \
 sudo -u postgres psql -c "ALTER USER vscode WITH SUPERUSER;" && \
 sudo -u postgres psql -c "CREATE DATABASE vscode WITH OWNER vscode" && \
-sudo -u postgres psql -c "CREATE DATABASE python_project WITH OWNER vscode"
+sudo -u postgres psql -c "CREATE DATABASE find_table WITH OWNER ftdev"
 
 # auto configure flask app to connect to internal postgres
-ENV DATABASE_URL=postgresql://vscode:password@localhost/python_project
+ENV DATABASE_URL=postgresql://ftdev:findtabledev@localhost/find_table
