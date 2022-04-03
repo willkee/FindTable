@@ -9,10 +9,10 @@ const retrievedUsers = (users_data) => ({
   users_data
 });
 
-const AddedUser = (data) => ({
-  type: ADDED_USER,
-  data
-})
+// const AddedUser = (data) => ({
+//   type: ADDED_USER,
+//   data
+// })
 
 export const allUsers = () => async dispatch => {
     const res = await fetch('/api/users/')
