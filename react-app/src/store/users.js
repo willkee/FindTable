@@ -32,6 +32,8 @@ export default function userReducer(state = {}, action) {
             console.log(action.users_data)
             action.users_data.forEach(user => newState[user.id] = user)
             return newState
+        case ADDED_USER:
+            return state
         default:
             return state
     }
