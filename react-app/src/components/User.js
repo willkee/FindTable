@@ -26,10 +26,16 @@ function User() {
         <strong>User Id</strong> {userId}
       </li>
       <li>
-        <strong>Username</strong> {user.username}
+        <strong>First Name</strong> {user.first_name}
+      </li>
+      <li>
+        <strong>Last Name</strong> {user.last_name}
       </li>
       <li>
         <strong>Email</strong> {user.email}
+      </li>
+      <li>
+        <strong>Business Owner</strong> {user.business_owner ? "Yes" : "No"}
       </li>
     </ul>
   );
