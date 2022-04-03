@@ -8,6 +8,7 @@
 -i https://pypi.org/simple
 alembic==1.6.5
 click==7.1.2
+faker==13.3.4
 flask-cors==3.0.8
 flask-login==0.5.0
 flask-migrate==3.0.1
