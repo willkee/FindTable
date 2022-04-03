@@ -30,8 +30,8 @@ const SignUpForm = () => {
   return (
     <form onSubmit={onSubmit}>
       <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+        {errors.map((error, i) => (
+          <div key={i}>{error}</div>
         ))}
       </div>
       <div>
@@ -77,7 +77,6 @@ const SignUpForm = () => {
           name='confirmPassword'
           onChange={e => setConfirmPassword(e.target.value)}
           value={confirmPassword}
-          required
         ></input>
       </div>
       <button type='submit'>Sign Up</button>

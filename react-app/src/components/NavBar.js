@@ -2,6 +2,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
+import ProtectedRoute from './auth/ProtectedRoute'
 
 const NavBar = () => {
   return (
@@ -27,9 +28,11 @@ const NavBar = () => {
             Users
           </NavLink>
         </li>
-        <li>
-          <LogoutButton />
-        </li>
+        <ProtectedRoute>
+          <li>
+            <LogoutButton />
+          </li>
+        </ProtectedRoute>
       </ul>
     </nav>
   );
