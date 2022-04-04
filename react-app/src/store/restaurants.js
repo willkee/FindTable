@@ -61,8 +61,9 @@ export const receiveAllRestaurants = () => async dispatch => {
   console.log("SDFJHSKFHSDKUFHSD*F(&HSDF*&HSDF")
     if (res.ok) {
       const restaurants = await res.json();
-      console.log("\n\n\n\n\n\nRESTAURANTS", restaurants, "\n\n\n\n\n")
-      dispatch(allRestaurantsReceived(Object.values(restaurants)))
+      // console.log("\n\n\n\n\n\nRESTAURANTS", restaurants, "\n\n\n\n\n")
+      // const restaurant_array = Object.values(restaurants)
+      dispatch(allRestaurantsReceived(Object.values(restaurants)[0]))
       return restaurants
     }
   }
@@ -112,7 +113,7 @@ const restaurantsReducer = (state = {}, action) => {
       return newState;
     }
     case ALL_RESTAURANTS_RECEIVED: {
-      action.restaurants.forEach((restaurant) => newState[restaurant.id] = restaurant)
+      action.payload.forEach((restaurant) => newState[restaurant.id] = restaurant)
       return newState;
     }
     // case ONE_RESTAURANT_RECEIVED: {
