@@ -13,7 +13,7 @@ seed_commands = AppGroup('seed')
 @seed_commands.command('all')
 def seed():
     seed_users()
-    # seed_restaurants()
+    seed_restaurants()
     seed_settings()
     seed_cuisines()
     # Add other seed functions here
@@ -23,7 +23,7 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_users()
-    # undo_restaurants()
+    undo_restaurants()
     undo_settings()
     undo_cuisines()
     # Add other undo functions here

@@ -46,7 +46,7 @@ const deletedRestaurant = (payload) => {
 //thunks
 export const createRestaurant = data =>
   async dispatch => {
-    const res = await fetch('/api/restaurants', {
+    const res = await fetch('/api/restaurants/', {
       method: 'POST',
       headers: { 'Content_Type': 'application/json' },
       body: JSON.stringify(data)
@@ -56,13 +56,14 @@ export const createRestaurant = data =>
   }
 
 
-export const receiveAllRestaurants = data =>
-  async dispatch => {
-    const res = await fetch('/api/restaurants')
-
+export const receiveAllRestaurants = () => async dispatch => {
+    const res = await fetch('/api/restaurants/')
+  console.log("SDFJHSKFHSDKUFHSD*F(&HSDF*&HSDF")
     if (res.ok) {
       const restaurants = await res.json();
-      dispatch(allRestaurantsReceived(restaurants))
+      // console.log("\n\n\n\n\n\nRESTAURANTS", restaurants, "\n\n\n\n\n")
+      // const restaurant_array = Object.values(restaurants)
+      dispatch(allRestaurantsReceived(Object.values(restaurants)[0]))
       return restaurants
     }
   }
@@ -103,7 +104,7 @@ export const deleteRestaurant = restaurantId =>
   }
 
 
-export default restaurantsReducer = (state = {}, action) => {
+const restaurantsReducer = (state = {}, action) => {
   const newState = {...state};
 
   switch (action.type) {
@@ -112,7 +113,7 @@ export default restaurantsReducer = (state = {}, action) => {
       return newState;
     }
     case ALL_RESTAURANTS_RECEIVED: {
-      action.restaurants.forEach((restaurant) => newState[restaurant.id] = restaurant)
+      action.payload.forEach((restaurant) => newState[restaurant.id] = restaurant)
       return newState;
     }
     // case ONE_RESTAURANT_RECEIVED: {
@@ -131,3 +132,5 @@ export default restaurantsReducer = (state = {}, action) => {
       return state;
   }
 }
+
+export default restaurantsReducer
