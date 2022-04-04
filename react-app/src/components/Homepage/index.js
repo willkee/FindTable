@@ -1,7 +1,7 @@
 import styles from './homepage.module.css'
 import NavBar from '../Navbar'
 
-const Homepage = () => {
+export const Homepage = () => {
 
   return (
     <div className={styles.wrapper}>
