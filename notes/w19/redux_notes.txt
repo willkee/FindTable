@@ -1,0 +1,306 @@
+Redux notes
+- actions = reports, news stories
+- make action creators past-tense
+- action creator = {
+    type: `FETCH_USERS_STARTED`,
+    payload: [{id: '1', name: 'Mary'}, {id: '2', name: 'Jane'}]
+}
+
+- mobile devices can be offline, or not authorized, etc.
+- so you'll want to report what went wrong.
+{ type: 'FETCH_USERS_FAILED', payload: 'connectionFailed' }
+
+Actions are like news reports. Only report what matters; only report the facts.
+Payloads are the part of transmitted data that is the actual intended message.
+- the author sticks to calling the data a payload to avoid surface level mistakes (forgetting the variable name)
+{ type: 'AUTH_TOKEN_RECEIVED', payload: 'eyJpZCI6Ii1LaF9oxzNzMwfQ' }
+
+By convention for the type , we use uppercase strings with _ instead of spaces. So instead of writing "user logged
+in" like a normal human being, we'd write "USER_LOGGED_IN" so that we can pretend we're robots. Why you ask??
+Well, ahem... Redux certainly doesn't care, as long as it's a unique string. But following these conventions will make it
+easier for other folks who are familiar with Redux to make sense of your code. It's also a common practice in
+JavaScript itself to describe constants as uppercase strings.
+- from author of Human Redux
+
+So if an action is a "news report" a reducer is a person reading the report and choosing if they want to change
+anything about themselves in response. How, and if that person changes is entirely up to them. S
+- from author of Human Redux
+
+Actions are like news reports. Only report what matters; only report the facts.
+Payloads are the part of transmitted data that is the actual intended message.
+Reducers are people reading the report and choosing if they want to change
+anything about themselves in response.
+
+So what is a reducer in Redux terms? It's a plain old function you write that takes the current state, and the action to
+be processed, and returns the state as it should be, based on that action occurring.
+
+reducers could have been called "state updaters", but reducer was chosen for a good reason: this function's
+signature matches the signature of the function required when using the .reduce() method on an Array.
+
+const numbers = [1, 2, 3, 4]
+numbers.reduce((total, number) => {
+return number + total
+}, 0)
+
+Note that the function signature is:
+(state, itemToProcess) => newState .
+
+Similarly, in Redux a reducer takes the starting state and an item to process, and return the new state. But the
+itemToProcess is the action!
+
+We covered root reducers and doing stuff like store.session or store.posts, etc.
+You got one reducer and you split them by importing them into the root reducer file
+and combining them.
+
+Every reducer will get called for every action and whatever it returns will be the new state tracked by that
+reducer
+
+So even if your reducer doesn't do anything with a particular action, it still always has to return its unmodified state.
+Also, you have to return something even if you haven't yet received any action that is relevant to the reducer.
+Therefore, you cannot have a reducer that maintains a state of undefined until an action comes along that changes
+that
+
+const initialState = {
+loading: false,
+data: null
+}
+// NOTE: we set `state = initialState` here.
+export default (state = initialState, action) => {
+// handle relevant action types here
+return state
+}
+
+const initialState = {
+loading: false,
+data: null
+}
+
+We could have just left data out entirely, right?:
+const initialState = {
+loading: false
+}
+
+But, using null indicates that there's nothing here now, but
+there will be if conditions are met.
+
+rule #1
+you cannot return undefined.
+rule #2
+if you change it, replace it
+rule #3
+
+Refresher on deep copies
+const one = {
+isAwesome: true
+}
+// Now we could use `Object.assign()` to copy properties from
+// `one` onto a new object `{}` and now we actually have two
+// separate objects.
+const two = Object.assign({}, one)
+// now we could use a "deep" comparison function such as the
+// `isEqual` method in the lodash library to see if the object
+// properties are the same.
+lodash.isEqual(one, two) // logs `true`
+// but now if we change one
+one.isAwesome = false
+// and we do a "deep" comparison again
+// their properties have now diverged
+lodash.isEqual(one, two) // logs `false`
+
+Lodash vs === operator
+As it turns out, checking whether something is
+the same reference is much faster/easier. So rather than performing a deep comparison of properties with a utility
+function like isEqual from the Lodash library:
+lodash.isEqual(object1, object2)
+object1 === object2
+Unsurprisingly, that type of comparison is much much faster in JavaScript. Because instead of having to loop through
+and compare every value of every property in an object, we instead just check if we got the same object, or a different
+object!
+
+let myStuff = [
+{ name: 'henrik' }
+]
+// Array.prototype.concat can be used to return a
+// new array with a new item at the end:
+myStuff = myStuff.concat([{ name: 'js lovin fool' }])
+// or at the beginning:
+myStuff = [{ name: 'js lovin fool' }].concat(myStuff)
+// The same can done with the spread "..." operator
+// if supported:
+myStuff = [...myStuff, { name: 'js lovin fool' }]
+// or:
+myStuff = [{ name: 'js lovin fool' }, ...myStuff]
+// .filter works great for removing items
+myStuff = myStuff.filter((item => item.name === 'henrik'))
+// we can also change items in place with `.map`
+// but we have to be sure we create new objects for
+// the items in the list we want to change:
+myStuff = myStuff.map((item => {
+// editing one item
+if (item.name === 'henrik') {
+return Object.assign({}, item, { isNerdy: true })
+}
+// return all the ones we're not changing
+return item
+})
+// we can also use .map to replace items entirely
+myStuff = myStuff.map(item => {
+if (item.name === 'henrik') {
+// a whole new object
+return { name: 'someone else who is cooler' }
+}
+return item
+})
+
+Use switch to filter action.type
+
+
+Action creators
+- they can be simple
+function doAddToDoItem(text) {
+return { type: 'TODO_ADDED', payload: text }
+}
+
+- or simpler...
+const doAddToDoItem = payload => ({ type: 'TODO_ADDED', payload })
+
+store.dispatch(doAddToDoItem('be awesome today'))
+
+// assume we've created a store here
+const store = createStore(someReducer)
+// and we have our plain action creator function from above
+const doAddToDoItem = payload => ({ type: 'TODO_ADDED', payload })
+// we'd simply need to make a new function that did both things:
+const boundActionCreator = text => store.dispatch(doAddToDoItem(text))
+
+import { bindActionCreators, createStore } from 'redux'
+// assume we've defined and combined our reducers
+// in another file somewhere.
+import rootReducer from './reducers/root'
+// we've got a store!
+const store = createStore(rootReducer)
+// our action creator
+const doAddToDoItem = payload => ({ type: 'TODO_ADDED', payload })
+// we can do it with a single item like this and it will return
+// as single "bound" action creator
+const boundAddToDoItem = bindActionCreators(doAddToDoItem, store.dispatch)
+// or we can use it to bind a whole object of them at once:
+// let's define a few more action creators
+const doRemoveToDoItem = id => ({ type: 'TODO_REMOVED', payload: id })
+const doClearToDos = () => ({ type: 'TODOS_CLEARED' })
+const boundToDoActions = bindActionCreators(
+{
+add: doAddToDoItem,
+remove: doRemoveToDoItem,
+clear: doClearToDos
+},
+store.dispatch
+)
+Action Creators
+28
+// now we have an object with all the same keys
+// where each key is now a pre-bound function
+// we can just call directly. And it will dispatch
+// the necessary action.
+boundToDoActions.add('see the world')
+boundToDoActions.remove('23324')
+boundToDoActions.clear()
+
+1. A store enhancer, ahem... "enhances" or adds some additional capabilities to the store. It could change how
+reducers process data, or how dispatch works.
+2. Middleware is a function that lets us "tap into" what's happening inside Redux when we dispatch an action.
+3. As it turns out, the ability to run middleware is added to our Redux store using a store enhancer that enhances
+the .dispatch() function so we don't have to hack it ourselves!
+
+For what it's worth, I remember how to write middleware by remembering the phrase "Store next action."
+const loggingMiddleware = store => next => action => {
+console.log('action:', action)
+const result = next(action)
+console.log('state after action:', store.getState())
+return result
+}
+
+const fetchData = () => {
+fetch('/some-url')
+.then(res => res.json())
+.then(result => {
+// WHERE DID STORE COME FROM?!
+store.dispatch({ type: 'DATA_FETCH_SUCCESS' })
+})
+.catch(error => {
+store.dispatch({ type: 'DATA_FETCH_FAILED' })
+}
+
+when creating a restaurant, we'll need a UPLOAD_STARTED and UPLOAD_FAILED
+
+const doClearToDos = () => {
+return { type: 'CLEAR_TODOS' }
+}
+
+const doClearToDos = () => {
+// see we're returning a function!
+return dispatch => {
+// Woah!!! now somehow have access to dispatch
+// and we can start something asynchronous
+// and then sometime later use dispatch
+// to report what happened.
+dispatch({ type: 'CLEAR_TODOS_STARTED' })
+fetch('/todos', { method: 'DELETE' })
+.then(() => {
+dispatch({ type: 'CLEAR_TODOS_FINISHED' })
+})
+.catch(error => {
+dispatch({ type: 'CLEAR_TODOS_FAILED' })
+})
+}
+
+//Refactored version
+const doClearToDos = () => dispatch => {
+dispatch({ type: 'CLEAR_TODOS_STARTED' })
+fetch('/todos', { method: 'DELETE' })
+.then(() => {
+dispatch({ type: 'CLEAR_TODOS_FINISHED' })
+})
+.catch(error => {
+dispatch({ type: 'CLEAR_TODOS_FAILED' })
+})
+}
+
+// "Store next action" remember??
+const asyncMiddleware = store => next => action => {
+// remember that "action" here is just whatever the *thing*
+// was, that was passed to `dispatch()`.
+// So we can check if it was passed a function.
+// In this case, we never call "next" at all.
+// So at this point, nothing else happens unless
+// our action creator dispatches something that is
+// a real action.
+if (typeof action === 'function') {
+// Instead, we can *call* the function that was dispatched
+// and instead, pass it the raw dispatch method from the store!
+// Now, our action creator has a reference to the dispatch method
+// and can dispatch whatever else it wants at whatever point
+// it wants to. Or, not at all.
+return action(dispatch)
+}
+// if it's not a function, just continue as normal
+return next(action)
+}
+
+import asyncMiddleware from './file/from/above'
+import { createStore, applyMiddleware } from 'redux'
+const store = createStore(rootReducer, applyMiddleware(asyncMiddleware))
+
+import thunk from 'redux-thunk'
+import { createStore, applyMiddleware } from 'redux'
+import rootReducer from './somewhere/over/the/rainbow'
+import myApiWrapper from './my/api/helper'
+const store = createStore(
+rootReducer,
+applyMiddleware(thunk.withExtraArgument({ api: myApiWrapper }))
+)
+
+From my experience, the only constant is change. As an evolutionary scientist would tell you, the most successful systems are those that can adapt.
+
+We must be adaptive, the most successful systems are.
+Beau Lotto - Neuroscientist, author,
