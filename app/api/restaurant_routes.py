@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import Restaurants, db
+from app.forms import RestaurantForm
 
 restaurant_routes = Blueprint('restaurants', __name__)
 
@@ -24,7 +25,7 @@ def restaurant(id):
 
 @restaurant_routes.route('/<int:id>')
 def restaurantUpdate(id):
-  form = restaurant_form()
+  form = RestaurantForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
   if form.validate_on_submit():
