@@ -32,7 +32,7 @@ const NewRestaurantForm = () => {
             <label htmlFor='price_rating'>Price Rating</label>
             <input name='price_rating' type='text' placeholder='Name' value={priceRating} onChange={e => setName(e.target.value)}></input>
             <label htmlFor='settings'>Settings</label>
-            <select name='settings' value={settings} onChange={e => setSettings(e.target.value)}>
+            <select name='settings' value={settings} onChange={e => setSettings(e.target.value)} multiple={true}>
                 <option value="casual">Casual</option>
                 <option value="outdoor">Outdoor</option>
                 <option value="fine dining">Fine Dining</option>

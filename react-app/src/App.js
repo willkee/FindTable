@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import RestaurantsList from './components/RestaurantsList';
 import { receiveAllRestaurants } from './store/restaurants';
 import { allUsers } from './store/users';
+import { retrieveSettings } from './store/settings';
 import NewRestaurantForm from './components/auth/NewRestaurantForm';
 import User from './components/User';
 import { authenticate } from './store/session';
@@ -25,6 +26,7 @@ function App() {
       await dispatch(authenticate());
       await dispatch(receiveAllRestaurants())
       await dispatch(allUsers())
+      await dispatch(retrieveSettings())
       setLoaded(true);
     })();
   }, [dispatch]);

@@ -12,14 +12,6 @@ def restaurant_exists(form, field):
     raise ValidationError('Restaurant already exists.')
 
 
-def getSettings():
-  settings = Setting.query.all()
-  return [choice.type for choice in settings]
-
-def getCuisines():
-  cuisines = Cuisine.query.all()
-  return [choice.type for choice in cuisines]
-
 class RestaurantForm(FlaskForm):
 
   name = StringField('Name', validators=[DataRequired(), Length(min=0, max=255), restaurant_exists])
@@ -31,6 +23,13 @@ class RestaurantForm(FlaskForm):
   street_address = StringField('Street Address', validators=[DataRequired(), Length(min=0, max=255)])
   borough = SelectField('Borough', choices=["Manhattan", "Brooklyn", "Queens", "The Bronx", "Staten Island"], validators=[DataRequired()])
   accessible = BooleanField('Accessible', default=False)
-  settings = SelectMultipleField('Settings', choices=getSettings(), validators=[DataRequired()])
-  cuisines = SelectMultipleField('Cuisines', choices=getCuisines(), validators=[DataRequired()])
+  settings = SelectMultipleField('Settings', choices=[], validators=[DataRequired()])
+  cuisines = SelectMultipleField('Cuisines', choices=[], validators=[DataRequired()])
   submit = SubmitField('Submit')
+
+  def __init__(self, *args, **kwargs):
+        super(RestaurantForm, self).__init__(*args, **kwargs)
+        self.settings.choices = [setting.type
+                                        for setting in Setting.query.all()]
+        self.cuisines.choices = [cuisine.type
+                                        for cuisine in Setting.query.all()]
