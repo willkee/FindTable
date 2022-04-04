@@ -1,4 +1,4 @@
-.wrapper {
+.container {
   width: 100vw;
   height: 55px;
   display: flex;
@@ -16,4 +16,5 @@
   align-items: center;
   width: 200px;
   justify-content: space-evenly;
+  margin-right: -10px;
 }

@@ -1,7 +1,7 @@
 import styles from './homepage.module.css'
-import PageWrapper from '../PageWrapper'
+import {PageWrapper} from '../PageWrapper'
 import NavBar from '../Navbar'
-import PageContainer from '../PageContainer'
+import {PageContainer} from '../PageContainer'
 
 
 export const Homepage = () => {
@@ -10,7 +10,7 @@ export const Homepage = () => {
     <PageWrapper>
       <NavBar />
       <PageContainer>
-        
+
       </PageContainer>
     </PageWrapper>
   )

@@ -8,38 +8,38 @@ import {MagnifyingGlass, Calendar, UserProfileIcon, GreyVerticalLine} from '../I
 
 
 const NavBar = () => {
+
+
   return (
-    <nav className={styles.wrapper}>
+    <nav className={styles.container}>
         <div>
           <NavLink to='/' exact={true} activeClassName='active'>
             Home
           </NavLink>
         </div>
-        <div>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-          </NavLink>
-        </div>
-        <div>
+        <div className={styles.right}>
           <NavLink to='/sign-up' exact={true} activeClassName='active'>
             Sign Up
           </NavLink>
-        </div>
-        <div className={styles.right}>
-          <div>
-            <UserProfileIcon />
-          </div>
-          <div>
-            <Calendar />
-          </div>
-          <div>
-            <GreyVerticalLine />
-          </div>
-          <div>
-            <MagnifyingGlass />
-          </div>
+          <NavLink to='/login' exact={true} activeClassName='active'>
+            Sign in
+          </NavLink>
         </div>
         <ProtectedRoute>
+          <div className={styles.right}>
+            <div>
+              <UserProfileIcon />
+            </div>
+            <div>
+              <Calendar />
+            </div>
+            <div>
+              <GreyVerticalLine />
+            </div>
+            <div>
+              <MagnifyingGlass />
+            </div>
+          </div>
           <div>
             <LogoutButton />
           </div>
