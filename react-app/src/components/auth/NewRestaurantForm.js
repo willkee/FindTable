@@ -19,6 +19,7 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
 
     const dispatch = useDispatch()
 
+<<<<<<< HEAD
     const handleSubmit = async (e) => {
         e.preventDefault()
             const new_restaurant = {
@@ -29,11 +30,24 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
                 phone_number: phoneNumber,
                 website,
                 street_address: streetAddress,
+=======
+    const onSubmit = async (e) => {
+        e.preventDefault()
+            const new_restaurant = {
+                name,
+                priceRating,
+                description,
+                imageURL,
+                phoneNumber,
+                website,
+                streetAddress,
+>>>>>>> bc8aae9ae2799fe6e61ca23d943c1b86fb072461
                 borough,
                 accessible,
                 cuisines,
                 settings
             }
+<<<<<<< HEAD
 
             try {
 
@@ -47,6 +61,18 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
                     err && err.errors && setErrors(err.errors)
                 }
             }
+=======
+            const data = await dispatch(createRestaurant(new_restaurant))
+            console.log('DATA ', data)
+            console.log('DATA JSON ', data.json())
+            console.log('DATA ERRORS', data.errors)
+
+            if (data) {
+                setErrors(data.errors)
+            }
+            // const data = await error.json()
+            // data && setErrors(data)
+>>>>>>> bc8aae9ae2799fe6e61ca23d943c1b86fb072461
         }
 
     const settingsSelector = (e) => {
@@ -74,13 +100,22 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
     return (
         <div>
             <ul>
+<<<<<<< HEAD
                 {errors.map((error, idx) => {
                     <li key={idx}>
+=======
+                {errors.map(error => {
+                    <li key={error}>
+>>>>>>> bc8aae9ae2799fe6e61ca23d943c1b86fb072461
                         {error}
                     </li>
                 })}
             </ul>
+<<<<<<< HEAD
             <form onSubmit={handleSubmit}>
+=======
+            <form onSubmit={onSubmit}>
+>>>>>>> bc8aae9ae2799fe6e61ca23d943c1b86fb072461
                 <div>
                     <label htmlFor='name'>Name</label>
                     <input name='name' type='text' placeholder='Name' value={name} onChange={e => setName(e.target.value)}></input>
@@ -88,10 +123,17 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
                 <div>
                     <label htmlFor='price_rating'>Price Rating</label>
                     <select name='price_rating' value={priceRating} onChange={e => setPriceRating(e.target.value)}>
+<<<<<<< HEAD
                         <option value="1">$</option>
                         <option value="2">$$</option>
                         <option value="3">$$$</option>
                         <option value="4">$$$$</option>
+=======
+                        <option value={1}>$</option>
+                        <option value={2}>$$</option>
+                        <option value={3}>$$$</option>
+                        <option value={4}>$$$$</option>
+>>>>>>> bc8aae9ae2799fe6e61ca23d943c1b86fb072461
                     </select>
                 </div>
                 <div>
