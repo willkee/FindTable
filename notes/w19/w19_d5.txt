@@ -1,0 +1,108 @@
+(w19_d5)
+Scribe - Luke
+
+Week 19 summary:
+
+We spent a full week collaborating on every task as a group. Every body had excellent
+input and spirits are high. After spending five days working together, we are getting
+to know each other better and becoming familiar with everyone's comfort zone and things
+they find challenging. At times there are many cooks in the kitchen because we want to
+collaborate as much as possible, but we have decided to change our team structure to
+improve navigation, communication and decision making. There is a storm ahead, but we
+have decided to set sail as a team.
+
+day 1:
+
+We spent the first day of our project working on the ideation process.
+Each of us discussed apps that we regularly use and what we want to clone.
+We decided to clone OpenTable in the end because we can practice new skills
+like taking reservations and incorporating Google maps API.
+
+Circles:
+- Great communication
+- High spirits
+- Pretty good project vision
+
+Deltas:
+- Getting to know each other still, so don't know strengths
+- Lack of structure
+- Don't 100% know what we can handle, maybe dreaming too big
+
+day 2:
+etc.
+
+day 3:
+
+day 4:
+
+day 5:
+
+
+
+Part 1:
+Clone find table
+
+// check the status of postgresql, start if it's down
+1: psql
+// refer to Discord, Paul posted a .env example
+2: create user ... with password ... createdb login;
+3: create database ... with owner ...;
+4: create .env in both root and react-app
+// install dependencies, running two commands in one line
+5: pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
+// npm is outdated for this skeleton, so kill teminal if the npm install is weird
+6: npm install in react-app
+// the seeders, alembic, and everything you need like upgrade/down came with skeleton
+6: pipenv shell
+7: flask db upgrade
+8: flask seed all
+9: check Postbird and confirm the users table
+// open two terminal windows, make sure that you exit out of shell in terminal for react-app
+10: pipenv shell in root
+11: npm start in react-app
+12: check localhost:5000, make sure there's a login form
+
+Setup is complete!
+
+Part 2:
+// Moving forward, please create a new branch for everything you do
+// If you are creating a branch...
+- git checkout -b db-setup (any name that is descriptive)
+// for other team members
+- git pull
+- git checkout db-setup
+
+Set up seeders
+- Google sheets
+- Faker for users
+
+Working on Redux
+- Don't know if we should store users state
+    - Because we don't want to query the DB everytime with a session user ID
+    - Requesting info from DB upon login vs requesting all user info upon login ... time difference?
+    - This depends on scoping of the users model
+    - Session user will see their pwrd, but can only see username for other users, making this not a privacy issue
+
+- Think of the flow of data for a minute (visualize)
+    index
+    - load the site with restaurants state
+    - can we get all users who are restaurant owners...?
+    - can we get all restaurants and their associated reviews in one go...?
+    - can we also get all reviews with user info...?
+
+    login
+    - post request to user DB
+    - validate credentials
+    - upon success, get request to user DB where user.hashedPwrd == hashedPwrd (bcrypt)
+
+
+
+    - we can...
+        // if you're a wizard, check data normalization and see if there's an O(n) option
+        // the key for each of the restaurants will be the restaurant.id
+        // essentially plucking the keys of the restaurants, based on the favorite.restaurant_id
+        - a) assign a variable to the query of favorites DB where user_id == session.user.id
+        - b) iterate through the variable from above, restaurants[favorite.restaurant_id]
+        - c) 1, 24, 55
+        - d) display "Your favorites" restaurant at the top of feed and a tab in the profile as well, etc.
+
