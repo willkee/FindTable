@@ -20,7 +20,6 @@ export const retrieveSettings = () => async dispatch => {
 const settingsReducer = (state = {}, action) => {
     switch(action.type) {
         case RECEIVED_SETTINGS: {
-            console.log("ACTION DATA!", action.data)
             const newState = { ...state }
             action.data.forEach(setting => newState[setting.id] = setting)
             return newState

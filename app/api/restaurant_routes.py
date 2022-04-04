@@ -15,24 +15,37 @@ def error_generator(validation_errors):
 @restaurant_routes.route('/', methods=['POST'])
 def create_restaurant():
   form = RestaurantForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+
+  print("\n\n\n\n\n REQUEST", dir(request), request.form, "\n\n\n\n\n\n\n")
+
+  print("DATA\n\n\n\n\n", form.data, "\n\n\n\n\n")
+
   if form.validate_on_submit():
+    print("\n\n\n\n\nFORM SUBMISSION SUCCESS\n\n\n\n\n")
     new_restaurant = Restaurant(
-      owner_id = current_user.id,
-      name = form.data['name'],
-      price_rating = form.data['price_rating'],
-      description = form.data['description'],
-      img_url = form.data['img_url'],
-      phone_number = form.data['phone_number'],
-      website = form.data['website'],
-      street_address = form.data['street_address'],
-      borough = form.data['borough'],
-      accessible = form.data['accessible']
-      )
-
-    db.session.add(new_restaurant)
+        owner_id = current_user.id,
+        name = form.data['name'],
+        price_rating = form.data['price_rating'],
+        description = form.data['description'],
+        img_url = form.data['img_url'],
+        phone_number = form.data['phone_number'],
+        website = form.data['website'],
+        street_address = form.data['street_address'],
+        borough = form.data['borough'],
+        accessible = form.data['accessible'],
+        settings = form.data['settings'],
+        cuisines = form.data['cuisines']
+        )
+    db.session.add(new_restaurant.to_dict())
     db.session.commit()
+    return new_restaurant.to_dict()
 
-    return restaurant.to_dict()
+  else:
+    print("\n\n\n\n\nFORM SUBMISSION FAILURE\n\n\n\n\n")
+    return 'Bad Data'
+
+
 
 
 

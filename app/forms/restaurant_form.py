@@ -5,16 +5,16 @@ from wtforms.validators import DataRequired, ValidationError, Length
 from app.models import db, Restaurant, Setting, Cuisine
 
 
-def restaurant_exists(form, field):
-  name = field.data.name
-  restaurant = Restaurant.query.filter(Restaurant.name == name).first()
-  if restaurant:
-    raise ValidationError('Restaurant already exists.')
+# def restaurant_exists(form, field):
+#   name = field.data.name
+#   restaurant = Restaurant.query.filter(Restaurant.name == name).first()
+#   if restaurant:
+#     raise ValidationError('Restaurant already exists.')
 
 
 class RestaurantForm(FlaskForm):
 
-  name = StringField('Name', validators=[DataRequired(), Length(min=0, max=255), restaurant_exists])
+  name = StringField('Name', validators=[DataRequired(), Length(min=0, max=255)])
   price_rating = SelectField('Price Rating', choices=[1, 2, 3, 4], validators=[DataRequired()])
   description = TextAreaField('Description')
   img_url = StringField('Image URL', validators=[DataRequired(), Length(min=0, max=2048)])
@@ -25,7 +25,7 @@ class RestaurantForm(FlaskForm):
   accessible = BooleanField('Accessible', default=False)
   settings = SelectMultipleField('Settings', choices=[], validators=[DataRequired()])
   cuisines = SelectMultipleField('Cuisines', choices=[], validators=[DataRequired()])
-  submit = SubmitField('Submit')
+  # submit = SubmitField('submit')
 
   def __init__(self, *args, **kwargs):
         super(RestaurantForm, self).__init__(*args, **kwargs)
