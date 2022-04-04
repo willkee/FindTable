@@ -58,7 +58,7 @@ export const createRestaurant = data =>
 
 export const receiveAllRestaurants = () => async dispatch => {
     const res = await fetch('/api/restaurants/')
-  console.log("SDFJHSKFHSDKUFHSD*F(&HSDF*&HSDF")
+  // console.log("SDFJHSKFHSDKUFHSD*F(&HSDF*&HSDF")
     if (res.ok) {
       const restaurants = await res.json();
       // console.log("\n\n\n\n\n\nRESTAURANTS", restaurants, "\n\n\n\n\n")

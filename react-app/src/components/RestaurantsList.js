@@ -1,14 +1,8 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { receiveAllRestaurants } from "../store/restaurants";
+import React from "react";
+// import { useSelector } from "react-redux";
 
-const RestaurantsList = () => {
-    const all_restaurants = useSelector(state => Object.values(state.restaurants))
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(receiveAllRestaurants())
-    }, [dispatch])
+const RestaurantsList = ({ all_restaurants }) => {
+    // const all_restaurants = useSelector(state => Object.values(state.restaurants))
 
     return (
         <div>
