@@ -3,7 +3,9 @@ from wtforms import (
   StringField, TextAreaField, BooleanField, SelectField, SelectMultipleField, SubmitField)
 from wtforms.validators import DataRequired, ValidationError, Length
 from app.models import db, Restaurant, Setting, Cuisine
+from app.__init__.py import create_app
 
+db.create_all(app=create_app())
 
 def restaurant_exists(form, field):
   name = field.data.name
@@ -21,7 +23,6 @@ def getCuisines():
   return [choice.type for choice in cuisines]
 
 class RestaurantForm(FlaskForm):
-
   name = StringField('Name', validators=[DataRequired(), Length(min=0, max=255), restaurant_exists])
   price_rating = SelectField('Price Rating', choices=[(1, '$'), (2, '$$'), (3, '$$$'), (4, '$$$$')], validators=[DataRequired()])
   description = TextAreaField('Description')
@@ -29,7 +30,7 @@ class RestaurantForm(FlaskForm):
   phone_number = StringField('Phone Number', validators=[DataRequired(), Length(min=0, max=10)])
   website = StringField('Website', validators=[Length(min=0, max=2048)])
   street_address = StringField('Street Address', validators=[DataRequired(), Length(min=0, max=255)])
-  borough = SelectField('Borough', choices=["Manhattan", "Brooklyn", "Queens", "The Bronx", "Staten Island"], validators=[DataRequired()])
+  borough = SelectField('Borough', choices=getCuisines(), validators=[DataRequired()])
   accessible = BooleanField('Accessible', default=False)
   settings = SelectMultipleField('Settings', choices=getSettings(), validators=[DataRequired()])
   cuisines = SelectMultipleField('Cuisines', choices=getCuisines(), validators=[DataRequired()])
