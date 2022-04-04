@@ -1,8 +1,8 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
-import ProtectedRoute from './auth/ProtectedRoute'
+import LogoutButton from '../auth/LogoutButton';
+import ProtectedRoute from '../auth/ProtectedRoute'
 
 const NavBar = () => {
   return (

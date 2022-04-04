@@ -109,7 +109,7 @@ const restaurantsReducer = (state = {}, action) => {
 
   switch (action.type) {
     case CREATED_RESTAURANT: {
-      newState[action.restaurant?.id] = action.restaurant
+      newState[action.payload?.id] = action.payload
       return newState;
     }
     case ALL_RESTAURANTS_RECEIVED: {
@@ -121,11 +121,12 @@ const restaurantsReducer = (state = {}, action) => {
     //   return newState;
     // }
     case UPDATED_RESTAURANT: {
-      newState[action.restaurant?.id] = action.restaurant
+      newState[action.payload?.id] = action.payload
       return newState;
     }
     case DELETED_RESTAURANT: {
-      delete newState[action.restaurant?.id]
+      delete newState[action.payload?.id]
+      //double check the payload because it could already be an Id and id.id doesn't make sense
       return newState
     }
     default:

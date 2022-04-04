@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { receiveAllRestaurants } from "../store/restaurants";
+import { receiveAllRestaurants } from "../../store/restaurants";
 
 const RestaurantsList = () => {
     const all_restaurants = useSelector(state => Object.values(state.restaurants))
