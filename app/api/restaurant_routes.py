@@ -1,9 +1,16 @@
-from flask import Blueprint
-from app.models import Restaurants
+from flask import Blueprint, request
+from flask_login import login_required, current_user
+from app.models import Restaurants, db
+from app.forms import RestaurantForm
 
 restaurant_routes = Blueprint('restaurants', __name__)
 
-
+def error_generator(validation_errors):
+  errors = []
+  for field in validation_errors:
+    for error in validation_errors[field]:
+      errors.append(f'{field} : {error}')
+  return errors
 
 @restaurant_routes.route('/')
 def restaurants():
@@ -18,5 +25,22 @@ def restaurant(id):
 
 @restaurant_routes.route('/<int:id>')
 def restaurantUpdate(id):
-  restaurant = Restaurants.query.get(id)
-  
+  form = RestaurantForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+
+  if form.validate_on_submit():
+    restaurant = Restaurants.query.get(id)
+    restaurant.name = form.data['name']
+    restaurant.price_rating = form.data['price_rating']
+    restaurant.description = form.data['description']
+    restaurant.img_url = form.data['img_url']
+    restaurant.phone_number = form.data['phone_number']
+    restaurant.website = form.data['website']
+    restaurant.borough = form.data['borough']
+    restaurant.accessible = form.data['accessible']
+
+    db.session.commit()
+
+    return restaurant.to_dict()
+
+  return {'errors': error_generator(form.errors)}, 401
