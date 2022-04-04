@@ -40,7 +40,7 @@ class Restaurant(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'owner': self.owner,
+            'owner_id': self.owner_id,
             'name': self.name,
             'price_rating': self.price_rating,
             'description': self.description,
@@ -50,10 +50,7 @@ class Restaurant(db.Model):
             'street_address': self.street_address,
             'borough': self.borough,
             'accessible': self.accessible,
-            'created_at': self.created_at,
-            'updated_at': self.updated_at,
-
-            # 'reviews': [review.to_dict() for review in self.reviews]
-            # 'reservations': [reservation.to_dict() for reservation in self.reservations]
-            # 'favorites': [favorite.to_dict() for favorite in self.favorites]
         }
+# 'reviews': [review.to_dict() for review in self.reviews]
+# 'reservations': [reservation.to_dict() for reservation in self.reservations]
+# 'favorites': [favorite.to_dict() for favorite in self.favorites]

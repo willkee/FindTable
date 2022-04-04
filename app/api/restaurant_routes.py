@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import Restaurants, db
+from app.models import Restaurant, db
 from app.forms import RestaurantForm
 
 restaurant_routes = Blueprint('restaurants', __name__)
@@ -14,13 +14,13 @@ def error_generator(validation_errors):
 
 @restaurant_routes.route('/')
 def restaurants():
-  restaurants_list = Restaurants.query.all()
+  restaurants_list = Restaurant.query.all()
   return {'restaurants': [restaurant.to_dict() for restaurant in restaurants_list]}
 
 
 @restaurant_routes.route('/<int:id>')
 def restaurant(id):
-  restaurant = Restaurants.query.get(id)
+  restaurant = Restaurant.query.get(id)
   return restaurant.to_dict()
 
 @restaurant_routes.route('/<int:id>')
@@ -29,7 +29,7 @@ def restaurantUpdate(id):
   form['csrf_token'].data = request.cookies['csrf_token']
 
   if form.validate_on_submit():
-    restaurant = Restaurants.query.get(id)
+    restaurant = Restaurant.query.get(id)
     restaurant.name = form.data['name']
     restaurant.price_rating = form.data['price_rating']
     restaurant.description = form.data['description']

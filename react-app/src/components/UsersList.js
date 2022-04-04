@@ -5,7 +5,6 @@ import { allUsers } from '../store/users';
 
 function UsersList() {
   const users = useSelector(state => Object.values(state.users))
-  console.log(users)
   const dispatch = useDispatch()
 
   useEffect(() => {

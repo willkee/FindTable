@@ -23,7 +23,7 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_users()
-    # undo_restaurants()
+    undo_restaurants()
     undo_settings()
     undo_cuisines()
     # Add other undo functions here
