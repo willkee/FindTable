@@ -53,3 +53,41 @@ export const magnifyingGlass = () => {
         </svg>
     )
 }
+
+export const locationIconSmall = () => {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="20.004" viewBox="0 0 15 20.004">
+            <path id="Path_209" data-name="Path 209" d="M42,29.5A7.506,7.506,0,0,0,34.5,37c0,3.045,3.843,8.711,6.136,11.813a1.693,1.693,0,0,0,2.728,0C45.657,45.711,49.5,40.045,49.5,37A7.506,7.506,0,0,0,42,29.5m.226,18.475a.283.283,0,0,1-.453,0C38.106,43,35.915,38.9,35.915,37a6.085,6.085,0,0,1,12.17,0c0,1.9-2.191,6-5.858,10.975" transform="translate(-34.5 -29.5)"/>
+            <path id="Path_210" data-name="Path 210" d="M45.472,37.5a2.972,2.972,0,1,0,2.972,2.972A2.975,2.975,0,0,0,45.472,37.5m0,4.528a1.557,1.557,0,1,1,1.557-1.557,1.556,1.556,0,0,1-1.557,1.557" transform="translate(-37.972 -32.973)"/>
+        </svg>
+    )
+}
+
+export const vShapedButton = () => {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="9.105" height="5.967" viewBox="0 0 9.105 5.967">
+            <path id="Path_215" data-name="Path 215" d="M-13546-18403l3.139,3.139,3.139-3.139" transform="translate(13547.414 18404.414)" fill="none" stroke="#707070" stroke-linecap="round" stroke-width="2"/>
+        </svg>
+    )
+}
+
+export const clockIcon = () => {
+    return (
+        <svg id="Clock" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
+            <g id="Ellipse_24" data-name="Ellipse 24" fill="none" stroke="#000" stroke-width="1.5">
+                <circle cx="7.5" cy="7.5" r="7.5" stroke="none"/>
+                <circle cx="7.5" cy="7.5" r="6.75" fill="none"/>
+            </g>
+            <path id="Path_216" data-name="Path 216" d="M-13538.5-18231.525v4.906h3" transform="translate(13546 18234.932)" fill="none" stroke="#000" stroke-width="1"/>
+        </svg>
+
+    )
+}
+
+export const userIcon = () => {
+    return (
+        <svg id="User_icon" data-name="User icon" xmlns="http://www.w3.org/2000/svg" width="13.808" height="15.254" viewBox="0 0 13.808 15.254">
+            <path id="Path_207" data-name="Path 207" d="M14.13,47.921a7.046,7.046,0,0,0-4.27-4.935A4.391,4.391,0,1,0,4.7,42.98a7.05,7.05,0,0,0-4.276,4.94,1.922,1.922,0,0,0,.351,1.622,1.859,1.859,0,0,0,1.462.712H12.316a1.859,1.859,0,0,0,1.462-.712,1.922,1.922,0,0,0,.351-1.622m-9.908-8.5A3.058,3.058,0,1,1,7.28,42.493a3.068,3.068,0,0,1-3.058-3.078m8.509,9.3a.519.519,0,0,1-.415.2H2.238a.519.519,0,0,1-.415-.2.567.567,0,0,1-.106-.476,5.712,5.712,0,0,1,11.12,0,.567.567,0,0,1-.106.476" transform="translate(-0.373 -35)"/>
+        </svg>
+    )
+}
