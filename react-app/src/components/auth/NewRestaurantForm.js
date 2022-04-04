@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { createRestaurant } from '../../store/restaurants';
 // import { Redirect } from 'react-router-dom';
 
 const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
@@ -16,9 +17,34 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
     const [settings, setSettings] = useState([])
     const [errors, setErrors] = useState([])
 
-    const onSubmit = (e) => {
+    const dispatch = useDispatch()
+
+    const onSubmit = async (e) => {
         e.preventDefault()
-    }
+            const new_restaurant = {
+                name,
+                priceRating,
+                description,
+                imageURL,
+                phoneNumber,
+                website,
+                streetAddress,
+                borough,
+                accessible,
+                cuisines,
+                settings
+            }
+            const data = await dispatch(createRestaurant(new_restaurant))
+            console.log('DATA ', data)
+            console.log('DATA JSON ', data.json())
+            console.log('DATA ERRORS', data.errors)
+
+            if (data) {
+                setErrors(data.errors)
+            }
+            // const data = await error.json()
+            // data && setErrors(data)
+        }
 
     const settingsSelector = (e) => {
         const setting_array = [...settings]
@@ -43,71 +69,79 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
     }
 
     return (
-        <form onSubmit={onSubmit}>
-            {console.log('SETTING ARRAY', all_settings)}
-            <div>
-                <label htmlFor='name'>Name</label>
-                <input name='name' type='text' placeholder='Name' value={name} onChange={e => setName(e.target.value)}></input>
-            </div>
-            <div>
-                <label htmlFor='price_rating'>Price Rating</label>
-                <select name='price_rating' value={priceRating} onChange={e => setPriceRating(e.target.value)}>
-                    <option value={1}>$</option>
-                    <option value={2}>$$</option>
-                    <option value={3}>$$$</option>
-                    <option value={4}>$$$$</option>
-                </select>
-            </div>
-            <div>
-                <label htmlFor='description'>Description</label>
-                <textarea name='description' value={description} onChange={e => setDescription(e.target.value)}></textarea>
-            </div>
-            <div>
-                <label htmlFor='image_url'>Image Link</label>
-                <input type="text" name='image_url' value={imageURL} onChange={e => setImageURL(e.target.value)}></input>
-            </div>
-            <div>
-                <label htmlFor='phone_number'>Phone Number</label>
-                <input type="text" name='phone_number' value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)}></input>
-            </div>
-            <div>
-                <label htmlFor='web'>Website</label>
-                <input type="text" name='web' value={website} onChange={e => setWebsite(e.target.value)}></input>
-            </div>
-            <div>
-                <label htmlFor='street_address'>Street Address</label>
-                <input type="text" name='street_address' value={streetAddress} onChange={e => setStreetAddress(e.target.value)}></input>
-            </div>
-            <div>
-                <label htmlFor='borough'>Borough</label>
-                <select name='borough' value={borough} onChange={e => setBorough(e.target.value)}>
-                    <option value="Manhattan">Manhattan</option>
-                    <option value="Brooklyn">Brooklyn</option>
-                    <option value="Queens">Queens</option>
-                    <option value="The Bronx">The Bronx</option>
-                    <option value="Staten Island">Staten Island</option>
-                </select>
-            </div>
-            <div>
-                <label htmlFor='accessible'>Accessible?</label>
-                <input type="checkbox" value={accessible} onChange={() => setAccessible(!accessible)}></input>
-            </div>
-            <div>
-                <label htmlFor='cuisines'>Cuisines</label>
-                <select name='cuisines' value={cuisines} onChange={cuisinesSelector} multiple>
-                    {all_cuisines.map(cuisine => <option key={cuisine.id} value={cuisine.type}>{cuisine.type}</option>)}
-                </select>
-            </div>
-            <div>
-                <label htmlFor='settings'>Settings</label>
-                <select name='settings' value={settings} onChange={settingsSelector} multiple>
-                    {all_settings.map(setting => <option key={setting.id} value={setting.type}>{setting.type}</option>)}
-                </select>
-            </div>
-            <div>
-                <button type="submit">Submit</button>
-            </div>
-        </form>
+        <div>
+            <ul>
+                {errors.map(error => {
+                    <li key={error}>
+                        {error}
+                    </li>
+                })}
+            </ul>
+            <form onSubmit={onSubmit}>
+                <div>
+                    <label htmlFor='name'>Name</label>
+                    <input name='name' type='text' placeholder='Name' value={name} onChange={e => setName(e.target.value)}></input>
+                </div>
+                <div>
+                    <label htmlFor='price_rating'>Price Rating</label>
+                    <select name='price_rating' value={priceRating} onChange={e => setPriceRating(e.target.value)}>
+                        <option value={1}>$</option>
+                        <option value={2}>$$</option>
+                        <option value={3}>$$$</option>
+                        <option value={4}>$$$$</option>
+                    </select>
+                </div>
+                <div>
+                    <label htmlFor='description'>Description</label>
+                    <textarea name='description' value={description} onChange={e => setDescription(e.target.value)}></textarea>
+                </div>
+                <div>
+                    <label htmlFor='image_url'>Image Link</label>
+                    <input type="text" name='image_url' value={imageURL} onChange={e => setImageURL(e.target.value)}></input>
+                </div>
+                <div>
+                    <label htmlFor='phone_number'>Phone Number</label>
+                    <input type="text" name='phone_number' value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)}></input>
+                </div>
+                <div>
+                    <label htmlFor='web'>Website</label>
+                    <input type="text" name='web' value={website} onChange={e => setWebsite(e.target.value)}></input>
+                </div>
+                <div>
+                    <label htmlFor='street_address'>Street Address</label>
+                    <input type="text" name='street_address' value={streetAddress} onChange={e => setStreetAddress(e.target.value)}></input>
+                </div>
+                <div>
+                    <label htmlFor='borough'>Borough</label>
+                    <select name='borough' value={borough} onChange={e => setBorough(e.target.value)}>
+                        <option value="Manhattan">Manhattan</option>
+                        <option value="Brooklyn">Brooklyn</option>
+                        <option value="Queens">Queens</option>
+                        <option value="The Bronx">The Bronx</option>
+                        <option value="Staten Island">Staten Island</option>
+                    </select>
+                </div>
+                <div>
+                    <label htmlFor='accessible'>Accessible?</label>
+                    <input type="checkbox" value={accessible} onChange={() => setAccessible(!accessible)}></input>
+                </div>
+                <div>
+                    <label htmlFor='cuisines'>Cuisines</label>
+                    <select name='cuisines' value={cuisines} onChange={cuisinesSelector} multiple>
+                        {all_cuisines.map(cuisine => <option key={cuisine.id} value={cuisine.type}>{cuisine.type}</option>)}
+                    </select>
+                </div>
+                <div>
+                    <label htmlFor='settings'>Settings</label>
+                    <select name='settings' value={settings} onChange={settingsSelector} multiple>
+                        {all_settings.map(setting => <option key={setting.id} value={setting.type}>{setting.type}</option>)}
+                    </select>
+                </div>
+                <div>
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
     )
 }
 

@@ -26,13 +26,18 @@ def create_restaurant():
       website = form.data['website'],
       street_address = form.data['street_address'],
       borough = form.data['borough'],
-      accessible = form.data['accessible']
+      accessible = form.data['accessible'],
+      settings = form.data['settings'],
+      cuisines = form.data['cuisines']
       )
-
     db.session.add(new_restaurant)
     db.session.commit()
+    return new_restaurant.to_dict()
 
-    return restaurant.to_dict()
+  else:
+    return 'Bad Data'
+
+
 
 
 
