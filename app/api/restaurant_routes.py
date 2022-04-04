@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import current_user
-from app.models import Restaurant, db
-from app.forms import RestaurantForm
+from .models import Restaurant, db
+from .forms import RestaurantForm
 
 restaurant_routes = Blueprint('restaurants', __name__)
 

@@ -15,6 +15,11 @@ from .seeds import seed_commands
 
 from .config import Config
 
+def create_app():
+    app = Flask(__name__)
+    db.init_app(app)
+    return app
+
 app = Flask(__name__)
 
 # Setup login manager
