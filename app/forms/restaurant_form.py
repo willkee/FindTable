@@ -1,8 +1,13 @@
+from idna import valid_contextj
 from flask_wtf import FlaskForm
 from wtforms import (
-  StringField, IntegerField, TextAreaField, BooleanField, SelectField)
+  StringField, TextAreaField, BooleanField, SelectField, SelectMultipleField, SubmitField)
 from wtforms.validators import DataRequired, ValidationError, Length
-from app.models import Restaurant
+from app.models import Restaurant, Setting, Cuisine
+
+settings = Setting.query.all()
+cuisines = Cuisine.query.all()
+
 
 def restaurant_exists(form, field):
   name = field.data.name
@@ -20,3 +25,6 @@ class RestaurantForm(FlaskForm):
   street_address = StringField('Street Address', validators=[DataRequired(), Length(min=0, max=255)])
   borough = SelectField('Borough', choices=["Manhattan", "Brooklyn", "Queens", "The Bronx", "Staten Island"], validators=[DataRequired()])
   accessible = BooleanField('Accessible', default=False)
+  settings = SelectMultipleField('Settings', choices=[choice.type for choice in settings], validators=[DataRequired()])
+  cuisines = SelectMultipleField('Cuisines', choices=[choice.type for choice in cuisines], validators=[DataRequired()])
+  submit = SubmitField('Submit')
