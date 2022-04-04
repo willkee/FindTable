@@ -1,44 +1,50 @@
-
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import ProtectedRoute from '../auth/ProtectedRoute'
+import styles from './navbar.module.css'
+import {MagnifyingGlass, Calendar, UserProfileIcon, GreyVerticalLine} from '../Icons'
+
+
 
 const NavBar = () => {
   return (
-    <nav>
-      <ul>
-        <li>
+    <nav className={styles.wrapper}>
+        <div>
           <NavLink to='/' exact={true} activeClassName='active'>
             Home
           </NavLink>
-        </li>
-        <li>
+        </div>
+        <div>
           <NavLink to='/login' exact={true} activeClassName='active'>
             Login
           </NavLink>
-        </li>
-        <li>
+        </div>
+        <div>
           <NavLink to='/sign-up' exact={true} activeClassName='active'>
             Sign Up
           </NavLink>
-        </li>
-        <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/restaurants' exact={true} activeClassName='active'>
-            Restaurants
-          </NavLink>
-        </li>
+        </div>
+        <div className={styles.right}>
+          <div>
+            <UserProfileIcon />
+          </div>
+          <div>
+            <Calendar />
+          </div>
+          <div>
+            <GreyVerticalLine />
+          </div>
+          <div>
+            <MagnifyingGlass />
+          </div>
+        </div>
         <ProtectedRoute>
-          <li>
+          <div>
             <LogoutButton />
-          </li>
+          </div>
         </ProtectedRoute>
-      </ul>
+
     </nav>
   );
 }
