@@ -1,6 +1,6 @@
 const RECEIVED_SETTINGS = '/settings/receivedSettings'
 
-export const gotSettings = (data) => {
+const gotSettings = (data) => {
     return {
         type: RECEIVED_SETTINGS,
         data
@@ -12,8 +12,7 @@ export const retrieveSettings = () => async dispatch => {
 
     if (res.ok) {
         const data = await res.json()
-        console.log("SETTING CONSOLE LOG", data)
-        await dispatch(data)
+        await dispatch(gotSettings(data.settings))
         return data
     }
 }
@@ -23,7 +22,7 @@ const settingsReducer = (state = {}, action) => {
         case RECEIVED_SETTINGS: {
             console.log("ACTION DATA!", action.data)
             const newState = { ...state }
-            action.data.forEach(setting => newState[setting.id] = setting['type'])
+            action.data.forEach(setting => newState[setting.id] = setting)
             return newState
         }
         default:

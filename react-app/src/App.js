@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/Navbar/';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+
+import User from './components/User';
 import UsersList from './components/UsersList';
 import RestaurantsList from './components/RestaurantsList';
+import NewRestaurantForm from './components/auth/NewRestaurantForm';
+
+
 import { receiveAllRestaurants } from './store/restaurants';
 import { allUsers } from './store/users';
 import { retrieveSettings } from './store/settings';
-import NewRestaurantForm from './components/auth/NewRestaurantForm';
-import User from './components/User';
 import { authenticate } from './store/session';
+import { retrieveCusines } from './store/cuisines';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -20,6 +25,8 @@ function App() {
 
   const users = useSelector(state => Object.values(state.users))
   const all_restaurants = useSelector(state => Object.values(state.restaurants))
+  const all_settings = useSelector(state => Object.values(state.settings))
+  const all_cuisines = useSelector(state => Object.values(state.cuisines))
 
   useEffect(() => {
     (async() => {
@@ -27,6 +34,7 @@ function App() {
       await dispatch(receiveAllRestaurants())
       await dispatch(allUsers())
       await dispatch(retrieveSettings())
+      await dispatch(retrieveCusines())
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -55,7 +63,7 @@ function App() {
           <RestaurantsList all_restaurants={all_restaurants} />
         </ProtectedRoute>
         <ProtectedRoute exact path="/restaurants/new">
-          <NewRestaurantForm />
+          <NewRestaurantForm all_settings={all_settings} all_cuisines={all_cuisines}/>
         </ProtectedRoute>
         <ProtectedRoute exact path='/' >
           <h1>My Home Page</h1>

@@ -4,12 +4,14 @@ import sessionReducer from './session'
 import userReducer from './users';
 import restaurantsReducer from './restaurants';
 import settingsReducer from './settings';
+import cuisinesReducer from './cuisines';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   users: userReducer,
   restaurants: restaurantsReducer,
-  settings: settingsReducer
+  settings: settingsReducer,
+  cuisines: cuisinesReducer
 });
 
 
