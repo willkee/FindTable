@@ -126,6 +126,7 @@ const restaurantsReducer = (state = {}, action) => {
     }
     case DELETED_RESTAURANT: {
       delete newState[action.payload?.id]
+      //double check the payload because it could already be an Id and id.id doesn't make sense
       return newState
     }
     default:
