@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const PageContainer = styled.div`
+export const InnerWrapper = styled.div`
     width: 1600px;
     height: auto;
     min-height: 100vh;
