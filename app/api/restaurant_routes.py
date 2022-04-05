@@ -3,6 +3,7 @@ from flask_login import current_user
 from app.models import Restaurant, db, Setting, Cuisine
 from app.models.restaurants import restaurant_settings
 from app.forms import RestaurantForm
+import json
 
 restaurant_routes = Blueprint('restaurants', __name__)
 
@@ -17,13 +18,19 @@ def error_generator(validation_errors):
 @restaurant_routes.route('/', methods=['POST'])
 def create_restaurant():
   form = RestaurantForm()
+
+  x = request.json
+  print("REQUEST \n\n", x, '\n\n') # request object
+  y = json.dumps(x)
+  print("DUMPER \n\n",  y, '\n\n') # request object to string
+  z = json.loads(y)
+  print("LOADS \n\n",  z, '\n\n') # turn string back into python dict
+
+  res_set = z['settings']
+  res_cus = z['cuisines']
   form['csrf_token'].data = request.cookies['csrf_token']
 
-  print(dir(form))
-  print("\n\n\n\n\n REQUEST", form.settings.data, "\n\n\n\n\n\n\n")
-
-  if form.is_submitted():
-    print("\n\n\n\n\nFORM SUBMISSION SUCCESS\n\n\n\n\n")
+  if form.validate_on_submit():
     new_restaurant = Restaurant(
       owner_id = current_user.id,
       name = form.data['name'],
@@ -34,32 +41,23 @@ def create_restaurant():
       website = form.data['website'],
       street_address = form.data['street_address'],
       borough = form.data['borough'],
-      accessible = form.data['accessible'],
-      )
-      # settings = [Setting(type=setting) for setting in form.settings.data],
-      # cuisines = [Cuisine(type=cuisine) for cuisine in form.cuisines.data]
+      accessible = form.data['accessible'])
+
+    for settingId in res_set:
+      new_restaurant.settings.append(Setting.query.get(int(settingId)))
+
+    for cuisineId in res_cus:
+      new_restaurant.cuisines.append(Cuisine.query.get(int(cuisineId)))
+
+    print('\n\n NEW REST SETTINGS ', new_restaurant.settings)
+    print('\n\n NEW REST ', new_restaurant.to_dict())
     db.session.add(new_restaurant)
-
-    entered_settings = form.settings.data
-    setting_ids = []
-
-    for setting in entered_settings:
-      print(setting)
-      found_setting = Setting.query.filter(Setting.type.like(setting))
-      # setting_ids.append(found_setting.id)
-
-    print("IDS", setting_ids)
-
-    for id in setting_ids:
-      new_settings_joined = restaurant_settings(restaurant_id=new_restaurant.id, settings_id=id)
-      db.session.add(new_settings_joined)
-      print("NEW SETTINGS JOINED", new_settings_joined)
 
     db.session.commit()
     return new_restaurant.to_dict()
 
   else:
-    print("\n\n\n\n\nFORM SUBMISSION FAIL\n\n\n\n\n")
+    # print("\n\n\n\n\nFORM SUBMISSION FAIL\n\n\n\n\n")
     return {'error123123': error_generator(form.errors)}
 
 
