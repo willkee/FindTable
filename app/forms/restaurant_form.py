@@ -23,8 +23,10 @@ class RestaurantForm(FlaskForm):
   street_address = StringField('Street Address', validators=[DataRequired(), Length(min=0, max=255)])
   borough = SelectField('Borough', choices=["Manhattan", "Brooklyn", "Queens", "The Bronx", "Staten Island"], validators=[DataRequired()])
   accessible = BooleanField('Accessible', default=False)
-  settings = SelectMultipleField('Settings', choices=['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'], validators=[DataRequired()])
-  cuisines = SelectMultipleField('Cuisines', choices=['1', '2', '3', '4', '5', '6'], validators=[DataRequired()])
+  # settings = SelectMultipleField('Settings', choices=['1', '2', '3', '4', '5', '6', '7'], validators=[DataRequired()])
+  # cuisines = SelectMultipleField('Cuisines', choices=['1', '2', '3', '4', '5', '6',
+  #                                                     '7', '8', '9', '10', '11', '12', '13',
+  #                                                     '14', '15', '16', '17', '18', '19', '20'], validators=[DataRequired()])
   submit = SubmitField('Submit')
 
   # def __init__(self, *args, **kwargs):

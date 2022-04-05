@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-export const PageContainer = styled.div`
-    width: 1600px;
+export const InnerWrapper = styled.div`
+    width: 85vw;
     height: auto;
     min-height: 100vh;
     display: flex;
