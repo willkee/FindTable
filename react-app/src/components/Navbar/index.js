@@ -1,10 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
+import LogoutButton from '../LogoutButton';
 import ProtectedRoute from '../auth/ProtectedRoute'
 import styles from './Navbar.module.css'
 import {MagnifyingGlass, Calendar, UserProfileIcon, GreyVerticalLine} from '../Icons'
 import { useSelector } from 'react-redux';
+import Profile from '../Profile';
 
 
 const NavBar = () => {
@@ -34,7 +35,7 @@ const NavBar = () => {
           }
           <ProtectedRoute>
             <div>
-              <UserProfileIcon />
+              <Profile />
             </div>
             <div>
               <Calendar />
