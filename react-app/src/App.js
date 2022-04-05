@@ -10,7 +10,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import User from './components/User';
 import UsersList from './components/UsersList';
 import RestaurantsList from './components/RestaurantsList';
-import NewRestaurantForm from './components/auth/NewRestaurantForm';
+import {NewRestaurant} from './components/NewRestaurant';
 
 
 import { receiveAllRestaurants } from './store/restaurants';
@@ -66,7 +66,7 @@ function App() {
           <RestaurantsList all_restaurants={all_restaurants} />
           </ProtectedRoute>
           <ProtectedRoute exact path="/restaurants/new">
-            <NewRestaurantForm all_settings={all_settings} all_cuisines={all_cuisines}/>
+            <NewRestaurant all_settings={all_settings} all_cuisines={all_cuisines}/>
           </ProtectedRoute>
           <ProtectedRoute path='/' exact={true} >
             <Homepage />
