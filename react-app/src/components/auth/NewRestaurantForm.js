@@ -27,32 +27,33 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
 
     const onSubmit = async (e) => {
         e.preventDefault()
-            const formData = {
-                name: name,
-                price_rating: priceRating,
-                description: description,
-                img_url: imageURL,
-                phone_number: phoneNumber,
-                website: website,
-                street_address: streetAddress,
-                borough: borough,
-                accessible: accessible,
-                settings: settings,
-                cuisines: cuisines
-            }
+        const formData = {
+            name: name,
+            price_rating: priceRating,
+            description: description,
+            img_url: imageURL,
+            phone_number: phoneNumber,
+            website: website,
+            street_address: streetAddress,
+            borough: borough,
+            accessible: accessible,
+            settings: settings,
+            cuisines: cuisines
+        }
+        console.log(formData)
 
-            !name? setErrors(['Please provide a name.'])
-            : !imageURL ? setErrors(['Please provide a URL for your image.'])
-            : !phoneNumber ? setErrors(['Please provide a phone number.'])
-            : !streetAddress ? setErrors(['Please provide an address.'])
-            : setErrors([])
+        !name? setErrors(['Please provide a name.'])
+        : !imageURL ? setErrors(['Please provide a URL for your image.'])
+        : !phoneNumber ? setErrors(['Please provide a phone number.'])
+        : !streetAddress ? setErrors(['Please provide an address.'])
+        : setErrors([])
 
-            // console.log('ERRORS \n\n', errors)
+        // console.log('ERRORS \n\n', errors)
 
-            const newRestaurant = await dispatch(createRestaurant(formData))
-            if (errors.length === 0 && newRestaurant) {
-              return <Redirect to={`/restaurants/${newRestaurant.id}`}/>
-            }
+        const newRestaurant = await dispatch(createRestaurant(formData))
+        if (errors.length === 0 && newRestaurant) {
+            return <Redirect to={`/restaurants/${newRestaurant.id}`}/>
+        }
         }
 
     const settingsSelector = (e) => {
@@ -67,7 +68,7 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
     }
 
     const cuisinesSelector = (e) => {
-        const cuisines_array = [...settings]
+        const cuisines_array = [...cuisines]
         if (cuisines_array.includes(e.target.value)) {
             const idx_to_remove = cuisines_array.indexOf(e.target.value)
             cuisines_array.splice(idx_to_remove, 1)
@@ -174,8 +175,8 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
                     <div>
                     {cuisinesState.map(cuisine => (
                       <>
-                        <input type='checkbox' id={cuisine.id} name='cuisine' value={cuisine.type}/>
-                        <label for='cuisine'>{cuisine.type}</label>
+                        <input type='checkbox' key={cuisine.id} name='cuisine' value={cuisine.id} onChange={cuisinesSelector}/>
+                        <label htmlFor='cuisine'>{cuisine.type}</label>
                       </>
                     ))}
                     </div>
@@ -185,8 +186,8 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
                     <div>
                     {settingsState.map(setting => (
                       <>
-                        <input type='checkbox' id={setting.id} name='setting' value={setting.type}/>
-                        <label for='setting'>{setting.type}</label>
+                        <input type='checkbox' key={setting.id} name='setting' value={setting.id} onChange={settingsSelector}/>
+                        <label htmlFor='setting'>{setting.type}</label>
                       </>
                     ))}
                     </div>
