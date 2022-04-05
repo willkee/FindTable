@@ -52,22 +52,6 @@ def create_restaurant():
     print('\n\n NEW REST ', new_restaurant.to_dict())
     db.session.add(new_restaurant)
 
-
-    # entered_cuisines = form.settings.data
-
-    # for cuisineId in entered_cuisines:
-    #   new_restaurant.cuisines.append(cuisineId)
-
-    # print('\n\n\n\n\n\n\n\n\n\n\n\n',new_restaurant.settings,'\n\n\n\n\n\n\n\n\n\n\n\n')
-    # print('\n\n\n\n\n\n\n\n\n\n\n\n',new_restaurant.cuisines,'\n\n\n\n\n\n\n\n\n\n\n\n')
-
-
-
-    # for setting in new_restaurant.settings:
-    #   new_settings_joined = restaurant_settings(restaurant_id=new_restaurant.id, settings_id=id)
-    #   db.session.add(new_settings_joined)
-      # print("NEW SETTINGS JOINED", new_settings_joined)
-
     db.session.commit()
     # jsonStr = json.dumps(new_restaurant.to_dict())
     # print(jsonStr)

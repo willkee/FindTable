@@ -75,6 +75,7 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
             cuisines_array.push(e.target.value)
         }
         setCuisines(cuisines_array)
+        console.log(cuisines_array)
     }
 
     return (
@@ -174,7 +175,7 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
                     <div>
                     {cuisinesState.map(cuisine => (
                       <>
-                        <input type='checkbox' id={cuisine.id} name='cuisine' value={cuisine.type}/>
+                        <input type='checkbox' id={cuisine.id} name='cuisine' value={cuisine.id} onChange={cuisinesSelector}/>
                         <label for='cuisine'>{cuisine.type}</label>
                       </>
                     ))}
@@ -185,7 +186,7 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
                     <div>
                     {settingsState.map(setting => (
                       <>
-                        <input type='checkbox' id={setting.id} name='setting' value={setting.type}/>
+                        <input type='checkbox' id={setting.id} name='setting' value={setting.id} onChange={settingsSelector}/>
                         <label for='setting'>{setting.type}</label>
                       </>
                     ))}
