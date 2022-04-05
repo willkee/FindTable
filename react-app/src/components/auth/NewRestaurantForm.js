@@ -46,7 +46,7 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
             : !streetAddress ? setErrors(['Please provide an address.'])
             : setErrors([])
 
-            console.log('ERRORS \n\n', errors)
+            // console.log('ERRORS \n\n', errors)
 
             const newRestaurant = await dispatch(createRestaurant(formData))
             if (errors.length === 0 && newRestaurant) {
