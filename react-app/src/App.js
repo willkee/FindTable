@@ -8,6 +8,7 @@ import NavBar from './components/Navbar/';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
 import User from './components/User'
+
 import UsersList from './components/UsersList';
 import RestaurantsList from './components/RestaurantsList';
 import NewRestaurantForm from './components/auth/NewRestaurantForm';
