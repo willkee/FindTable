@@ -7,6 +7,8 @@ export const PageContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: absolute;
+    top: 55px;
     align-items: center;
     background-color: white;
     filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.16))
