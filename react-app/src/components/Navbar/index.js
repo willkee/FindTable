@@ -12,21 +12,23 @@ const NavBar = () => {
 
   return (
     <nav className={styles.container}>
-        <div>
+        <div className={styles.logo}>
           <NavLink to='/' exact={true} activeClassName='active'>
-            Home
+            Logo
           </NavLink>
         </div>
         <div className={styles.right}>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Sign in
-          </NavLink>
-        </div>
-        <ProtectedRoute>
-          <div className={styles.right}>
+          <div className={styles.signup}>
+            <NavLink to='/sign-up' exact={true} activeClassName='active'>
+              Sign up
+            </NavLink>
+          </div>
+          <div className={styles.signin}>
+            <NavLink to='/login' exact={true} activeClassName='active'>
+              Sign in
+            </NavLink>
+          </div>
+          <ProtectedRoute>
             <div>
               <UserProfileIcon />
             </div>
@@ -37,13 +39,13 @@ const NavBar = () => {
               <GreyVerticalLine />
             </div>
             <div>
+              <LogoutButton />
+            </div>
+          </ProtectedRoute>
+            <div>
               <MagnifyingGlass />
             </div>
-          </div>
-          <div>
-            <LogoutButton />
-          </div>
-        </ProtectedRoute>
+        </div>
 
     </nav>
   );
