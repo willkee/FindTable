@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import ProtectedRoute from '../auth/ProtectedRoute'
-import styles from './navbar.module.css'
+import styles from './Navbar.module.css'
 import {MagnifyingGlass, Calendar, UserProfileIcon, GreyVerticalLine} from '../Icons'
 
 
