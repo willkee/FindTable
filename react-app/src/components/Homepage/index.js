@@ -1,14 +1,17 @@
-import styles from './homepage.module.css'
+import styles from './Homepage.module.css'
+import {PageWrapper} from '../PageWrapper'
 import NavBar from '../Navbar'
+import {PageContainer} from '../PageContainer'
 
-const Homepage = () => {
+
+export const Homepage = () => {
 
   return (
-    <div className={styles.wrapper}>
+    <PageWrapper>
       <NavBar />
-      <div className={styles.container}>
+      <PageContainer>
 
-      </div>
-    </div>
+      </PageContainer>
+    </PageWrapper>
   )
 }
