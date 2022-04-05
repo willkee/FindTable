@@ -18,6 +18,7 @@ import { allUsers } from './store/users';
 import { retrieveSettings } from './store/settings';
 import User from './components/User';
 import { Homepage } from './components/Homepage';
+import { PageWrapper } from '../src/components/PageWrapper';
 import { authenticate } from './store/session';
 import { retrieveCusines } from './store/cuisines';
 
@@ -47,30 +48,32 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
-      <Switch>
-        <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route>
-        <ProtectedRoute exact path='/users' >
+      <PageWrapper>
+        <NavBar />
+        <Switch>
+          <Route path='/login' exact={true}>
+            <LoginForm />
+          </Route>
+          <Route path='/sign-up' exact={true}>
+            <SignUpForm />
+          </Route>
+          <ProtectedRoute path='/users' exact={true} >
           <UsersList users={users} />
-        </ProtectedRoute>
-        <ProtectedRoute exact path='/users/:userId' >
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute exact path="/restaurants">
+          </ProtectedRoute>
+          <ProtectedRoute path='/users/:userId' exact={true} >
+            <User />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/restaurants">
           <RestaurantsList all_restaurants={all_restaurants} />
-        </ProtectedRoute>
-        <ProtectedRoute exact path="/restaurants/new">
-          <NewRestaurantForm all_settings={all_settings} all_cuisines={all_cuisines}/>
-        </ProtectedRoute> 
-        <ProtectedRoute path='/' exact={true} >
-          <Homepage />
-        </ProtectedRoute>
-      </Switch>
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/restaurants/new">
+            <NewRestaurantForm all_settings={all_settings} all_cuisines={all_cuisines}/>
+          </ProtectedRoute> 
+          <ProtectedRoute path='/' exact={true} >
+            <Homepage />
+          </ProtectedRoute>
+        </Switch>
+      </PageWrapper>
     </BrowserRouter>
   );
 }
