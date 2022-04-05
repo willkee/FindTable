@@ -57,7 +57,6 @@ def create_restaurant():
     db.session.commit()
 
     return new_restaurant.to_dict()
-
   else:
     return {'error123123': error_generator(form.errors)}
 
@@ -98,3 +97,12 @@ def restaurantUpdate(id):
     return restaurant.to_dict()
 
   return {'errors': error_generator(form.errors)}
+
+@restaurant_routes.route('/<int:id>', methods=['DELETE'])
+def restaurantDelete(id):
+  data = {}
+  restaurant = Restaurant.query.get(id)
+  data['restaurant'] = restaurant.to_dict()
+  db.session.delete(comment)
+  db.session.commit()
+  return data
