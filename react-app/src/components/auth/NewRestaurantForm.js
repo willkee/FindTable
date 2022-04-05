@@ -16,12 +16,13 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
     const [cuisines, setCuisines] = useState([])
     const [settings, setSettings] = useState([])
     const [errors, setErrors] = useState([])
+    const settingsState = useSelector(state => Object.values(state.settings))
+    const cuisinesState = useSelector(state => Object.values(state.cuisines))
+
+
+
 
     const dispatch = useDispatch()
-    // const error_list = useSelector(state => state.restaurants.undefined.error)
-    useEffect(() => {
-
-    }, [errors])
 
 
     const onSubmit = async (e) => {
@@ -170,21 +171,25 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
                 </div>
                 <div>
                     <label htmlFor='cuisines'>Cuisines</label>
-                    <select name='cuisines'
-                            value={cuisines}
-                            onChange={cuisinesSelector}
-                            multiple>
-                        {all_cuisines.map(cuisine => <option key={cuisine.id} value={cuisine.id}>{cuisine.type}</option>)}
-                    </select>
+                    <div>
+                    {cuisinesState.map(cuisine => (
+                      <>
+                        <input type='checkbox' id={cuisine.id} name='cuisine' value={cuisine.type}/>
+                        <label for='cuisine'>{cuisine.type}</label>
+                      </>
+                    ))}
+                    </div>
                 </div>
                 <div>
                     <label htmlFor='settings'>Settings</label>
-                    <select name='settings'
-                            value={settings}
-                            onChange={settingsSelector}
-                            multiple>
-                        {all_settings.map(setting => <option key={setting.id} value={setting.id}>{setting.type}</option>)}
-                    </select>
+                    <div>
+                    {settingsState.map(setting => (
+                      <>
+                        <input type='checkbox' id={setting.id} name='setting' value={setting.type}/>
+                        <label for='setting'>{setting.type}</label>
+                      </>
+                    ))}
+                    </div>
                 </div>
                 <div>
                     <button disabled={!name || !streetAddress || !phoneNumber || !imageURL ? true : false} type="submit">Submit</button>
