@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import RestaurantsList from './components/RestaurantsList';
 import User from './components/User';
 import { Homepage } from './components/Homepage';
+import { PageWrapper } from '../src/components/PageWrapper';
 import { authenticate } from './store/session';
 
 function App() {
@@ -28,27 +29,29 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
-      <Switch>
-        <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute exact path="/restaurants">
-          <RestaurantsList />
-        </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <Homepage />
-        </ProtectedRoute>
-      </Switch>
+      <PageWrapper>
+        <NavBar />
+        <Switch>
+          <Route path='/login' exact={true}>
+            <LoginForm />
+          </Route>
+          <Route path='/sign-up' exact={true}>
+            <SignUpForm />
+          </Route>
+          <ProtectedRoute path='/users' exact={true} >
+            <UsersList/>
+          </ProtectedRoute>
+          <ProtectedRoute path='/users/:userId' exact={true} >
+            <User />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/restaurants">
+            <RestaurantsList />
+          </ProtectedRoute>
+          <ProtectedRoute path='/' exact={true} >
+            <Homepage />
+          </ProtectedRoute>
+        </Switch>
+      </PageWrapper>
     </BrowserRouter>
   );
 }
