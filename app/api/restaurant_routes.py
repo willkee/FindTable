@@ -49,15 +49,16 @@ def create_restaurant():
     for cuisineId in res_cus:
       new_restaurant.cuisines.append(Cuisine.query.get(int(cuisineId)))
 
+
     print('\n\n NEW REST SETTINGS ', new_restaurant.settings)
     print('\n\n NEW REST ', new_restaurant.to_dict())
     db.session.add(new_restaurant)
 
     db.session.commit()
+
     return new_restaurant.to_dict()
 
   else:
-    # print("\n\n\n\n\nFORM SUBMISSION FAIL\n\n\n\n\n")
     return {'error123123': error_generator(form.errors)}
 
 
