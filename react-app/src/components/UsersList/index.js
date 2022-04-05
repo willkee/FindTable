@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux'
-import { allUsers } from '../../store/users';
+// import { useDispatch, useSelector } from 'react-redux'
+// import { allUsers } from '../store/users';
 
-function UsersList() {
-  const users = useSelector(state => Object.values(state.users))
-  const dispatch = useDispatch()
+function UsersList({ users }) {
+  // const users = useSelector(state => Object.values(state.users))
+  // const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(allUsers())
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(allUsers())
+  // }, [dispatch]);
 
   const userComponents = users.map((user) => {
     return (

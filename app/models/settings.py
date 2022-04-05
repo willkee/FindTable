@@ -13,3 +13,9 @@ class Setting(db.Model):
     updated_at = db.Column(db.DateTime, default=db.func.now(), onupdate=db.func.now())
 
     restaurants = db.relationship('Restaurant', secondary=restaurant_settings, back_populates="settings")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'type': self.type
+        }

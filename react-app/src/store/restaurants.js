@@ -1,3 +1,5 @@
+
+
 const CREATED_RESTAURANT = '/restaurants/createdRestaurant'
 const ALL_RESTAURANTS_RECEIVED = '/restaurants/allRestaurantsReceived'
 // const ONE_RESTAURANT_RECEIVED  = '/restaurants/oneRestaurantReceived'
@@ -48,17 +50,18 @@ export const createRestaurant = data =>
   async dispatch => {
     const res = await fetch('/api/restaurants/', {
       method: 'POST',
-      headers: { 'Content_Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     })
     const newRestaurant = await res.json()
     dispatch(createdRestaurant(newRestaurant))
+    return newRestaurant
   }
 
 
 export const receiveAllRestaurants = () => async dispatch => {
     const res = await fetch('/api/restaurants/')
-  console.log("SDFJHSKFHSDKUFHSD*F(&HSDF*&HSDF")
+  // console.log("SDFJHSKFHSDKUFHSD*F(&HSDF*&HSDF")
     if (res.ok) {
       const restaurants = await res.json();
       // console.log("\n\n\n\n\n\nRESTAURANTS", restaurants, "\n\n\n\n\n")
