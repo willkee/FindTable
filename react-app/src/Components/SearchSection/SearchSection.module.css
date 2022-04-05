@@ -1,0 +1,17 @@
+.container {
+    width: 1600px;
+    height: 250px;
+    background: linear-gradient(45deg, #4895FD, #24599D);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formWrapper {
+    width: 950px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
