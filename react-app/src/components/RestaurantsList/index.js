@@ -1,14 +1,8 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { receiveAllRestaurants } from "../../store/restaurants";
+import React from "react";
+// import { useSelector } from "react-redux";
 
-const RestaurantsList = () => {
-    const all_restaurants = useSelector(state => Object.values(state.restaurants))
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(receiveAllRestaurants())
-    }, [dispatch])
+const RestaurantsList = ({ all_restaurants }) => {
+    // const all_restaurants = useSelector(state => Object.values(state.restaurants))
 
     return (
         <div>
@@ -26,6 +20,7 @@ const RestaurantsList = () => {
                         <th>Street Address</th>
                         <th>Borough</th>
                         <th>Accessible</th>
+                        {/* <th>Settings</th> */}
                     </tr>
                 </thead>
                 <tbody>
@@ -36,12 +31,13 @@ const RestaurantsList = () => {
                             <td>{restaurant.name}</td>
                             <td>{restaurant.price_rating}</td>
                             <td>{restaurant.description}</td>
-                            <td>{restaurant.img_url}</td>
+                            <td><img src={restaurant.img_url} width="200px"></img></td>
                             <td>{restaurant.phone_number}</td>
                             <td>{restaurant.website}</td>
                             <td>{restaurant.street_address}</td>
                             <td>{restaurant.borough}</td>
-                            <td>{restaurant.accessible}</td>
+                            <td>{restaurant.accessible ? "Yes" : "No"}</td>
+                            {/* <td>{restaurant.settings.forEach(setting => <td>{setting}</td>)}</td> */}
                         </tr>
                     ))}
                 </tbody>

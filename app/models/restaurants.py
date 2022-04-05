@@ -32,7 +32,7 @@ class Restaurant(db.Model):
     created_at = db.Column(db.DateTime, default=db.func.now()) # FORMAT: 2022-04-02 13:27:25.457314
     updated_at = db.Column(db.DateTime, default=db.func.now(), onupdate=db.func.now())
 
-    # owner = db.relationship("User", back_populates="restaurants")
+    owner = db.relationship("User", back_populates="restaurants")
     settings = db.relationship('Setting', secondary=restaurant_settings, back_populates="restaurants")
     cuisines = db.relationship('Cuisine', secondary=restaurant_cuisines, back_populates="restaurants")
 
@@ -50,6 +50,8 @@ class Restaurant(db.Model):
             'street_address': self.street_address,
             'borough': self.borough,
             'accessible': self.accessible,
+            'settings': [setting.to_dict() for setting in self.settings],
+            'cuisines': [cuisine.to_dict() for cuisine in self.cuisines],
         }
 # 'reviews': [review.to_dict() for review in self.reviews]
 # 'reservations': [reservation.to_dict() for reservation in self.reservations]
