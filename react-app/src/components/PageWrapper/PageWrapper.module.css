@@ -1,9 +1,10 @@
 .wrapper {
     width: 100vw;
     height: auto;
+    min-height: 100vh;
     overflow-y: scroll;
     overflow-x: hidden;
-    background-color: #f7f7f7;
+    background-color: greenyellow;
     display: flex;
     flex-direction: column;
     justify-content: center;
