@@ -25,6 +25,7 @@ class RestaurantForm(FlaskForm):
   accessible = BooleanField('Accessible', default=False)
   settings = SelectMultipleField('Settings', choices=[], validators=[DataRequired()])
   cuisines = SelectMultipleField('Cuisines', choices=[], validators=[DataRequired()])
+  submit = SubmitField('Submit')
 
   # def __init__(self, *args, **kwargs):
   #       super(RestaurantForm, self).__init__(*args, **kwargs)

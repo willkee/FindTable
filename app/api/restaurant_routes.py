@@ -19,11 +19,13 @@ def create_restaurant():
   form = RestaurantForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
-  print(dir(form))
+  # print(dir(form))
   print("\n\n\n\n\n REQUEST", form.settings.data, "\n\n\n\n\n\n\n")
 
+
+
   if form.is_submitted():
-    print("\n\n\n\n\nFORM SUBMISSION SUCCESS\n\n\n\n\n")
+    # print("\n\n\n\n\nFORM SUBMISSION SUCCESS\n\n\n\n\n")
     new_restaurant = Restaurant(
       owner_id = current_user.id,
       name = form.data['name'],
@@ -35,31 +37,43 @@ def create_restaurant():
       street_address = form.data['street_address'],
       borough = form.data['borough'],
       accessible = form.data['accessible'],
-      )
-      # settings = [Setting(type=setting) for setting in form.settings.data],
-      # cuisines = [Cuisine(type=cuisine) for cuisine in form.cuisines.data]
+      settings = form.settings.data,
+      cuisines = form.cuisines.data)
+
+
+    # allSettings = [Setting(type=setting) for setting in form.settings.data]
+    # allCuisines = [Cuisine(type=cuisine) for cuisine in form.cuisines.data]
+    # new_restaurant.settings =
+    # new_restaurant.cuisines = allCuisines
+    # new_restaurant.settings.append()
+    # new_restaurant.cuisine.append()
     db.session.add(new_restaurant)
 
-    entered_settings = form.settings.data
-    setting_ids = []
+    # entered_settings = form.settings.data
 
-    for setting in entered_settings:
-      print(setting)
-      found_setting = Setting.query.filter(Setting.type.like(setting))
-      # setting_ids.append(found_setting.id)
+    # for settingId in entered_settings:
+    #   new_restaurant.settings.append(settingId)
 
-    print("IDS", setting_ids)
+    # entered_cuisines = form.settings.data
 
-    for id in setting_ids:
-      new_settings_joined = restaurant_settings(restaurant_id=new_restaurant.id, settings_id=id)
-      db.session.add(new_settings_joined)
-      print("NEW SETTINGS JOINED", new_settings_joined)
+    # for cuisineId in entered_cuisines:
+    #   new_restaurant.cuisines.append(cuisineId)
+
+    print('\n\n\n\n\n\n\n\n\n\n\n\n',new_restaurant.settings,'\n\n\n\n\n\n\n\n\n\n\n\n')
+    print('\n\n\n\n\n\n\n\n\n\n\n\n',new_restaurant.cuisines,'\n\n\n\n\n\n\n\n\n\n\n\n')
+
+
+
+    # for setting in new_restaurant.settings:
+    #   new_settings_joined = restaurant_settings(restaurant_id=new_restaurant.id, settings_id=id)
+    #   db.session.add(new_settings_joined)
+      # print("NEW SETTINGS JOINED", new_settings_joined)
 
     db.session.commit()
     return new_restaurant.to_dict()
 
   else:
-    print("\n\n\n\n\nFORM SUBMISSION FAIL\n\n\n\n\n")
+    # print("\n\n\n\n\nFORM SUBMISSION FAIL\n\n\n\n\n")
     return {'error123123': error_generator(form.errors)}
 
 

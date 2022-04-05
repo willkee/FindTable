@@ -16,7 +16,6 @@ import NewRestaurantForm from './components/auth/NewRestaurantForm';
 import { receiveAllRestaurants } from './store/restaurants';
 import { allUsers } from './store/users';
 import { retrieveSettings } from './store/settings';
-import User from './components/User';
 import { Homepage } from './components/Homepage';
 import { PageWrapper } from '../src/components/PageWrapper';
 import { authenticate } from './store/session';
@@ -68,7 +67,7 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute exact path="/restaurants/new">
             <NewRestaurantForm all_settings={all_settings} all_cuisines={all_cuisines}/>
-          </ProtectedRoute> 
+          </ProtectedRoute>
           <ProtectedRoute path='/' exact={true} >
             <Homepage />
           </ProtectedRoute>

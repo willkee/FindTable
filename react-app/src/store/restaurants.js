@@ -1,5 +1,3 @@
-
-
 const CREATED_RESTAURANT = '/restaurants/createdRestaurant'
 const ALL_RESTAURANTS_RECEIVED = '/restaurants/allRestaurantsReceived'
 // const ONE_RESTAURANT_RECEIVED  = '/restaurants/oneRestaurantReceived'
