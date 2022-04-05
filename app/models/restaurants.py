@@ -50,6 +50,8 @@ class Restaurant(db.Model):
             'street_address': self.street_address,
             'borough': self.borough,
             'accessible': self.accessible,
+            'settings': [setting.to_dict() for setting in self.settings],
+            'cuisines': [cuisine.to_dict() for cuisine in self.cuisines],
         }
 # 'reviews': [review.to_dict() for review in self.reviews]
 # 'reservations': [reservation.to_dict() for reservation in self.reservations]

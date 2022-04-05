@@ -13,6 +13,7 @@ from app.models import db, Restaurant, Setting, Cuisine
 
 
 class RestaurantForm(FlaskForm):
+
   name = StringField('Name', validators=[DataRequired(), Length(min=0, max=255)])
   price_rating = SelectField('Price Rating', choices=["1", "2", "3", "4"], validators=[DataRequired()])
   description = TextAreaField('Description')
@@ -25,9 +26,9 @@ class RestaurantForm(FlaskForm):
   settings = SelectMultipleField('Settings', choices=[], validators=[DataRequired()])
   cuisines = SelectMultipleField('Cuisines', choices=[], validators=[DataRequired()])
 
-  def __init__(self, *args, **kwargs):
-        super(RestaurantForm, self).__init__(*args, **kwargs)
-        self.settings.choices = [setting.type
-                                        for setting in Setting.query.all()]
-        self.cuisines.choices = [cuisine.type
-                                        for cuisine in Setting.query.all()]
+  # def __init__(self, *args, **kwargs):
+  #       super(RestaurantForm, self).__init__(*args, **kwargs)
+  #       self.settings.choices = [setting.type
+  #                                       for setting in Setting.query.all()]
+  #       self.cuisines.choices = [cuisine.type
+  #                                       for cuisine in Setting.query.all()]
