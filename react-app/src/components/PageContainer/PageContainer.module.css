@@ -1,0 +1,10 @@
+.container {
+    width: 1600px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.16))
+  }

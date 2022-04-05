@@ -8,6 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import RestaurantsList from './components/RestaurantsList';
 import User from './components/User';
+import { Homepage } from './components/Homepage';
 import { authenticate } from './store/session';
 
 function App() {
@@ -45,7 +46,7 @@ function App() {
           <RestaurantsList />
         </ProtectedRoute> 
         <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <Homepage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
