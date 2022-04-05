@@ -45,6 +45,7 @@ const deletedRestaurant = (payload) => {
 
 //thunks
 export const createRestaurant = data =>
+
   async dispatch => {
     console.log('DATA \n\n ', data)
     const res = await fetch('/api/restaurants/', {
