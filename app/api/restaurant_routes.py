@@ -48,7 +48,7 @@ def create_restaurant():
     for cuisineId in entered_cuisines:
       new_restaurant.cuisines.append(Cuisine.query.get(int(cuisineId)))
 
-    print('\n\n NEW REST SETTINGS ', new_restaurant.settings)
+    # print('\n\n NEW REST SETTINGS ', new_restaurant.settings)
     print('\n\n NEW REST ', new_restaurant.to_dict())
     db.session.add(new_restaurant)
 
@@ -58,8 +58,8 @@ def create_restaurant():
     # for cuisineId in entered_cuisines:
     #   new_restaurant.cuisines.append(cuisineId)
 
-    print('\n\n\n\n\n\n\n\n\n\n\n\n',new_restaurant.settings,'\n\n\n\n\n\n\n\n\n\n\n\n')
-    print('\n\n\n\n\n\n\n\n\n\n\n\n',new_restaurant.cuisines,'\n\n\n\n\n\n\n\n\n\n\n\n')
+    # print('\n\n\n\n\n\n\n\n\n\n\n\n',new_restaurant.settings,'\n\n\n\n\n\n\n\n\n\n\n\n')
+    # print('\n\n\n\n\n\n\n\n\n\n\n\n',new_restaurant.cuisines,'\n\n\n\n\n\n\n\n\n\n\n\n')
 
 
 
@@ -68,10 +68,10 @@ def create_restaurant():
     #   db.session.add(new_settings_joined)
       # print("NEW SETTINGS JOINED", new_settings_joined)
 
-    # db.session.commit()
-    jsonStr = json.dumps(new_restaurant.to_dict())
-    print(jsonStr)
-    return jsonStr
+    db.session.commit()
+    # jsonStr = json.dumps(new_restaurant.to_dict())
+    # print(jsonStr)
+    return new_restaurant.to_dict()
 
   else:
     # print("\n\n\n\n\nFORM SUBMISSION FAIL\n\n\n\n\n")
