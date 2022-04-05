@@ -48,13 +48,11 @@ const deletedRestaurant = (payload) => {
 //thunks
 export const createRestaurant = data =>
   async dispatch => {
-    console.log("\n\n\n\n\n\nDATA\n\n\n\n\n\n", data)
     const res = await fetch('/api/restaurants/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     })
-    console.log(res, "\n\n\n\n\n\n\n\nRESSERESRESRSERSERSERSERSERSERESR")
     const newRestaurant = await res.json()
     dispatch(createdRestaurant(newRestaurant))
     return newRestaurant

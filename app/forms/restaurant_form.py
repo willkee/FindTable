@@ -13,9 +13,8 @@ from app.models import db, Restaurant, Setting, Cuisine
 
 
 class RestaurantForm(FlaskForm):
-
   name = StringField('Name', validators=[DataRequired(), Length(min=0, max=255)])
-  price_rating = SelectField('Price Rating', choices=[1, 2, 3, 4], validators=[DataRequired()])
+  price_rating = SelectField('Price Rating', choices=["1", "2", "3", "4"], validators=[DataRequired()])
   description = TextAreaField('Description')
   img_url = StringField('Image URL', validators=[DataRequired(), Length(min=0, max=2048)])
   phone_number = StringField('Phone Number', validators=[DataRequired(), Length(min=0, max=10)])
@@ -25,7 +24,6 @@ class RestaurantForm(FlaskForm):
   accessible = BooleanField('Accessible', default=False)
   settings = SelectMultipleField('Settings', choices=[], validators=[DataRequired()])
   cuisines = SelectMultipleField('Cuisines', choices=[], validators=[DataRequired()])
-  # submit = SubmitField('submit')
 
   def __init__(self, *args, **kwargs):
         super(RestaurantForm, self).__init__(*args, **kwargs)

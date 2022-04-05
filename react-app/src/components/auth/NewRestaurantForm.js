@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createRestaurant } from '../../store/restaurants';
 // import { Redirect } from 'react-router-dom';
 
@@ -18,6 +18,7 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
     const [errors, setErrors] = useState([])
 
     const dispatch = useDispatch()
+    // const error_list = useSelector(state => state.restaurants.undefined.error)
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -31,17 +32,19 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
                 street_address: streetAddress,
                 borough,
                 accessible,
-                cuisines,
-                settings
+                settings,
+                cuisines
             }
-            const data = await dispatch(createRestaurant(new_restaurant))
-            console.log('DATA ', data)
-            console.log('DATA JSON ', data.json())
-            console.log('DATA ERRORS', data.errors)
 
-            if (data) {
-                setErrors(data.errors)
+            try {
+                const data = await dispatch(createRestaurant(new_restaurant))
+                console.log("\n\n\n\n\n\n\n\ndata\n\n\n\n\n\n\n", data.json())
+
+            } catch (err) {
+                setErrors()
+                // console.log("ERROR", errors)
             }
+
             // const data = await error.json()
             // data && setErrors(data)
         }
@@ -71,7 +74,7 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
     return (
         <div>
             <ul>
-                {errors.map(error => {
+                {errors && errors.map(error => {
                     <li key={error}>
                         {error}
                     </li>

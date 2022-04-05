@@ -1,3 +1,4 @@
+from flask import json
 from .db import db
 from .restaurants import Restaurant
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -36,5 +37,5 @@ class User(db.Model, UserMixin):
             'last_name': self.last_name,
             'email': self.email,
             'business_owner': self.business_owner,
-            'restaurants': self.restaurants
+            'restaurants': [restaurant.to_dict() for restaurant in self.restaurants]
         }

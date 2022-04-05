@@ -12,14 +12,13 @@ def error_generator(validation_errors):
       errors.append(f'{field} : {error}')
   return errors
 
+
 @restaurant_routes.route('/', methods=['POST'])
 def create_restaurant():
   form = RestaurantForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
-  print("\n\n\n\n\n REQUEST", dir(request), request.form, "\n\n\n\n\n\n\n")
-
-  print("DATA\n\n\n\n\n", form.data, "\n\n\n\n\n")
+  # print("\n\n\n\n\n REQUEST", dir(request), request.form, "\n\n\n\n\n\n\n")
 
   if form.validate_on_submit():
     print("\n\n\n\n\nFORM SUBMISSION SUCCESS\n\n\n\n\n")
@@ -42,7 +41,8 @@ def create_restaurant():
     return new_restaurant.to_dict()
 
   else:
-    return 'Bad Data'
+    print("\n\n\n\n\nFORM SUBMISSION FAIL\n\n\n\n\n")
+    return {'error': error_generator(form.errors)}
 
 
 
@@ -80,4 +80,4 @@ def restaurantUpdate(id):
 
     return restaurant.to_dict()
 
-  return {'errors': error_generator(form.errors)}, 401
+  return {'errors': error_generator(form.errors)}

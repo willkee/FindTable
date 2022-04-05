@@ -32,7 +32,7 @@ class Restaurant(db.Model):
     created_at = db.Column(db.DateTime, default=db.func.now()) # FORMAT: 2022-04-02 13:27:25.457314
     updated_at = db.Column(db.DateTime, default=db.func.now(), onupdate=db.func.now())
 
-    # owner = db.relationship("User", back_populates="restaurants")
+    owner = db.relationship("User", back_populates="restaurants")
     settings = db.relationship('Setting', secondary=restaurant_settings, back_populates="restaurants")
     cuisines = db.relationship('Cuisine', secondary=restaurant_cuisines, back_populates="restaurants")
 
