@@ -20,13 +20,7 @@ def create_restaurant():
   form = RestaurantForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
-  # print(dir(form))
-  print("\n\n\n\n\n REQUEST", form.settings.data, "\n\n\n\n\n\n\n")
-
-
-
   if form.validate_on_submit():
-    # print("\n\n\n\n\nFORM SUBMISSION SUCCESS\n\n\n\n\n")
     new_restaurant = Restaurant(
       owner_id = current_user.id,
       name = form.data['name'],
@@ -48,31 +42,10 @@ def create_restaurant():
     for cuisineId in entered_cuisines:
       new_restaurant.cuisines.append(Cuisine.query.get(int(cuisineId)))
 
-    # print('\n\n NEW REST SETTINGS ', new_restaurant.settings)
     print('\n\n NEW REST ', new_restaurant.to_dict())
     db.session.add(new_restaurant)
-
-
-    # entered_cuisines = form.settings.data
-
-    # for cuisineId in entered_cuisines:
-    #   new_restaurant.cuisines.append(cuisineId)
-
-    # print('\n\n\n\n\n\n\n\n\n\n\n\n',new_restaurant.settings,'\n\n\n\n\n\n\n\n\n\n\n\n')
-    # print('\n\n\n\n\n\n\n\n\n\n\n\n',new_restaurant.cuisines,'\n\n\n\n\n\n\n\n\n\n\n\n')
-
-
-
-    # for setting in new_restaurant.settings:
-    #   new_settings_joined = restaurant_settings(restaurant_id=new_restaurant.id, settings_id=id)
-    #   db.session.add(new_settings_joined)
-      # print("NEW SETTINGS JOINED", new_settings_joined)
-
     db.session.commit()
-    # jsonStr = json.dumps(new_restaurant.to_dict())
-    # print(jsonStr)
     return new_restaurant.to_dict()
-
   else:
     # print("\n\n\n\n\nFORM SUBMISSION FAIL\n\n\n\n\n")
     return {'error123123': error_generator(form.errors)}
@@ -114,3 +87,12 @@ def restaurantUpdate(id):
     return restaurant.to_dict()
 
   return {'errors': error_generator(form.errors)}
+
+@restaurant_routes.route('/<int:id>', methods=['DELETE'])
+def restaurantDelete(id):
+  data = {}
+  restaurant = Restaurant.query.get(id)
+  data['restaurant'] = restaurant.to_dict()
+  db.session.delete(comment)
+  db.session.commit()
+  return data
