@@ -19,6 +19,10 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
 
     const dispatch = useDispatch()
     // const error_list = useSelector(state => state.restaurants.undefined.error)
+    useEffect(() => {
+
+    }, [errors])
+
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -42,57 +46,35 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
             : !streetAddress ? setErrors(['Please provide an address.'])
             : setErrors([])
 
+            console.log('ERRORS \n\n', errors)
+
             const newRestaurant = await dispatch(createRestaurant(formData))
-            .catch(async (res) => {
-              // console.log(res)
-              const data = await res.json()
-              if (data && data.errors) {
-                // console.log(data.errors)
-                return
-              }
-            })
-            if (newRestaurant) {
+            if (errors.length === 0 && newRestaurant) {
               return <Redirect to={`/restaurants/${newRestaurant.id}`}/>
             }
-
-
-
-
-
-            // try {
-            //     const data = await dispatch(createRestaurant(new_restaurant))
-            //     console.log("\n\n\n\n\n\n\n\ndata\n\n\n\n\n\n\n", data.json())
-
-            // } catch (err) {
-            //     setErrors()
-            //     // console.log("ERROR", errors)
-            // }
-
-            // const data = await error.json()
-            // data && setErrors(data)
         }
 
-    // const settingsSelector = (e) => {
-    //     const setting_array = [...settings]
-    //     if (setting_array.includes(e.target.value)) {
-    //         const idx_to_remove = setting_array.indexOf(e.target.value)
-    //         setting_array.splice(idx_to_remove, 1)
-    //     } else {
-    //         setting_array.push(e.target.value)
-    //     }
-    //     setSettings(setting_array)
-    // }
+    const settingsSelector = (e) => {
+        const setting_array = [...settings]
+        if (setting_array.includes(e.target.value)) {
+            const idx_to_remove = setting_array.indexOf(e.target.value)
+            setting_array.splice(idx_to_remove, 1)
+        } else {
+            setting_array.push(e.target.value)
+        }
+        setSettings(setting_array)
+    }
 
-    // const cuisinesSelector = (e) => {
-    //     const cuisines_array = [...settings]
-    //     if (cuisines_array.includes(e.target.value)) {
-    //         const idx_to_remove = cuisines_array.indexOf(e.target.value)
-    //         cuisines_array.splice(idx_to_remove, 1)
-    //     } else {
-    //         cuisines_array.push(e.target.value)
-    //     }
-    //     setCuisines(cuisines_array)
-    // }
+    const cuisinesSelector = (e) => {
+        const cuisines_array = [...settings]
+        if (cuisines_array.includes(e.target.value)) {
+            const idx_to_remove = cuisines_array.indexOf(e.target.value)
+            cuisines_array.splice(idx_to_remove, 1)
+        } else {
+            cuisines_array.push(e.target.value)
+        }
+        setCuisines(cuisines_array)
+    }
 
     return (
         <div>
@@ -110,6 +92,7 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
                           type='text'
                           placeholder='Name'
                           value={name}
+                          required
                           onChange={e => setName(e.target.value)}>
                     </input>
                 </div>
@@ -136,6 +119,7 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
                     <input type="text"
                             name='image_url'
                             value={imageURL}
+                            required
                             onChange={e => setImageURL(e.target.value)}>
                     </input>
                 </div>
@@ -144,6 +128,7 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
                     <input type="text"
                             name='phone_number'
                             value={phoneNumber}
+                            required
                             onChange={e => setPhoneNumber(e.target.value)}>
                     </input>
                 </div>
@@ -160,6 +145,7 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
                     <input type="text"
                             name='street_address'
                             value={streetAddress}
+                            required
                             onChange={e => setStreetAddress(e.target.value)}>
                     </input>
                 </div>
@@ -186,7 +172,7 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
                     <label htmlFor='cuisines'>Cuisines</label>
                     <select name='cuisines'
                             value={cuisines}
-                            onChange={(e) => setCuisines(Array.from(new Set(cuisines, e.target.value)))}
+                            onChange={cuisinesSelector}
                             multiple>
                         {all_cuisines.map(cuisine => <option key={cuisine.id} value={cuisine.id}>{cuisine.type}</option>)}
                     </select>
@@ -195,13 +181,13 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
                     <label htmlFor='settings'>Settings</label>
                     <select name='settings'
                             value={settings}
-                            onChange={(e) => setSettings(Array.from(new Set(settings, e.target.value)))}
+                            onChange={settingsSelector}
                             multiple>
                         {all_settings.map(setting => <option key={setting.id} value={setting.id}>{setting.type}</option>)}
                     </select>
                 </div>
                 <div>
-                    <button type="submit">Submit</button>
+                    <button disabled={!name || !streetAddress || !phoneNumber || !imageURL ? true : false} type="submit">Submit</button>
                 </div>
             </form>
         </div>

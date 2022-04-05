@@ -3,6 +3,7 @@ from flask_login import current_user
 from app.models import Restaurant, db, Setting, Cuisine
 from app.models.restaurants import restaurant_settings
 from app.forms import RestaurantForm
+import json
 
 restaurant_routes = Blueprint('restaurants', __name__)
 
@@ -24,7 +25,7 @@ def create_restaurant():
 
 
 
-  if form.is_submitted():
+  if form.validate_on_submit():
     # print("\n\n\n\n\nFORM SUBMISSION SUCCESS\n\n\n\n\n")
     new_restaurant = Restaurant(
       owner_id = current_user.id,
@@ -36,23 +37,21 @@ def create_restaurant():
       website = form.data['website'],
       street_address = form.data['street_address'],
       borough = form.data['borough'],
-      accessible = form.data['accessible'],
-      settings = form.settings.data,
-      cuisines = form.cuisines.data)
+      accessible = form.data['accessible'])
 
+    entered_settings = form.settings.data
+    entered_cuisines = form.cuisines.data
 
-    # allSettings = [Setting(type=setting) for setting in form.settings.data]
-    # allCuisines = [Cuisine(type=cuisine) for cuisine in form.cuisines.data]
-    # new_restaurant.settings =
-    # new_restaurant.cuisines = allCuisines
-    # new_restaurant.settings.append()
-    # new_restaurant.cuisine.append()
+    for settingId in entered_settings:
+      new_restaurant.settings.append(Setting.query.get(int(settingId)))
+
+    for cuisineId in entered_cuisines:
+      new_restaurant.cuisines.append(Cuisine.query.get(int(cuisineId)))
+
+    print('\n\n NEW REST SETTINGS ', new_restaurant.settings)
+    print('\n\n NEW REST ', new_restaurant.to_dict())
     db.session.add(new_restaurant)
 
-    # entered_settings = form.settings.data
-
-    # for settingId in entered_settings:
-    #   new_restaurant.settings.append(settingId)
 
     # entered_cuisines = form.settings.data
 
@@ -69,8 +68,10 @@ def create_restaurant():
     #   db.session.add(new_settings_joined)
       # print("NEW SETTINGS JOINED", new_settings_joined)
 
-    db.session.commit()
-    return new_restaurant.to_dict()
+    # db.session.commit()
+    jsonStr = json.dumps(new_restaurant.to_dict())
+    print(jsonStr)
+    return jsonStr
 
   else:
     # print("\n\n\n\n\nFORM SUBMISSION FAIL\n\n\n\n\n")
