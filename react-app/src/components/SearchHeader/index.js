@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styles from './SearchHeader.module.css'
 import Calendar from 'react-calendar'
 // import Datetime from 'react-datetime'
-import { Calendar as CalendarIcon } from '../Icons'
+import { CalendarIcon } from '../Icons'
 
 const SearchHeader = () => {
     const [date, setDate] = useState(new Date())
