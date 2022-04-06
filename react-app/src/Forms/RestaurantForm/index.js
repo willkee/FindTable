@@ -47,11 +47,13 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
 
 
         const newRestaurant = await dispatch(createRestaurant(formData))
-
+        if (newRestaurant) {
+            console.log('ERRORS \n\n', newRestaurant.error)
+            setErrors(newRestaurant.error)
+        }
         if (errors.length === 0 && newRestaurant) {
             return <Redirect to={`/restaurants/${newRestaurant.id}`}/>
         }
-
         }
 
     const settingsSelector = (e) => {
@@ -190,7 +192,7 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
                         </div>
                     </div>
                     <div>
-                        <button disabled={!name || !streetAddress || !phoneNumber || !imageURL ? true : false} type="submit">Submit</button>
+                        <button  type="submit">Submit</button>
                     </div>
                 </form>
             </div>
