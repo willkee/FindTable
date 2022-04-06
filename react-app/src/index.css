@@ -1,1 +1,9 @@
 /* TODO Add site wide styles */
+* {
+    font-family: brandon-grotesque, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: grey;
+}

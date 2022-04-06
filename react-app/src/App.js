@@ -9,11 +9,12 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 
 import User from './components/User'
 
+import Modal from './components/Modal/Modal';
 import UsersList from './components/UsersList';
 import RestaurantsList from './components/RestaurantsList';
 import NewRestaurantForm from './components/auth/NewRestaurantForm';
 import ProfilePage from './components/ProfilePage';
-import Modal from './components/Modal/Modal';
+import SearchResults from './components/SearchResults';
 
 import { receiveAllRestaurants } from './store/restaurants';
 import { allUsers } from './store/users';
@@ -97,6 +98,9 @@ function App() {
               </ProtectedRoute>
               <Route exact path='/' >
                 <Homepage />
+              </Route>
+              <Route exact path='/search/:dateString/:timeParams/:searchWord'>
+                <SearchResults />
               </Route>
             </Switch>
         </InnerWrapper>

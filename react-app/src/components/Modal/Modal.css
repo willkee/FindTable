@@ -12,8 +12,8 @@
 }
 
 .modal-content {
-    height: 40vh;
-    width: 40vw;
+    /* height: 40vh;
+    width: 40vw; */
     background-color: white;
     display: flex;
     justify-content: center;

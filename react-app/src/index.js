@@ -21,10 +21,10 @@ const Root = () => {
   }, [dispatch])
 
   return (
-    <>
+    <div className='super-parent-container'>
       <App />
       <div ref={modalMountRef} className='modal' />
-    </>
+    </div>
   )
 }
 
