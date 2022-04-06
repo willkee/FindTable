@@ -104,7 +104,8 @@ def restaurantDelete(id):
   db.session.commit()
   return data
 
-
+# Posting in the schedule but we don't need a GET route based on restaurant_id
+# This is because the restaurant object contains reservations as a list.
 @restaurant_routes.route('/<int:id>/schedule', methods=['POST'])
 def reserve_table():
   form = ReservationForm()
