@@ -30,6 +30,9 @@ function App() {
   const all_restaurants = useSelector(state => Object.values(state.restaurants))
   const all_settings = useSelector(state => Object.values(state.settings))
   const all_cuisines = useSelector(state => Object.values(state.cuisines))
+  //const reviews = useSelector(state => Object.values(state.reviews))
+  //const reservations = useSelector(state => Object.values(state.reservations))
+  //const favorites = useSelector(state => Object.values(state.favorites))
 
   useEffect(() => {
     (async() => {
@@ -49,32 +52,36 @@ function App() {
   return (
     <BrowserRouter>
       <PageWrapper>
-        <InnerWrapper>
-          <NavBar />
-          <Switch>
-            <Route path='/login' exact={true}>
-              <LoginForm />
-            </Route>
-            <Route path='/sign-up' exact={true}>
-              <SignUpForm />
-            </Route>
-            <ProtectedRoute path='/users' exact={true} >
+        <NavBar />
+        <Switch>
+          <Route path='/' exact={true} >
+            <Homepage />
+          </Route>
+          <Route path='/login' exact={true}>
+            <LoginForm />
+          </Route>
+          <Route path='/sign-up' exact={true}>
+            <SignUpForm />
+          </Route>
+          <Route exact path="/restaurants">
+            <Restaurants all_restaurants={all_restaurants} />
+          </Route>
+          <Route exact path="/restaurants/:id">
+            <SingleRestaurant all_restaurants={all_restaurants} />
+          </Route>
+          <ProtectedRoute exact path="/restaurants/new">
+            <NewRestaurant all_settings={all_settings} all_cuisines={all_cuisines}/>
+          </ProtectedRoute>
+          <ProtectedRoute path='/reservations' exact={true} >
+            <Reservations/>
+          </ProtectedRoute>
+          <ProtectedRoute path='/users' exact={true} >
             <UsersList users={users} />
-            </ProtectedRoute>
-            <ProtectedRoute path='/users/:userId' exact={true} >
-              <User />
-            </ProtectedRoute>
-            <ProtectedRoute exact path="/restaurants">
-            <RestaurantsList all_restaurants={all_restaurants} />
-            </ProtectedRoute>
-            <ProtectedRoute exact path="/restaurants/new">
-              <NewRestaurantForm all_settings={all_settings} all_cuisines={all_cuisines}/>
-            </ProtectedRoute>
-            {/* <Route path='/' exact={true} >
-              <Homepage />
-            </Route> */}
-          </Switch>
-        </InnerWrapper>
+          </ProtectedRoute>
+          <ProtectedRoute path='/users/:userId' exact={true} >
+            <User />
+          </ProtectedRoute>
+        </Switch>
       </PageWrapper>
     </BrowserRouter>
   );
