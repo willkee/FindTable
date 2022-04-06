@@ -18,8 +18,11 @@ const SearchHeader = () => {
         const closeCalendar = () => setShowCalendar(false);
         document.addEventListener("click", closeCalendar)
 
+        console.log('flag', document.getElementsByClassName("react-calendar__month-view__days")[0])
+
         return () => document.removeEventListener("click", closeCalendar)
     })
+
 
 
 

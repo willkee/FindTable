@@ -40,6 +40,9 @@
     color: red
 }
 
+.react-calendar__tile.react-calendar__month-view__days__day {
+    color: red;
+}
 
 .search_box_field {
     height: 100%;
