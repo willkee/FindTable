@@ -12,7 +12,7 @@ import User from './components/User'
 import Modal from './components/Modal/Modal';
 import UsersList from './components/UsersList';
 import RestaurantsList from './components/RestaurantsList';
-import NewRestaurantForm from './components/auth/NewRestaurantForm';
+import { NewRestaurant } from './Forms/RestaurantForm';
 import ProfilePage from './components/ProfilePage';
 import SearchResults from './components/SearchResults';
 
@@ -74,11 +74,11 @@ function App() {
             </Route>
             <Route exact path="/restaurants/:id">
               <SingleRestaurant all_restaurants={all_restaurants} />
-            </Route>
+            </Route> */}
             <ProtectedRoute exact path="/restaurants/new">
               <NewRestaurant all_settings={all_settings} all_cuisines={all_cuisines}/>
             </ProtectedRoute>
-            <ProtectedRoute path='/reservations' exact={true} >
+            {/* <ProtectedRoute path='/reservations' exact={true} >
               <Reservations/>
             </ProtectedRoute> */}
             <ProtectedRoute path='/users' exact={true} >
@@ -90,9 +90,9 @@ function App() {
               <ProtectedRoute exact path="/restaurants">
               <RestaurantsList all_restaurants={all_restaurants} />
               </ProtectedRoute>
-              <ProtectedRoute exact path="/restaurants/new">
+              {/* <ProtectedRoute exact path="/restaurants/new">
                 <NewRestaurantForm all_settings={all_settings} all_cuisines={all_cuisines}/>
-              </ProtectedRoute>
+              </ProtectedRoute> */}
               <ProtectedRoute exact path="/my-profile">
                 <ProfilePage />
               </ProtectedRoute>
