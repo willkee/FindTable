@@ -65,16 +65,11 @@ def reservationUpdate(user_id):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        reservation = Reservation.query.get(id)
-        reservation.name = form.data['name']
-        reservation.price_rating = form.data['price_rating']
-        reservation.description = form.data['description']
-        reservation.img_url = form.data['img_url']
-        reservation.phone_number = form.data['phone_number']
-        reservation.website = form.data['website']
-        reservation.street_address = form.data['street_address']
-        reservation.borough = form.data['borough']
-        reservation.accessible = form.data['accessible']
+        reservation = Reservation.query.get(user_id),
+        reservation.restaurant_id = restaurant_id,
+        reservation.user_id = current_user.id,
+        reservation.num_people = form.data['num_people'],
+        reservation.date_time = form.data['date_time'],
 
     db.session.commit()
 
