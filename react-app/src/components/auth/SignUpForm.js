@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import { setCurrentModal, hideModal } from '../../store/modal';
+import LoginForm from './LoginForm';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -18,10 +20,15 @@ const SignUpForm = () => {
     if (password === confirmPassword) {
       const data = await dispatch(signUp(firstName, lastName, email, password));
       if (data) {
-        setErrors(data)
+        return setErrors(data)
       }
+      dispatch(hideModal())
     }
   };
+
+  const showLoginForm = () => {
+    dispatch(setCurrentModal(LoginForm))
+  }
 
   if (user) {
     return <Redirect to='/' />;
@@ -80,6 +87,7 @@ const SignUpForm = () => {
         ></input>
       </div>
       <button type='submit'>Sign Up</button>
+      <button onClick={showLoginForm}>Already signed up? Log in!</button>
     </form>
   );
 };

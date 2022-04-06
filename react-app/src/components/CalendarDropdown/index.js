@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Calendar } from "../Icons";
+import { CalendarIcon } from "../Icons";
 import styles from './Calendar.module.css'
 
 const CalendarDropdown = () => {
@@ -19,7 +19,7 @@ const CalendarDropdown = () => {
     return (
         <div className={styles.calendarOuterContainer}>
             <div className={styles.calendarIconContainer} onClick={openBox}>
-                <Calendar />
+                <CalendarIcon />
             </div>
             {showBox && (
                 <div id="calendar_dropdown" className={styles.dropdown} onClick={e => e.stopPropagation()}>
