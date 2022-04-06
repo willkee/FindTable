@@ -1,13 +1,11 @@
 .logout_button {
-  text-decoration: none;
-  border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  padding: 5px 10px;
-  color: black;
-  box-shadow:0px 0px 0px 1px gray inset;
-  font-size: 14px;
-  font-family: brandon-grotesque, sans-serif;
+  color: red;
+  font-size: 16px;
   font-weight: 400;
-  font-style: normal;
-  margin: 0 20px;
+  width: 100%;
+}
+
+.logout_button:hover {
+  color: black;
+  background-color: rgba(0,0,0,.03);
 }

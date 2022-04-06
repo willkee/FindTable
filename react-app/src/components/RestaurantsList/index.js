@@ -59,7 +59,7 @@ const RestaurantsList = ({ all_restaurants }) => {
                             <td>{restaurant.name}</td>
                             <td>{restaurant.price_rating}</td>
                             <td>{restaurant.description}</td>
-                            <td><img src={restaurant.img_url} width="200px"></img></td>
+                            <td><img src={restaurant.img_url} alt="" width="200px"></img></td>
                             <td>{restaurant.phone_number}</td>
                             <td>{restaurant.website}</td>
                             <td>{restaurant.street_address}</td>

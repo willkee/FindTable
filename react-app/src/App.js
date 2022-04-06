@@ -12,6 +12,7 @@ import User from './components/User'
 import UsersList from './components/UsersList';
 import RestaurantsList from './components/RestaurantsList';
 import NewRestaurantForm from './components/auth/NewRestaurantForm';
+import ProfilePage from './components/ProfilePage';
 
 import { receiveAllRestaurants } from './store/restaurants';
 import { allUsers } from './store/users';
@@ -52,36 +53,50 @@ function App() {
   return (
     <BrowserRouter>
       <PageWrapper>
-        <NavBar />
-        <Switch>
-          <Route path='/' exact={true} >
-            <Homepage />
-          </Route>
-          <Route path='/login' exact={true}>
-            <LoginForm />
-          </Route>
-          <Route path='/sign-up' exact={true}>
-            <SignUpForm />
-          </Route>
-          <Route exact path="/restaurants">
-            <Restaurants all_restaurants={all_restaurants} />
-          </Route>
-          <Route exact path="/restaurants/:id">
-            <SingleRestaurant all_restaurants={all_restaurants} />
-          </Route>
-          <ProtectedRoute exact path="/restaurants/new">
-            <NewRestaurant all_settings={all_settings} all_cuisines={all_cuisines}/>
-          </ProtectedRoute>
-          <ProtectedRoute path='/reservations' exact={true} >
-            <Reservations/>
-          </ProtectedRoute>
-          <ProtectedRoute path='/users' exact={true} >
-            <UsersList users={users} />
-          </ProtectedRoute>
-          <ProtectedRoute path='/users/:userId' exact={true} >
-            <User />
-          </ProtectedRoute>
-        </Switch>
+        <InnerWrapper>
+          <NavBar />
+          <Switch>
+            <Route path='/' exact={true} >
+              <Homepage />
+            </Route>
+            <Route path='/login' exact={true}>
+              <LoginForm />
+            </Route>
+            <Route path='/sign-up' exact={true}>
+              <SignUpForm />
+            </Route>
+            <Route exact path="/restaurants">
+              <Restaurants all_restaurants={all_restaurants} />
+            </Route>
+            <Route exact path="/restaurants/:id">
+              <SingleRestaurant all_restaurants={all_restaurants} />
+            </Route>
+            <ProtectedRoute exact path="/restaurants/new">
+              <NewRestaurant all_settings={all_settings} all_cuisines={all_cuisines}/>
+            </ProtectedRoute>
+            <ProtectedRoute path='/reservations' exact={true} >
+              <Reservations/>
+            </ProtectedRoute>
+            <ProtectedRoute path='/users' exact={true} >
+              <UsersList users={users} />
+              </ProtectedRoute>
+              <ProtectedRoute path='/users/:userId' exact={true} >
+                <User />
+              </ProtectedRoute>
+              <ProtectedRoute exact path="/restaurants">
+              <RestaurantsList all_restaurants={all_restaurants} />
+              </ProtectedRoute>
+              <ProtectedRoute exact path="/restaurants/new">
+                <NewRestaurantForm all_settings={all_settings} all_cuisines={all_cuisines}/>
+              </ProtectedRoute>
+              <ProtectedRoute exact path="/my-profile">
+                <ProfilePage />
+              </ProtectedRoute>
+              <Route exact path='/' >
+                <Homepage />
+              </Route>
+            </Switch>
+        </InnerWrapper>
       </PageWrapper>
     </BrowserRouter>
   );

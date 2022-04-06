@@ -1,0 +1,54 @@
+.calendarOuterContainer {
+    position: relative;
+}
+
+.calendarIconContainer {
+    margin-right: -0.25rem;
+}
+
+.dropdown {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 100%;
+    right: 0;
+    width: 20rem;
+    background-color: rgb(225, 225, 225);
+    border-radius: 5px;
+    border: 1px solid black;
+    animation: dropdown-animation 0.5s ease-out;
+    z-index: 999;
+}
+
+@keyframes dropdown-animation {
+    0% {
+        transform: translateY(-1em);
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.dropdown h5,
+.dropdown p {
+    padding: 5px 20px;
+}
+
+.dropdown button {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    padding: 5px 0;
+    font-size: 16px;
+    cursor: pointer;
+}
+.dropdown button a {
+    color: black;
+    text-decoration: none;
+}
+
+.dropdown button:hover {
+  color: black;
+  background-color: rgba(0,0,0,.03);
+}
