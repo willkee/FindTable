@@ -52,7 +52,6 @@ def create_restaurant():
 
     return new_restaurant.to_dict()
   else:
-
     return {'error': error_generator(form.errors)}
 
 

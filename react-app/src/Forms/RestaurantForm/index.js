@@ -20,11 +20,7 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
     const settingsState = useSelector(state => Object.values(state.settings))
     const cuisinesState = useSelector(state => Object.values(state.cuisines))
 
-
-
-
     const dispatch = useDispatch()
-
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -41,7 +37,6 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
             settings: settings,
             cuisines: cuisines
         }
-        console.log(formData)
 
         !name? setErrors(['Please provide a name.'])
         : !imageURL ? setErrors(['Please provide a URL for your image.'])
@@ -49,12 +44,14 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
         : !streetAddress ? setErrors(['Please provide an address.'])
         : setErrors([])
 
-        // console.log('ERRORS \n\n', errors)
+
 
         const newRestaurant = await dispatch(createRestaurant(formData))
+
         if (errors.length === 0 && newRestaurant) {
             return <Redirect to={`/restaurants/${newRestaurant.id}`}/>
         }
+
         }
 
     const settingsSelector = (e) => {
