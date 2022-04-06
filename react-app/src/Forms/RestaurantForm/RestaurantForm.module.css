@@ -1,1 +1,28 @@
+.container {
+    width: 800px;
+    height: auto;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
+    align-items: center;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.16))
+}
 
+.form_entries {
+    width: 500px;
+    height: auto;
+    margin: 50px auto;
+    display: flex;
+    border: black 1px solid;
+    flex-direction: column;
+}
+.form_display {
+    width: 300px;
+    height: auto;
+    margin: 50px auto;
+    display: flex;
+    border: black 1px solid;
+    flex-direction: column;
+}
