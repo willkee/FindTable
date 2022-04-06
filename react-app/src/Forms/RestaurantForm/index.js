@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { PageContainer } from "../../components/PageContainer";
 import { createRestaurant } from '../../store/restaurants';
 
@@ -21,6 +21,7 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
     const cuisinesState = useSelector(state => Object.values(state.cuisines))
 
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -47,12 +48,13 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
 
 
         const newRestaurant = await dispatch(createRestaurant(formData))
-        if (newRestaurant) {
+        console.log(newRestaurant.id)
+        if (newRestaurant.error) {
             console.log('ERRORS \n\n', newRestaurant.error)
             setErrors(newRestaurant.error)
         }
-        if (errors.length === 0 && newRestaurant) {
-            return <Redirect to={`/restaurants/${newRestaurant.id}`}/>
+        else {
+            history.push(`/restaurants/${newRestaurant.id}`)
         }
         }
 
