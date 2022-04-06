@@ -19,18 +19,15 @@ def error_generator(validation_errors):
 def create_restaurant():
   form = RestaurantForm()
 
-  x = request.json
-  print("REQUEST \n\n", x, '\n\n') # request object
-  y = json.dumps(x)
-  print("DUMPER \n\n",  y, '\n\n') # request object to string
-  z = json.loads(y)
-  print("LOADS \n\n",  z, '\n\n') # turn string back into python dict
-
-  res_set = z['settings']
-  res_cus = z['cuisines']
+  request_initial = request.json  # request object
+  request_string = json.dumps(request_initial) # request object to string
+  request_dict = json.loads(request_string) # turn string back into python dict
+  restaurant_settings = request_dict['settings']
+  restaurant_cuisines = request_dict['cuisines']
   form['csrf_token'].data = request.cookies['csrf_token']
 
   if form.validate_on_submit():
+    # Add create instances of a new restaurant and populate with form data
     new_restaurant = Restaurant(
       owner_id = current_user.id,
       name = form.data['name'],
@@ -43,22 +40,21 @@ def create_restaurant():
       borough = form.data['borough'],
       accessible = form.data['accessible'])
 
-    for settingId in res_set:
+    for settingId in restaurant_settings: # attach settings to new restaurant
       new_restaurant.settings.append(Setting.query.get(int(settingId)))
 
-    for cuisineId in res_cus:
+    for cuisineId in restaurant_cuisines: # attach cuisines to new restaurant
       new_restaurant.cuisines.append(Cuisine.query.get(int(cuisineId)))
 
-
-    print('\n\n NEW REST SETTINGS ', new_restaurant.settings)
-    print('\n\n NEW REST ', new_restaurant.to_dict())
     db.session.add(new_restaurant)
 
     db.session.commit()
 
     return new_restaurant.to_dict()
   else:
-    return {'error123123': error_generator(form.errors)}
+
+    return {'error': error_generator(form.errors)}
+
 
 
 

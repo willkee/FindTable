@@ -13,9 +13,9 @@ seed_commands = AppGroup('seed')
 @seed_commands.command('all')
 def seed():
     seed_users()
-    seed_restaurants()
     seed_settings()
     seed_cuisines()
+    seed_restaurants()
     # Add other seed functions here
 
 
