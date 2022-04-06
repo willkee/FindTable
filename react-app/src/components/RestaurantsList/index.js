@@ -1,8 +1,34 @@
 import React from "react";
-// import { useSelector } from "react-redux";
+import { deleteRestaurant } from "../../store/restaurants";
+import {useHistory, Link} from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
 
 const RestaurantsList = ({ all_restaurants }) => {
-    // const all_restaurants = useSelector(state => Object.values(state.restaurants))
+    const sessionUser = useSelector(state => state.session.user);
+    const history = useHistory();
+    const dispatch = useDispatch();
+
+
+    function onDelete(restaurantId) {
+      let result = window.confirm('Are you sure you want to delete your restaurant listing?')
+      if (result) {
+        let res = dispatch(deleteRestaurant(restaurantId))
+        if (res) {
+          history.push(`/restaurants/`)
+        }
+      }
+    }
+
+    const joinSettings = (restaurant => {
+        let joined = '|'
+        restaurant.settings.map(setting => joined = `${joined} ${setting.type} |`)
+        return joined
+    })
+    const joinCuisines = (restaurant => {
+        let joined = '|'
+        restaurant.cuisines.map(cuisine => joined = `${joined} ${cuisine.type} |`)
+        return joined
+    })
 
     return (
         <div>
@@ -20,11 +46,13 @@ const RestaurantsList = ({ all_restaurants }) => {
                         <th>Street Address</th>
                         <th>Borough</th>
                         <th>Accessible</th>
-                        {/* <th>Settings</th> */}
+                        <th>Settings</th>
+                        <th>Cuisines</th>
                     </tr>
                 </thead>
                 <tbody>
                     {all_restaurants.map(restaurant => (
+                      <>
                         <tr>
                             <td>{restaurant.id}</td>
                             <td>{restaurant.owner_id}</td>
@@ -37,8 +65,17 @@ const RestaurantsList = ({ all_restaurants }) => {
                             <td>{restaurant.street_address}</td>
                             <td>{restaurant.borough}</td>
                             <td>{restaurant.accessible ? "Yes" : "No"}</td>
-                            {/* <td>{restaurant.settings.forEach(setting => <td>{setting}</td>)}</td> */}
+                            <td>{joinSettings(restaurant)}</td>
+                            <td>{joinCuisines(restaurant)}</td>
                         </tr>
+                        <div>
+                          {sessionUser.id === restaurant?.owner_id ?
+                            <Link to={`/restaurants/`} className='delete' onClick={() => onDelete(restaurant.id)}>
+                              Delete
+                            </Link> : null
+                          }
+                        </div>
+                      </>
                     ))}
                 </tbody>
             </table>
