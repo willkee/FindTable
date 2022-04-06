@@ -10,6 +10,7 @@ import { Logo } from '../Logo';
 
 import LoginForm from '../auth/LoginForm';
 import SignUpForm from '../auth/SignUpForm';
+import SearchSection from '../SearchSection';
 
 import { showModal, setCurrentModal } from '../../store/modal';
 
@@ -25,6 +26,11 @@ const NavBar = () => {
   const showSignUpForm = () => {
     dispatch(setCurrentModal(SignUpForm));
     dispatch(showModal());
+  }
+
+  const showSearchForm = () => {
+    dispatch(setCurrentModal(SearchSection));
+    dispatch(showModal())
   }
 
   return (
@@ -46,17 +52,17 @@ const NavBar = () => {
           </>
           }
           <ProtectedRoute>
-            <div>
+            <div className={styles.profile_icon}>
               <ProfileDropdown />
             </div>
-            <div>
+            <div className={styles.calendar_icon}>
               <CalendarDropdown />
             </div>
             <div>
               <GreyVerticalLine />
             </div>
           </ProtectedRoute>
-            <div className={styles.search_icon}>
+            <div className={styles.search_icon} onClick={showSearchForm}>
               <MagnifyingGlass/>
             </div>
         </div>

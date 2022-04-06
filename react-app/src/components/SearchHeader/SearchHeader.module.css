@@ -49,6 +49,7 @@
     border: none;
     background-color: transparent;
     padding: 5px;
+    width: 200px;
 }
 
 .search_inputs {
@@ -109,3 +110,21 @@
 
     background-color: grey;
 } */
+
+.search_button {
+    margin-left: 20px;
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+    background-color: #da3743;
+    color: white;
+    transition: all linear 0.3s;
+}
+
+.search_button:hover {
+    background-color: #bc202b;
+}
+
+.search_header form {
+    display: flex;
+}
