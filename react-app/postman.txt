@@ -1,0 +1,5 @@
+Always check settings and make sure that the
+'Automatically follow redirects' is turned ON !
+
+Also check other settings like SSL certificate verification
+if something goes south. 

@@ -35,8 +35,8 @@ class Restaurant(db.Model):
     owner = db.relationship("User", back_populates="restaurants")
     settings = db.relationship('Setting', secondary=restaurant_settings, back_populates="restaurants")
     cuisines = db.relationship('Cuisine', secondary=restaurant_cuisines, back_populates="restaurants")
+    reservations = db.relationship('Reservation', back_populates="restaurants", cascade="all, delete-orphan")
     reviews = db.relationship('Review', back_populates='restaurants', cascade='all, delete-orphan')
-
 
     def to_dict(self):
         return {

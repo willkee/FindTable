@@ -1,6 +1,7 @@
 from flask import json
 from .db import db
 from .restaurants import Restaurant
+from .reservations import Reservation
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -18,6 +19,7 @@ class User(db.Model, UserMixin):
     updated_at = db.Column(db.DateTime, default=db.func.now(), onupdate=db.func.now())
 
     restaurants = db.relationship('Restaurant', back_populates="owner", cascade="all, delete-orphan")
+    reservations = db.relationship('Reservation', back_populates="user_who_booked", cascade="all, delete-orphan")
     reviews = db.relationship('Review', back_populates='user', cascade='all, delete-orphan')
 
     @property
@@ -38,5 +40,6 @@ class User(db.Model, UserMixin):
             'last_name': self.last_name,
             'email': self.email,
             'business_owner': self.business_owner,
-            'restaurants': [restaurant.to_dict() for restaurant in self.restaurants]
+            'restaurants': [restaurant.to_dict() for restaurant in self.restaurants],
+            'reservations': [reservation.to_dict() for reservation in self.reservations],
         }
