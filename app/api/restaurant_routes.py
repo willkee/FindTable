@@ -3,6 +3,7 @@ from flask_login import current_user
 from app.models import Restaurant, db, Setting, Cuisine
 from app.models.restaurants import restaurant_settings
 from app.forms import RestaurantForm
+from app.forms import ReservationForm
 import json
 
 restaurant_routes = Blueprint('restaurants', __name__)
@@ -102,3 +103,32 @@ def restaurantDelete(id):
   db.session.delete(comment)
   db.session.commit()
   return data
+
+
+@restaurant_routes.route('/<int:id>/schedule', methods=['POST'])
+def reserve_table():
+  form = ReservationForm()
+
+  request_initial = request.json  # request object
+  request_string = json.dumps(request_initial) # request object to string
+  request_dict = json.loads(request_string) # turn string back into python dict
+  restaurant_id = request_dict['restaurant_id'] # Check the frontend key
+  form['csrf_token'].data = request.cookies['csrf_token']
+
+  if form.validate_on_submit():
+    # Add create instances of a new restaurant and populate with form data
+    new_reservation = Restaurant(
+      restaurant_id = restaurant_id,
+      user_id = current_user.id,
+      num_people = form.data['num_people'],
+      date_time = form.data['date_time']
+    )
+
+    db.session.add(new_reservation)
+
+    db.session.commit()
+
+    return new_reservation.to_dict()
+  else:
+
+    return {'error': error_generator(form.errors)}

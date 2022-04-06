@@ -53,23 +53,23 @@ def create_reservation():
 # I think that the post route should go to restaurants/:id/schedule
 
 # @reservation_routes.route('/my_reservations', methods=["POST"])
-# def reservations_for_single_user(id):
+# def new_reservation(user_id):
 #     reservations = Reservation.query.get(id).all() # All reservations based on id
 #     return {'reservations': [reservation.to_dict() for reservation in reservations]}
 
 
-@reservation_routes.route('/my_reservations', methods=["GET"])
+@reservation_routes.route('/', methods=["GET"])
 def reservations_for_single_user(user_id):
     reservations = Reservation.query.get(user_id).all() # All reservations based on user_id
     return {'reservations': [reservation.to_dict() for reservation in reservations]}
 
 
-@reservation_routes.route('/my_reservations/<int:id>', methods=["GET"])
+@reservation_routes.route('/<int:id>', methods=["GET"])
 def single_reservation(reservation_id):
     reservation = Reservation.query.get(reservation_id) # Single reservation based on reservation_id
     return reservation.to_dict()
 
-@reservation_routes.route('/my_reservations/<int:id>', methods=['PUT'])
+@reservation_routes.route('/<int:id>', methods=['PUT'])
 def reservationUpdate(user_id):
     form = ReservationForm()
     # request_initial = request.json  # request object
@@ -88,7 +88,7 @@ def reservationUpdate(user_id):
     else:
         return {'errors': error_generator(form.errors)}
 
-@reservation_routes.route('/my_reservations/<int:id>', methods=['DELETE'])
+@reservation_routes.route('/<int:id>', methods=['DELETE'])
 def reservationDelete(reservation_id):
   data = {}
   reservation = Reservation.query.get(reservation_id)
