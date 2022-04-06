@@ -15,27 +15,20 @@ user_reservations = db.Table(
     db.Column("cuisines_id", db.ForeignKey("cuisines.id"), primary_key=True)
 )
 
-class Restaurant(db.Model):
-    __tablename__ = 'restaurants'
+class Reservations(db.Model):
+    __tablename__ = 'reservations'
 
     id = db.Column(db.Integer, primary_key=True)
-    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    name = db.Column(db.String(255), nullable=False)
-    price_rating = db.Column(db.Integer, nullable=False)
-    description = db.Column(db.Text)
-    img_url = db.Column(db.String(2048), nullable=False)
-    phone_number = db.Column(db.String(10), unique=True, nullable=False)
-    website = db.Column(db.String(2048))
-    street_address = db.Column(db.String(255), unique=True, nullable=False)
-    borough = db.Column(db.String(30), nullable=False)
-    accessible = db.Column(db.Boolean, default=False)
+    restaurant_id = db.Column(db.Integer, db.ForeignKey('restaurants.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    num_people = db.Column(db.Integer)
+    date_time = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=db.func.now()) # FORMAT: 2022-04-02 13:27:25.457314
     updated_at = db.Column(db.DateTime, default=db.func.now(), onupdate=db.func.now())
 
-    owner = db.relationship("User", back_populates="restaurants")
-    settings = db.relationship('Setting', secondary=restaurant_settings, back_populates="restaurants")
-    cuisines = db.relationship('Cuisine', secondary=restaurant_cuisines, back_populates="restaurants")
-
+    user_who_booked = db.relationship("User", back_populates="reservations")
+    restaurants = db.relationship('Restaurant', secondary=restaurant_reservations, back_populates="reservations")
+    users = db.relationship('User', secondary=user_reservations, back_populates="reservations")
 
     def to_dict(self):
         return {
