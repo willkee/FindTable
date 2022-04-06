@@ -36,9 +36,8 @@ class Reservation(db.Model):
             'user_id': self.user_id,
             'num_people': self.num_people,
             'date_time': self.date_time,
-            'created_at': self.created_at,
             'updated_at': self.updated_at
         }
 
-    # I think adding created_at and updated_at to the dict() will be helpful
-    # We can do something like => new Date() - created_at === less than 24hours ? cannot update reservation : update resrvation
+    # I think adding updated_at to the dict() will be helpful
+    # We can do something like => new Date() - updated_at === less than 24hours ? cannot update reservation : update resrvation

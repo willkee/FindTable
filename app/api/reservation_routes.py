@@ -22,72 +22,65 @@ def create_reservation():
   request_initial = request.json  # request object
   request_string = json.dumps(request_initial) # request object to string
   request_dict = json.loads(request_string) # turn string back into python dict
-  restaurant_reservation = request_dict['restaurant_id'] # make sure the keys match frontend
-  user_reservation = request_dict['user_id'] # make sure the keys match frontend
+  restaurant_id = request_dict['restaurant_id'] # make sure the keys match frontend
   form['csrf_token'].data = request.cookies['csrf_token']
 
   if form.validate_on_submit():
     # Add create instances of a new restaurant and populate with form data
     new_reservation = Reservation(
-        restaurant_id = form.data['restaurant_id'], # match the frontend key
+        restaurant_id = restaurant_id,
         user_id = current_user.id,
         num_people = form.data['num_people'],
         date_time = form.data['date_time']
     )
 
-    for settingId in restaurant_settings: # attach settings to new restaurant
-      new_restaurant.settings.append(Setting.query.get(int(settingId)))
-
-    for cuisineId in restaurant_cuisines: # attach cuisines to new restaurant
-      new_restaurant.cuisines.append(Cuisine.query.get(int(cuisineId)))
-
-    db.session.add(new_restaurant)
+    db.session.add(new_reservation)
 
     db.session.commit()
 
-    return new_restaurant.to_dict()
-  else:
+    return new_reservation.to_dict()
 
+  else:
     return {'error': error_generator(form.errors)}
 
-
-
-
-
-
 @reservation_routes.route('/', methods=["GET"])
-def restaurants():
-  restaurants_list = Restaurant.query.all()
-  return {'restaurants': [restaurant.to_dict() for restaurant in restaurants_list]}
-
+# Fetching all reservations, this could cause security issues in the frontend like stalking people
+# If you are stalking someone and know their id, you can potentially employ userId and lookup where and what time they will dine
+def reservations():
+  reservations_list = Reservation.query.all()
+  return {'reservations': [reservation.to_dict() for reservation in reservations_list]}
 
 @reservation_routes.route('/<int:id>', methods=["GET"])
-def restaurant(id):
-  restaurant = Restaurant.query.get(id)
-  return restaurant.to_dict()
+def reservations_for_single_user(id):
+    reservations = Reservation.query.get(id).all() # All reservations based on id
+    return {'reservations': [reservation.to_dict() for reservation in reservations]}
 
 @reservation_routes.route('/<int:id>', methods=['PUT'])
-def restaurantUpdate(id):
-  form = RestaurantForm()
-  form['csrf_token'].data = request.cookies['csrf_token']
+def reservationUpdate(user_id):
+    form = ReservationForm()
+    request_initial = request.json  # request object
+    request_string = json.dumps(request_initial) # request object to string
+    request_dict = json.loads(request_string) # turn string back into python dict
+    restaurant_id = request_dict['restaurant_id'] # make sure the keys match frontend
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-  if form.validate_on_submit():
-    restaurant = Restaurant.query.get(id)
-    restaurant.name = form.data['name']
-    restaurant.price_rating = form.data['price_rating']
-    restaurant.description = form.data['description']
-    restaurant.img_url = form.data['img_url']
-    restaurant.phone_number = form.data['phone_number']
-    restaurant.website = form.data['website']
-    restaurant.street_address = form.data['street_address']
-    restaurant.borough = form.data['borough']
-    restaurant.accessible = form.data['accessible']
+    if form.validate_on_submit():
+        reservation = Reservation.query.get(id)
+        reservation.name = form.data['name']
+        reservation.price_rating = form.data['price_rating']
+        reservation.description = form.data['description']
+        reservation.img_url = form.data['img_url']
+        reservation.phone_number = form.data['phone_number']
+        reservation.website = form.data['website']
+        reservation.street_address = form.data['street_address']
+        reservation.borough = form.data['borough']
+        reservation.accessible = form.data['accessible']
 
     db.session.commit()
 
     return restaurant.to_dict()
 
-  return {'errors': error_generator(form.errors)}
+    return {'errors': error_generator(form.errors)}
 
 @reservation_routes.route('/<int:id>', methods=['DELETE'])
 def restaurantDelete(id):
