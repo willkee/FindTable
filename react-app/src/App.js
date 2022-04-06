@@ -65,7 +65,7 @@ function App() {
             <Route path='/sign-up' exact={true}>
               <SignUpForm />
             </Route>
-            <Route exact path="/restaurants">
+            {/* <Route exact path="/restaurants">
               <Restaurants all_restaurants={all_restaurants} />
             </Route>
             <Route exact path="/restaurants/:id">
@@ -76,7 +76,7 @@ function App() {
             </ProtectedRoute>
             <ProtectedRoute path='/reservations' exact={true} >
               <Reservations/>
-            </ProtectedRoute>
+            </ProtectedRoute> */}
             <ProtectedRoute path='/users' exact={true} >
               <UsersList users={users} />
               </ProtectedRoute>

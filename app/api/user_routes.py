@@ -18,12 +18,3 @@ def user(id):
     user = User.query.get(id)
     # print(user)
     return user.to_dict()
-
-@user_routes.route('/<int:id>/reservations')
-@login_required
-def user(id):
-    user = User.query.get(id)
-    # print(user)
-    return user.to_dict()
-
-

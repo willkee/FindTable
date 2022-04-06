@@ -22,7 +22,7 @@ class Reservation(db.Model):
     restaurant_id = db.Column(db.Integer, db.ForeignKey('restaurants.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     num_people = db.Column(db.Integer)
-    date_time = db.Column(db.String(255), nullable=False)
+    date_time = db.Column(db.DateTime, nullable=False)
     created_at = db.Column(db.DateTime, default=db.func.now()) # FORMAT: 2022-04-02 13:27:25.457314
     updated_at = db.Column(db.DateTime, default=db.func.now(), onupdate=db.func.now())
 

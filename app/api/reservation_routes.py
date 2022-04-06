@@ -19,17 +19,17 @@ def error_generator(validation_errors):
 def create_reservation():
   form = ReservationForm()
 
-  request_initial = request.json  # request object
-  request_string = json.dumps(request_initial) # request object to string
-  request_dict = json.loads(request_string) # turn string back into python dict
-  restaurant_id = request_dict['restaurant_id'] # make sure the keys match frontend
+  # request_initial = request.json  # request object
+  # request_string = json.dumps(request_initial) # request object to string
+  # request_dict = json.loads(request_string) # turn string back into python dict
+  # restaurant_id = request_dict['restaurant_id'] # make sure the keys match frontend
   form['csrf_token'].data = request.cookies['csrf_token']
 
   if form.validate_on_submit():
     # Add create instances of a new restaurant and populate with form data
     new_reservation = Reservation(
-        restaurant_id = restaurant_id,
-        user_id = current_user.id,
+        restaurant_id = 2,
+        user_id = 1,
         num_people = form.data['num_people'],
         date_time = form.data['date_time']
     )
@@ -56,6 +56,40 @@ def create_reservation():
 # def new_reservation(user_id):
 #     reservations = Reservation.query.get(id).all() # All reservations based on id
 #     return {'reservations': [reservation.to_dict() for reservation in reservations]}
+
+# Posting in the schedule but we don't need a GET route based on restaurant_id
+# This is because the restaurant object contains reservations as a list.
+@reservation_routes.route('/my_reservations', methods=['POST'])
+def reserve_table():
+  form = ReservationForm()
+
+  request_initial = request.json  # request object
+  request_string = json.dumps(request_initial) # request object to string
+  request_dict = json.loads(request_string) # turn string back into python dict
+  restaurant_id = request_dict['restaurant_id'] # Check the frontend key
+  form['csrf_token'].data = request.cookies['csrf_token']
+
+  if form.validate_on_submit():
+    # Add create instances of a new restaurant and populate with form data
+    new_reservation = Reservation(
+      restaurant_id = restaurant_id,
+      user_id = current_user.id,
+      num_people = form.data['num_people']
+    )
+
+    db.session.add(new_reservation)
+
+    db.session.commit()
+
+    return new_reservation.to_dict()
+  else:
+
+    return {'error': error_generator(form.errors)}
+
+@reservation_routes.route('/<int:id>/schedule', methods=['GET'])
+def get_reservations():
+  reservations = Reservation.query.all()
+  return {'reservations': [reservation.to_dict() for reservation in reservations]}
 
 
 @reservation_routes.route('/', methods=["GET"])
