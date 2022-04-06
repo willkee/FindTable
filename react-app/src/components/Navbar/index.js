@@ -1,44 +1,72 @@
-
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
 import ProtectedRoute from '../auth/ProtectedRoute'
+import styles from './Navbar.module.css'
+import {MagnifyingGlass, GreyVerticalLine} from '../Icons'
+import { useSelector, useDispatch } from 'react-redux';
+import ProfileDropdown from '../ProfileDropdown';
+import CalendarDropdown from '../CalendarDropdown';
+import { Logo } from '../Logo';
+
+import LoginForm from '../auth/LoginForm';
+import SignUpForm from '../auth/SignUpForm';
+import SearchSection from '../SearchSection';
+
+import { showModal, setCurrentModal } from '../../store/modal';
 
 const NavBar = () => {
+  const sessionUser = useSelector((state) => state.session.user);
+  const dispatch = useDispatch()
+
+  const showLoginForm = () => {
+    dispatch(setCurrentModal(LoginForm));
+    dispatch(showModal());
+  }
+
+  const showSignUpForm = () => {
+    dispatch(setCurrentModal(SignUpForm));
+    dispatch(showModal());
+  }
+
+  const showSearchForm = () => {
+    dispatch(setCurrentModal(SearchSection));
+    dispatch(showModal())
+  }
+
   return (
-    <nav>
-      <ul>
-        <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Home
+    <nav className={styles.container}>
+        <div className={styles.logo}>
+          <NavLink to='/' exact={true} className={styles.home_link} activeClassName='active'>
+            <Logo /> <span>FindTable</span>
           </NavLink>
-        </li>
-        <li>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/restaurants' exact={true} activeClassName='active'>
-            Restaurants
-          </NavLink>
-        </li>
-        <ProtectedRoute>
-          <li>
-            <LogoutButton />
-          </li>
-        </ProtectedRoute>
-      </ul>
+        </div>
+        <div className={styles.right}>
+          {!sessionUser &&
+          <>
+            <div>
+              <div className={styles.signin} onClick={showLoginForm}>Log In</div>
+            </div>
+            <div>
+              <div className={styles.signup} onClick={showSignUpForm}>Sign Up</div>
+            </div>
+          </>
+          }
+          <ProtectedRoute>
+            <div className={styles.profile_icon}>
+              <ProfileDropdown />
+            </div>
+            <div className={styles.calendar_icon}>
+              <CalendarDropdown />
+            </div>
+            <div>
+              <GreyVerticalLine />
+            </div>
+          </ProtectedRoute>
+            <div className={styles.search_icon} onClick={showSearchForm}>
+              <MagnifyingGlass/>
+            </div>
+        </div>
+
     </nav>
   );
 }

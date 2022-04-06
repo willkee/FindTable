@@ -1,5 +1,5 @@
-from app.models import db, Restaurant
-
+from app.models import db, Restaurant, Setting, Cuisine
+from random import randint
 # Adds restaurants seed data
 
 restaurant_list = [
@@ -1356,25 +1356,26 @@ restaurant_list = [
 
 
 
-
 def seed_restaurants():
-    for restaurant in restaurant_list:
-        new_restaurant = Restaurant(
-            owner_id=restaurant['owner_id'],
-            name=restaurant['name'],
-            price_rating=restaurant['price_rating'],
-            description=restaurant['description'],
-            img_url=restaurant['img_url'],
-            phone_number=restaurant['phone_number'],
-            website=restaurant['website'],
-            street_address=restaurant['street_address'],
-            borough=restaurant['borough'],
-            accessible=restaurant['accessible'],
-        )
-        db.session.add(new_restaurant)
-    db.session.commit()
+	for restaurant in restaurant_list:
+		new_restaurant = Restaurant(
+			owner_id=restaurant['owner_id'],
+			name=restaurant['name'],
+			price_rating=restaurant['price_rating'],
+			description=restaurant['description'],
+			img_url=restaurant['img_url'],
+			phone_number=restaurant['phone_number'],
+			website=restaurant['website'],
+			street_address=restaurant['street_address'],
+			borough=restaurant['borough'],
+			accessible=restaurant['accessible'])
+		new_restaurant.settings.append(Setting.query.get((randint(1, 5))))
+		new_restaurant.cuisines.append(Cuisine.query.get((randint(1, 20))))
+		db.session.add(new_restaurant)
+	db.session.commit()
+
 
 
 def undo_restaurants():
-    db.session.execute('TRUNCATE restaurants RESTART IDENTITY CASCADE;')
-    db.session.commit()
+	db.session.execute('TRUNCATE restaurants RESTART IDENTITY CASCADE;')
+	db.session.commit()

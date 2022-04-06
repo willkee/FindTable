@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import { setCurrentModal, hideModal } from '../../store/modal';
+import SignUpForm from './SignUpForm';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -14,8 +16,9 @@ const LoginForm = () => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      return setErrors(data);
     }
+    dispatch(hideModal())
   };
 
   const updateEmail = (e) => {
@@ -28,6 +31,10 @@ const LoginForm = () => {
 
   if (user) {
     return <Redirect to='/' />;
+  }
+
+  const showSignUpForm = () => {
+    dispatch(setCurrentModal(SignUpForm))
   }
 
   return (
@@ -58,6 +65,7 @@ const LoginForm = () => {
         />
         <button type='submit'>Login</button>
       </div>
+          <button onClick={showSignUpForm}>Don't have an account? Sign up!</button>
     </form>
   );
 };

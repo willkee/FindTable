@@ -1,0 +1,33 @@
+.container {
+    width: 1200px;
+    height: auto;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: absolute;
+    align-items: center;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.16))
+}
+
+.header {
+    margin-bottom: 20px;
+}
+
+.form_entries {
+    width: 800px;
+    padding: 10px 20px;
+	background: #f4f7f8;
+	margin: 10px auto;
+	padding: 20px;
+	background: #f4f7f8;
+	border-radius: 8px;
+}
+.form_display {
+    width: 300px;
+    height: auto;
+    margin: 50px auto;
+    display: flex;
+    border: black 1px solid;
+    flex-direction: column;
+}
