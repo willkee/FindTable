@@ -7,7 +7,11 @@ const RestaurantsList = ({ all_restaurants }) => {
     const joinSettings = (restaurant => {
         let joined = '|'
         restaurant.settings.map(setting => joined = `${joined} ${setting.type} |`)
-        console.log(joined)
+        return joined
+    })
+    const joinCuisines = (restaurant => {
+        let joined = '|'
+        restaurant.cuisines.map(cuisine => joined = `${joined} ${cuisine.type} |`)
         return joined
     })
 
@@ -28,6 +32,7 @@ const RestaurantsList = ({ all_restaurants }) => {
                         <th>Borough</th>
                         <th>Accessible</th>
                         <th>Settings</th>
+                        <th>Cuisines</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,6 +50,7 @@ const RestaurantsList = ({ all_restaurants }) => {
                             <td>{restaurant.borough}</td>
                             <td>{restaurant.accessible ? "Yes" : "No"}</td>
                             <td>{joinSettings(restaurant)}</td>
+                            <td>{joinCuisines(restaurant)}</td>
                         </tr>
                     ))}
                 </tbody>
