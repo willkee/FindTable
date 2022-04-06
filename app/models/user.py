@@ -20,6 +20,7 @@ class User(db.Model, UserMixin):
 
     restaurants = db.relationship('Restaurant', back_populates="owner", cascade="all, delete-orphan")
     reservations = db.relationship('Reservation', back_populates="user_who_booked", cascade="all, delete-orphan")
+    reviews = db.relationship('Review', back_populates='user', cascade='all, delete-orphan')
 
     @property
     def password(self):

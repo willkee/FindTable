@@ -94,7 +94,7 @@ export const UserIcon = () => {
 
 export const RestaurantIcon = () => {
     return (
-        <svg id="Restaurants" dataname="Restaurant icon" xmlns="http://www.w3.org/2000/svg" width="18" height="15.69" viewBox="0 0 18 15.69">
+        <svg id="Restaurants" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="18" height="15.69" viewBox="0 0 18 15.69">
             <defs>
                 <clipPath id="clip-path">
                 <rect id="Rectangle_371" dataname="Rectangle 371" width="18" height="15.69" transform="translate(0 0)"/>
@@ -117,7 +117,7 @@ export const RedLocationArrow = () => {
 
 export const CuisinesIcon = () => {
     return (
-        <svg id="Cuisines" dataname="Cuisines icon" xmlns="http://www.w3.org/2000/svg" width="14.288" height="18" viewBox="0 0 14.288 18">
+        <svg id="Cuisines" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="14.288" height="18" viewBox="0 0 14.288 18">
             <defs>
                 <clipPath id="clip-path">
                 <rect id="Rectangle_396" dataname="Rectangle 396" width="14.288" height="18"/>
@@ -133,18 +133,19 @@ export const CuisinesIcon = () => {
 
 export const BookingsIcon = () => {
     return (
-        <svg id="Booked_icon" dataname="Booked icon" xmlns="http://www.w3.org/2000/svg" width="26.5" height="20.5" viewBox="0 0 26.5 20.5">
+        <svg id="Booked_icon" data-name="Booked icon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="26.5" height="20.5" viewBox="0 0 26.5 20.5">
             <defs>
                 <clipPath id="clip-path">
                 <rect id="Rectangle_358" dataname="Rectangle 358" width="26.5" height="20.5" fill="none"/>
                 </clipPath>
             </defs>
-            <g id="Group_198" dataname="Group 198" clip-path="url(#clip-path)">
-                <path id="Path_212" dataname="Path 212" d="M24,7V4.67a1.5,1.5,0,0,0-.04-.37L22.63,5.63l-8.239,8.248a.96.96,0,0,1-1.46-.12L11.748,12.1a.96.96,0,0,0-1.459-.121L4.55,17.71l.12.29H21.83A2.176,2.176,0,0,0,24,15.83V12.02a.77.77,0,0,1,.77-.77h.96a.77.77,0,0,1,.77.77v3.81a4.683,4.683,0,0,1-4.67,4.67H4.67a4.62,4.62,0,0,1-2.3-.61A4.793,4.793,0,0,1,.61,18.13,4.62,4.62,0,0,1,0,15.83V4.67A4.683,4.683,0,0,1,4.67,0h9.81a.77.77,0,0,1,.77.77v.96a.77.77,0,0,1-.77.77H4.67A2.176,2.176,0,0,0,2.5,4.67V16.183l.04.017,8.069-8.078a.96.96,0,0,1,1.46.12L13.252,9.9a.96.96,0,0,0,1.459.121L20.87,3.87,22.2,2.54a1.5,1.5,0,0,0-.37-.04H19.5a1.25,1.25,0,0,1,0-2.5h5.75A1.25,1.25,0,0,1,26.5,1.25V7A1.25,1.25,0,0,1,24,7"/>
+            <g id="Group_198" data-name="Group 198" clip-path="url(#clip-path)">
+                <path id="Path_212" data-name="Path 212" d="M24,7V4.67a1.5,1.5,0,0,0-.04-.37L22.63,5.63l-8.239,8.248a.96.96,0,0,1-1.46-.12L11.748,12.1a.96.96,0,0,0-1.459-.121L4.55,17.71l.12.29H21.83A2.176,2.176,0,0,0,24,15.83V12.02a.77.77,0,0,1,.77-.77h.96a.77.77,0,0,1,.77.77v3.81a4.683,4.683,0,0,1-4.67,4.67H4.67a4.62,4.62,0,0,1-2.3-.61A4.793,4.793,0,0,1,.61,18.13,4.62,4.62,0,0,1,0,15.83V4.67A4.683,4.683,0,0,1,4.67,0h9.81a.77.77,0,0,1,.77.77v.96a.77.77,0,0,1-.77.77H4.67A2.176,2.176,0,0,0,2.5,4.67V16.183l.04.017,8.069-8.078a.96.96,0,0,1,1.46.12L13.252,9.9a.96.96,0,0,0,1.459.121L20.87,3.87,22.2,2.54a1.5,1.5,0,0,0-.37-.04H19.5a1.25,1.25,0,0,1,0-2.5h5.75A1.25,1.25,0,0,1,26.5,1.25V7A1.25,1.25,0,0,1,24,7"/>
             </g>
         </svg>
     )
 }
+
 
 export const CityIcon = () => {
     return (

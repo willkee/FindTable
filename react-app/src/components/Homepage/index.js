@@ -39,18 +39,15 @@ export const Homepage = () => {
   useEffect(() => {
     getLocation()
     console.log(userLocation)
-  },[])
+  },[userLocation])
 
   return (
     <PageContainer>
 
       <SearchHeader className={styles.search_header_component} />
-
-      //import search section
-//       <div>
-//         {location}
-//       </div>
-      //import restaurant cards
+      <div>
+        {userLocation}
+      </div>
 
     </PageContainer>
   )

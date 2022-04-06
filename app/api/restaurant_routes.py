@@ -106,9 +106,9 @@
 
 from flask import Blueprint, request
 from flask_login import current_user
-from app.models import Restaurant, db, Setting, Cuisine
+from app.models import Restaurant, db, Setting, Cuisine, Review
 from app.models.restaurants import restaurant_settings
-from app.forms import RestaurantForm
+from app.forms import RestaurantForm, ReviewForm
 import json
 
 restaurant_routes = Blueprint('restaurants', __name__)
@@ -158,8 +158,7 @@ def create_restaurant():
 
     return new_restaurant.to_dict()
   else:
-
-    return {'error': error_generator(form.errors)}
+    return {'error': error_generator(form.errors)}, 400
 
 
 
@@ -208,3 +207,37 @@ def restaurantDelete(id):
   db.session.delete(restaurant)
   db.session.commit()
   return data
+
+
+
+'''
+Routes for reviews
+
+First one gets all reviews
+Second one updates a single review
+
+'''
+@restaurant_routes.route('/<int:id>/reviews', methods=['GET'])
+def reviewRead(id):
+  all_reviews = Review.query.filter(Review.restaurant_id == id).all()
+  return {'reviews': [review.to_dict() for review in all_reviews]}
+
+
+# @restaurant_routes.route('/<int:id>', methods=['PUT'])
+# def reviewUpdate(id):
+#   form = ReviewForm()
+#   form['csrf_token'].data = request.cookies['csrf_token']
+
+#   if form.validate_on_submit():
+#     review = Review.query.get(id)
+#     review.user_id = current_user.id,
+#     review.restaurant_id = request.restaurant_id,
+#     review.stars = form.data['stars'],
+#     review.img_url = form.data['img_url'],
+#     review.review = form.data['review']
+
+#     db.session.commit()
+
+#     return review.to_dict()
+
+#   return {'errors': error_generator(form.errors)}

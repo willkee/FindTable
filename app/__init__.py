@@ -13,6 +13,8 @@ from .api.settings_routes import settings_routes
 from .api.cuisines_routes import cuisines_routes
 from .api.reservation_routes import reservation_routes
 
+from .api.reviews_routes import review_routes
+
 from .seeds import seed_commands
 
 from .config import Config
@@ -39,6 +41,7 @@ app.register_blueprint(restaurant_routes, url_prefix='/api/restaurants')
 app.register_blueprint(settings_routes, url_prefix='/api/settings')
 app.register_blueprint(cuisines_routes, url_prefix='/api/cuisines')
 app.register_blueprint(reservation_routes, url_prefix='/api/my_reservations')
+app.register_blueprint(review_routes, url_prefix='/api/reviews')
 db.init_app(app)
 Migrate(app, db)
 

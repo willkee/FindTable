@@ -1,0 +1,34 @@
+.all_restaurants {
+    background-color: red;
+    width: 80%;
+}
+
+.each_restaurant {
+    border: 1px solid black;
+}
+
+.no_search_results {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.no_search_results button {
+    margin-top: 20px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #da3743;
+    color: rgb(255, 255, 255);
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.16))
+}
+
+.no_search_results button:hover {
+    background-color: #ac1d27;
+}
+
+.search_intro_message {
+    margin-bottom: 30px;
+}
