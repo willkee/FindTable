@@ -48,7 +48,7 @@ export const GreyVerticalLine = () => {
 
 export const MagnifyingGlass = () => {
     return (
-        <svg id="Magnifying_glass" dataname="Magnifying glass" xmlns="http://www.w3.org/2000/svg" width="26.13" height="26.13" viewBox="0 0 26.13 26.13">
+        <svg id="Magnifying_glass" dataname="Magnifying glass" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 26.13 26.13">
             <path id="Path_206" dataname="Path 206" d="M20.03,18.27a11.147,11.147,0,0,0,2.47-7.02A11.25,11.25,0,1,0,11.25,22.5a11.147,11.147,0,0,0,7.02-2.47l6.1,6.1,1.76-1.76ZM11.25,20A8.75,8.75,0,1,1,20,11.25,8.766,8.766,0,0,1,11.25,20"/>
         </svg>
     )

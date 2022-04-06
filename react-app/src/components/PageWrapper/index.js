@@ -6,7 +6,7 @@ export const PageWrapper = styled.div`
     min-height: 100vh;
     overflow-y: scroll;
     overflow-x: hidden;
-    background-color: greenyellow;
+    background-color: grey;
     display: flex;
     position: absolute;
     top: 0px;

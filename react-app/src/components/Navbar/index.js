@@ -5,7 +5,8 @@ import ProtectedRoute from '../auth/ProtectedRoute'
 import styles from './Navbar.module.css'
 import {MagnifyingGlass, Calendar, UserProfileIcon, GreyVerticalLine} from '../Icons'
 import { useSelector } from 'react-redux';
-import Profile from '../Profile';
+import ProfileDropdown from '../ProfileDropdown';
+import CalendarDropdown from '../CalendarDropdown';
 
 
 const NavBar = () => {
@@ -15,8 +16,8 @@ const NavBar = () => {
   return (
     <nav className={styles.container}>
         <div className={styles.logo}>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Logo
+          <NavLink to='/' exact={true} className={styles.home_link} activeClassName='active'>
+            FindTable
           </NavLink>
         </div>
         <div className={styles.right}>
@@ -35,16 +36,13 @@ const NavBar = () => {
           }
           <ProtectedRoute>
             <div>
-              <Profile />
+              <ProfileDropdown />
             </div>
             <div>
-              <Calendar />
+              <CalendarDropdown />
             </div>
             <div>
               <GreyVerticalLine />
-            </div>
-            <div>
-              <LogoutButton />
             </div>
           </ProtectedRoute>
             <div>
