@@ -1,11 +1,11 @@
 from flask import Blueprint, request
 from flask_login import current_user
-from app.models import Restaurant, User, Setting, Cuisine, db
-from app.models.restaurants import restaurant_settings
-from app.forms import ReviewForm, RestaurantForm
+from app.models import Review, db
+from app.forms import ReviewForm
 import json
 
-restaurant_routes = Blueprint('restaurants', __name__)
+
+review_routes = Blueprint('reviews', __name__)
 
 def error_generator(validation_errors):
   errors = []
@@ -14,77 +14,60 @@ def error_generator(validation_errors):
       errors.append(f'{field} : {error}')
   return errors
 
+#create a review
+@review_routes.route('/', methods=['POST'])
+def reviewCreate(restaurantId):
+  form = ReviewForm()
 
-@restaurant_routes.route('/', methods=['POST'])
-def create_restaurant():
-  form = RestaurantForm()
+  request_initial = request.json
+  request_string = json.dumps(request_initial)
+  request_dict = json.loads(request_string)
   form['csrf_token'].data = request.cookies['csrf_token']
 
-
   if form.validate_on_submit():
-    new_restaurant = Restaurant(
-      owner_id = current_user.id,
-      name = form.data['name'],
-      price_rating = form.data['price_rating'],
-      description = form.data['description'],
+    new_review = Review(
+      user_id = current_user.id,
+      restaurant_id = restaurantId,
+      stars = form.data['stars'],
       img_url = form.data['img_url'],
-      phone_number = form.data['phone_number'],
-      website = form.data['website'],
-      street_address = form.data['street_address'],
-      borough = form.data['borough'],
-      accessible = form.data['accessible'])
+      review = form.data['review']
+    )
 
-    entered_settings = form.settings.data
-    entered_cuisines = form.cuisines.data
-
-    for settingId in entered_settings:
-      new_restaurant.settings.append(Setting.query.get(int(settingId)))
-
-    for cuisineId in entered_cuisines:
-      new_restaurant.cuisines.append(Cuisine.query.get(int(cuisineId)))
-
-    db.session.add(new_restaurant)
+    db.session.add(new_review)
     db.session.commit()
 
-    return new_restaurant.to_dict()
-
+    return new_review.to_dict()
   else:
-    return {'error123123': error_generator(form.errors)}
+    return {'error': error_generator(form.errors)}
 
 
+'''put route for reviews'''
 
+# @review_routes.route('/<int:id>', methods=['PUT'])
+# def reviewUpdate(id):
+#   form = ReviewForm()
+#   form['csrf_token'].data = request.cookies['csrf_token']
 
+#   if form.validate_on_submit():
+#     review = Review.query.get(id)
+#     review.user_id = current_user.id,
+#     review.restaurant_id = request.restaurant_id,
+#     review.stars = form.data['stars'],
+#     review.img_url = form.data['img_url'],
+#     review.review = form.data['review']
 
-@restaurant_routes.route('/', methods=["GET"])
-def restaurants():
-  restaurants_list = Restaurant.query.all()
-  return {'restaurants': [restaurant.to_dict() for restaurant in restaurants_list]}
+#     db.session.commit()
 
+#     return review.to_dict()
 
-@restaurant_routes.route('/<int:id>', methods=["GET"])
-def restaurant(id):
-  restaurant = Restaurant.query.get(id)
-  return restaurant.to_dict()
+#   return {'errors': error_generator(form.errors)}
 
-@restaurant_routes.route('/<int:id>', methods=['PUT'])
-def restaurantUpdate(id):
-  form = RestaurantForm()
-  form['csrf_token'].data = request.cookies['csrf_token']
-
-  if form.validate_on_submit():
-    restaurant = Restaurant.query.get(id)
-    restaurant.name = form.data['name']
-    restaurant.price_rating = form.data['price_rating']
-    restaurant.description = form.data['description']
-    restaurant.img_url = form.data['img_url']
-    restaurant.phone_number = form.data['phone_number']
-    restaurant.website = form.data['website']
-    restaurant.street_address = form.data['street_address']
-    restaurant.borough = form.data['borough']
-    restaurant.accessible = form.data['accessible']
-
-    db.session.commit()
-
-    return restaurant.to_dict()
-
-  return {'errors': error_generator(form.errors)}
+#delete reviews
+@review_routes.route('/<int:id>', methods=['DELETE'])
+def reviewDelete(id):
+  data = {}
+  review = Review.query.get(id)
+  data['review'] = review.to_dict()
+  db.session.delete(review)
+  db.session.commit()
+  return data
