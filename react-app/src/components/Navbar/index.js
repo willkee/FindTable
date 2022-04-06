@@ -1,13 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
+import LogoutButton from '../LogoutButton';
 import ProtectedRoute from '../auth/ProtectedRoute'
 import styles from './Navbar.module.css'
 import {MagnifyingGlass, Calendar, UserProfileIcon, GreyVerticalLine} from '../Icons'
-
+import { useSelector } from 'react-redux';
+import Profile from '../Profile';
 
 
 const NavBar = () => {
+  const sessionUser = useSelector((state) => state.session.user);
 
 
   return (
@@ -18,7 +20,8 @@ const NavBar = () => {
           </NavLink>
         </div>
         <div className={styles.right}>
-          <div className={styles.signup}>
+          {!sessionUser && <>
+            <div className={styles.signup}>
             <NavLink to='/sign-up' exact={true} activeClassName='active'>
               Sign up
             </NavLink>
@@ -28,9 +31,11 @@ const NavBar = () => {
               Sign in
             </NavLink>
           </div>
+          </>
+          }
           <ProtectedRoute>
             <div>
-              <UserProfileIcon />
+              <Profile />
             </div>
             <div>
               <Calendar />

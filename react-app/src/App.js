@@ -7,17 +7,18 @@ import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/Navbar/';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
-import User from './components/User';
+import User from './components/User'
+
 import UsersList from './components/UsersList';
 import RestaurantsList from './components/RestaurantsList';
 import NewRestaurantForm from './components/auth/NewRestaurantForm';
-
 
 import { receiveAllRestaurants } from './store/restaurants';
 import { allUsers } from './store/users';
 import { retrieveSettings } from './store/settings';
 import { Homepage } from './components/Homepage';
 import { PageWrapper } from '../src/components/PageWrapper';
+import { InnerWrapper } from '../src/components/InnerWrapper';
 import { authenticate } from './store/session';
 import { retrieveCusines } from './store/cuisines';
 

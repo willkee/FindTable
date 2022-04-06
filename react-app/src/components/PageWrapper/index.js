@@ -8,7 +8,9 @@ export const PageWrapper = styled.div`
     overflow-x: hidden;
     background-color: greenyellow;
     display: flex;
+    position: absolute;
+    top: 0px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-`
+    `
