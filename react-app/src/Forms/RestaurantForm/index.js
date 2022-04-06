@@ -85,9 +85,10 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
 
     return (
         <PageContainer>
-            <h1>Create Your New Restaurant</h1>
+            <h1 className={styles.header}>Create Your New Restaurant</h1>
             <div className={styles.container}>
                 <div className={styles.form_entries}>
+                    <h3 className={styles.legend}>Restaurant Information</h3>
                     <ul>
                         {errors && errors.map(error => <li key={error}>{error}</li>)}
                     </ul>
