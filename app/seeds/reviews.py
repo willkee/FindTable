@@ -106,27 +106,20 @@ food = [
   "https://images.unsplash.com/photo-1599797997800-3cddb20a2245?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjk1fHxmb29kJTIwcGhvdG9ncmFwaHl8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
 ]
 
-print(len(food))
 
 def seed_reviews():
-  for i in range(1, 1000):
+  for i in range(1, 1001):
     reviews = Review(
       user_id = random.randint(1, 100),
       restaurant_id = random.randint(1, 90),
       stars = random.randint(1, 5),
-      img_url = food[random.randint(1,100)],
+      img_url = food[random.randint(0,99)],
       review = fake.text()
     )
     db.session.add(reviews)
+    db.session.commit()
 
 
-
-
-
-
-
-
-
-def undo_settings():
+def undo_reviews():
   db.session.execute('TRUNCATE reviews RESTART IDENTITY CASCADE;')
   db.session.commit()
