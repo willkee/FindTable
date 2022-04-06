@@ -1,8 +1,8 @@
 from flask import Blueprint, request
 from flask_login import current_user
-from app.models import Restaurant, User, db
+from app.models import Restaurant, User, Setting, Cuisine, db
 from app.models.restaurants import restaurant_settings
-from app.forms import ReviewForm
+from app.forms import ReviewForm, RestaurantForm
 import json
 
 restaurant_routes = Blueprint('restaurants', __name__)
@@ -20,13 +20,8 @@ def create_restaurant():
   form = RestaurantForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
-  # print(dir(form))
-  print("\n\n\n\n\n REQUEST", form.settings.data, "\n\n\n\n\n\n\n")
-
-
 
   if form.validate_on_submit():
-    # print("\n\n\n\n\nFORM SUBMISSION SUCCESS\n\n\n\n\n")
     new_restaurant = Restaurant(
       owner_id = current_user.id,
       name = form.data['name'],
