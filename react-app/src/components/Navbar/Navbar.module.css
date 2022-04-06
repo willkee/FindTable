@@ -1,8 +1,10 @@
 .container {
-  width: 100vw;
+  width: 100%;
   height: 55px;
   display: flex;
   justify-content: space-between;
+  position: absolute;
+  top: 0;
   align-items: center;
   background-color: #f7f7f7;
 }
@@ -17,8 +19,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 200px;
-  justify-content: space-evenly;
+  position: relative;
+  right: 15px;
+  width: 20%;
+  justify-content: space-between;
   margin-right: 5px;
 }
 
