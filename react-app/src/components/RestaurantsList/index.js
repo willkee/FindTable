@@ -4,6 +4,13 @@ import React from "react";
 const RestaurantsList = ({ all_restaurants }) => {
     // const all_restaurants = useSelector(state => Object.values(state.restaurants))
 
+    const joinSettings = (restaurant => {
+        let joined = '|'
+        restaurant.settings.map(setting => joined = `${joined} ${setting.type} |`)
+        console.log(joined)
+        return joined
+    })
+
     return (
         <div>
             <table>
@@ -20,7 +27,7 @@ const RestaurantsList = ({ all_restaurants }) => {
                         <th>Street Address</th>
                         <th>Borough</th>
                         <th>Accessible</th>
-                        {/* <th>Settings</th> */}
+                        <th>Settings</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,7 +44,7 @@ const RestaurantsList = ({ all_restaurants }) => {
                             <td>{restaurant.street_address}</td>
                             <td>{restaurant.borough}</td>
                             <td>{restaurant.accessible ? "Yes" : "No"}</td>
-                            {/* <td>{restaurant.settings.forEach(setting => <td>{setting}</td>)}</td> */}
+                            <td>{joinSettings(restaurant)}</td>
                         </tr>
                     ))}
                 </tbody>
