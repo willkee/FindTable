@@ -15,7 +15,7 @@ user_reservations = db.Table(
     db.Column("cuisines_id", db.ForeignKey("cuisines.id"), primary_key=True)
 )
 
-class Reservations(db.Model):
+class Reservation(db.Model):
     __tablename__ = 'reservations'
 
     id = db.Column(db.Integer, primary_key=True)
