@@ -1,9 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from '../LogoutButton';
 import ProtectedRoute from '../auth/ProtectedRoute'
 import styles from './Navbar.module.css'
-import {MagnifyingGlass, Calendar, UserProfileIcon, GreyVerticalLine} from '../Icons'
+import {MagnifyingGlass, GreyVerticalLine} from '../Icons'
 import { useSelector } from 'react-redux';
 import ProfileDropdown from '../ProfileDropdown';
 import CalendarDropdown from '../CalendarDropdown';

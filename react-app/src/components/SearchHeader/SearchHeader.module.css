@@ -90,6 +90,10 @@
     width: 100px;
     border: none;
     max-height: 65px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* .time_object table {

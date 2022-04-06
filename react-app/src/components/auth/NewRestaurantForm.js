@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createRestaurant } from '../../store/restaurants';
 import { Redirect } from 'react-router-dom';
@@ -82,11 +82,7 @@ const NewRestaurantForm = ({ all_settings, all_cuisines }) => {
     return (
         <div>
             <ul>
-                {errors && errors.map(error => {
-                    <li key={error}>
-                        {error}
-                    </li>
-                })}
+                {errors && errors.map(error => <li key={error}>{error}</li>)}
             </ul>
             <form onSubmit={onSubmit}>
                 <div>
