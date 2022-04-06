@@ -26,7 +26,7 @@ class Restaurant(db.Model):
     img_url = db.Column(db.String(2048), nullable=False)
     phone_number = db.Column(db.String(10), unique=True, nullable=False)
     website = db.Column(db.String(2048))
-    street_address = db.Column(db.String(255), unique=True, nullable=False)
+    street_address = db.Column(db.String(255), nullable=False)
     borough = db.Column(db.String(30), nullable=False)
     accessible = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=db.func.now()) # FORMAT: 2022-04-02 13:27:25.457314
