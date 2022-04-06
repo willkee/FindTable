@@ -13,6 +13,7 @@ import UsersList from './components/UsersList';
 import RestaurantsList from './components/RestaurantsList';
 import NewRestaurantForm from './components/auth/NewRestaurantForm';
 import ProfilePage from './components/ProfilePage';
+import Modal from './components/Modal/Modal';
 
 import { receiveAllRestaurants } from './store/restaurants';
 import { allUsers } from './store/users';
@@ -22,6 +23,7 @@ import { PageWrapper } from '../src/components/PageWrapper';
 import { InnerWrapper } from '../src/components/InnerWrapper';
 import { authenticate } from './store/session';
 import { retrieveCusines } from './store/cuisines';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -55,6 +57,7 @@ function App() {
       <PageWrapper>
         <InnerWrapper>
           <NavBar />
+          <Modal />
           <Switch>
             <Route path='/' exact={true} >
               <Homepage />
@@ -65,7 +68,7 @@ function App() {
             <Route path='/sign-up' exact={true}>
               <SignUpForm />
             </Route>
-            <Route exact path="/restaurants">
+            {/* <Route exact path="/restaurants">
               <Restaurants all_restaurants={all_restaurants} />
             </Route>
             <Route exact path="/restaurants/:id">
@@ -76,7 +79,7 @@ function App() {
             </ProtectedRoute>
             <ProtectedRoute path='/reservations' exact={true} >
               <Reservations/>
-            </ProtectedRoute>
+            </ProtectedRoute> */}
             <ProtectedRoute path='/users' exact={true} >
               <UsersList users={users} />
               </ProtectedRoute>

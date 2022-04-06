@@ -17,8 +17,8 @@ const CalendarIconDropdown = () => {
     })
 
     return (
-        <div className={styles.CalendarIconOuterContainer}>
-            <div className={styles.CalendarIconIconContainer} onClick={openBox}>
+        <div className={styles.calendarOuterContainer}>
+            <div className={styles.calendarIconContainer} onClick={openBox}>
                 <CalendarIcon />
             </div>
             {showBox && (
