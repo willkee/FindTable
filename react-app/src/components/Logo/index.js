@@ -1,6 +1,6 @@
 export const Logo = () => {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="34" height="35.812" viewBox="0 0 34 35.812">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="34" height="35.812" viewBox="0 0 34 35.812">
             <defs>
                 <clipPath id="clip-path">
                 <rect id="Rectangle_233" data-name="Rectangle 233" width="34" height="35.812" transform="translate(0 0)" fill="#d24e65"/>

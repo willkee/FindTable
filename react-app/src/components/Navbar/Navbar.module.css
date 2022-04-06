@@ -31,6 +31,12 @@
   color: black;
   font-family: brandon-grotesque, sans-serif;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.home_link span {
+  margin-left: 10px;
 }
 
 .right {
@@ -47,7 +53,7 @@
   margin-right: 0.5rem;
 }
 
-.signup > a {
+.signup {
   background-color: #247f9e;
   color: white;
   text-decoration: none;
@@ -57,13 +63,15 @@
   font-family: brandon-grotesque, sans-serif;
   font-weight: 400;
   font-style: normal;
+  cursor: pointer;
+  transition: all 0.3s linear;
 }
 
-.signup > a:hover {
+.signup:hover {
     background-color: #2ba6ce;
 }
 
-.signin > a {
+.signin {
   text-decoration: none;
   border-radius: 2px;
   padding: 5px 10px;
@@ -73,4 +81,14 @@
   font-family: brandon-grotesque, sans-serif;
   font-weight: 400;
   font-style: normal;
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+
+.signin:hover {
+  background-color: rgb(213, 213, 213);
+}
+
+.search_icon {
+  cursor: pointer;
 }
