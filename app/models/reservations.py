@@ -5,14 +5,14 @@ import datetime
 restaurant_reservations = db.Table(
     "restaurant_reservations",
     db.Column("restaurant_id", db.ForeignKey("restaurants.id"), primary_key=True),
-    db.Column("reservations_id", db.ForeignKey("reservations.id"), primary_key=True)
+    db.Column("reservation_id", db.ForeignKey("reservations.id"), primary_key=True)
 )
 
 # Join table for restaurants/cuisines
 user_reservations = db.Table(
     "user_reservations",
-    db.Column("restaurant_id", db.ForeignKey("restaurants.id"), primary_key=True),
-    db.Column("cuisines_id", db.ForeignKey("cuisines.id"), primary_key=True)
+    db.Column("user_id", db.ForeignKey("users.id"), primary_key=True),
+    db.Column("reservation_id", db.ForeignKey("reservations.id"), primary_key=True)
 )
 
 class Reservation(db.Model):
