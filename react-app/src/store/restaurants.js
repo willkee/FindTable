@@ -79,8 +79,6 @@ async dispatch => {
 }
 
 
-
-
 export const updateReview = data =>
 async dispatch => {
   const res = await fetch(`/api/reviews/${data.id}`, {
