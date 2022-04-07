@@ -37,6 +37,7 @@ class Restaurant(db.Model):
     cuisines = db.relationship('Cuisine', secondary=restaurant_cuisines, back_populates="restaurants")
     reservations = db.relationship('Reservation', back_populates="restaurants", cascade="all, delete-orphan")
     reviews = db.relationship('Review', back_populates='restaurants', cascade='all, delete-orphan')
+    favorites = db.relationship('Favorite', back_populates='restaurant', cascade='all, delete-orphan')
 
     def to_dict(self):
         return {
@@ -55,5 +56,5 @@ class Restaurant(db.Model):
             'cuisines': [cuisine.to_dict() for cuisine in self.cuisines],
             'reviews': {review.id:review.to_dict() for review in self.reviews},
             'reservations': [reservation.to_dict() for reservation in self.reservations],
-            # 'favorites': [favorite.to_dict() for favorite in self.favorites]
+            'favorites': [favorite.to_dict() for favorite in self.favorites]
         }

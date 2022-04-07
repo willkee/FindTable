@@ -13,7 +13,7 @@ import { ReviewForm } from '../../Forms/ReviewForm';
 export const SingleRestaurant = () => {
   const {id} = useParams()
   const restaurant = useSelector(state => Object.values(state.restaurants))[id - 1]
-  // console.log(restaurant)
+
   // const handleNewReview = () => {
     //   dispatch(createReview({
 
