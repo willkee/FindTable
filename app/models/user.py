@@ -21,6 +21,7 @@ class User(db.Model, UserMixin):
     restaurants = db.relationship('Restaurant', back_populates="owner", cascade="all, delete-orphan")
     reservations = db.relationship('Reservation', back_populates="user_who_booked", cascade="all, delete-orphan")
     reviews = db.relationship('Review', back_populates='user', cascade='all, delete-orphan')
+    favorites = db.relationship('Favorite', back_populates='user', cascade=''all, delete-orphan')
 
     @property
     def password(self):
@@ -42,4 +43,6 @@ class User(db.Model, UserMixin):
             'business_owner': self.business_owner,
             'restaurants': [restaurant.to_dict() for restaurant in self.restaurants],
             'reservations': [reservation.to_dict() for reservation in self.reservations],
+            'reviews': [review.to_dict() for review in self.reviews],
+            'favorites' [favorite.to_dict() for favorite in self.favorites]
         }

@@ -172,6 +172,7 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
                                     </select>
                                 </div>
                                 <div className={styles.input_container}>
+                                    <i class="fa-solid fa-wheelchair"></i>
                                     <label htmlFor='accessible'>Accessible?</label>
                                     <input type="checkbox"
                                             value={accessible}

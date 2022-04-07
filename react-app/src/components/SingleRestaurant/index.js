@@ -10,6 +10,7 @@ export const SingleRestaurant = () => {
   const {id} = useParams()
   // const dispatch = useDispatch()
   const restaurant = useSelector(state => Object.values(state.restaurants))[id - 1]
+  console.log('REST ----', restaurant)
   // const handleNewReview = () => {
   //   dispatch(createReview({
 
