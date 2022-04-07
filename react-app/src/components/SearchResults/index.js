@@ -57,7 +57,7 @@ const SearchResults = () => {
                                 <div>{restaurants[restaurant_index].name}</div>
                                 <div>{restaurants[restaurant_index].street_address}</div>
                                 <div>{restaurants[restaurant_index].phone_number}</div>
-                                <img src={restaurants[restaurant_index].img_url} width="200px"></img>
+                                <img src={restaurants[restaurant_index].img_url} alt="" width="200px"></img>
                                 </div>
                             ))}
                         </div>
