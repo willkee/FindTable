@@ -24,6 +24,7 @@ import { PageWrapper } from '../src/components/PageWrapper';
 import { InnerWrapper } from '../src/components/InnerWrapper';
 import { authenticate } from './store/session';
 import { retrieveCusines } from './store/cuisines';
+import { receiveReviews } from './store/reviews';
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
       await dispatch(allUsers())
       await dispatch(retrieveSettings())
       await dispatch(retrieveCusines())
+      await dispatch(receiveReviews())
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -73,7 +75,7 @@ function App() {
               <Restaurants all_restaurants={all_restaurants} />
             </Route>
             <Route exact path="/restaurants/:id">
-              <SingleRestaurant all_restaurants={all_restaurants} />
+              <SingleRestaurant />
             </Route> */}
             <ProtectedRoute exact path="/restaurants/new">
               <NewRestaurant all_settings={all_settings} all_cuisines={all_cuisines}/>
