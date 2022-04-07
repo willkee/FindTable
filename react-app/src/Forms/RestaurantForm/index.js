@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { PageContainer } from "../../components/PageContainer";
 import { createRestaurant } from '../../store/restaurants';
+import { CuisinesIcon } from '../../components/Icons';
+import { RestaurantIcon } from '../../components/Icons';
 import styles from './RestaurantForm.module.css'
 
 
@@ -90,7 +92,7 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
                 <div className={styles.form_entries}>
                     <h2>Restaurant Information</h2>
                     <ul>
-                        {errors && errors.map(error => <li key={error}>{error}</li>)}
+                        {errors && errors.map(error => <li key={error} className={styles.error_messages}>{error}</li>)}
                     </ul>
                     <form onSubmit={onSubmit}>
                         <div className={styles.form_container}>
@@ -182,22 +184,28 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
                                 <fieldset>
                                     <legend className={styles.legend}>Attributes</legend>
                                     <div className={styles.input_container} >
-                                        <label htmlFor='cuisines' className={styles.check_label}>Cuisines</label>
+                                        <label htmlFor='cuisines' className={styles.check_label}>
+                                            Cuisines
+                                            <CuisinesIcon />
+                                        </label>
                                         <div className={styles.cuisines_container}>
                                         {cuisinesState.map(cuisine => (
                                         <div className={styles.check_boxes}>
-                                            <label htmlFor='cuisine'>{cuisine.type}</label>
+                                            <label htmlFor='cuisine' className={styles.box_label}>{cuisine.type}</label>
                                             <input type='checkbox' key={cuisine.id} name='cuisine' value={cuisine.id} onChange={cuisinesSelector}/>
                                         </div>
                                         ))}
                                         </div>
                                     </div>
                                     <div className={styles.input_container}>
-                                        <label htmlFor='settings' className={styles.check_label}>Settings</label>
+                                        <label htmlFor='settings' className={styles.check_label}>
+                                            Settings
+                                            <RestaurantIcon />
+                                        </label>
                                         <div className={styles.settings_container}>
                                         {settingsState.map(setting => (
                                         <div className={styles.check_boxes}>
-                                            <label htmlFor='setting'>{setting.type}</label>
+                                            <label htmlFor='setting' className={styles.box_label}>{setting.type}</label>
                                             <input type='checkbox' key={setting.id} name='setting' value={setting.id} onChange={settingsSelector}/>
                                         </div>
                                         ))}
@@ -206,7 +214,7 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
                                 </fieldset>
                             </div>
                         </div>
-                        <div>
+                        <div className={styles.submit_button}>
                             <button  type="submit">Submit</button>
                         </div>
                     </form>
