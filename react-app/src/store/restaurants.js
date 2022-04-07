@@ -1,18 +1,45 @@
 const CREATED_RESTAURANT = '/restaurants/createdRestaurant'
 const ALL_RESTAURANTS_RECEIVED = '/restaurants/allRestaurantsReceived'
-// const ONE_RESTAURANT_RECEIVED  = '/restaurants/oneRestaurantReceived'
 const UPDATED_RESTAURANT = '/restaurants/updatedRestaurant'
 const DELETED_RESTAURANT = '/restaurants/deletedRestaurant'
+const CREATED_REVIEW = '/reviews/createdReview'
+const UPDATED_REVIEW = '/reviews/updatedReview'
+const DELETED_REVIEW ='/reviews/deletedReview'
 
 
+//action creators for reviews
+const createdReview = (payload) => {
+  return {
+    type: CREATED_REVIEW,
+    payload
+  }
+}
 
-//action creators
+
+const updatedReview = (payload) => {
+  return {
+    type: UPDATED_REVIEW,
+    payload
+  }
+}
+
+
+const deletedReview = (payload) => {
+  return {
+    type: DELETED_REVIEW,
+    payload
+  }
+}
+
+
+//action creators for restaurants
 const createdRestaurant = (payload) => {
   return {
     type: CREATED_RESTAURANT,
     payload
   }
 }
+
 
 const allRestaurantsReceived = (payload) => {
   return {
@@ -21,12 +48,6 @@ const allRestaurantsReceived = (payload) => {
   }
 }
 
-// const oneRestaurantReceived = (payload) => {
-//   return {
-//     type: ONE_RESTAURANT_RECEIVED,
-//     payload
-//   }
-// }
 
 const updatedRestaurant = (payload) => {
   return {
@@ -34,6 +55,7 @@ const updatedRestaurant = (payload) => {
     payload
   }
 }
+
 
 const deletedRestaurant = (payload) => {
   return {
@@ -43,7 +65,49 @@ const deletedRestaurant = (payload) => {
 }
 
 
-//thunks
+//thunks for reviews
+export const createReview = data =>
+async dispatch => {
+  const res = await fetch('/api/reviews/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  const newReview = await res.json()
+  dispatch(createdReview(newReview))
+  return newReview
+}
+
+
+
+
+export const updateReview = data =>
+async dispatch => {
+  const res = await fetch(`/api/reviews/${data.id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+
+  const updated = await res.json();
+  dispatch(updatedReview(updated))
+  return updated
+}
+
+
+export const deleteReview = reviewId =>
+async dispatch => {
+  const res = await fetch(`/api/reviews/${reviewId}`, {
+    method: 'DELETE'
+  })
+
+  const removedReview = await res.json();
+  dispatch(deletedReview(removedReview))
+  return removedReview
+}
+
+
+//thunks for restaurants
 export const createRestaurant = data =>
 
   async dispatch => {
@@ -60,11 +124,8 @@ export const createRestaurant = data =>
 
 export const receiveAllRestaurants = () => async dispatch => {
     const res = await fetch('/api/restaurants/')
-  // console.log("SDFJHSKFHSDKUFHSD*F(&HSDF*&HSDF")
     if (res.ok) {
       const restaurants = await res.json();
-      // console.log("\n\n\n\n\n\nRESTAURANTS", restaurants, "\n\n\n\n\n")
-      // const restaurant_array = Object.values(restaurants)
       dispatch(allRestaurantsReceived(Object.values(restaurants)[0]))
       return restaurants
     }
@@ -118,10 +179,6 @@ const restaurantsReducer = (state = {}, action) => {
       action.payload.forEach((restaurant) => newState[restaurant.id] = restaurant)
       return newState;
     }
-    // case ONE_RESTAURANT_RECEIVED: {
-    //   newState[action.restaurant?.id] = action.restaurant
-    //   return newState;
-    // }
     case UPDATED_RESTAURANT: {
       newState[action.payload?.id] = action.payload
       return newState;
@@ -129,6 +186,24 @@ const restaurantsReducer = (state = {}, action) => {
     case DELETED_RESTAURANT: {
       delete newState[action.payload?.id]
       //double check the payload because it could already be an Id and id.id doesn't make sense
+      return newState
+    }
+    case CREATED_REVIEW: {
+      const restaurant = newState[action.payload.restaurant_id]
+      const reviews = restaurant.review
+      reviews[action.payload.id] = action.payload
+      return newState
+    }
+    case UPDATED_REVIEW: {
+      const restaurant = newState[action.payload.restaurant_id]
+      const reviews = restaurant.reviews
+      reviews[action.payload.id] = action.payload
+      return newState
+    }
+    case DELETED_REVIEW: {
+      const restaurant = newState[action.payload.restaurant_id]
+      const reviews = restaurant.reviews
+      delete reviews[action.payload.id]
       return newState
     }
     default:

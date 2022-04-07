@@ -14,14 +14,15 @@ def error_generator(validation_errors):
       errors.append(f'{field} : {error}')
   return errors
 
-#create a review
+# create a review
 @review_routes.route('/', methods=['POST'])
 def reviewCreate(restaurantId):
   form = ReviewForm()
 
   request_initial = request.json
+  print(request_initial)
   request_string = json.dumps(request_initial)
-  request_dict = json.loads(request_string)
+  # request_dict = json.loads(request_string)
   form['csrf_token'].data = request.cookies['csrf_token']
 
   if form.validate_on_submit():
