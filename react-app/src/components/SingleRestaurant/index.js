@@ -7,11 +7,13 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import pattern from './pattern.png'
 // import { createReview } from '../../store/reviews';
+import { ReviewForm } from '../../Forms/ReviewForm';
 
 
 export const SingleRestaurant = () => {
   const {id} = useParams()
   const restaurant = useSelector(state => Object.values(state.restaurants))[id - 1]
+  // console.log(restaurant)
   // const handleNewReview = () => {
     //   dispatch(createReview({
 

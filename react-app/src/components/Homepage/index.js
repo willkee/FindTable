@@ -1,11 +1,13 @@
 import styles from './Homepage.module.css'
 import {PageContainer} from '../PageContainer'
-
 import SearchHeader from '../SearchHeader'
-
-// import { useEffect, useState } from 'react'
 // import { useDispatch } from 'react-redux'
 // import { getLocation } from '../../store/session'
+
+import { useEffect, useState } from 'react'
+
+import { ReservationCard } from '../ReservationCard'
+
 
 
 export const Homepage = () => {
@@ -56,9 +58,10 @@ export const Homepage = () => {
     <PageContainer>
 
       <SearchHeader className={styles.search_header_component} />
-      {/* <div>
+      {<div>
         {userLocation}
-      </div> */}
+      </div>}
+      <ReservationCard />
 
     </PageContainer>
   )

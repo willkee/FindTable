@@ -69,7 +69,7 @@ const SearchHeader = () => {
                             <div className={styles.time_selector}>
                                 <select className={styles.time_selector_element} value={time} onChange={e => setTime(e.target.value)}>
                                     <option disabled>-- Breakfast --</option>
-                                    <option value={"08:00"} selected>8:00 AM</option>
+                                    <option value={"08:00"}>8:00 AM</option>
                                     <option value={"08:30"}>8:30 AM</option>
                                     <option value={"09:00"}>9:00 AM</option>
                                     <option value={"09:30"}>9:30 AM</option>

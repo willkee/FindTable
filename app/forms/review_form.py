@@ -10,4 +10,3 @@ class ReviewForm(FlaskForm):
   content = TextAreaField('Content')
   img_url = StringField('Image URL', validators=[DataRequired(), Length(min=0, max=2048)])
   submit = SubmitField('Submit')
-
