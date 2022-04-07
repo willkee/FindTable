@@ -3,9 +3,14 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './index.css'
 
+
+import LoginForm from './components/auth/LoginForm';
+import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/Navbar/';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-
+import User from './components/User'
+import NavBar from './components/Navbar/';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 import Modal from './components/Modal/Modal';
 import User from './components/User'
 import UsersList from './components/UsersList';
@@ -13,17 +18,22 @@ import RestaurantsList from './components/RestaurantsList';
 import ProfilePage from './components/ProfilePage';
 import SearchResults from './components/SearchResults';
 import { Homepage } from './components/Homepage';
+import { Footer } from "./components/Footer"
+import { SingleRestaurant } from './components/SingleRestaurant';
 import { PageWrapper } from '../src/components/PageWrapper';
+import { InnerWrapper } from '../src/components/InnerWrapper';
+
+
 import { NewRestaurant } from './Forms/RestaurantForm';
+
 
 import { receiveAllRestaurants } from './store/restaurants';
 import { allUsers } from './store/users';
 import { retrieveSettings } from './store/settings';
 import { authenticate } from './store/session';
 import { retrieveCusines } from './store/cuisines';
-import { receiveReviews } from './store/reviews';
 
-import { Footer } from "./components/Footer"
+
 
 
 function App() {
@@ -45,7 +55,6 @@ function App() {
       await dispatch(allUsers())
       await dispatch(retrieveSettings())
       await dispatch(retrieveCusines())
-      await dispatch(receiveReviews())
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -65,10 +74,10 @@ function App() {
             </Route>
             {/* <Route exact path="/restaurants">
               <Restaurants all_restaurants={all_restaurants} />
-            </Route>
+            </Route> */}
             <Route exact path="/restaurants/:id">
               <SingleRestaurant />
-            </Route> */}
+            </Route>
             <ProtectedRoute exact path="/restaurants/new">
               <NewRestaurant all_settings={all_settings} all_cuisines={all_cuisines}/>
             </ProtectedRoute>
