@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { PageContainer } from "../../components/PageContainer";
 import { createRestaurant } from '../../store/restaurants';
-import { CuisinesIcon } from '../../components/Icons';
-import { RestaurantIcon } from '../../components/Icons';
+import { CuisinesIcon, RedStar, RestaurantIcon } from '../../components/Icons';
 import styles from './RestaurantForm.module.css'
 
 
@@ -220,7 +219,24 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
                     </form>
                 </div>
                 <div className={styles.form_display}>
-                    <img src={imageURL} alt="" width='200px'></img>
+                    <div className={styles.restaurant_card}>
+                        <img src={imageURL} alt="" width='300px'></img>
+                        <h2 className={styles.card_header}>{name}</h2>
+                        { imageURL && name ? <div>
+                            <RedStar />
+                            <RedStar />
+                            <RedStar />
+                            <RedStar />
+                            <RedStar />
+                            1234 Reviews
+                        </div> : null }
+                        <div>
+                            {cuisines} | {priceRating} | {borough}
+                        </div>
+                        <div>
+                            {phoneNumber}
+                        </div>
+                    </div>
                 </div>
             </div>
         </PageContainer>

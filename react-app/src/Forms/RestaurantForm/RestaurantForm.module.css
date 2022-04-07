@@ -24,7 +24,7 @@
 }
 .form_display {
     width: 300px;
-    height: auto;
+    height: 400px;
     margin: 50px auto;
     display: flex;
     border: black 1px solid;
@@ -106,4 +106,8 @@
 
 .error_messages {
     color: #da3743;
+}
+
+.card_header {
+    margin-top: 0;
 }
