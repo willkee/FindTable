@@ -105,4 +105,3 @@ Working on Redux
         - b) iterate through the variable from above, restaurants[favorite.restaurant_id]
         - c) 1, 24, 55
         - d) display "Your favorites" restaurant at the top of feed and a tab in the profile as well, etc.
-

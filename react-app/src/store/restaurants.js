@@ -6,6 +6,10 @@ const CREATED_REVIEW = '/reviews/createdReview'
 const UPDATED_REVIEW = '/reviews/updatedReview'
 const DELETED_REVIEW ='/reviews/deletedReview'
 
+const CREATED_RESERVATION = '/reviews/createdReservation'
+const UPDATED_RESERVATION = '/reviews/updatedReview'
+const DELETED_RESERVATION ='/reviews/deletedReview'
+
 
 //action creators for reviews
 const createdReview = (payload) => {
@@ -186,6 +190,8 @@ const restaurantsReducer = (state = {}, action) => {
       //double check the payload because it could already be an Id and id.id doesn't make sense
       return newState
     }
+//     case CREATED_RESERVATION: {
+//       newState[action.payload?.id] = action.payload
     case CREATED_REVIEW: {
       const restaurant = newState[action.payload.restaurant_id]
       const reviews = restaurant.review
