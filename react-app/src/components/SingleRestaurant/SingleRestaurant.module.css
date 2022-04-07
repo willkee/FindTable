@@ -37,6 +37,12 @@
     background-color: rgb(37, 152, 60);
     position: absolute;
     top: 75px;
+    padding: 0 20px;
+    text-align: left;
+}
+
+.sr_content h2 {
+    text-align: center;
 }
 
 .right_sidebar {
@@ -47,7 +53,18 @@
     right: 0;
     width: 20%;
     height: 100%;
+    padding: 10px;
 }
+
+.right_sidebar a {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.right_sidebar a:hover {
+    color: rgb(72, 72, 72);
+}
+
 .left_sidebar {
     background-color: red;
     position: absolute;
@@ -56,5 +73,8 @@
     width: 20%;
     height: 100%;
     z-index: 99;
+}
 
+.gmaps_static {
+    background-color: blue;
 }
