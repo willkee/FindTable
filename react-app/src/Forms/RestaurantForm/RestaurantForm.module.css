@@ -14,7 +14,7 @@
 }
 
 .form_entries {
-    width: 800px;
+    width: 700px;
     padding: 10px 20px;
 	background: #f4f7f8;
 	margin: 10px auto;
@@ -34,4 +34,24 @@
 .form_container {
     display:flex;
     flex-direction: row;
+}
+
+.left_entries {
+    width: 300px
+}
+.right_entries {
+    width: 400px;
+    align-items: center;
+
+}
+
+.input_container{
+    display: flex;
+    flex-direction: column
+}
+
+
+.check_container {
+    border: 1px, black, solid;
+    border-radius: 3px;
 }

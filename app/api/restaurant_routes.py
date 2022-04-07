@@ -56,10 +56,6 @@ def create_restaurant():
     return {'error': error_generator(form.errors)}, 400
 
 
-
-
-
-
 @restaurant_routes.route('/', methods=["GET"])
 def restaurants():
   restaurants_list = Restaurant.query.all()
@@ -95,6 +91,8 @@ def restaurantUpdate(id):
     restaurant.street_address = form.data['street_address']
     restaurant.borough = form.data['borough']
     restaurant.accessible = form.data['accessible']
+    restaurant.settings = []
+    restaurant.cuisines = []
 
     for settingId in restaurant_settings: # attach settings to new restaurant
       restaurant.settings.append(Setting.query.get(int(settingId)))
