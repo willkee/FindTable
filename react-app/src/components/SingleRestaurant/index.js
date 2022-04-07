@@ -19,9 +19,12 @@ export const SingleRestaurant = () => {
 
   return (
         <PageWrapper>
-            <Navbar />
             <PageContainer>
               <div>{restaurant.name}</div>
+              <img src={restaurant.img_url} alt="" width="200px"></img>
+              <div>{restaurant.street_address}</div>
+              <div>{restaurant.borough}</div>
+              <div>{restaurant.website}</div>
             </PageContainer>
         </PageWrapper>
     )

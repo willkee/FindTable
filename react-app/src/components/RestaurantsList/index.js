@@ -69,7 +69,7 @@ const RestaurantsList = ({ all_restaurants }) => {
                             <td>{joinCuisines(restaurant)}</td>
                         </tr>
                         <div>
-                          {sessionUser.id === restaurant?.owner_id ?
+                          {sessionUser && sessionUser.id === restaurant?.owner_id ?
                             <Link to={`/restaurants/`} className='delete' onClick={() => onDelete(restaurant.id)}>
                               Delete
                             </Link> : null

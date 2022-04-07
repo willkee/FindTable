@@ -63,16 +63,14 @@ function App() {
           <Switch>
             <Route exact path='/'>
               <Homepage />
+              <RestaurantsList all_restaurants={all_restaurants} />
             </Route>
-            {/* <Route exact path="/restaurants">
-              <Restaurants all_restaurants={all_restaurants} />
-            </Route> */}
+            <ProtectedRoute exact path="/new-restaurant">
+              <NewRestaurant all_settings={all_settings} all_cuisines={all_cuisines}/>
+            </ProtectedRoute>
             <Route exact path="/restaurants/:id">
               <SingleRestaurant />
             </Route>
-            <ProtectedRoute exact path="/restaurants/new">
-              <NewRestaurant all_settings={all_settings} all_cuisines={all_cuisines}/>
-            </ProtectedRoute>
             {/* <ProtectedRoute path='/reservations' exact={true} >
               <Reservations/>
             </ProtectedRoute> */}
@@ -82,15 +80,9 @@ function App() {
               <ProtectedRoute exact path='/users/:userId'>
                 <User />
               </ProtectedRoute>
-              <ProtectedRoute exact path="/restaurants">
-              <RestaurantsList all_restaurants={all_restaurants} />
-              </ProtectedRoute>
               <ProtectedRoute exact path="/my-profile">
                 <ProfilePage />
               </ProtectedRoute>
-              <Route exact path='/' >
-                <Homepage />
-              </Route>
               <Route exact path='/search/:dateString/:timeParams/:searchWord'>
                 <SearchResults />
               </Route>
