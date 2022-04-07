@@ -222,20 +222,24 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
                     <div className={styles.restaurant_card}>
                         <img src={imageURL} alt="" width='300px'></img>
                         <h2 className={styles.card_header}>{name}</h2>
-                        { imageURL && name ? <div>
-                            <RedStar />
-                            <RedStar />
-                            <RedStar />
-                            <RedStar />
-                            <RedStar />
-                            1234 Reviews
-                        </div> : null }
-                        <div>
-                            {cuisines} | {priceRating} | {borough}
-                        </div>
-                        <div>
-                            {phoneNumber}
-                        </div>
+                        { imageURL && name ?
+                        <>
+                            <div>
+                                <RedStar />
+                                <RedStar />
+                                <RedStar />
+                                <RedStar />
+                                <RedStar />
+                                1234 Reviews
+                            </div>
+                            <div>
+                                {cuisines} | {priceRating} | {borough}
+                            </div>
+                            <div>
+                                {phoneNumber}
+                            </div>
+                        </>
+                        : null }
                     </div>
                 </div>
             </div>
