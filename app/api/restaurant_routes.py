@@ -20,11 +20,8 @@ def error_generator(validation_errors):
 def create_restaurant():
   form = RestaurantForm()
 
-  request_initial = request.json  # request object
-  request_string = json.dumps(request_initial) # request object to string
-  request_dict = json.loads(request_string) # turn string back into python dict
-  restaurant_settings = request_dict['settings']
-  restaurant_cuisines = request_dict['cuisines']
+  restaurant_settings = request.json['settings']
+  restaurant_cuisines = request.json['cuisines']
   form['csrf_token'].data = request.cookies['csrf_token']
 
   if form.validate_on_submit():
@@ -72,11 +69,8 @@ def restaurant(id):
 def restaurantUpdate(id):
   form = RestaurantForm()
 
-  request_initial = request.json  # request object
-  request_string = json.dumps(request_initial) # request object to string
-  request_dict = json.loads(request_string) # turn string back into python dict
-  restaurant_settings = request_dict['settings']
-  restaurant_cuisines = request_dict['cuisines']
+  restaurant_settings = request.json['settings']
+  restaurant_cuisines = request.json['cuisines']
 
   form['csrf_token'].data = request.cookies['csrf_token']
 
