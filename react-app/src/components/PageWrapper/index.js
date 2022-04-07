@@ -8,6 +8,6 @@ export const PageWrapper = styled.div`
     position: absolute;
     top: 0;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     `
