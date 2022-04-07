@@ -179,30 +179,32 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
                                 </div>
                             </div>
                             <div className={styles.right_entries}>
-                                <h4>Restaurant Attributes</h4>
-                                <div className={styles.input_container} >
-                                    <label htmlFor='cuisines'>Cuisines</label>
-                                    <div className={styles.check_container}>
-                                    {cuisinesState.map(cuisine => (
-                                    <>
-                                        <input type='checkbox' key={cuisine.id} name='cuisine' value={cuisine.id} onChange={cuisinesSelector}/>
-                                        <label htmlFor='cuisine'>{cuisine.type}</label>
+                                <fieldset>
+                                    <legend>Restaurant Attributes</legend>
+                                    <div className={styles.input_container} >
+                                        <label htmlFor='cuisines'>Cuisines</label>
+                                        <div className={styles.check_container}>
+                                        {cuisinesState.map(cuisine => (
+                                        <>
+                                            <input type='checkbox' key={cuisine.id} name='cuisine' value={cuisine.id} onChange={cuisinesSelector}/>
+                                            <label htmlFor='cuisine'>{cuisine.type}</label>
 
-                                    </>
-                                    ))}
+                                        </>
+                                        ))}
+                                        </div>
                                     </div>
-                                </div>
-                                <div className={styles.input_container}>
-                                    <label htmlFor='settings'>Settings</label>
-                                    <div className={styles.check_container}>
-                                    {settingsState.map(setting => (
-                                    <>
-                                        <input type='checkbox' key={setting.id} name='setting' value={setting.id} onChange={settingsSelector}/>
-                                        <label htmlFor='setting'>{setting.type}</label>
-                                    </>
-                                    ))}
+                                    <div className={styles.input_container}>
+                                        <label htmlFor='settings'>Settings</label>
+                                        <div className={styles.check_container}>
+                                        {settingsState.map(setting => (
+                                        <>
+                                            <input type='checkbox' key={setting.id} name='setting' value={setting.id} onChange={settingsSelector}/>
+                                            <label htmlFor='setting'>{setting.type}</label>
+                                        </>
+                                        ))}
+                                        </div>
                                     </div>
-                                </div>
+                                </fieldset>
                             </div>
                         </div>
                         <div>
