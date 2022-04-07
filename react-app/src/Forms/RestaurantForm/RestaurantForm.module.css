@@ -13,10 +13,6 @@
     margin-bottom: 20px;
 }
 
-.legend {
-    size: 20px;
-}
-
 .form_entries {
     width: 700px;
     padding: 10px 20px;
@@ -55,6 +51,37 @@
     flex-direction: column
 }
 
-.check_boxes {
+.input_container label{
+    font-size: 18px;
+    font-weight: 500;
+}
 
+.cuisines_container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+.settings_container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.legend {
+    font-size: 20px;
+    font-weight: bold
+}
+
+.check_boxes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center
+}
+
+.check_label {
+    border-bottom: 1px solid
 }
