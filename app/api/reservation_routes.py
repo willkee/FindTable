@@ -31,7 +31,8 @@ def create_reservation():
         restaurant_id = 2,
         user_id = 1,
         num_people = form.data['num_people'],
-        date_time = form.data['date_time']
+        date = form.data['date'],
+        time = form.data['time']
     )
 
     db.session.add(new_reservation)
