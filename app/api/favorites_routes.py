@@ -3,37 +3,24 @@ from flask_login import current_user
 from app.models import Favorite, Restaurant, User, db
 import json
 
-favorite_routes = Blueprint('favorites', __name__)
+favorites_routes = Blueprint('favorites', __name__)
 
-def error_generator(validation_errors):
-  errors = []
-  for field in validation_errors:
-    for error in validation_errors[field]:
-      errors.append(f'{field} : {error}')
-  return errors
+''' Favorites Routes '''
+@favorites_routes.route('/favorites', methods=['POST'])
+def addFavorite(restaurant_id):
+  favorite = Favorite()
+  favorite.user_id = current_user.id
+  favorite.restaurant_id = restaurant_id
+  db.session.add(favorite)
+  db.session.commit()
 
 
-@favorite_routes.route('/', methods=['POST'])
-def favoriteCreate(restaurantId):
-  form = ReviewForm()
-
-  request_initial = request.json
-  request_string = json.dumps(request_initial)
-  request_dict = json.loads(request_string)
-  form['csrf_token'].data = request.cookies['csrf_token']
-
-  if form.validate_on_submit():
-    new_review = Review(
-      user_id = current_user.id,
-      restaurant_id = restaurantId,
-      stars = form.data['stars'],
-      img_url = form.data['img_url'],
-      review = form.data['review']
-    )
-
-    db.session.add(new_review)
-    db.session.commit()
-
-    return new_review.to_dict()
-  else:
-    return {'error': error_generator(form.errors)}
+@favorites_routes.route('/<int:id>/favorites', methods=['DELETE'])
+def removeFavorite(restaurant_id):
+  restaurant = Restaurant.query.filter(Restaurant.id == restaurant_id)
+  user_id = current_user.id
+  favorites_list = restaurant.favorites
+  for favorite in favorites_list:
+    if favorite.user_id == user_id:
+      favorites_list.remove(favorite)
+  db.session.commit()
