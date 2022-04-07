@@ -24,7 +24,7 @@
 }
 .form_display {
     width: 300px;
-    height: auto;
+    height: 400px;
     margin: 50px auto;
     display: flex;
     border: black 1px solid;
@@ -78,10 +78,36 @@
 
 .check_boxes {
     display: flex;
-    flex-direction: column;
-    justify-content: center
+    flex-direction: row;
+    justify-content: flex-start
+
 }
 
 .check_label {
-    border-bottom: 1px solid
+    border-bottom: 1px solid;
+    padding: 5px
+}
+
+.check_boxes label {
+    font-size: 15px;
+    padding: 2px;
+}
+.submit_button {
+    align-items: center
+}
+.submit_button button {
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+    background-color: #da3743;
+    color: white;
+    transition: all linear 0.3s;
+}
+
+.error_messages {
+    color: #da3743;
+}
+
+.card_header {
+    margin-top: 0;
 }
