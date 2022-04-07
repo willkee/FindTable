@@ -11,5 +11,4 @@ export const PageContainer = styled.div`
     align-items: center;
     background-color: white;
     filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.16))
-    overflow-x: hidden;
 `;
