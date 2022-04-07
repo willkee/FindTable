@@ -58,7 +58,7 @@ function App() {
   return (
     <BrowserRouter>
       <PageWrapper>
-        {/* <InnerWrapper> */}
+        <InnerWrapper>
           <NavBar />
           <Modal />
           <Switch>
@@ -106,7 +106,7 @@ function App() {
               </Route>
             </Switch>
             <Footer />
-        {/* </InnerWrapper> */}
+        </InnerWrapper>
       </PageWrapper>
     </BrowserRouter>
   );

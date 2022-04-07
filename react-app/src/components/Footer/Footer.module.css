@@ -47,6 +47,15 @@
 
 }
 
+.projectDescription {
+    display: flex;
+    flex-direction: row;
+}
+
+.descriptions {
+    display: flex;
+    flex-direction: row;
+}
 
 
 .linkedIn {

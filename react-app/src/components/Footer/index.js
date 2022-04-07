@@ -16,12 +16,12 @@ export const Footer = () => {
                     </div>
                     <div className={styles.about}>
                         <ul className={styles.label}>FindTable</ul>
-                        <li><a to="https://github.com/willkee/FindTable" target="_blank">About Us</a></li>
+                        <li><a href="https://github.com/willkee/FindTable" target="_blank">About Us</a></li>
                     </div>
                 </section>
                 <hr className={styles.horizontalLine}></hr>
                 <section className={styles.projectDescription}>
-                    <ul className={styles.label}>
+                    <ul className={styles.descriptions}>
                         FindTable is an App Academy project created by the following developers:
                         <li>
                             <a href="https://github.com/nmgarza5" target="_blank">
