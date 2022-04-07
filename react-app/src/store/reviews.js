@@ -1,5 +1,5 @@
 const CREATED_REVIEW = '/reviews/createdReview'
-const RECEIVED_REVIEWS = '/reviews/receivedReviews'
+// const RECEIVED_REVIEWS = '/reviews/receivedReviews'
 const UPDATED_REVIEW = '/reviews/updatedReview'
 const DELETED_REVIEW ='/reviews/deletedReview'
 
@@ -12,12 +12,12 @@ const createdReview = (payload) => {
 }
 
 
-const receivedReviews = (payload) => {
-  return {
-    type: RECEIVED_REVIEWS,
-    payload
-  }
-}
+// const receivedReviews = (payload) => {
+//   return {
+//     type: RECEIVED_REVIEWS,
+//     payload
+//   }
+// }
 
 
 const updatedReview = (payload) => {
@@ -50,15 +50,15 @@ async dispatch => {
 }
 
 
-export const receiveReviews = () =>
-async dispatch => {
-  const res = await fetch('/api/reviews/')
-  if (res.ok) {
-    const reviews = await res.json()
-    dispatch(receivedReviews(Object.values(reviews)[0]))
-    return reviews
-  }
-}
+// export const receiveReviews = () =>
+// async dispatch => {
+//   const res = await fetch(`/api/restaurants/${restaurantId}`)
+//   if (res.ok) {
+//     const reviews = await res.json()
+//     dispatch(receivedReviews(Object.values(reviews)[0]))
+//     return reviews
+//   }
+// }
 
 
 export const updateReview = reviewId =>
@@ -96,10 +96,10 @@ const reviewsReducer = (state = {}, action) => {
       newState[action.payload?.id] = action.payload
       return newState;
     }
-    case RECEIVED_REVIEWS: {
-      action.payload.forEach((review) => newState[review.id] = review)
-      return newState;
-    }
+    // case RECEIVED_REVIEWS: {
+    //   action.payload.forEach((review) => newState[review.id] = review)
+    //   return newState;
+    // }
     case UPDATED_REVIEW: {
       newState[action.payload?.id] = action.payload
       return newState;
