@@ -40,6 +40,7 @@ class User(db.Model, UserMixin):
             'last_name': self.last_name,
             'email': self.email,
             'business_owner': self.business_owner,
-            'restaurants': [restaurant.to_dict() for restaurant in self.restaurants],
-            'reservations': [reservation.to_dict() for reservation in self.reservations],
+            'restaurants': {restaurant.id:restaurant.to_dict() for restaurant in self.restaurants},
+            'reservations': {reservation.id:reservation.to_dict() for reservation in self.reservations},
+            'reviews': {review.id:review.to_dict() for review in self.reviews}
         }
