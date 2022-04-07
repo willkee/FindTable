@@ -204,7 +204,7 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
                     </form>
                 </div>
                 <div className={styles.form_display}>
-                    <img src={imageURL} width='200px'></img>
+                    <img src={imageURL} alt="" width='200px'></img>
                 </div>
             </div>
         </PageContainer>
