@@ -22,14 +22,13 @@ export const SingleRestaurant = () => {
 
 
   const API_KEY = process.env.REACT_APP_GMAPS_KEY;
-  const API_URL = `https://maps.googleapis.com/maps/api/staticmap?center=${restaurant.street_address}&zoom=16&size=600x300&maptype=roadmap&markers=color:red%7Clabel:.%7C${restaurant.street_address}&key=${API_KEY}`
+  const API_URL = `https://maps.googleapis.com/maps/api/staticmap?center=${restaurant.street_address}&zoom=16&size=300x500&maptype=roadmap&markers=color:red%7Clabel:.%7C${restaurant.street_address}&key=${API_KEY}`
 
   const getAverageRating = (data) => {
     let totalStars = 0;
-    data.reviews.forEach(review => totalStars += review.stars)
-    return (totalStars / data.reviews.length).toFixed(1)
+    Object.values(data.reviews).forEach(review => totalStars += review.stars)
+    return (totalStars / Object.values(data.reviews).length).toFixed(1)
   }
-  console.log(getAverageRating(restaurant))
 
   return (
         <PageWrapper>
@@ -43,13 +42,12 @@ export const SingleRestaurant = () => {
                 <div className={styles.sr_content}>
                     <h2>{restaurant.name}</h2>
                     <div>
+                      <span>{getAverageRating(restaurant)} Stars</span>
                       <span><i className="fa-solid fa-message"/></span>
-                      <span>{getAverageRating(restaurant)}  </span>
-                      <span>{`${restaurant.reviews.length} Reviews`}</span>
+                      <span>{`${Object.values(restaurant.reviews).length} Reviews`}</span>
                       <span> {restaurant.cuisines.map(cuisine => (<span key={cuisine.id}>{cuisine.type}</span>))}</span>
                       <span> {restaurant.settings.map(setting => (<span key={setting.id}>{setting.type}</span>))}</span>
                     </div>
-                    <div>{console.log(restaurant)}</div>
 
                     <div>{restaurant.description}</div>
                 </div>

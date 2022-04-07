@@ -75,6 +75,10 @@
     z-index: 99;
 }
 
-.gmaps_static {
-    background-color: blue;
+.gmaps_static img {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    border: 1px solid black;
+    border-radius: 5px;
 }
