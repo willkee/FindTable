@@ -88,7 +88,7 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
             <h1 className={styles.header}>Create Your New Restaurant</h1>
             <div className={styles.container}>
                 <div className={styles.form_entries}>
-                    <h3 className={styles.legend}>Restaurant Information</h3>
+                    <h3 className={styles.info}>Restaurant Information</h3>
                     <ul>
                         {errors && errors.map(error => <li key={error}>{error}</li>)}
                     </ul>
@@ -180,16 +180,16 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
                             </div>
                             <div className={styles.right_entries}>
                                 <fieldset>
-                                    <legend>Restaurant Attributes</legend>
+                                    <legend className={styles.legend}>Restaurant Attributes</legend>
                                     <div className={styles.input_container} >
                                         <label htmlFor='cuisines'>Cuisines</label>
                                         <div className={styles.check_container}>
                                         {cuisinesState.map(cuisine => (
-                                        <>
+                                        <div className={styles.check_boxs}>
                                             <input type='checkbox' key={cuisine.id} name='cuisine' value={cuisine.id} onChange={cuisinesSelector}/>
                                             <label htmlFor='cuisine'>{cuisine.type}</label>
 
-                                        </>
+                                        </div>
                                         ))}
                                         </div>
                                     </div>
@@ -197,10 +197,10 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
                                         <label htmlFor='settings'>Settings</label>
                                         <div className={styles.check_container}>
                                         {settingsState.map(setting => (
-                                        <>
+                                        <div className={styles.check_boxs}>
                                             <input type='checkbox' key={setting.id} name='setting' value={setting.id} onChange={settingsSelector}/>
                                             <label htmlFor='setting'>{setting.type}</label>
-                                        </>
+                                        </div>
                                         ))}
                                         </div>
                                     </div>

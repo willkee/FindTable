@@ -14,7 +14,7 @@
 }
 
 .legend {
-
+    size: 20px;
 }
 
 .form_entries {
@@ -55,8 +55,6 @@
     flex-direction: column
 }
 
+.check_boxes {
 
-.check_container {
-    border: 1px, black, solid;
-    border-radius: 3px;
 }
