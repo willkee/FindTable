@@ -16,7 +16,7 @@ export const Footer = () => {
                     </div>
                     <div className={styles.about}>
                         <ul className={styles.label}>FindTable</ul>
-                        <li><a href="https://github.com/willkee/FindTable" target="_blank">About Us</a></li>
+                        <li><a href="https://github.com/willkee/FindTable" rel="noreferrer" target="_blank">About Us</a></li>
                     </div>
                 </section>
                 <hr className={styles.horizontalLine}></hr>
@@ -24,27 +24,27 @@ export const Footer = () => {
                     <ul className={styles.descriptions}>
                         FindTable is an App Academy project created by the following developers:
                         <li>
-                            <a href="https://github.com/nmgarza5" target="_blank">
+                            <a href="https://github.com/nmgarza5"  rel="noreferrer" target="_blank">
                                 <p>Nick Garza</p>
-                                <img className={styles.linkedIn} src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
+                                <img className={styles.linkedIn} alt="" src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
                             </a>
                         </li>
                         <li>
-                            <a href="https://github.com/ohpaul28" target="_blank">
+                            <a href="https://github.com/ohpaul28"  rel="noreferrer" target="_blank">
                                 <p>Paul Oh</p>
-                                <img className={styles.linkedIn} src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
+                                <img className={styles.linkedIn} alt="" src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
                             </a>
                         </li>
                         <li>
-                            <a href="https://github.com/willkee" target="_blank">
+                            <a href="https://github.com/willkee" rel="noreferrer" target="_blank">
                                 <p>Will Kee</p>
-                                <img className={styles.linkedIn} src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
+                                <img className={styles.linkedIn} alt="" src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
                             </a>
                         </li>
                         <li>
-                            <a href="https://github.com/Luke-Yamasaki" target="_blank">
+                            <a href="https://github.com/Luke-Yamasaki" rel="noreferrer" target="_blank">
                                 <p>Luke Yamasaki</p>
-                                <img className={styles.linkedIn} src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
+                                <img className={styles.linkedIn} alt="" src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
                             </a>
                         </li>
                     </ul>

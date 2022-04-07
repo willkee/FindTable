@@ -61,9 +61,9 @@ async dispatch => {
 // }
 
 
-export const updateReview = reviewId =>
+export const updateReview = data =>
 async dispatch => {
-  const res = await fetch(`/api/reviews/${reviewId}`, {
+  const res = await fetch(`/api/reviews/${data.id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
