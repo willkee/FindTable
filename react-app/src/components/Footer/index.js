@@ -24,27 +24,39 @@ export const Footer = () => {
                     <ul className={styles.descriptions}>
                         FindTable is an App Academy project created by the following developers:
                         <li>
+                            <p>Nikolas Garza</p>
                             <a href="https://github.com/nmgarza5" target="_blank">
-                                <p>Nick Garza</p>
-                                <img className={styles.linkedIn} src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
+                                <div className={styles.github} />
+                            </a>
+                            <a href="https://www.linkedin.com/in/nikolas-garza-7a3202139/" target="_blank">
+                                <div className={styles.linkedin} />
                             </a>
                         </li>
                         <li>
-                            <a href="https://github.com/ohpaul28" target="_blank">
-                                <p>Paul Oh</p>
-                                <img className={styles.linkedIn} src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
-                            </a>
-                        </li>
-                        <li>
+                            <p>Paul Oh</p>
                             <a href="https://github.com/willkee" target="_blank">
-                                <p>Will Kee</p>
-                                <img className={styles.linkedIn} src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
+                                <div className={styles.github} />
+                            </a>
+                            {/* <a href="https://www.linkedin.com/in/paul-oh/" target="_blank">
+                                <div className={styles.linkedin} />
+                            </a> */}
+                        </li>
+                        <li>
+                            <p>Will Kee</p>
+                            <a href="https://github.com/ohpaul28" target="_blank">
+                                <div className={styles.github} />
+                            </a>
+                            <a href="https://www.linkedin.com/in/will-kee/" target="_blank">
+                                <div className={styles.linkedin} />
                             </a>
                         </li>
                         <li>
+                            <p>Luke Yamasaki</p>
                             <a href="https://github.com/Luke-Yamasaki" target="_blank">
-                                <p>Luke Yamasaki</p>
-                                <img className={styles.linkedIn} src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
+                                <div className={styles.github} />
+                            </a>
+                            <a href="https://www.linkedin.com/in/lukeyamasaki/" target="_blank">
+                                <div className={styles.linkedin} />
                             </a>
                         </li>
                     </ul>
