@@ -1,7 +1,6 @@
 from flask import Blueprint, request
 from flask_login import current_user
 from app.models import db, Restaurant, User, Reservation
-from app.models.reservations import restaurant_reservations, user_reservations
 from app.forms import ReservationForm
 import json
 
