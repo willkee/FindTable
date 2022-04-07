@@ -7,3 +7,38 @@
 body {
     background-color: grey;
 }
+
+.return_to_top_button a {
+    position: fixed;
+    right: 10px;
+    bottom: 0px;
+    font-size: 40px;
+    color: white;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+.return_to_top_button a:hover {
+    color: rgb(184, 184, 184);
+    animation: top-animation 0.5s ease-out;
+}
+
+.return_to_top_button a:active {
+}
+
+@keyframes top-animation {
+    0% {
+        transform: translateY(-0.2em);
+    }
+    50% {
+        transform: translateY(-0.1em);
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.super-parent-container {
+    display: flex;
+    justify-content: center;
+}
