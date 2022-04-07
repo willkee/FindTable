@@ -13,7 +13,7 @@ import RestaurantsList from './components/RestaurantsList';
 import ProfilePage from './components/ProfilePage';
 import SearchResults from './components/SearchResults';
 import { Homepage } from './components/Homepage';
-import { Footer } from "./components/Footer"
+// import { Footer } from "./components/Footer"
 import { SingleRestaurant } from './components/SingleRestaurant';
 import { PageWrapper } from '../src/components/PageWrapper';
 
@@ -88,7 +88,7 @@ function App() {
               </Route>
             </Switch>
             <div className='return_to_top_button'><a href="#top"><i className="fa-solid fa-angles-up"></i></a></div>
-            <Footer />
+            {/* <Footer /> */}
       </PageWrapper>
     </BrowserRouter>
   );
