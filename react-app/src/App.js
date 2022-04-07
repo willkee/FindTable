@@ -26,6 +26,8 @@ import { authenticate } from './store/session';
 import { retrieveCusines } from './store/cuisines';
 import { receiveReviews } from './store/reviews';
 
+import { Footer } from "./components/Footer"
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -105,6 +107,7 @@ function App() {
                 <SearchResults />
               </Route>
             </Switch>
+            <Footer />
         </InnerWrapper>
       </PageWrapper>
     </BrowserRouter>
