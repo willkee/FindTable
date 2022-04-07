@@ -10,7 +10,6 @@ const CREATED_RESERVATION = '/reviews/createdReservation'
 const UPDATED_RESERVATION = '/reviews/updatedReview'
 const DELETED_RESERVATION ='/reviews/deletedReview'
 
-
 //action creators for reviews
 const createdReview = (payload) => {
   return {
