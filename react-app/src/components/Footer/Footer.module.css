@@ -6,4 +6,51 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 100;
+}
+
+.container {
+    height: 260px;
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-around;
+}
+
+.links {
+    height: 260px;
+    width: 1000px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: top;
+}
+
+.discover {
+    width: 1000px;
+    height: 150px;
+}
+
+.discover > * {
+    width: 1000px;
+    height: 150px;
+}
+
+.horizontalLine {
+    width: 1000px;
+    height: 2px;
+    background-color: #C7C7C7;
+}
+
+.about > * {
+
+}
+
+
+
+.linkedIn {
+    width: 10px;
+    height: 10px;
+    background-color:white;
 }

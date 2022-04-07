@@ -1,17 +1,17 @@
-import Link from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styles from "./Footer.module.css";
 
-const Footer = () => {
+export const Footer = () => {
     return (
         <footer className={styles.footer}>
             <div className={styles.container}>
                 <section className={styles.links}>
                     <div className={styles.discover}>
                         <ul className={styles.label}>DISCOVER
-                            <li><Link to="/">Cuisines Near Me</Link></li>
-                            <li><Link to="/">Restaurants Near Me</Link></li>
-                            <li><Link to="/">Restaurants</Link></li>
-                            <li><Link to="/">Cuisines</Link></li>
+                            <li><Link to="/cuisines">Cuisines Near Me</Link></li>
+                            <li><Link to="/restaurants">Restaurants Near Me</Link></li>
+                            <li><Link to="/restaurants">Restaurants</Link></li>
+                            <li><Link to="/cuisines">Cuisines</Link></li>
                        </ul>
                     </div>
                     <div className={styles.about}>
@@ -26,25 +26,25 @@ const Footer = () => {
                         <li>
                             <a href="https://github.com/nmgarza5" target="_blank">
                                 <p>Nick Garza</p>
-                                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
+                                <img className={styles.linkedIn} src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
                             </a>
                         </li>
                         <li>
                             <a href="https://github.com/ohpaul28" target="_blank">
                                 <p>Paul Oh</p>
-                                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
+                                <img className={styles.linkedIn} src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
                             </a>
                         </li>
                         <li>
                             <a href="https://github.com/willkee" target="_blank">
                                 <p>Will Kee</p>
-                                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
+                                <img className={styles.linkedIn} src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
                             </a>
                         </li>
                         <li>
                             <a href="https://github.com/Luke-Yamasaki" target="_blank">
                                 <p>Luke Yamasaki</p>
-                                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
+                                <img className={styles.linkedIn} src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
                             </a>
                         </li>
                     </ul>

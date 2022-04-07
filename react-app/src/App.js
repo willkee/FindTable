@@ -25,6 +25,8 @@ import { InnerWrapper } from '../src/components/InnerWrapper';
 import { authenticate } from './store/session';
 import { retrieveCusines } from './store/cuisines';
 
+import { Footer } from "./components/Footer"
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -56,7 +58,7 @@ function App() {
   return (
     <BrowserRouter>
       <PageWrapper>
-        <InnerWrapper>
+        {/* <InnerWrapper> */}
           <NavBar />
           <Modal />
           <Switch>
@@ -103,7 +105,8 @@ function App() {
                 <SearchResults />
               </Route>
             </Switch>
-        </InnerWrapper>
+            <Footer />
+        {/* </InnerWrapper> */}
       </PageWrapper>
     </BrowserRouter>
   );
