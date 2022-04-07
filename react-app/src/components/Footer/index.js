@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from "./Footer.module.css";
+import github from "../../company-logos/GitHub.png"
+import linkedin from "../../company-logos/LinkedIn.png"
 
 export const Footer = () => {
     return (
@@ -8,10 +10,10 @@ export const Footer = () => {
                 <section className={styles.links}>
                     <div className={styles.discover}>
                         <ul className={styles.label}>DISCOVER
-                            <li><Link to="/cuisines">Cuisines Near Me</Link></li>
-                            <li><Link to="/restaurants">Restaurants Near Me</Link></li>
-                            <li><Link to="/restaurants">Restaurants</Link></li>
-                            <li><Link to="/cuisines">Cuisines</Link></li>
+                            <li className={styles.discoverLinks}><Link to="/cuisines">Cuisines Near Me</Link></li>
+                            <li className={styles.discoverLinks}><Link to="/restaurants">Restaurants Near Me</Link></li>
+                            <li className={styles.discoverLinks}><Link to="/restaurants">Restaurants</Link></li>
+                            <li className={styles.discoverLinks}><Link to="/cuisines">Cuisines</Link></li>
                        </ul>
                     </div>
                     <div className={styles.about}>
@@ -20,35 +22,45 @@ export const Footer = () => {
                     </div>
                 </section>
                 <hr className={styles.horizontalLine}></hr>
-                <section className={styles.projectDescription}>
-                    <ul className={styles.descriptions}>
-                        FindTable is an App Academy project created by the following developers:
-                        <li>
-                            <a href="https://github.com/nmgarza5"  rel="noreferrer" target="_blank">
-                                <p>Nick Garza</p>
-                                <img className={styles.linkedIn} alt="" src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/ohpaul28"  rel="noreferrer" target="_blank">
-                                <p>Paul Oh</p>
-                                <img className={styles.linkedIn} alt="" src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/willkee" rel="noreferrer" target="_blank">
-                                <p>Will Kee</p>
-                                <img className={styles.linkedIn} alt="" src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/Luke-Yamasaki" rel="noreferrer" target="_blank">
-                                <p>Luke Yamasaki</p>
-                                <img className={styles.linkedIn} alt="" src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
-                            </a>
-                        </li>
-                    </ul>
-                </section>
+                <ul className={styles.descriptions}>
+                    FindTable is an App Academy project created by the following developers:
+                    <li className={styles.items}>
+                        <p>Nikolas Garza</p>
+                        <a href="https://github.com/nmgarza5" target="_blank">
+                            <img src={github} className={styles.github} alt="Image link to Nikolas Garza's LinkedIn profile."/>
+                        </a>
+                        <a href="https://www.linkedin.com/in/nikolas-garza-7a3202139/" target="_blank">
+                            <img src={linkedin} className={styles.linkedin} alt="Image link to Nikolas Garza's LinkedIn profile."/>
+                        </a>
+                    </li>
+                    <li className={styles.items}>
+                        <p>Paul Oh</p>
+                        <a href="https://github.com/ohpaul28" target="_blank">
+                            <img src={github} className={styles.github} alt="Image link to Paul Oh's LinkedIn profile."/>
+                        </a>
+                        {/* <a href="https://www.linkedin.com/in/paul-oh/" target="_blank">
+                            <img src={linkedin} className={styles.linkedin} alt="Image link to Paul Oh's LinkedIn profile."/>
+                        </a> */}
+                    </li>
+                    <li className={styles.items}>
+                        <p>Will Kee</p>
+                        <a href="https://github.com/willkee" target="_blank">
+                            <img src={github} className={styles.github} alt="Image link to Will Kee's GitHub profile."/>
+                        </a>
+                        <a href="https://www.linkedin.com/in/will-kee/" target="_blank">
+                            <img src={linkedin} className={styles.linkedin} alt="Image link to Will Kee's LinkedIn profile."/>
+                        </a>
+                    </li>
+                    <li className={styles.items}>
+                        <p>Luke Yamasaki</p>
+                        <a href="https://github.com/Luke-Yamasaki" target="_blank">
+                            <img src={github} className={styles.github} alt="Image link to Luke Yamasaki's GitHub profile."/>
+                        </a>
+                        <a href="https://www.linkedin.com/in/lukeyamasaki/" target="_blank">
+                            <img src={linkedin} className={styles.linkedin} alt="Image link to Luke Yamasaki's LinkedIn profile."/>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </footer>
     )
