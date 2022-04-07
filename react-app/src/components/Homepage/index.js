@@ -5,6 +5,7 @@ import SearchHeader from '../SearchHeader'
 
 import { useEffect, useState } from 'react'
 
+import { ReservationCard } from '../ReservationCard'
 
 
 export const Homepage = () => {
@@ -48,6 +49,7 @@ export const Homepage = () => {
       <div>
         {userLocation}
       </div>
+      <ReservationCard />
 
     </PageContainer>
   )
