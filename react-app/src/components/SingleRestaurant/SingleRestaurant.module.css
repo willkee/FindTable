@@ -34,7 +34,6 @@
 }
 
 .sr_content {
-    background-color: rgb(37, 152, 60);
     position: absolute;
     top: 75px;
     padding: 0 20px;
@@ -45,8 +44,27 @@
     text-align: center;
 }
 
+.content_sub_header1 {
+    margin-bottom: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.content_sub_header2 {
+    margin-bottom: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.content_sub_header1 span i,
+.content_sub_header2 span i {
+    margin-right: 5px;
+}
+
 .right_sidebar {
-    background-color: red;
+    background-color: rgb(227, 227, 227);
     z-index: 999;
     position: absolute;
     top: 200px;
@@ -54,6 +72,10 @@
     width: 20%;
     height: 100%;
     padding: 10px;
+}
+
+.right_sidebar div a i {
+    margin-right: 5px;
 }
 
 .right_sidebar a {
@@ -66,7 +88,7 @@
 }
 
 .left_sidebar {
-    background-color: red;
+    background-color: rgb(227, 227, 227);
     position: absolute;
     top: 200px;
     left: 0;
@@ -81,4 +103,8 @@
     object-fit: cover;
     border: 1px solid black;
     border-radius: 5px;
+}
+
+.address_text {
+    margin-bottom: 20px;
 }
