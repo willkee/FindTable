@@ -68,12 +68,14 @@ def reservationDelete():
   request_string = json.dumps(request_initial) # request object to string
   request_dict = json.loads(request_string) # turn string back into python dict
 
-  data = {}
-  reservation = Reservation.query.get(request_dict['reservation_id']) # Double check frontend to see what is getting sent. 
-  data['reservation'] = reservation.to_dict()
+  id = request_dict['reservation_id'] # Double check frontend to see what is getting sent.
+
+  reservation = Reservation.query.get(id)
+
   db.session.delete(reservation)
   db.session.commit()
-  return data
+
+  return id
 
 # In Express, I returned an id, so I'm not sure if I should return data...?
 
