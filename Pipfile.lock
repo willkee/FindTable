@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "b122d9a685e038713016cd22f3c772732e0138cf78e706ab1110d471d5bbecd6"
+            "sha256": "f395f9e4b4bf05f8f7c8f7068e1d1fe3ae94dfde80dd9c94bad8bc290eb34a47"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -31,6 +31,14 @@
             ],
             "index": "pypi",
             "version": "==7.1.2"
+        },
+        "decorator": {
+            "hashes": [
+                "sha256:637996211036b6385ef91435e4fae22989472f9d571faba8927ba8253acbc330",
+                "sha256:b8c3f85900b9dc423225913c5aace94729fe1fa9763b38939a95226f02d37186"
+            ],
+            "markers": "python_version >= '3.5'",
+            "version": "==5.1.1"
         },
         "dnspython": {
             "hashes": [
@@ -352,6 +360,14 @@
             ],
             "index": "pypi",
             "version": "==1.4.19"
+        },
+        "validators": {
+            "hashes": [
+                "sha256:0143dcca8a386498edaf5780cbd5960da1a4c85e0719f3ee5c9b41249c4fefbd",
+                "sha256:37cd9a9213278538ad09b5b9f9134266e7c226ab1fede1d500e29e0a8fbb9ea6"
+            ],
+            "index": "pypi",
+            "version": "==0.18.2"
         },
         "werkzeug": {
             "hashes": [

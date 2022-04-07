@@ -18,7 +18,7 @@ export const Footer = () => {
                     </div>
                     <div className={styles.about}>
                         <ul className={styles.label}>FindTable</ul>
-                        <li><a href="https://github.com/willkee/FindTable" target="_blank">About Us</a></li>
+                        <li><a href="https://github.com/willkee/FindTable" rel="noreferrer" target="_blank">About Us</a></li>
                     </div>
                 </section>
                 <hr className={styles.horizontalLine}></hr>

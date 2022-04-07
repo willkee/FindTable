@@ -8,7 +8,7 @@ const gotCuisines = (data) => {
 }
 
 export const retrieveCusines = () => async dispatch => {
-    const res = await fetch('/api/cuisines')
+    const res = await fetch('/api/cuisines/')
 
     if (res.ok) {
         const data = await res.json()

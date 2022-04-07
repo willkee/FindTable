@@ -3,6 +3,7 @@ from wtforms import (
   StringField, TextAreaField, BooleanField, SelectField, SelectMultipleField, SubmitField)
 from wtforms.validators import DataRequired, ValidationError, Length
 from app.models import db, Restaurant, Setting, Cuisine
+# import validators
 
 # def restaurant_exists(form, field):
 #   name = field.data
@@ -18,13 +19,23 @@ def valid_phone_number(form, field):
   if not len(phone_number) == 10:
     raise ValidationError('Phone number must include 10 digits')
 
+def valid_image(form, field):
+  img_url = field.data
+  if not img_url.endswith('.jpg') or img_url.endswith('.jpeg') or img_url.endswith('.png'):
+    raise ValidationError('Image format must be .jpg, .jpeg, or .png')
+
+# def valid_website(fomr, field):
+#   website = field.data
+#   if not validators.url(website, public=False):
+#     raise ValidationError('Website must be a valid url starting with https://')
+
 
 class RestaurantForm(FlaskForm):
 
   name = StringField('Name', validators=[DataRequired(), Length(min=0, max=255)])
   price_rating = SelectField('Price Rating', choices=["1", "2", "3", "4"], validators=[DataRequired()])
   description = TextAreaField('Description')
-  img_url = StringField('Image URL', validators=[DataRequired(), Length(min=0, max=2048)])
+  img_url = StringField('Image URL', validators=[DataRequired(), Length(min=0, max=2048), valid_image])
   phone_number = StringField('Phone Number', validators=[DataRequired(), valid_phone_number])
   website = StringField('Website', validators=[Length(min=0, max=2048)])
   street_address = StringField('Street Address', validators=[DataRequired(), Length(min=0, max=255)])

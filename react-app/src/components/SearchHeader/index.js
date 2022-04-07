@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory, Redirect } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import styles from './SearchHeader.module.css'
 import Calendar from 'react-calendar'
 // import Datetime from 'react-datetime'

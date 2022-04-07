@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react'
 
 
 export const Homepage = () => {
-  const [location, setLocation] = useState('Brooklyn')
+  // const [location, setLocation] = useState('Brooklyn')
   const [userLocation, setUserLocation] = useState('')
 
   //For future referece, you can get a user's location like this.
