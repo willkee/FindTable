@@ -1,5 +1,4 @@
 from flask import Blueprint, request
-from flask_login import current_user
 from app.models import Review, db
 from app.forms import ReviewForm
 import json
@@ -16,19 +15,21 @@ def error_generator(validation_errors):
 
 # create a review
 @review_routes.route('/', methods=['POST'])
-def reviewCreate(restaurantId):
+def reviewCreate():
   form = ReviewForm()
 
   request_initial = request.json
-  print(request_initial)
+  # print('\n\n\n\n\n\n',request_initial)
   request_string = json.dumps(request_initial)
-  # request_dict = json.loads(request_string)
+  # print('\n\n\n\n\n\n',request_string)
+  request_dict = json.loads(request_string)
+  # print('\n\n\n\n\n\n',request_dict)
   form['csrf_token'].data = request.cookies['csrf_token']
 
   if form.validate_on_submit():
     new_review = Review(
-      user_id = current_user.id,
-      restaurant_id = restaurantId,
+      user_id = request_dict['user_id'],
+      restaurant_id = request_dict['restaurant_id'],
       stars = form.data['stars'],
       img_url = form.data['img_url'],
       review = form.data['review']

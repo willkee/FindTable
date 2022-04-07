@@ -9,6 +9,7 @@ import { createReview } from '../../store/reviews';
 export const ReviewForm = () => {
     const [rating, setRating] = useState(null);
     const [content, setContent] = useState(null);
+    const [imgURL, setimgURL] = useState(null);
     const user = useSelector(state => state.session.user)
     const {id} = useParams()
     const dispatch = useDispatch()
