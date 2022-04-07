@@ -21,6 +21,9 @@ import { allUsers } from './store/users';
 import { retrieveSettings } from './store/settings';
 import { authenticate } from './store/session';
 import { retrieveCusines } from './store/cuisines';
+import { receiveReviews } from './store/reviews';
+
+import { Footer } from "./components/Footer"
 
 
 function App() {
@@ -42,6 +45,7 @@ function App() {
       await dispatch(allUsers())
       await dispatch(retrieveSettings())
       await dispatch(retrieveCusines())
+      await dispatch(receiveReviews())
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -63,7 +67,7 @@ function App() {
               <Restaurants all_restaurants={all_restaurants} />
             </Route>
             <Route exact path="/restaurants/:id">
-              <SingleRestaurant all_restaurants={all_restaurants} />
+              <SingleRestaurant />
             </Route> */}
             <ProtectedRoute exact path="/restaurants/new">
               <NewRestaurant all_settings={all_settings} all_cuisines={all_cuisines}/>
@@ -91,6 +95,7 @@ function App() {
               </Route>
             </Switch>
             <div className='return_to_top_button'><a href="#top"><i className="fa-solid fa-angles-up"></i></a></div>
+            <Footer />
       </PageWrapper>
     </BrowserRouter>
   );
