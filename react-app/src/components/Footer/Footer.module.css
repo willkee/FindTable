@@ -30,11 +30,18 @@
 .discover {
     width: 1000px;
     height: 150px;
+    color: white;
 }
 
-.discover > * {
-    width: 1000px;
-    height: 150px;
+.label {
+    font-weight: 800;
+}
+
+.discoverLinks {
+    list-style: none;
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
 }
 
 .horizontalLine {
@@ -43,23 +50,33 @@
     background-color: #C7C7C7;
 }
 
-.about > * {
-
-}
-
-.projectDescription {
-    display: flex;
-    flex-direction: row;
-}
-
 .descriptions {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 1000px;
+    padding: 0px;
 }
 
+.items {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
 
-.linkedIn {
-    width: 10px;
-    height: 10px;
+.github {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 100%;
+}
+
+.linkedin {
+    width: 20px;
+    height: 20px;
     background-color:white;
+    border-radius: 5px;
 }
