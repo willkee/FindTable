@@ -172,7 +172,7 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
                                     </select>
                                 </div>
                                 <div className={styles.input_container}>
-                                    <i class="fa-solid fa-wheelchair"></i>
+                                    <i className="fa-solid fa-wheelchair"></i>
                                     <label htmlFor='accessible'>Accessible?</label>
                                     <input type="checkbox"
                                             value={accessible}
@@ -190,9 +190,9 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
                                         </label>
                                         <div className={styles.cuisines_container}>
                                         {cuisinesState.map(cuisine => (
-                                        <div className={styles.check_boxes}>
-                                            <label htmlFor='cuisine' className={styles.box_label}>{cuisine.type}</label>
+                                        <div key={cuisine.id} className={styles.check_boxes}>
                                             <input type='checkbox' key={cuisine.id} name='cuisine' value={cuisine.id} onChange={cuisinesSelector}/>
+                                            <label htmlFor='cuisine' className={styles.box_label}>{cuisine.type}</label>
                                         </div>
                                         ))}
                                         </div>
@@ -204,9 +204,9 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
                                         </label>
                                         <div className={styles.settings_container}>
                                         {settingsState.map(setting => (
-                                        <div className={styles.check_boxes}>
-                                            <label htmlFor='setting' className={styles.box_label}>{setting.type}</label>
+                                        <div key={setting.id} className={styles.check_boxes}>
                                             <input type='checkbox' key={setting.id} name='setting' value={setting.id} onChange={settingsSelector}/>
+                                            <label htmlFor='setting' className={styles.box_label}>{setting.type}</label>
                                         </div>
                                         ))}
                                         </div>
