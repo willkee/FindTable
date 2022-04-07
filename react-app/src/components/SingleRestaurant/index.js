@@ -1,6 +1,5 @@
 // import styles from './SingleRestaurant.module.css';
 import { PageWrapper } from '../PageWrapper';
-import Navbar from '../Navbar';
 import { PageContainer } from '../PageContainer';
 import { useParams } from 'react-router-dom';
 // import { useEffect } from 'react';
