@@ -59,7 +59,7 @@ export const Homepage = () => {
 
       <SearchHeader className={styles.search_header_component} />
       {<div>
-        {userLocation}
+        {/* {userLocation} */}
       </div>}
       <ReservationCard />
 

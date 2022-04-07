@@ -24,6 +24,15 @@ export const ReservationCard = () => {
     const handleSubmit = (e) => {
         e.preventDefaul();
 
+        reservationData = {
+            restaurant_id: 1,
+            num_people: people,
+            date,
+            time
+        }
+
+        
+
     }
     return (
         <div className={styles.card}>
@@ -47,8 +56,12 @@ export const ReservationCard = () => {
                     </select>
                 </div>
                 <div>
-                    <label htmlFor="datetime">Select a date and time:</label>
-                    <input type="datetime-local" name="datetime" value={date} onChange={(e) => setDate(e.target.value)} />
+                    <label htmlFor="date"><strong>Select a date:</strong></label>
+                    <input type="date" name="date" value={date} onChange={(e) => setDate(e.target.value)} />
+                </div>
+                <div>
+                    <label htmlFor="time"><strong>Select a time:</strong></label>
+                    <input type="time" name="time" value={date} onChange={(e) => setDate(e.target.value)} />
                 </div>
                 <button type="submit">Reserve table</button>
             </form>
