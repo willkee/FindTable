@@ -17,7 +17,6 @@ class Review(db.Model):
 
 
   def to_dict(self):
-    print(user)
     return {
       'id': self.id,
       'user_id': self.user_id,
@@ -25,5 +24,5 @@ class Review(db.Model):
       'stars': self.stars,
       'img_url': self.img_url,
       'review': self.review,
-      # 'user': [user.to_dict for user in self.user]
+      'user_first_name': self.user.first_name
     }
