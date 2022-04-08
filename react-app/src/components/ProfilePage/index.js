@@ -1,15 +1,18 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import { ReservationCard } from '../ReservationCard'
 import styled from "styled-components";
-import { UserIcon } from '../Icons';
+import styles from "./ProfilePage.module.css";
+import { UserIcon, UserIconLarge } from '../Icons';
 
-const ProfileBackground = styled.div`
+const Background = styled.div`
     width: 1600px;
     height: auto;
+    min-height: 1000px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: left;
+    justify-content: center;
+    align-items: center;
     background-color: white;
 `;
 
@@ -20,6 +23,15 @@ const UserBox = styled.div`
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+`;
+
+const MainContent = styled.div`
+    width: 1200px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: top;
 `;
 
 const ProfileInfoBox = styled.aside`
@@ -34,8 +46,8 @@ const ContentFeed = styled.div`
     height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: space-between;
+    justify-content: center;
+    align-items: center;
 `;
 
 const UpcomingReservations = styled.div`
@@ -59,38 +71,40 @@ const PastReservations = styled.div`
 `;
 
 const ProfilePage = () => {
+    const sessionUser = useSelector(state => state.session.user)
+
     return (
-        <ProfileBackground>
+        <Background>
             <UserBox>
-                <UserIcon />
-                <p><strong>User firstname lastname</strong>| member since createdAt</p>
+                <UserIconLarge />
+                <h2><strong>User firstname lastname</strong>| member since createdAt</h2>
             </UserBox>
-            <ProfileInfoBox>
-                {sessionUser.business_owner && (
-                    <>
-                        <button>Restaurant Reservations</button>
-                        <button>Restaurant Reviews</button>
-                    </>
-                )}
-                <button>My reservations</button>
-                <button>My Reviews</button>
-                <button>Favorites</button>
-            </ProfileInfoBox>
-            <ContentFeed>
-                <UpcomingReservations>
-                    <p><strong>Upcoming Reservations</strong></p>
-                    <hr></hr>
-                    <ReservationCard />
-                </UpcomingReservations>
-                <PastReservations>
-                    <h1>Create anew component</h1>
-                </PastReservations>
-            </ContentFeed>
-           <PageContainer>
-            <h1>Profile Page</h1>
-            <ReservationCard />
-            </PageContainer>
-        </ProfileBackground>
+            <MainContent>
+                <ProfileInfoBox>
+                    {sessionUser.business_owner && (
+                        <>
+                            <button>Restaurant Reservations</button>
+                            <button>Restaurant Reviews</button>
+                        </>
+                    )}
+                    <button>My reservations</button>
+                    <button>My Reviews</button>
+                    <button>Favorites</button>
+                </ProfileInfoBox>
+                <ContentFeed>
+                    <UpcomingReservations>
+                        <h2><strong>Upcoming Reservations</strong></h2>
+                        <hr></hr>
+                        <ReservationCard />
+                    </UpcomingReservations>
+                    <PastReservations>
+                        <h2><strong>Past Reservations</strong></h2>
+                        <hr></hr>
+                        <ReservationCard />
+                    </PastReservations>
+                </ContentFeed>
+            </MainContent>
+        </Background>
     )
 }
 
