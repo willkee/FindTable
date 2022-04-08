@@ -11,6 +11,7 @@
 //   }
 // }
 
+
 // const updatedReservation = (payload) => {
 //   return {
 //     type: UPDATED_RESERVATION,
@@ -24,6 +25,7 @@
 //     payload
 //   }
 // }
+
 
 
 // //thunks
@@ -89,3 +91,4 @@
 
 
 // export default reservationsReducer
+
