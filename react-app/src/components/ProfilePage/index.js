@@ -11,7 +11,7 @@ const Background = styled.div`
     min-height: 1000px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     background-color: white;
 `;
@@ -43,7 +43,7 @@ const ProfileInfoBox = styled.aside`
 `;
 
 const ContentFeed = styled.div`
-    width: 900px;
+    width: 500px;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -84,13 +84,13 @@ const ProfilePage = () => {
                 <ProfileInfoBox>
                     {sessionUser.business_owner && (
                         <>
-                            <button>Restaurant Reservations</button>
-                            <button>Restaurant Reviews</button>
+                            <div role="button">Restaurant Reservations</div>
+                            <div role="button">Restaurant Reviews</div>
                         </>
                     )}
-                    <button>My reservations</button>
-                    <button>My Reviews</button>
-                    <button>Favorites</button>
+                    <div role="button">My reservations</div>
+                    <div role="button">My Reviews</div>
+                    <div role="button">Favorites</div>
                 </ProfileInfoBox>
                 <ContentFeed>
                     <UpcomingReservations>
