@@ -78,10 +78,10 @@ export const SingleRestaurant = () => {
                       <span><i className="fa-solid fa-money-check-dollar"></i> {showPriceRating(restaurant.price_rating)}</span>
 
                       {/* Restaurant Cuisine */}
-                      <span><i className="fa-solid fa-utensils"></i> {restaurant.cuisines.map(cuisine => (<span key={cuisine.id}>{cuisine.type}</span>))}</span>
+                      <span><i className="fa-solid fa-utensils"></i> {restaurant.cuisines.map(cuisine => (<span key={cuisine.id}>{cuisine.type}   </span>))}</span>
 
                       {/* Restaurant Setting */}
-                      <span><i className="fa-solid fa-building"></i> {restaurant.settings.map(setting => (<span key={setting.id}>{setting.type}</span>))}</span>
+                      <span><i className="fa-solid fa-building"></i> {restaurant.settings.map(setting => (<span key={setting.id}>{setting.type}  </span>))}</span>
                     </div>
 
                     <div className={styles.content_sub_header2}>
@@ -90,7 +90,7 @@ export const SingleRestaurant = () => {
 
                       {/* Restaurant Review Count */}
                       <span><i className="fa-solid fa-message"/> {` ${Object.values(restaurant.reviews).length} Reviews`}</span>
-                    </div>
+                    </div>``
                     {isOwner && <UpdateRestaurant props={restaurant}/>}
                     {/* Restaurant Cuisine */}
                     <div>{restaurant.description}</div>
