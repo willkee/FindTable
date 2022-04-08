@@ -1,4 +1,3 @@
-from tkinter import CASCADE
 from .db import db
 
 class Review(db.Model):
@@ -25,4 +24,5 @@ class Review(db.Model):
       'stars': self.stars,
       'img_url': self.img_url,
       'review': self.review,
+      'user': 
     }
