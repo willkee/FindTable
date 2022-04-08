@@ -14,6 +14,8 @@ export const SingleRestaurant = () => {
   const {id} = useParams()
   const restaurant = useSelector(state => Object.values(state.restaurants))[id - 1]
 
+
+
   // const handleNewReview = () => {
     //   dispatch(createReview({
 
@@ -75,6 +77,26 @@ export const SingleRestaurant = () => {
 
                     {/* Restaurant Cuisine */}
                     <div>{restaurant.description}</div>
+
+                    <h3>What {Object.values(restaurant.reviews).length} people are saying</h3>
+                    <hr></hr>
+
+                    <div className={styles.review_bars_parent}>
+                      <div>
+                        <div>5</div>
+                        <div>4</div>
+                        <div>3</div>
+                        <div>2</div>
+                        <div>1</div>
+                      </div>
+                      <div className={styles.all_review_bars}>
+                        <div className={styles.whole_bar}><div className={styles.red_bar}></div></div>
+                        <div className={styles.whole_bar}><div className={styles.red_bar}></div></div>
+                        <div className={styles.whole_bar}><div className={styles.red_bar}></div></div>
+                        <div className={styles.whole_bar}><div className={styles.red_bar}></div></div>
+                        <div className={styles.whole_bar}><div className={styles.red_bar}></div></div>
+                      </div>
+                    </div>
 
 
 
