@@ -58,3 +58,4 @@ class Restaurant(db.Model):
             'reservations': [reservation.to_dict() for reservation in self.reservations],
             'favorites': [favorite.to_dict() for favorite in self.favorites]
         }
+#blah blaah blah
