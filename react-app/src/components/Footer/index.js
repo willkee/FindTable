@@ -24,7 +24,7 @@ export const Footer = () => {
                 </section>
                 <hr className={styles.horizontalLine}></hr>
                 <ul className={styles.descriptions}>
-                    FindTable is an App Academy project created by the following developers:
+                    FindTable is an App Academy project created by the following full-stack developers:
                     <li className={styles.items}>
                         <p>Nikolas Garza</p>
                         <a href="https://github.com/nmgarza5" rel="noreferrer" target="_blank">
