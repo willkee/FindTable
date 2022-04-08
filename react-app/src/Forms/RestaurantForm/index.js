@@ -95,7 +95,7 @@ export const RestaurantForm = ({ all_settings, all_cuisines }) => {
     }
 
     return (
-            <div className={styles.container}>
+            // <div className={styles.container}>
                 <div className={styles.form_entries}>
                     <h2>Restaurant Information</h2>
                     <ul>
@@ -180,12 +180,14 @@ export const RestaurantForm = ({ all_settings, all_cuisines }) => {
                                     </select>
                                 </div>
                                 <div className={styles.input_container}>
-                                    <i className="fa-solid fa-wheelchair"></i>
-                                    <label htmlFor='accessible'>Accessible?</label>
-                                    <input type="checkbox"
-                                            value={accessible}
-                                            onChange={() => setAccessible(!accessible)}>
-                                    </input>
+                                    <div>
+                                        <input type="checkbox"
+                                                value={accessible}
+                                                onChange={() => setAccessible(!accessible)}>
+                                        </input>
+                                        <i className="fa-solid fa-wheelchair"></i>
+                                        <label htmlFor='accessible'>Accessible?</label>
+                                    </div>
                                 </div>
                             </div>
                             <div className={styles.right_entries}>
@@ -227,30 +229,30 @@ export const RestaurantForm = ({ all_settings, all_cuisines }) => {
                         </div>
                     </form>
                 </div>
-                <div className={styles.form_display}>
-                    <div className={styles.restaurant_card}>
-                        <img src={imageURL} alt="" width='300px'></img>
-                        <h2 className={styles.card_header}>{name}</h2>
-                        { imageURL && name ?
-                        <>
-                            <div>
-                                <RedStar />
-                                <RedStar />
-                                <RedStar />
-                                <RedStar />
-                                <RedStar />
-                                1234 Reviews
-                            </div>
-                            <div>
-                                {cuisines} | {priceRating} | {borough}
-                            </div>
-                            <div>
-                                {phoneNumber}
-                            </div>
-                        </>
-                        : null }
-                    </div>
-                </div>
-            </div>
+            //     <div className={styles.form_display}>
+            //         <div className={styles.restaurant_card}>
+            //             <img src={imageURL} alt="" width='300px'></img>
+            //             <h2 className={styles.card_header}>{name}</h2>
+            //             { imageURL && name ?
+            //             <>
+            //                 <div>
+            //                     <RedStar />
+            //                     <RedStar />
+            //                     <RedStar />
+            //                     <RedStar />
+            //                     <RedStar />
+            //                     1234 Reviews
+            //                 </div>
+            //                 <div>
+            //                     {cuisines} | {priceRating} | {borough}
+            //                 </div>
+            //                 <div>
+            //                     {phoneNumber}
+            //                 </div>
+            //             </>
+            //             : null }
+            //         </div>
+            //     </div>
+            // </div>
     )
 }
