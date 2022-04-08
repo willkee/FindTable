@@ -39,6 +39,10 @@ const SearchResults = () => {
         }
     })
 
+    const sendToRestaurant = (restaurant_index) => {
+        history.push(`/restaurants/${restaurant_index + 1}`)
+    }
+
     const matched_restaurants = Array.from(restaurants_set)
 
     return (
@@ -53,7 +57,7 @@ const SearchResults = () => {
                         <div><strong>{`Your search result has returned ${matched_restaurants.length} restaurants: `}</strong></div>
                         <div className={styles.each_restaurant}>
                             {matched_restaurants.map(restaurant_index => (
-                                <div className={styles.each_wrapper} key={restaurant_index}>
+                                <div className={styles.each_wrapper} onClick={() => sendToRestaurant(restaurant_index)} key={restaurant_index}>
                                     <img src={restaurants[restaurant_index].img_url} alt="" width="200px"></img>
                                     <div className={styles.each_wrapper_info}>
                                         <div>{restaurants[restaurant_index].name}</div>

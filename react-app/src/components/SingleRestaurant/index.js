@@ -3,7 +3,7 @@ import styles from './SingleRestaurant.module.css';
 import { PageWrapper } from '../PageWrapper';
 import { PageContainer } from '../PageContainer';
 import { useParams } from 'react-router-dom';
-// import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import pattern from './pattern.png'
 import ReviewCounter from '../ReviewCounter';
@@ -19,7 +19,8 @@ import { ReviewsDisplay } from '../ReviewsDisplay';
 
 export const SingleRestaurant = () => {
   const {id} = useParams()
-  // const [isOwner, setIsOwner] = useState(false)
+  const [myKey, setMyKey] = useState("")
+  const [isLoaded, setIsLoaded] = useState(false)
   // find restaurant owner id and session user id
   const restaurant = useSelector(state => Object.values(state.restaurants))[id - 1]
   const sessionUser = useSelector((state) => state?.session?.user);
@@ -38,9 +39,19 @@ export const SingleRestaurant = () => {
       //   }))
       // }
 
+      useEffect(() => {
+        (async () => {
+          const res = await fetch(`/api/auth/get_key`);
+          const key = await res.json();
+          setMyKey(key)
+          setIsLoaded(true)
+        })();
+      }, [])
 
-  const API_KEY = process.env.REACT_APP_GMAPS_KEY;
-  const API_URL = `https://maps.googleapis.com/maps/api/staticmap?center=${restaurant.street_address}&zoom=16&size=300x500&maptype=roadmap&markers=color:red%7Clabel:.%7C${restaurant.street_address}&key=${API_KEY}`
+
+
+  // const API_KEY = process.env.REACT_APP_GMAPS_KEY;
+  const API_URL = `https://maps.googleapis.com/maps/api/staticmap?center=${restaurant.street_address}&zoom=16&size=300x500&maptype=roadmap&markers=color:red%7Clabel:.%7C${restaurant.street_address}&key=${myKey.key}`
 
 
   const getAverageRating = (data) => {
@@ -66,7 +77,7 @@ export const SingleRestaurant = () => {
   }
 
   return (
-        <PageWrapper>
+        <PageWrapper>{isLoaded &&
             <PageContainer className={styles.sr_custom_pc}>
               <img src={pattern} className={styles.sr_banner} alt="banner pattern"></img>
               <img className={styles.sr_img} src={restaurant.img_url} alt="" width="200px"></img>
@@ -136,10 +147,9 @@ export const SingleRestaurant = () => {
                   </div>
                   <div><a href={restaurant.website} target="_blank" rel="noreferrer"><i className="fa-solid fa-earth-americas"></i> Website</a></div>
                   <div><a href={`https://www.google.com/maps/place/${restaurant.street_address}`} target="_blank" rel="noreferrer"><i className="fa-solid fa-diamond-turn-right"/>Get Directions</a>
-</div>
-
+                </div>
               </div>
-            </PageContainer>
+            </PageContainer>}
         </PageWrapper>
     )
 }

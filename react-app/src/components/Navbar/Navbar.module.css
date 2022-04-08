@@ -47,14 +47,13 @@
 
 .right_logged_in {
   display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
-  right: 2rem;
-  width: 300px;
   justify-content: space-between;
-  background-color: green;
+  align-items: center;
+  width: 140px;
+  right: 2rem;
 }
+
 
 .right * {
   margin-right: 0.5rem;

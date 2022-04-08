@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { signUp } from '../../store/session';
 import { setCurrentModal, hideModal } from '../../store/modal';
+import { login } from '../../store/session';
 import LoginForm from './LoginForm';
 
 const SignUpForm = () => {
@@ -12,6 +13,13 @@ const SignUpForm = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const dispatch = useDispatch();
+
+  const loginDemo = async (e) => {
+    e.preventDefault()
+    const data = await dispatch(login("demo@user.com", "password"));
+    if (data) return setErrors(data)
+    dispatch(hideModal())
+  }
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -84,6 +92,7 @@ const SignUpForm = () => {
       </div>
       <button type='submit'>Sign Up</button>
       <button onClick={showLoginForm}>Already signed up? Log in!</button>
+      <button type='button' onClick={loginDemo}>Demo User</button>
     </form>
   );
 };

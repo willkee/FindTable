@@ -41,16 +41,14 @@ const NavBar = () => {
           </NavLink>
         </div>
         <div className={styles.right_logged_in}>
+            <div className={styles.profile_icon}>
+              <ProfileDropdown />
+            </div>
+            <div className={styles.calendar_icon}>
+              <CalendarDropdown />
+            </div>
             <div>
-              <div className={styles.profile_icon}>
-                <ProfileDropdown />
-              </div>
-              <div className={styles.calendar_icon}>
-                <CalendarDropdown />
-              </div>
-              <div>
-                <GreyVerticalLine />
-              </div>
+              <GreyVerticalLine />
             </div>
             <div className={styles.search_icon} onClick={showSearchForm}>
               <MagnifyingGlass/>
