@@ -69,7 +69,7 @@
 
 .right_sidebar {
     background-color: rgb(227, 227, 227);
-    z-index: 999;
+    z-index: 99;
     position: absolute;
     top: 200px;
     right: 0;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { RestaurantForm } from '../../Forms/RestaurantForm';
 import { PageContainer } from '../PageContainer';
-import styles from './UpdateRestaurant.module.css'
+import styles from './CreateRestaurant.module.css'
 
 export const CreateRestaurant = () => {
 

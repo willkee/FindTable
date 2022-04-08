@@ -4,7 +4,7 @@ import { RestaurantForm } from '../../Forms/RestaurantForm';
 import { showModal, setCurrentModal } from '../../store/modal';
 import styles from './UpdateRestaurant.module.css'
 
-export const UpdateRestaurant = () => {
+export const UpdateRestaurant = ({restaurant}) => {
     const dispatch = useDispatch()
 
     const showRestaurantForm = () => {

@@ -43,8 +43,8 @@ function App() {
       await dispatch(authenticate());
       await dispatch(receiveAllRestaurants())
       await dispatch(allUsers())
-      await dispatch(retrieveSettings())
-      await dispatch(retrieveCusines())
+      // await dispatch(retrieveSettings())
+      // await dispatch(retrieveCusines())
       setLoaded(true);
     })();
   }, [dispatch]);
