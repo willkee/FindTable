@@ -73,7 +73,7 @@ function App() {
             </Route>
             {/* <ProtectedRoute path='/reservations' exact={true} >
               <Reservations/>
-            </ProtectedRoute> */}
+            </ProtectedRoute>  */}
             <ProtectedRoute exact path='/users'>
               <UsersList users={users} />
               </ProtectedRoute>
@@ -90,7 +90,7 @@ function App() {
                 <SearchResults />
               </Route>
             </Switch>
-            <div className='return_to_top_button'><a href="#top"><i className="fa-solid fa-angles-up"></i></a></div>
+            <div className='return_to_top_button'><a href="#"><i className="fa-solid fa-angles-up"></i></a></div>
             {/* <Footer /> */}
       </PageWrapper>
     </BrowserRouter>
