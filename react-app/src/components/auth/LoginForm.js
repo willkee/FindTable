@@ -11,6 +11,15 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
+
+  const loginDemo = async (e) => {
+    e.preventDefault()
+    const data = await dispatch(login("demo@user.com", "password"));
+    if (data) return setErrors(data)
+    dispatch(hideModal())
+  }
+
+
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
@@ -68,6 +77,7 @@ const LoginForm = () => {
           <button type='submit'>Login</button>
         </div>
             <button onClick={showSignUpForm}>Don't have an account? Sign up!</button>
+            <button type='button' onClick={loginDemo}>Demo User</button>
       </form>
     </div>
   );

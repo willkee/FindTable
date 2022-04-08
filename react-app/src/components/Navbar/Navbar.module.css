@@ -45,6 +45,16 @@
   justify-content: space-between;
 }
 
+.right_logged_in {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  width: 140px;
+  right: 2rem;
+}
+
+
 .right * {
   margin-right: 0.5rem;
 }
