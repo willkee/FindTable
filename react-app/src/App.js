@@ -31,11 +31,6 @@ function App() {
 
   const users = useSelector(state => Object.values(state.users))
   const all_restaurants = useSelector(state => Object.values(state.restaurants))
-  // const all_settings = useSelector(state => Object.values(state.settings))
-  // const all_cuisines = useSelector(state => Object.values(state.cuisines))
-  // const reviews = useSelector(state => Object.values(state.reviews))
-  // const reservations = useSelector(state => Object.values(state.reservations))
-  // const favorites = useSelector(state => Object.values(state.favorites))
 
   useEffect(() => {
     (async() => {
@@ -67,16 +62,12 @@ function App() {
             <ProtectedRoute exact path="/new-restaurant">
               <CreateRestaurant />
             </ProtectedRoute>
-            {/* <ProtectedRoute path='/reservations' exact={true} >
-              <Reservations/>
-            </ProtectedRoute>  */}
             <ProtectedRoute exact path='/users'>
               <UsersList users={users} />
               </ProtectedRoute>
               <ProtectedRoute exact path='/users/:userId'>
                 <User />
               </ProtectedRoute>
-
               <ProtectedRoute exact path="/my-profile">
                   <ProfilePage />
               </ProtectedRoute>

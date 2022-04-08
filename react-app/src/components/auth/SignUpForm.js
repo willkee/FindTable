@@ -4,6 +4,7 @@ import { signUp } from '../../store/session';
 import { setCurrentModal, hideModal } from '../../store/modal';
 import { login } from '../../store/session';
 import LoginForm from './LoginForm';
+import styles from './AuthForms.module.css'
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -21,7 +22,7 @@ const SignUpForm = () => {
     dispatch(hideModal())
   }
 
-  const onSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
       const data = await dispatch(signUp(firstName, lastName, email, password));
@@ -37,7 +38,7 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSubmit}>
+    <form>
       <div>
         {errors.map((error, i) => (
           <div key={i}>{error}</div>
@@ -90,9 +91,9 @@ const SignUpForm = () => {
           value={confirmPassword}
         ></input>
       </div>
-      <button type='submit'>Sign Up</button>
-      <button onClick={showLoginForm}>Already signed up? Log in!</button>
-      <button type='button' onClick={loginDemo}>Demo User</button>
+      <div className={styles.div_button} role='button' onClick={handleSubmit}>Sign Up</div>
+      <div className={styles.div_button} role='button' onClick={showLoginForm}>Already signed up? Log in!</div>
+      <div className={styles.div_button} role='button' onClick={loginDemo}>Demo User</div>
     </form>
   );
 };

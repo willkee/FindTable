@@ -1,0 +1,17 @@
+.div_button {
+    cursor: pointer;
+    background-color: #7D2C3B;
+    border: 1px solid black;
+    color: white;
+    margin: 5px 0;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.div_button:hover {
+    cursor: pointer;
+    background-color: #983937;
+    border: 1px solid black;
+    color: white;
+}

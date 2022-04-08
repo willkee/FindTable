@@ -4,6 +4,7 @@ import { login } from '../../store/session';
 import { setCurrentModal, hideModal } from '../../store/modal';
 import SignUpForm from './SignUpForm';
 import animation from "../../video/FindTable-loading.mp4";
+import styles from './AuthForms.module.css'
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -44,15 +45,12 @@ const LoginForm = () => {
   return (
     <div>
       <video loop autoPlay width="250">
-        <source src={animation}
-          type="video/mp4" />
+        <source src={animation} type="video/mp4" />
         Sorry, your browser doesn't support embedded videos.
       </video>
-      <form onSubmit={onLogin}>
+      <form>
         <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
+          {errors.map((err, i) => <div key={i}>{err}</div>)}
         </div>
         <div>
           <label htmlFor='email'>Email</label>
@@ -74,10 +72,10 @@ const LoginForm = () => {
             value={password}
             onChange={updatePassword}
           />
-          <button type='submit'>Login</button>
+          <div className={styles.div_button} role='button' onClick={onLogin}>Login</div>
         </div>
-            <button onClick={showSignUpForm}>Don't have an account? Sign up!</button>
-            <button type='button' onClick={loginDemo}>Demo User</button>
+            <div className={styles.div_button} role='button' onClick={showSignUpForm}>Don't have an account? Sign up!</div>
+            <div className={styles.div_button} role='button' onClick={loginDemo}>Demo User</div>
       </form>
     </div>
   );

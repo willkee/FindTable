@@ -17,20 +17,23 @@
     margin-top: 20px;
 }
 
-.return_home {
+.div_button {
     width: 200px;
     padding: 10px;
     margin-bottom: 50px;
     border: none;
-    background-color: #da3743;
+    background-color: #7D2C3B;
     border-radius: 5px;
     color: white;
     cursor: pointer;
+    justify-content: center;
+    text-align: center;
 }
 
-.return_home:hover {
-    background-color: #ac1d27;
+.div_button:hover {
+    background-color: #983937;
 }
+
 
 .each_restaurant {
     display: flex;
@@ -54,6 +57,8 @@
     transition: all ease-out 0.25s;
     cursor: pointer;
 }
+
+
 
 .each_wrapper:hover {
     filter: drop-shadow(0 3px 6px rgba(87, 87, 87, 0.508))
