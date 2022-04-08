@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import sessionReducer from './session'
 import modals from './modal'
-import userReducer from './users';
+// import userReducer from './users';
 import restaurantsReducer from './restaurants';
 import settingsReducer from './settings';
 import cuisinesReducer from './cuisines';
@@ -11,7 +11,7 @@ import reservationsReducer from './reservations';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  users: userReducer,
+  // users: userReducer,
   restaurants: restaurantsReducer,
   settings: settingsReducer,
   cuisines: cuisinesReducer,

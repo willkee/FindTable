@@ -111,7 +111,7 @@ def seed_reviews():
   for i in range(1, 501):
     reviews = Review(
       user_id = random.randint(1, 100),
-      restaurant_id = random.randint(1, 90),
+      restaurant_id = random.randint(1, 47),
       stars = random.randint(1, 5),
       img_url = food[random.randint(0,99)],
       review = fake.text()

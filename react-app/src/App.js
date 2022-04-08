@@ -25,14 +25,14 @@ import { retrieveSettings } from './store/settings';
 import { authenticate } from './store/session';
 import { retrieveCusines } from './store/cuisines';
 
-
+import LoginForm from './components/auth/LoginForm';
 
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
-  const users = useSelector(state => Object.values(state.users))
+  // const users = useSelector(state => Object.values(state.users))
   const all_restaurants = useSelector(state => Object.values(state.restaurants))
   const all_settings = useSelector(state => Object.values(state.settings))
   const all_cuisines = useSelector(state => Object.values(state.cuisines))
@@ -43,8 +43,8 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
-      await dispatch(receiveAllRestaurants()) 
-      await dispatch(allUsers())
+      await dispatch(receiveAllRestaurants())
+      // await dispatch(allUsers())
       await dispatch(retrieveSettings())
       await dispatch(retrieveCusines())
       setLoaded(true);
@@ -65,6 +65,9 @@ function App() {
               <Homepage />
               <RestaurantsList all_restaurants={all_restaurants} />
             </Route>
+            <Route exact path="/login">
+              <LoginForm />
+            </Route>
             <ProtectedRoute exact path="/new-restaurant">
               <NewRestaurant all_settings={all_settings} all_cuisines={all_cuisines}/>
             </ProtectedRoute>
@@ -74,9 +77,9 @@ function App() {
             {/* <ProtectedRoute path='/reservations' exact={true} >
               <Reservations/>
             </ProtectedRoute> */}
-            <ProtectedRoute exact path='/users'>
+            {/* <ProtectedRoute exact path='/users'>
               <UsersList users={users} />
-              </ProtectedRoute>
+              </ProtectedRoute> */}
               <ProtectedRoute exact path='/users/:userId'>
                 <User />
               </ProtectedRoute>
