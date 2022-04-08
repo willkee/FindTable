@@ -23,6 +23,7 @@ const UserBox = styled.div`
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    padding-left: 30px;
 `;
 
 const MainContent = styled.div`
@@ -53,7 +54,7 @@ const ContentFeed = styled.div`
 const UpcomingReservations = styled.div`
     width: 900px;
     height: auto;
-    background-color: grey;
+    background-color: #F3F3F3;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -76,8 +77,8 @@ const ProfilePage = () => {
     return (
         <Background>
             <UserBox>
-                <UserIconLarge />
-                <h2><strong>User firstname lastname</strong>| member since createdAt</h2>
+                <UserIconLarge style={{marginLeft: "10px"}}/>
+                <h2 style={{marginLeft: "15px"}}><strong style={{fontSize: "32px"}}>{sessionUser.first_name} {sessionUser.last_name}</strong>  |  member since {sessionUser.created_at}</h2>
             </UserBox>
             <MainContent>
                 <ProfileInfoBox>
