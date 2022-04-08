@@ -52,6 +52,7 @@
     width: 600px;
     background-color: white;
     transition: all ease-out 0.25s;
+    cursor: pointer;
 }
 
 .each_wrapper:hover {

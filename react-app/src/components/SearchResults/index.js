@@ -5,26 +5,12 @@ import { PageContainer } from '../PageContainer'
 import styles from './SearchResults.module.css'
 
 const SearchResults = () => {
-    const { dateString, timeParams, searchWord } = useParams()
+    console.log("JDSFHSKJDFHSKJDFHKJSDFH")
+    const { searchWord } = useParams()
     const history = useHistory()
 
     const restaurants = useSelector(state => Object.values(state.restaurants))
-
-    const timeManipulation = (time) => {
-        const splitTime = timeParams.split(":")
-        const hour = parseInt(splitTime[0], 10)
-
-        if (hour < 12) {
-            splitTime.push("AM")
-        } else {
-            if (hour > 12) splitTime[0] -= 12
-            splitTime.push("PM")
-        }
-
-        return `${parseInt(splitTime[0], 10)}:${splitTime[1]} ${splitTime[2]}`
-    }
-
-    console.log(timeManipulation(timeParams))
+    console.log(searchWord)
 
     const restaurants_set = new Set()
     restaurants.forEach((restaurant, index) => {
@@ -44,6 +30,7 @@ const SearchResults = () => {
     }
 
     const matched_restaurants = Array.from(restaurants_set)
+    console.log(matched_restaurants)
 
     return (
         <PageContainer>
@@ -53,7 +40,7 @@ const SearchResults = () => {
                 {matched_restaurants.length
                 ?
                 (<div className={styles.parent_container_each}>
-                        <div className={styles.search_intro_message}>{`You searched for "${searchWord}" for ${new Date(dateString).toDateString()} at ${timeManipulation(timeParams)}`}:</div>
+                        <div className={styles.search_intro_message}>{`You searched for "${searchWord}":`}</div>
                         <div><strong>{`Your search result has returned ${matched_restaurants.length} restaurants: `}</strong></div>
                         <div className={styles.each_restaurant}>
                             {matched_restaurants.map(restaurant_index => (
