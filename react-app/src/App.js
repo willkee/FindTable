@@ -80,15 +80,6 @@ function App() {
               <ProtectedRoute exact path="/my-profile">
                   <ProfilePage />
               </ProtectedRoute>
-              {/* <Route exact path="/my-profile">
-              {sessionUser
-                  ?
-                  <ProfilePage />
-                  :
-                  <Redirect to="/" />
-                }
-              </Route> */}
-
               <ProtectedRoute exact path="/my_reservations">
                 <h1>Hello</h1>
               </ProtectedRoute>
