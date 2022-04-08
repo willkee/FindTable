@@ -6,14 +6,16 @@ import { useParams } from 'react-router-dom';
 // import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import pattern from './pattern.png'
+import ReviewCounter from '../ReviewCounter';
 // import { createReview } from '../../store/reviews';
-import { ReviewForm } from '../../Forms/ReviewForm';
+// import { ReviewForm } from '../../Forms/ReviewForm';
 
 
 export const SingleRestaurant = () => {
   const {id} = useParams()
   const restaurant = useSelector(state => Object.values(state.restaurants))[id - 1]
 
+  const stars = Object.values(restaurant.reviews).map(review => review.stars)
 
 
   // const handleNewReview = () => {
@@ -64,7 +66,7 @@ export const SingleRestaurant = () => {
                       <span><i className="fa-solid fa-utensils"></i> {restaurant.cuisines.map(cuisine => (<span key={cuisine.id}>{cuisine.type}</span>))}</span>
 
                       {/* Restaurant Setting */}
-                      <span><i class="fa-solid fa-building"></i> {restaurant.settings.map(setting => (<span key={setting.id}>{setting.type}</span>))}</span>
+                      <span><i className="fa-solid fa-building"></i> {restaurant.settings.map(setting => (<span key={setting.id}>{setting.type}</span>))}</span>
                     </div>
 
                     <div className={styles.content_sub_header2}>
@@ -80,26 +82,7 @@ export const SingleRestaurant = () => {
 
                     <h3>What {Object.values(restaurant.reviews).length} people are saying</h3>
                     <hr></hr>
-
-                    <div className={styles.review_bars_parent}>
-                      <div>
-                        <div>5</div>
-                        <div>4</div>
-                        <div>3</div>
-                        <div>2</div>
-                        <div>1</div>
-                      </div>
-                      <div className={styles.all_review_bars}>
-                        <div className={styles.whole_bar}><div className={styles.red_bar}></div></div>
-                        <div className={styles.whole_bar}><div className={styles.red_bar}></div></div>
-                        <div className={styles.whole_bar}><div className={styles.red_bar}></div></div>
-                        <div className={styles.whole_bar}><div className={styles.red_bar}></div></div>
-                        <div className={styles.whole_bar}><div className={styles.red_bar}></div></div>
-                      </div>
-                    </div>
-
-
-
+                    <ReviewCounter stars={stars}/>
                 </div>
               </div>
 
