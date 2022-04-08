@@ -81,11 +81,14 @@ function App() {
               <ProtectedRoute exact path="/my-profile">
                 <ProfilePage />
               </ProtectedRoute>
+              <ProtectedRoute exact path="/my_reservations">
+                <h1>Hello</h1>
+              </ProtectedRoute>
               <Route exact path='/search/:dateString/:timeParams/:searchWord'>
                 <SearchResults />
               </Route>
             </Switch>
-            <div className='return_to_top_button'><a href="#top"><i className="fa-solid fa-angles-up"></i></a></div>
+            <div className='return_to_top_button'><a href="#"><i className="fa-solid fa-angles-up"></i></a></div>
             {/* <Footer /> */}
       </PageWrapper>
     </BrowserRouter>

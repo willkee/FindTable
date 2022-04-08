@@ -1,0 +1,60 @@
+.form {
+    width: 250px;
+    height: 380px;
+    border: 1px solid #E1E1E1;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.title {
+    font-size: 21px;
+}
+
+hr {
+    height: 0.5px;
+    width: 200px;
+    background-color: #C7C7C7;
+    margin-top: -10px;
+    opacity: 50%;
+}
+
+p {
+    font-size: 14px;
+    text-align: left;
+    margin-top: 7px;
+}
+
+.party {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    width: 200px;
+    margin-top: -20px;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    width: 200px;
+    margin-top: -20px;
+}
+
+button {
+    width: 200px;
+    height: 30px;
+    color: white;
+    background-color: #983937;
+    opacity: 50%;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    opacity: 100%;
+}

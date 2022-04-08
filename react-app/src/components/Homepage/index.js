@@ -4,7 +4,7 @@ import SearchHeader from '../SearchHeader'
 // import { useDispatch } from 'react-redux'
 // import { getLocation } from '../../store/session'
 
-import { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
 
 import { ReservationCard } from '../ReservationCard'
 
@@ -58,9 +58,9 @@ export const Homepage = () => {
     <PageContainer>
 
       <SearchHeader className={styles.search_header_component} />
-      {/* {<div>
-        {userLocation}
-      </div>} */}
+      {<div>
+        {/* {userLocation} */}
+      </div>}
       <ReservationCard />
 
     </PageContainer>
