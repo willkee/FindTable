@@ -1,39 +1,51 @@
 import styles from "./ReservationCard.module.css";
-import Calendar from 'react-calendar'
+// import Calendar from 'react-calendar'
 import { useState } from "react";
+import { useDispatch} from "react-redux";
+import { useHistory } from "react-router-dom";
+import { createReservation } from "../../store/restaurants";
 
 export const ReservationCard = () => {
-    const today = new Date().toISOString();
-    console.log(today)
-    const formatDate = today.substring(0,today.length-1)
-    console.log(formatDate)
-    const dateTimeLocal = formatDate.slice(0, 16)
-    console.log(dateTimeLocal)
-    const reservationTime = formatDate.slice(11, 13)
-    console.log(reservationTime)
-    const futureTime = parseInt(reservationTime)+2
-    console.log(futureTime)
+    const dispatch = useDispatch();
+    const history = useHistory();
 
-
-    const [date, setDate] = useState(dateTimeLocal)
-    const [time, setTime] = useState()
+    const [date, setDate] = useState(new Date())
+    const [time, setTime] = useState("")
     const [people, setPeople] = useState(1)
+    const [errors, setErrors] = useState([])
 
-    console.log(formatDate)
+    // console.log(formatDate)
 
-    const handleSubmit = (e) => {
-        e.preventDefaul();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log(e)
 
+        const reservationData = {
+            restaurant_id: 10,
+            num_people: people,
+            date: date,
+            time: time
+        }
+
+        const newReservation = await dispatch(createReservation(reservationData));
+
+        if(newReservation.error) {
+            setErrors(newReservation.error)
+        } else {
+            console.log(newReservation)
+            history.push(`/my_reservations/${newReservation.id}`)
+        }
     }
+
     return (
-        <div className={styles.card}>
-            <form onSubmit={handleSubmit}>
-                <div><strong>Make a reservation</strong></div>
-                <div>
-                    <p><strong>*Party Size (required)</strong></p>
+            <form className={styles.form} onSubmit={handleSubmit}>
+                <strong className={styles.title}>Make a reservation</strong>
+                <hr></hr>
+                <div className={styles.party}>
+                    <strong>Party Size</strong>
                     <p>If you're party has more than 10 people, please call the restaurant.</p>
                     <select value={people} onChange={(e) => setPeople(e.target.value)}>
-                        <option value="1">-- Select number of people --</option>
+                        <option value="">-- Select number of people --</option>
                         <option value={1}>1 person</option>
                         <option value={2}>2 people</option>
                         <option value={3}>3 people</option>
@@ -46,12 +58,25 @@ export const ReservationCard = () => {
                         <option value={10}>10 people</option>
                     </select>
                 </div>
-                <div>
-                    <label htmlFor="datetime">Select a date and time:</label>
-                    <input type="datetime-local" name="datetime" value={date} onChange={(e) => setDate(e.target.value)} />
+                <hr></hr>
+                <div className={styles.input}>
+                    <label htmlFor="date"><strong>Select a date:</strong></label>
+                    <input type="date" name="date" value={date} onChange={(e) => setDate(e.target.value)} />
+                    <label htmlFor="time"><strong>Select a time:</strong></label>
+                    <input type="time" name="time" value={time} onChange={(e) => setTime(e.target.value)} />
                 </div>
-                <button type="submit">Reserve table</button>
+                <button type="submit" disabled={!people || !date || !time ? true : false}>Reserve table</button>
             </form>
-        </div>
     )
 }
+
+    // const today = new Date().toISOString();
+    // console.log(today)
+    // const formatDate = today.substring(0,today.length-1)
+    // console.log(formatDate)
+    // const dateTimeLocal = formatDate.slice(0, 16)
+    // console.log(dateTimeLocal)
+    // const reservationTime = formatDate.slice(11, 13)
+    // console.log(reservationTime)
+    // const futureTime = parseInt(reservationTime)+2
+    // console.log(futureTime)

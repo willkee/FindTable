@@ -19,25 +19,28 @@ def create_reservation():
   form = ReservationForm()
 
   request_initial = request.json  # request object
-  request_string = json.dumps(request_initial) # request object to string
-  request_dict = json.loads(request_string) # turn string back into python dict
+
   form['csrf_token'].data = request.cookies['csrf_token']
 
   if form.validate_on_submit():
     # Add create instances of a new restaurant and populate with form data
     new_reservation = Reservation(
-        restaurant_id = request_dict['restaurant_id'],
-        user_id = current_user.id,
+        restaurant_id = request.json['restaurant_id'],
+        user_id = request.json['user_id'],
         num_people = form.data['num_people'],
         date = form.data['date'],
         time = form.data['time']
+        # num_people = request.json['num_people'],
+        # date = request.json['date'],
+        # time = request.json['time']
     )
 
     db.session.add(new_reservation)
 
     db.session.commit()
 
-    return new_reservation.to_dict()
+    # return new_reservation.to_dict()
+    return "success"
 
   else:
     return {'error': error_generator(form.errors)}
@@ -63,18 +66,18 @@ def reservationUpdate():
 
 @reservation_routes.route('/<int:id>', methods=['DELETE'])
 def reservationDelete():
-  request_initial = request.json  # request object
-  request_string = json.dumps(request_initial) # request object to string
-  request_dict = json.loads(request_string) # turn string back into python dict
+  # request_initial = request.json  # request object
+  # request_string = json.dumps(request_initial) # request object to string
+  # request_dict = json.loads(request_string) # turn string back into python dict
 
-  id = request_dict['reservation_id'] # Double check frontend to see what is getting sent.
+  id = request.json['reservation_id'] # Double check frontend to see what is getting sent.
 
   reservation = Reservation.query.get(id)
 
   db.session.delete(reservation)
   db.session.commit()
 
-  return id
+  return "success"
 
 # In Express, I returned an id, so I'm not sure if I should return data...?
 

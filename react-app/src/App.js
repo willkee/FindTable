@@ -83,6 +83,9 @@ function App() {
               <ProtectedRoute exact path="/my-profile">
                 <ProfilePage />
               </ProtectedRoute>
+              <ProtectedRoute exact path="/my_reservations">
+                <h1>Hello</h1>
+              </ProtectedRoute>
               <Route exact path='/search/:dateString/:timeParams/:searchWord'>
                 <SearchResults />
               </Route>

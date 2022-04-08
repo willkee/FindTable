@@ -58,9 +58,9 @@ export const Homepage = () => {
     <PageContainer>
 
       <SearchHeader className={styles.search_header_component} />
-      {/* {<div>
-        {userLocation}
-      </div>} */}
+      {<div>
+        {/* {userLocation} */}
+      </div>}
       <ReservationCard />
 
     </PageContainer>
