@@ -6,9 +6,9 @@ const CREATED_REVIEW = '/reviews/createdReview'
 const UPDATED_REVIEW = '/reviews/updatedReview'
 const DELETED_REVIEW ='/reviews/deletedReview'
 
-const CREATED_RESERVATION = '/reviews/createdReservation'
-const UPDATED_RESERVATION = '/reviews/updatedReview'
-const DELETED_RESERVATION ='/reviews/deletedReview'
+// const CREATED_RESERVATION = '/reviews/createdReservation'
+// const UPDATED_RESERVATION = '/reviews/updatedReview'
+// const DELETED_RESERVATION ='/reviews/deletedReview'
 
 
 //action creators for reviews

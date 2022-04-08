@@ -11,19 +11,19 @@ const createdReservation = (payload) => {
   }
 }
 
-const updatedReservation = (payload) => {
-  return {
-    type: UPDATED_RESERVATION,
-    payload
-  }
-}
+// const updatedReservation = (payload) => {
+//   return {
+//     type: UPDATED_RESERVATION,
+//     payload
+//   }
+// }
 
-const deletedReservation = (payload) => {
-  return {
-    type: DELETED_RESERVATION,
-    payload
-  }
-}
+// const deletedReservation = (payload) => {
+//   return {
+//     type: DELETED_RESERVATION,
+//     payload
+//   }
+// }
 
 
 //thunks
