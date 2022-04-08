@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { login } from '../../store/session';
 import { setCurrentModal, hideModal } from '../../store/modal';
 import SignUpForm from './SignUpForm';
