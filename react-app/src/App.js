@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './index.css'
 
@@ -9,7 +9,6 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import User from './components/User'
 import Modal from './components/Modal/Modal';
 import UsersList from './components/UsersList';
-import RestaurantsList from './components/RestaurantsList';
 import ProfilePage from './components/ProfilePage';
 import SearchResults from './components/SearchResults';
 import { Homepage } from './components/Homepage';
@@ -30,7 +29,6 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
-  const sessionUser = useSelector(state => state.session.user)
   const users = useSelector(state => Object.values(state.users))
   const all_restaurants = useSelector(state => Object.values(state.restaurants))
   // const all_settings = useSelector(state => Object.values(state.settings))

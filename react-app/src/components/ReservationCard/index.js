@@ -1,4 +1,4 @@
-import styles from "./ReservationCard.module.css";
+// import styles from "./ReservationCard.module.css";
 import styled from "styled-components";
 import { GreenConfirmationButton, UserIcon, CalendarIcon, GreyVerticalLine } from "../Icons";
 
@@ -49,7 +49,7 @@ const ModalButton = styled.button`
 export const ReservationCard = ({reservation}) => {
     return (
         <ReservationContainer>
-            <img src="https://www.onceuponachef.com/images/2012/11/Vanilla-Birthday-Cake-18.jpg" alt="Restaurant image for <restaurant name>."></img>
+            <img src="https://www.onceuponachef.com/images/2012/11/Vanilla-Birthday-Cake-18.jpg" alt="Restaurant for <restaurant name>."></img>
             <ReservationDetails>
                 <strong>Restaurant name - City, State | Borough</strong>
                 <IconTextBox>

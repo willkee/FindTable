@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import ProtectedRoute from '../auth/ProtectedRoute'
 import styles from './Navbar.module.css'
 import {MagnifyingGlass, GreyVerticalLine} from '../Icons'
 import { useSelector, useDispatch } from 'react-redux';
