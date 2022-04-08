@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
 import styles from './ReviewCounter.module.css'
 
 const ReviewCounter = ({ stars }) => {
@@ -38,31 +37,61 @@ const ReviewCounter = ({ stars }) => {
         setFiveStar(five)
         setTotal(one + two + three + four + five)
         setLoaded(true)
-    }, [])
+    }, [stars])
 
     return (
-        <div>
+        <div className={styles.review_counter_parent}>
             {loaded && (
                 <div>
-                    <div>One Star: {(oneStar / total)*100}</div>
-                    <div>Two Star: {(twoStar / total)*100}</div>
-                    <div>Three Star: {(threeStar / total)*100}</div>
-                    <div>Four Star: {(fourStar / total)*100}</div>
-                    <div>Five Star: {(fiveStar / total)*100}</div>
-                    <div className={styles.clear_bar}>
-                    <div className={styles.red_bar} style={{width:`${(oneStar / total) * 100}%`}}></div>
+
+                    {/* 1 */}
+                    <div className={styles.each_rating_container}>
+                        <div className={styles.counter_left}><span>{oneStar}</span><span><i className="fa-solid fa-star"/></span></div>
+                        <div>
+                            <div className={styles.clear_bar}>
+                            <div className={styles.red_bar} style={{width:`${(oneStar / total) * 100}%`}}></div>
+                            </div>
+                        </div>
                     </div>
-                    <div className={styles.clear_bar}>
-                    <div className={styles.red_bar} style={{width:`${(twoStar / total) * 100}%`}}></div>
+
+                    {/* 2 */}
+                    <div className={styles.each_rating_container}>
+                        <div className={styles.counter_left}><span>{twoStar}</span><span><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/></span></div>
+                        <div>
+                            <div className={styles.clear_bar}>
+                            <div className={styles.red_bar} style={{width:`${(twoStar / total) * 100}%`}}></div>
+                            </div>
+                        </div>
                     </div>
-                    <div className={styles.clear_bar}>
-                    <div className={styles.red_bar} style={{width:`${(threeStar / total) * 100}%`}}></div>
+
+                    {/* 3 */}
+                    <div className={styles.each_rating_container}>
+                        <div className={styles.counter_left}><span>{threeStar}</span><span><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/></span></div>
+                        <div>
+                            <div className={styles.clear_bar}>
+                            <div className={styles.red_bar} style={{width:`${(threeStar / total) * 100}%`}}></div>
+                            </div>
+                        </div>
                     </div>
-                    <div className={styles.clear_bar}>
-                    <div className={styles.red_bar} style={{width:`${(fourStar / total) * 100}%`}}></div>
+
+                    {/* 4 */}
+                    <div className={styles.each_rating_container}>
+                        <div className={styles.counter_left}><span>{fourStar}</span><span><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/></span></div>
+                        <div>
+                            <div className={styles.clear_bar}>
+                            <div className={styles.red_bar} style={{width:`${(fourStar / total) * 100}%`}}></div>
+                            </div>
+                        </div>
                     </div>
-                    <div className={styles.clear_bar}>
-                    <div className={styles.red_bar} style={{width:`${(fiveStar / total) * 100}%`}}></div>
+
+                    {/* 5 */}
+                    <div className={styles.each_rating_container}>
+                        <div className={styles.counter_left}><span>{fiveStar}</span><span><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/></span></div>
+                        <div>
+                            <div className={styles.clear_bar}>
+                            <div className={styles.red_bar} style={{width:`${(fiveStar / total) * 100}%`}}></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             )}

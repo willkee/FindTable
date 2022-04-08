@@ -4,29 +4,28 @@ import { PageWrapper } from '../PageWrapper';
 import { PageContainer } from '../PageContainer';
 import { useParams } from 'react-router-dom';
 // import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import pattern from './pattern.png'
 import ReviewCounter from '../ReviewCounter';
 // import { createReview } from '../../store/reviews';
 
 // import { ReviewForm } from '../../Forms/ReviewForm';
-import { ReservationForm } from '../../Forms/ReservationForm'
-import { ReviewForm } from '../../Forms/ReviewForm';
+// import { ReservationForm } from '../../Forms/ReservationForm'
+// import { ReviewForm } from '../../Forms/ReviewForm';
 import { UpdateRestaurant } from '../UpdateRestaurant'
-import { showModal, setCurrentModal } from '../../store/modal';
+// import { showModal, setCurrentModal } from '../../store/modal';
 
 
 export const SingleRestaurant = () => {
-  const dispatch = useDispatch()
   const {id} = useParams()
+  // const [isOwner, setIsOwner] = useState(false)
   // find restaurant owner id and session user id
   const restaurant = useSelector(state => Object.values(state.restaurants))[id - 1]
-  const sessionUser = useSelector((state) => state.session.user);
-
+  const sessionUser = useSelector((state) => state?.session?.user);
   // set isOwner to true if the current user owns the restaurant being viewed
   // this will display the update/delete restaurant buttons
-  let isOwner;
-  restaurant.owner_id === sessionUser.id ? isOwner = true : isOwner = false
+  let isOwner = false
+  sessionUser && restaurant.owner_id === sessionUser.id ? isOwner = true : isOwner = false
 
 
   const stars = Object.values(restaurant.reviews).map(review => review.stars)
@@ -44,6 +43,10 @@ export const SingleRestaurant = () => {
 
 
   const getAverageRating = (data) => {
+
+    if (Object.values(restaurant.reviews).length === 0) {
+      return "No"
+    }
     let totalStars = 0;
     Object.values(data.reviews).forEach(review => totalStars += review.stars)
     return (totalStars / Object.values(data.reviews).length).toFixed(1)
@@ -78,10 +81,10 @@ export const SingleRestaurant = () => {
                       <span><i className="fa-solid fa-money-check-dollar"></i> {showPriceRating(restaurant.price_rating)}</span>
 
                       {/* Restaurant Cuisine */}
-                      <span><i className="fa-solid fa-utensils"></i> {restaurant.cuisines.map(cuisine => (<span key={cuisine.id}>{cuisine.type}</span>))}</span>
+                      <span><i className="fa-solid fa-utensils"></i> {restaurant.cuisines.map(cuisine => (<span key={cuisine.id}>{cuisine.type}   </span>))}</span>
 
                       {/* Restaurant Setting */}
-                      <span><i className="fa-solid fa-building"></i> {restaurant.settings.map(setting => (<span key={setting.id}>{setting.type}</span>))}</span>
+                      <span><i className="fa-solid fa-building"></i> {restaurant.settings.map(setting => (<span key={setting.id}>{setting.type}  </span>))}</span>
                     </div>
 
                     <div className={styles.content_sub_header2}>
@@ -91,13 +94,33 @@ export const SingleRestaurant = () => {
                       {/* Restaurant Review Count */}
                       <span><i className="fa-solid fa-message"/> {` ${Object.values(restaurant.reviews).length} Reviews`}</span>
                     </div>
-                    <UpdateRestaurant props={restaurant}/>
+                    {isOwner && <UpdateRestaurant restaurant={restaurant}/>}
                     {/* Restaurant Cuisine */}
                     <div>{restaurant.description}</div>
 
-                    <h3>What {Object.values(restaurant.reviews).length} people are saying</h3>
-                    <hr></hr>
-                    <ReviewCounter stars={stars}/>
+                    {Object.values(restaurant.reviews).length > 0 ?
+                        Object.values(restaurant.reviews).length === 1 ?
+                          <div>
+                            <h3>What {Object.values(restaurant.reviews).length} person is saying</h3>
+                            <hr></hr>
+                            <ReviewCounter stars={stars}/>
+                            <hr></hr>
+                          </div>
+                          :
+                          <div>
+                            <h3>What {Object.values(restaurant.reviews).length} people are saying</h3>
+                            <hr></hr>
+                            <ReviewCounter stars={stars}/>
+                            <hr></hr>
+                          </div>
+
+                    :
+                    <div>
+                        <h3>There are no reviews.</h3>
+                        <hr></hr>
+                    </div>
+                    }
+
                 </div>
               </div>
 

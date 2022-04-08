@@ -1,14 +1,47 @@
+.review_counter_parent {
+    margin: 20px 0;
+}
+
+.each_rating_container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 5px;
+    width: 100%;
+    align-items: center;
+    font-weight: bolder;
+}
+
+.each_rating_container div i:first-child {
+    margin-left: 5px;
+}
+
+.counter_left {
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+}
+
+.counter_left span:first-child {
+    width: 10px;
+}
+
+.each_rating_container div i {
+    margin-left: 5px;
+    color: rgb(214, 0, 0);
+    position: relative;
+    top: 1px;
+}
+
 .clear_bar {
     width: 200px;
-    height: 50px;
-    background-color: white;
-    border: 1px solid black;
+    height: 20px;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
 }
 
 .red_bar {
-    background-color: red;
-    height: 50px;
-    border: 1px solid black;
+    background: linear-gradient(45deg, #D24E65, #FC6260, #F2BB78);
+    background-color: rgb(214, 0, 0);
+    height: 100%;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
