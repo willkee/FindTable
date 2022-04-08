@@ -172,3 +172,18 @@ export const GreyStar = () => {
         </svg>
     )
 }
+
+export const ReviewIcon = () => {
+  return (
+    <svg id="Group_462" dataname="Group 462" xmlns="http://www.w3.org/2000/svg"  width="16" height="16" viewBox="0 0 27.617 23.381">
+      <defs>
+        <clipPath id="clip-path">
+          <rect id="Rectangle_523" dataname="Rectangle 523" width="15" height="15" transform="translate(0 0)" fill="none"/>
+        </clipPath>
+      </defs>
+      <g id="Group_461" dataname="Group 461" clip-path="url(#clip-path)">
+        <path id="Path_432" dataname="Path 432" d="M23.365,23.38a1.228,1.228,0,0,1-.834-.323l-4.944-4.426L1.451,18.624A1.417,1.417,0,0,1,0,17.246V1.378A1.418,1.418,0,0,1,1.451,0H26.174a1.414,1.414,0,0,1,1.443,1.378V17.246a1.413,1.413,0,0,1-1.443,1.378h-1.6v3.593a1.147,1.147,0,0,1-.7,1.057,1.248,1.248,0,0,1-.505.106m.169-1.438,0,0,0,0M1.5,17.123H17.68a1.543,1.543,0,0,1,.441.068l.161.048,4.792,4.291V17.319l.818-.195h2.225V1.5H1.5Z"/>
+      </g>
+    </svg>
+  )
+}

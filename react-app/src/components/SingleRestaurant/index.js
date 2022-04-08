@@ -134,7 +134,7 @@ export const SingleRestaurant = () => {
                   </div>
                   <div><a href={restaurant.website} target="_blank" rel="noreferrer"><i className="fa-solid fa-earth-americas"></i> Website</a></div>
                   <div><a href={`https://www.google.com/maps/place/${restaurant.street_address}`} target="_blank" rel="noreferrer"><i className="fa-solid fa-diamond-turn-right"/>Get Directions</a>
-</div>
+              </div>
 
               </div>
             </PageContainer>
