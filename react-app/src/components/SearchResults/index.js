@@ -44,20 +44,28 @@ const SearchResults = () => {
     return (
         <PageContainer>
             <h1>Search Results</h1>
-            <div className={styles.search_intro_message}>{`You searched for "${searchWord}" for ${new Date(dateString).toDateString()} at ${timeManipulation(timeParams)}`}:</div>
+            <button className={styles.return_home} onClick={() => history.push("/")}>Return Home</button>
             <div className={styles.all_restaurants}>
                 {matched_restaurants.length
                 ?
-                    (<div className={styles.parent_container_each}>
-                        <button onClick={() => history.push("/")}>Return Home</button>
+                (<div className={styles.parent_container_each}>
+                        <div className={styles.search_intro_message}>{`You searched for "${searchWord}" for ${new Date(dateString).toDateString()} at ${timeManipulation(timeParams)}`}:</div>
+                        <div><strong>{`Your search result has returned ${matched_restaurants.length} restaurants: `}</strong></div>
                         <div className={styles.each_restaurant}>
                             {matched_restaurants.map(restaurant_index => (
-                                <div key={restaurant_index}>
-
-                                <div>{restaurants[restaurant_index].name}</div>
-                                <div>{restaurants[restaurant_index].street_address}</div>
-                                <div>{restaurants[restaurant_index].phone_number}</div>
-                                <img src={restaurants[restaurant_index].img_url} alt="" width="200px"></img>
+                                <div className={styles.each_wrapper} key={restaurant_index}>
+                                    <img src={restaurants[restaurant_index].img_url} alt="" width="200px"></img>
+                                    <div className={styles.each_wrapper_info}>
+                                        <div>{restaurants[restaurant_index].name}</div>
+                                        <div><i className="fa-solid fa-map-location-dot"></i>
+                                        <span>{restaurants[restaurant_index].street_address.split(",")[0]}, </span>
+                                        <span>{restaurants[restaurant_index].borough}</span>
+                                        </div>
+                                        <div><i className="fa-solid fa-phone"></i>{`
+                                        (${restaurants[restaurant_index].phone_number.slice(0, 3)}) ${restaurants[restaurant_index].phone_number.slice(3, 6)}-${restaurants[restaurant_index].phone_number.slice(6)}
+                                        `}</div>
+                                        <div><i className="fa-solid fa-earth-americas"></i>{restaurants[restaurant_index].website}</div>
+                                    </div>
                                 </div>
                             ))}
                         </div>
@@ -67,7 +75,6 @@ const SearchResults = () => {
                 (
                     <div className={styles.no_search_results}>
                         <div>No Search Results Were Found.</div>
-                        <button onClick={() => history.push("/")}>Return Home</button>
                     </div>
                 )
             }

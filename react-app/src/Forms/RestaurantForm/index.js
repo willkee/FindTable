@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { PageContainer } from "../../components/PageContainer";
-import { createRestaurant } from '../../store/restaurants';
+import { useHistory, useParams } from 'react-router-dom';
+import { createRestaurant, updateRestaurant } from '../../store/restaurants';
+import { CuisinesIcon, RedStar, RestaurantIcon } from '../../components/Icons';
 import styles from './RestaurantForm.module.css'
+import { hideModal } from '../../store/modal';
 
+export const RestaurantForm = ({ restaurant }) => {
 
-export const NewRestaurant = ({ all_settings, all_cuisines }) => {
-    const [name, setName] = useState('')
-    const [priceRating, setPriceRating] = useState(1)
-    const [description, setDescription] = useState('')
-    const [imageURL, setImageURL] = useState('')
-    const [phoneNumber, setPhoneNumber] = useState('')
-    const [website, setWebsite] = useState('')
-    const [streetAddress, setStreetAddress] = useState('')
-    const [borough, setBorough] = useState('Manhattan')
+    const [name, setName] = useState(restaurant?.name || '')
+    const [priceRating, setPriceRating] = useState(restaurant?.priceRating || 1)
+    const [description, setDescription] = useState(restaurant?.description || '')
+    const [imageURL, setImageURL] = useState(restaurant?.image_url || '')
+    const [phoneNumber, setPhoneNumber] = useState(restaurant?.phone_number || '')
+    const [website, setWebsite] = useState(restaurant?.website || '')
+    const [streetAddress, setStreetAddress] = useState(restaurant?.street_address || '')
+    const [borough, setBorough] = useState(restaurant?.borough || 'Manhattan')
     const [accessible, setAccessible] = useState('')
     const [cuisines, setCuisines] = useState([])
     const [settings, setSettings] = useState([])
@@ -24,6 +25,16 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
 
     const dispatch = useDispatch()
     const history = useHistory()
+    // const { id } = useParams()
+
+
+    // useEffect(() => {
+    //     (async() => {
+    //       await dispatch(retrieveSettings())
+    //       await dispatch(retrieveCusines())
+    //     })();
+    //   }, [dispatch]);
+    // console.log("\n\n UpdateForm ---", restaurant, "\n\n")
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -47,16 +58,25 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
         : !streetAddress ? setErrors(['Please provide an address.'])
         : setErrors([])
 
-
-
-        const newRestaurant = await dispatch(createRestaurant(formData))
-        console.log(newRestaurant.id)
-        if (newRestaurant.error) {
-            console.log('ERRORS \n\n', newRestaurant.error)
-            setErrors(newRestaurant.error)
-        }
-        else {
-            history.push(`/restaurants/${newRestaurant.id}`)
+        // conditional checking if there is a restaurant already created. If so, send a put request. Else send a post request.
+        if (restaurant) {
+            const id = restaurant?.id
+            const updateData = { formData, id }
+            const updatedRestaurant = await dispatch(updateRestaurant(updateData))
+            if (updatedRestaurant.error) {
+                setErrors(updatedRestaurant.error)
+            }
+            else {
+                dispatch(hideModal())
+            }
+        } else {
+            const newRestaurant = await dispatch(createRestaurant(formData))
+            if (newRestaurant.error) {
+                setErrors(newRestaurant.error)
+            }
+            else {
+                history.push(`/restaurants/${newRestaurant.id}`)
+            }
         }
         }
 
@@ -80,133 +100,168 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
             cuisines_array.push(e.target.value)
         }
         setCuisines(cuisines_array)
-        console.log(cuisines_array)
+        // console.log(cuisines_array)
     }
 
     return (
-        <PageContainer>
-            <h1 className={styles.header}>Create Your New Restaurant</h1>
-            <div className={styles.container}>
+            // <div className={styles.container}>
                 <div className={styles.form_entries}>
-                    <h3 className={styles.legend}>Restaurant Information</h3>
+                    <h2>Restaurant Information</h2>
                     <ul>
-                        {errors && errors.map(error => <li key={error}>{error}</li>)}
+                        {errors && errors.map(error => <li key={error} className={styles.error_messages}>{error}</li>)}
                     </ul>
                     <form onSubmit={onSubmit}>
-                        <div>
-                            <label htmlFor='name'>Name</label>
-                            <input name='name'
-                                type='text'
-                                placeholder='Name'
-                                value={name}
-                                required
-                                onChange={e => setName(e.target.value)}>
-                            </input>
-                        </div>
-                        <div>
-                            <label htmlFor='price_rating'>Price Rating</label>
-                            <select name='price_rating'
-                                    value={priceRating}
-                                    onChange={e => setPriceRating(e.target.value)}>
-                                <option value={1}>$</option>
-                                <option value={2}>$$</option>
-                                <option value={3}>$$$</option>
-                                <option value={4}>$$$$</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label htmlFor='description'>Description</label>
-                            <textarea name='description'
-                                    value={description}
-                                    onChange={e => setDescription(e.target.value)}>
-                            </textarea>
-                        </div>
-                        <div>
-                            <label htmlFor='image_url'>Image Link</label>
-                            <input type="text"
-                                    name='image_url'
-                                    value={imageURL}
-                                    required
-                                    onChange={e => setImageURL(e.target.value)}>
-                            </input>
-                        </div>
-                        <div>
-                            <label htmlFor='phone_number'>Phone Number</label>
-                            <input type="text"
-                                    name='phone_number'
-                                    value={phoneNumber}
-                                    required
-                                    onChange={e => setPhoneNumber(e.target.value)}>
-                            </input>
-                        </div>
-                        <div>
-                            <label htmlFor='web'>Website</label>
-                            <input type="text"
-                                    name='web'
-                                    value={website}
-                                    onChange={e => setWebsite(e.target.value)}>
-                            </input>
-                        </div>
-                        <div>
-                            <label htmlFor='street_address'>Street Address</label>
-                            <input type="text"
-                                    name='street_address'
-                                    value={streetAddress}
-                                    required
-                                    onChange={e => setStreetAddress(e.target.value)}>
-                            </input>
-                        </div>
-                        <div>
-                            <label htmlFor='borough'>Borough</label>
-                            <select name='borough'
-                                    value={borough}
-                                    onChange={e => setBorough(e.target.value)}>
-                                <option value="Manhattan">Manhattan</option>
-                                <option value="Brooklyn">Brooklyn</option>
-                                <option value="Queens">Queens</option>
-                                <option value="The Bronx">The Bronx</option>
-                                <option value="Staten Island">Staten Island</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label htmlFor='accessible'>Accessible?</label>
-                            <input type="checkbox"
-                                    value={accessible}
-                                    onChange={() => setAccessible(!accessible)}>
-                            </input>
-                        </div>
-                        <div>
-                            <label htmlFor='cuisines'>Cuisines</label>
-                            <div>
-                            {cuisinesState.map(cuisine => (
-                            <>
-                                <input type='checkbox' key={cuisine.id} name='cuisine' value={cuisine.id} onChange={cuisinesSelector}/>
-                                <label htmlFor='cuisine'>{cuisine.type}</label>
-
-                            </>
-                            ))}
+                        <div className={styles.form_container}>
+                            <div className={styles.left_entries}>
+                                <div className={styles.input_container}>
+                                    <label htmlFor='name'>Name</label>
+                                    <input name='name'
+                                        type='text'
+                                        placeholder='Name'
+                                        value={name}
+                                        required
+                                        onChange={e => setName(e.target.value)}>
+                                    </input>
+                                </div>
+                                <div className={styles.input_container}>
+                                    <label htmlFor='price_rating'>Price Rating</label>
+                                    <select name='price_rating'
+                                            value={priceRating}
+                                            onChange={e => setPriceRating(e.target.value)}>
+                                        <option value={1}>$</option>
+                                        <option value={2}>$$</option>
+                                        <option value={3}>$$$</option>
+                                        <option value={4}>$$$$</option>
+                                    </select>
+                                </div>
+                                <div className={styles.input_container}>
+                                    <label htmlFor='description'>Description</label>
+                                    <textarea name='description'
+                                            value={description}
+                                            onChange={e => setDescription(e.target.value)}>
+                                    </textarea>
+                                </div>
+                                <div className={styles.input_container}>
+                                    <label htmlFor='image_url'>Image Link</label>
+                                    <input type="text"
+                                            name='image_url'
+                                            value={imageURL}
+                                            required
+                                            onChange={e => setImageURL(e.target.value)}>
+                                    </input>
+                                </div>
+                                <div className={styles.input_container}>
+                                    <label htmlFor='phone_number'>Phone Number</label>
+                                    <input type="text"
+                                            name='phone_number'
+                                            value={phoneNumber}
+                                            required
+                                            onChange={e => setPhoneNumber(e.target.value)}>
+                                    </input>
+                                </div>
+                                <div className={styles.input_container}>
+                                    <label htmlFor='web'>Website</label>
+                                    <input type="text"
+                                            name='web'
+                                            value={website}
+                                            onChange={e => setWebsite(e.target.value)}>
+                                    </input>
+                                </div>
+                                <div className={styles.input_container}>
+                                    <label htmlFor='street_address'>Street Address</label>
+                                    <input type="text"
+                                            name='street_address'
+                                            value={streetAddress}
+                                            required
+                                            onChange={e => setStreetAddress(e.target.value)}>
+                                    </input>
+                                </div>
+                                <div className={styles.input_container}>
+                                    <label htmlFor='borough'>Borough</label>
+                                    <select name='borough'
+                                            value={borough}
+                                            onChange={e => setBorough(e.target.value)}>
+                                        <option value="Manhattan">Manhattan</option>
+                                        <option value="Brooklyn">Brooklyn</option>
+                                        <option value="Queens">Queens</option>
+                                        <option value="The Bronx">The Bronx</option>
+                                        <option value="Staten Island">Staten Island</option>
+                                    </select>
+                                </div>
+                                <div className={styles.input_container}>
+                                    <div>
+                                        <input type="checkbox"
+                                                value={accessible}
+                                                onChange={() => setAccessible(!accessible)}>
+                                        </input>
+                                        <i className="fa-solid fa-wheelchair"></i>
+                                        <label htmlFor='accessible'>Accessible?</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={styles.right_entries}>
+                                <fieldset>
+                                    <legend className={styles.legend}>Attributes</legend>
+                                    <div className={styles.input_container} >
+                                        <label htmlFor='cuisines' className={styles.check_label}>
+                                            Cuisines
+                                            <CuisinesIcon />
+                                        </label>
+                                        <div className={styles.cuisines_container}>
+                                        {cuisinesState.map(cuisine => (
+                                        <div key={cuisine.id} className={styles.check_boxes}>
+                                            <input type='checkbox' key={cuisine.id} name='cuisine' value={cuisine.id} onChange={cuisinesSelector}/>
+                                            <label htmlFor='cuisine' className={styles.box_label}>{cuisine.type}</label>
+                                        </div>
+                                        ))}
+                                        </div>
+                                    </div>
+                                    <div className={styles.input_container}>
+                                        <label htmlFor='settings' className={styles.check_label}>
+                                            Settings
+                                            <RestaurantIcon />
+                                        </label>
+                                        <div className={styles.settings_container}>
+                                        {settingsState.map(setting => (
+                                        <div key={setting.id} className={styles.check_boxes}>
+                                            <input type='checkbox' key={setting.id} name='setting' value={setting.id} onChange={settingsSelector}/>
+                                            <label htmlFor='setting' className={styles.box_label}>{setting.type}</label>
+                                        </div>
+                                        ))}
+                                        </div>
+                                    </div>
+                                </fieldset>
                             </div>
                         </div>
-                        <div>
-                            <label htmlFor='settings'>Settings</label>
-                            <div>
-                            {settingsState.map(setting => (
-                            <>
-                                <input type='checkbox' key={setting.id} name='setting' value={setting.id} onChange={settingsSelector}/>
-                                <label htmlFor='setting'>{setting.type}</label>
-                            </>
-                            ))}
-                            </div>
-                        </div>
-                        <div>
+                        <div className={styles.submit_button}>
                             <button  type="submit">Submit</button>
                         </div>
                     </form>
                 </div>
-                <div className={styles.form_display}>
-                    <img src={imageURL} alt="" width='200px'></img>
-                </div>
-            </div>
-        </PageContainer>
+            //     <div className={styles.form_display}>
+            //         <div className={styles.restaurant_card}>
+            //             <img src={imageURL} alt="" width='300px'></img>
+            //             <h2 className={styles.card_header}>{name}</h2>
+            //             { imageURL && name ?
+            //             <>
+            //                 <div>
+            //                     <RedStar />
+            //                     <RedStar />
+            //                     <RedStar />
+            //                     <RedStar />
+            //                     <RedStar />
+            //                     1234 Reviews
+            //                 </div>
+            //                 <div>
+            //                     {cuisines} | {priceRating} | {borough}
+            //                 </div>
+            //                 <div>
+            //                     {phoneNumber}
+            //                 </div>
+            //             </>
+            //             : null }
+            //         </div>
+            //     </div>
+            // </div>
     )
 }

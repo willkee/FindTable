@@ -1,11 +1,10 @@
 .container {
     width: 1200px;
     height: auto;
-    margin: 50px auto;
+    margin-top: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    position: absolute;
     align-items: center;
     filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.16))
 }
@@ -15,7 +14,7 @@
 }
 
 .form_entries {
-    width: 800px;
+    width: 700px;
     padding: 10px 20px;
 	background: #f4f7f8;
 	margin: 10px auto;
@@ -25,9 +24,90 @@
 }
 .form_display {
     width: 300px;
-    height: auto;
+    height: 400px;
     margin: 50px auto;
     display: flex;
     border: black 1px solid;
     flex-direction: column;
+}
+
+.form_container {
+    display:flex;
+    flex-direction: row;
+}
+
+.left_entries {
+    width: 300px
+}
+.right_entries {
+    width: 300px;
+    align-items: center;
+    margin: 0 auto;
+
+}
+
+.input_container{
+    display: flex;
+    flex-direction: column
+}
+
+.input_container label{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.cuisines_container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+.settings_container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.legend {
+    font-size: 20px;
+    font-weight: bold
+}
+
+.check_boxes {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start
+
+}
+
+.check_label {
+    border-bottom: 1px solid;
+    padding: 5px
+}
+
+.check_boxes label {
+    font-size: 15px;
+    padding: 2px;
+}
+.submit_button {
+    align-items: center
+}
+.submit_button button {
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+    background-color: #da3743;
+    color: white;
+    transition: all linear 0.3s;
+}
+
+.error_messages {
+    color: #da3743;
+}
+
+.card_header {
+    margin-top: 0;
 }

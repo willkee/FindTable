@@ -6,6 +6,8 @@ import userReducer from './users';
 import restaurantsReducer from './restaurants';
 import settingsReducer from './settings';
 import cuisinesReducer from './cuisines';
+import reservationsReducer from './reservations';
+// import reviewsReducer from './reviews';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -13,6 +15,8 @@ const rootReducer = combineReducers({
   restaurants: restaurantsReducer,
   settings: settingsReducer,
   cuisines: cuisinesReducer,
+  reservations: reservationsReducer,
+  // reviews: reviewsReducer,
   modals
 });
 

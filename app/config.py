@@ -10,4 +10,5 @@ class Config:
     # so the connection uri must be updated here
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         'DATABASE_URL').replace('postgres://', 'postgresql://')
+    REACT_APP_GMAPS_KEY = os.environ.get('REACT_APP_GMAPS_KEY')
     SQLALCHEMY_ECHO = True

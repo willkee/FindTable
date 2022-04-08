@@ -1,0 +1,120 @@
+.sr_custom_pc {
+    background-color: grey !important;
+    filter: none !important;
+}
+
+.sr_banner {
+    background-image: url("./pattern.png");
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.sr_img {
+    position: absolute;
+    top: 125px;
+    width: 150px;
+    height: 150px;
+    border-radius: 5px;
+    object-fit: cover;
+    z-index: 100;
+}
+
+.sr_parent {
+    display: flex;
+    position: absolute;
+    top: 200px;
+    justify-content: center;
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    width: 58%;
+    height: 100%;
+    border: 0.5px solid black;
+}
+
+.sr_content {
+    position: absolute;
+    top: 75px;
+    padding: 0 20px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+
+.sr_content h2 {
+    text-align: center;
+}
+
+.sr_content h3 {
+    margin-top: 50px;
+}
+
+.content_sub_header1 {
+    margin-bottom: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.content_sub_header2 {
+    margin-bottom: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.content_sub_header1 span i,
+.content_sub_header2 span i {
+    margin-right: 5px;
+}
+
+.right_sidebar {
+    background-color: rgb(227, 227, 227);
+    z-index: 99;
+    position: absolute;
+    top: 200px;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    padding: 10px;
+}
+
+.right_sidebar div a i {
+    margin-right: 5px;
+}
+
+.right_sidebar a {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.right_sidebar a:hover {
+    color: rgb(72, 72, 72);
+}
+
+.left_sidebar {
+    background-color: rgb(227, 227, 227);
+    position: absolute;
+    top: 200px;
+    left: 0;
+    width: 20%;
+    height: 100%;
+    z-index: 99;
+}
+
+.gmaps_static img {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.address_text {
+    margin-bottom: 20px;
+}
