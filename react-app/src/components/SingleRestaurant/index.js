@@ -13,7 +13,7 @@ import ReviewCounter from '../ReviewCounter';
 
 export const SingleRestaurant = () => {
   const {id} = useParams()
-  const restaurant = useSelector(state => Object.values(state.restaurants))[id - 1]
+  const restaurant = useSelector(state => Object.values(state.restaurants))[id]
 
   const stars = Object.values(restaurant.reviews).map(review => review.stars)
 
@@ -27,6 +27,7 @@ export const SingleRestaurant = () => {
 
   const API_KEY = process.env.REACT_APP_GMAPS_KEY;
   const API_URL = `https://maps.googleapis.com/maps/api/staticmap?center=${restaurant.street_address}&zoom=16&size=300x500&maptype=roadmap&markers=color:red%7Clabel:.%7C${restaurant.street_address}&key=${API_KEY}`
+
 
   const getAverageRating = (data) => {
     let totalStars = 0;
@@ -97,6 +98,7 @@ export const SingleRestaurant = () => {
                   <div><a href={restaurant.website} target="_blank" rel="noreferrer"><i className="fa-solid fa-earth-americas"></i> Website</a></div>
                   <div><a href={`https://www.google.com/maps/place/${restaurant.street_address}`} target="_blank" rel="noreferrer"><i className="fa-solid fa-diamond-turn-right"/>Get Directions</a>
 </div>
+
               </div>
             </PageContainer>
         </PageWrapper>
