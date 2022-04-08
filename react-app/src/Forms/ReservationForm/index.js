@@ -39,6 +39,7 @@ export const ReservationForm = () => {
 
     return (
             <form className={styles.form} onSubmit={handleSubmit}>
+                <ul>{errors && errors.map(error => (<li>{error}</li>))}</ul>
                 <strong className={styles.title}>Make a reservation</strong>
                 <hr></hr>
                 <div className={styles.party}>

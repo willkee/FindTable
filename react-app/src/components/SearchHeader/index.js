@@ -34,8 +34,8 @@ const SearchHeader = () => {
             return
         }
 
-        console.log(date.toDateString())
-        console.log(time)
+        // console.log(date.toDateString())
+        // console.log(time)
 
         if (searchQuery) {
             history.push({

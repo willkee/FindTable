@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
 import styles from './ReviewCounter.module.css'
 
 const ReviewCounter = ({ stars }) => {
@@ -38,7 +37,7 @@ const ReviewCounter = ({ stars }) => {
         setFiveStar(five)
         setTotal(one + two + three + four + five)
         setLoaded(true)
-    }, [])
+    }, [stars])
 
     return (
         <div>

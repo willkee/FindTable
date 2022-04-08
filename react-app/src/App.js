@@ -88,7 +88,7 @@ function App() {
                 <SearchResults />
               </Route>
             </Switch>
-            <div className='return_to_top_button'><a href="#"><i className="fa-solid fa-angles-up"></i></a></div>
+            <div className='return_to_top_button'><a href="#top"><i className="fa-solid fa-angles-up"></i></a></div>
             {/* <Footer /> */}
       </PageWrapper>
     </BrowserRouter>
