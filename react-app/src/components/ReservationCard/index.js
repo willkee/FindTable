@@ -9,18 +9,6 @@ export const ReservationCard = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    // const today = new Date().toISOString();
-    // console.log(today)
-    // const formatDate = today.substring(0,today.length-1)
-    // console.log(formatDate)
-    // const dateTimeLocal = formatDate.slice(0, 16)
-    // console.log(dateTimeLocal)
-    // const reservationTime = formatDate.slice(11, 13)
-    // console.log(reservationTime)
-    // const futureTime = parseInt(reservationTime)+2
-    // console.log(futureTime)
-
-
     const [date, setDate] = useState(new Date())
     const [time, setTime] = useState("")
     const [people, setPeople] = useState(1)
@@ -38,8 +26,6 @@ export const ReservationCard = () => {
             date: date,
             time: time
         }
-        console.log(typeof reservationData.date)
-        console.log(typeof reservationData.time)
 
         const newReservation = await dispatch(createReservation(reservationData));
 
@@ -53,9 +39,10 @@ export const ReservationCard = () => {
 
     return (
             <form className={styles.form} onSubmit={handleSubmit}>
-                <div><strong>Make a reservation</strong></div>
-                <div>
-                    <p><strong>*Party Size (required)</strong></p>
+                <strong className={styles.title}>Make a reservation</strong>
+                <hr></hr>
+                <div className={styles.party}>
+                    <strong>Party Size</strong>
                     <p>If you're party has more than 10 people, please call the restaurant.</p>
                     <select value={people} onChange={(e) => setPeople(e.target.value)}>
                         <option value="">-- Select number of people --</option>
@@ -71,11 +58,9 @@ export const ReservationCard = () => {
                         <option value={10}>10 people</option>
                     </select>
                 </div>
-                <div>
+                <div className={styles.input}>
                     <label htmlFor="date"><strong>Select a date:</strong></label>
                     <input type="date" name="date" value={date} onChange={(e) => setDate(e.target.value)} />
-                </div>
-                <div>
                     <label htmlFor="time"><strong>Select a time:</strong></label>
                     <input type="time" name="time" value={time} onChange={(e) => setTime(e.target.value)} />
                 </div>
@@ -83,3 +68,14 @@ export const ReservationCard = () => {
             </form>
     )
 }
+
+    // const today = new Date().toISOString();
+    // console.log(today)
+    // const formatDate = today.substring(0,today.length-1)
+    // console.log(formatDate)
+    // const dateTimeLocal = formatDate.slice(0, 16)
+    // console.log(dateTimeLocal)
+    // const reservationTime = formatDate.slice(11, 13)
+    // console.log(reservationTime)
+    // const futureTime = parseInt(reservationTime)+2
+    // console.log(futureTime)

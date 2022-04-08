@@ -1,9 +1,56 @@
-.card {
-    width: 200px;
+.form {
+    width: 250px;
     height: 380px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.title {
+    font-size: 21px;
+}
+
+hr {
+    height: 1px;
+    width: 200px;
+    background-color: lightgrey;
+    margin-top: -10px;
+}
+
+p {
+    font-size: 14px;
+    text-align: left;
+}
+
+.party {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    width: 200px;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    width: 200px;
+}
+
+button {
+    width: 200px;
+    height: 30px;
+    color: white;
+    background-color: #983937;
+    opacity: 50%;
+    border: none;
     border-radius: 5px;
 }
 
-.calendar {
-    
+button:hover {
+    opacity: 100%;
 }
