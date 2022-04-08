@@ -61,8 +61,7 @@ function App() {
           <Modal />
           <Switch>
             <Route exact path='/'>
-              <Homepage />
-              <RestaurantsList all_restaurants={all_restaurants} />
+              <Homepage all_restaurants={all_restaurants} />
             </Route>
             <Route exact path="/restaurants/:id">
               <SingleRestaurant />
@@ -107,6 +106,3 @@ function App() {
 }
 
 export default App;
-
-
-
