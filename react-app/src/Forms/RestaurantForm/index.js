@@ -15,7 +15,7 @@ export const RestaurantForm = ({ restaurant }) => {
     const [phoneNumber, setPhoneNumber] = useState(restaurant?.phone_number || '')
     const [website, setWebsite] = useState(restaurant?.website || '')
     const [streetAddress, setStreetAddress] = useState(restaurant?.street_address || '')
-    const [borough, setBorough] = useState(restaurant?.borough || '')
+    const [borough, setBorough] = useState(restaurant?.borough || 'Manhattan')
     const [accessible, setAccessible] = useState('')
     const [cuisines, setCuisines] = useState([])
     const [settings, setSettings] = useState([])
@@ -58,12 +58,10 @@ export const RestaurantForm = ({ restaurant }) => {
         : !streetAddress ? setErrors(['Please provide an address.'])
         : setErrors([])
 
-        const id = restaurant.id
-        const updateData = { formData, id }
-
         // conditional checking if there is a restaurant already created. If so, send a put request. Else send a post request.
         if (restaurant) {
-            console.log('\n\n SETTINGS---', updateData.settings)
+            const id = restaurant?.id
+            const updateData = { formData, id }
             const updatedRestaurant = await dispatch(updateRestaurant(updateData))
             if (updatedRestaurant.error) {
                 setErrors(updatedRestaurant.error)
