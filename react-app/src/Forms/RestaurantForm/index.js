@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { createRestaurant, updateRestaurant } from '../../store/restaurants';
-import { CuisinesIcon, RedStar, RestaurantIcon } from '../../components/Icons';
+import { CuisinesIcon, RestaurantIcon } from '../../components/Icons';
 import styles from './RestaurantForm.module.css'
 import { hideModal } from '../../store/modal';
 
