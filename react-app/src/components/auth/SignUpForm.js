@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
 import { signUp } from '../../store/session';
 import { setCurrentModal, hideModal } from '../../store/modal';
 import LoginForm from './LoginForm';
@@ -12,7 +11,6 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onSubmit = async (e) => {
@@ -29,10 +27,6 @@ const SignUpForm = () => {
   const showLoginForm = () => {
     dispatch(setCurrentModal(LoginForm))
   }
-
-  // if (user) {
-  //   return <Redirect to='/' />;
-  // }
 
   return (
     <form onSubmit={onSubmit}>

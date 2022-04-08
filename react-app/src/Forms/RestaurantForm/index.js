@@ -1,32 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-// import { retrieveSettings } from '../../store/settings'
-// import { retrieveCusines } from '../../store/cuisines'
-import { createRestaurant } from '../../store/restaurants';
-import { CuisinesIcon, RedStar, RestaurantIcon } from '../../components/Icons';
+import { createRestaurant, updateRestaurant } from '../../store/restaurants';
+import { CuisinesIcon, RestaurantIcon } from '../../components/Icons';
 import styles from './RestaurantForm.module.css'
-
+import { hideModal } from '../../store/modal';
 
 export const RestaurantForm = ({ restaurant }) => {
 
-    const [name, setName] = useState(restaurant.name)
-    const [priceRating, setPriceRating] = useState(restaurant.priceRating)
-    const [description, setDescription] = useState(restaurant.description)
-    const [imageURL, setImageURL] = useState(restaurant.image_url)
-    const [phoneNumber, setPhoneNumber] = useState(restaurant.phone_number)
-    const [website, setWebsite] = useState(restaurant.website)
-    const [streetAddress, setStreetAddress] = useState(restaurant.street_address)
-    const [borough, setBorough] = useState(restaurant.borough)
-    const [accessible, setAccessible] = useState(restaurant.accessible)
-    const [cuisines, setCuisines] = useState(restaurant.settings)
-    const [settings, setSettings] = useState(restaurant.cuisines)
+    const [name, setName] = useState(restaurant?.name || '')
+    const [priceRating, setPriceRating] = useState(restaurant?.priceRating || 1)
+    const [description, setDescription] = useState(restaurant?.description || '')
+    const [imageURL, setImageURL] = useState(restaurant?.image_url || '')
+    const [phoneNumber, setPhoneNumber] = useState(restaurant?.phone_number || '')
+    const [website, setWebsite] = useState(restaurant?.website || '')
+    const [streetAddress, setStreetAddress] = useState(restaurant?.street_address || '')
+    const [borough, setBorough] = useState(restaurant?.borough || 'Manhattan')
+    const [accessible, setAccessible] = useState('')
+    const [cuisines, setCuisines] = useState([])
+    const [settings, setSettings] = useState([])
     const [errors, setErrors] = useState([])
     const settingsState = useSelector(state => Object.values(state.settings))
     const cuisinesState = useSelector(state => Object.values(state.cuisines))
 
     const dispatch = useDispatch()
     const history = useHistory()
+    // const { id } = useParams()
+
 
     // useEffect(() => {
     //     (async() => {
@@ -34,7 +34,7 @@ export const RestaurantForm = ({ restaurant }) => {
     //       await dispatch(retrieveCusines())
     //     })();
     //   }, [dispatch]);
-    console.log("\n\n REST ---", restaurant, "\n\n")
+    // console.log("\n\n UpdateForm ---", restaurant, "\n\n")
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -58,14 +58,25 @@ export const RestaurantForm = ({ restaurant }) => {
         : !streetAddress ? setErrors(['Please provide an address.'])
         : setErrors([])
 
-
-
-        const newRestaurant = await dispatch(createRestaurant(formData))
-        if (newRestaurant.error) {
-            setErrors(newRestaurant.error)
-        }
-        else {
-            history.push(`/restaurants/${newRestaurant.id}`)
+        // conditional checking if there is a restaurant already created. If so, send a put request. Else send a post request.
+        if (restaurant) {
+            const id = restaurant?.id
+            const updateData = { formData, id }
+            const updatedRestaurant = await dispatch(updateRestaurant(updateData))
+            if (updatedRestaurant.error) {
+                setErrors(updatedRestaurant.error)
+            }
+            else {
+                dispatch(hideModal())
+            }
+        } else {
+            const newRestaurant = await dispatch(createRestaurant(formData))
+            if (newRestaurant.error) {
+                setErrors(newRestaurant.error)
+            }
+            else {
+                history.push(`/restaurants/${newRestaurant.id}`)
+            }
         }
         }
 

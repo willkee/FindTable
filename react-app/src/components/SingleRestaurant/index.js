@@ -13,6 +13,7 @@ import ReviewCounter from '../ReviewCounter';
 import { ReservationForm } from '../../Forms/ReservationForm'
 // import { ReviewForm } from '../../Forms/ReviewForm';
 import { UpdateRestaurant } from '../UpdateRestaurant'
+import { ReviewsDisplay } from '../ReviewsDisplay';
 // import { showModal, setCurrentModal } from '../../store/modal';
 
 
@@ -99,7 +100,6 @@ export const SingleRestaurant = () => {
                     {isOwner && <UpdateRestaurant restaurant={restaurant}/>}
                     {/* Restaurant Cuisine */}
                     <div>{restaurant.description}</div>
-
                     {Object.values(restaurant.reviews).length > 0 ?
                         Object.values(restaurant.reviews).length === 1 ?
                           <div>
@@ -122,7 +122,7 @@ export const SingleRestaurant = () => {
                         <hr></hr>
                     </div>
                     }
-
+                    <ReviewsDisplay restaurant={restaurant}/>
                 </div>
               </div>
 

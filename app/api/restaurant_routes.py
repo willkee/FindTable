@@ -76,6 +76,8 @@ def restaurantUpdate(id):
   restaurant_settings = request.json['settings']
   restaurant_cuisines = request.json['cuisines']
 
+  print('\n\n REST --', restaurant_settings, '\n\n')
+
   form['csrf_token'].data = request.cookies['csrf_token']
 
   if form.validate_on_submit():

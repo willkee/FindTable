@@ -199,12 +199,12 @@ export const receiveAllRestaurants = () => async dispatch => {
 //     }
 //   }
 
-export const updateRestaurant = updatedRest =>
+export const updateRestaurant = ({formData, id}) =>
   async dispatch => {
-    const res = await fetch(`/api/restaurants/${updatedRest.id}`, {
+    const res = await fetch(`/api/restaurants/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updatedRest)
+      body: JSON.stringify(formData)
     })
 
     const updated = await res.json();
