@@ -110,9 +110,9 @@ async dispatch => {
     body: JSON.stringify(data)
   })
 
-  const updatedReservation = await res.json();
-  dispatch(updatedReservation(updatedReservation))
-  return updatedReservation
+  const editedReservation = await res.json();
+  dispatch(updatedReservation(editedReservation))
+  return editedReservation
 }
 
 export const deleteReservation = reservationId =>
@@ -121,9 +121,9 @@ async dispatch => {
     method: 'DELETE'
   })
 
-  const deletedReservation = await res.json();
-  dispatch(deletedReservation(deletedReservation))
-  return deletedReservation
+  const deleted = await res.json();
+  dispatch(deletedReservation(deleted))
+  return deleted
 }
 
 //thunks for reviews
