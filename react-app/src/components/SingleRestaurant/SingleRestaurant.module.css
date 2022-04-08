@@ -38,7 +38,13 @@
     top: 75px;
     padding: 0 20px;
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
+
 
 .sr_content h2 {
     text-align: center;
