@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { retrieveSettings } from '../../store/settings'
-import { retrieveCusines } from '../../store/cuisines'
+// import { retrieveSettings } from '../../store/settings'
+// import { retrieveCusines } from '../../store/cuisines'
 import { createRestaurant } from '../../store/restaurants';
 import { CuisinesIcon, RedStar, RestaurantIcon } from '../../components/Icons';
 import styles from './RestaurantForm.module.css'
 
 
-export const RestaurantForm = ({ all_settings, all_cuisines }) => {
+export const RestaurantForm = ({ restaurant }) => {
 
-    const [name, setName] = useState('')
-    const [priceRating, setPriceRating] = useState(1)
-    const [description, setDescription] = useState('')
-    const [imageURL, setImageURL] = useState('')
-    const [phoneNumber, setPhoneNumber] = useState('')
-    const [website, setWebsite] = useState('')
-    const [streetAddress, setStreetAddress] = useState('')
-    const [borough, setBorough] = useState('Manhattan')
-    const [accessible, setAccessible] = useState('')
-    const [cuisines, setCuisines] = useState([])
-    const [settings, setSettings] = useState([])
+    const [name, setName] = useState(restaurant.name)
+    const [priceRating, setPriceRating] = useState(restaurant.priceRating)
+    const [description, setDescription] = useState(restaurant.description)
+    const [imageURL, setImageURL] = useState(restaurant.image_url)
+    const [phoneNumber, setPhoneNumber] = useState(restaurant.phone_number)
+    const [website, setWebsite] = useState(restaurant.website)
+    const [streetAddress, setStreetAddress] = useState(restaurant.street_address)
+    const [borough, setBorough] = useState(restaurant.borough)
+    const [accessible, setAccessible] = useState(restaurant.accessible)
+    const [cuisines, setCuisines] = useState(restaurant.settings)
+    const [settings, setSettings] = useState(restaurant.cuisines)
     const [errors, setErrors] = useState([])
     const settingsState = useSelector(state => Object.values(state.settings))
     const cuisinesState = useSelector(state => Object.values(state.cuisines))
@@ -28,13 +28,13 @@ export const RestaurantForm = ({ all_settings, all_cuisines }) => {
     const dispatch = useDispatch()
     const history = useHistory()
 
-    useEffect(() => {
-        (async() => {
-          await dispatch(retrieveSettings())
-          await dispatch(retrieveCusines())
-        })();
-      }, [dispatch]);
-
+    // useEffect(() => {
+    //     (async() => {
+    //       await dispatch(retrieveSettings())
+    //       await dispatch(retrieveCusines())
+    //     })();
+    //   }, [dispatch]);
+    console.log("\n\n REST ---", restaurant, "\n\n")
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -61,9 +61,7 @@ export const RestaurantForm = ({ all_settings, all_cuisines }) => {
 
 
         const newRestaurant = await dispatch(createRestaurant(formData))
-        console.log(newRestaurant.id)
         if (newRestaurant.error) {
-            console.log('ERRORS \n\n', newRestaurant.error)
             setErrors(newRestaurant.error)
         }
         else {
@@ -91,7 +89,7 @@ export const RestaurantForm = ({ all_settings, all_cuisines }) => {
             cuisines_array.push(e.target.value)
         }
         setCuisines(cuisines_array)
-        console.log(cuisines_array)
+        // console.log(cuisines_array)
     }
 
     return (

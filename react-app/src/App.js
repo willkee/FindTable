@@ -63,12 +63,12 @@ function App() {
               <Homepage />
               <RestaurantsList all_restaurants={all_restaurants} />
             </Route>
-            <ProtectedRoute exact path="/new-restaurant">
-              <CreateRestaurant />
-            </ProtectedRoute>
             <Route exact path="/restaurants/:id">
               <SingleRestaurant />
             </Route>
+            <ProtectedRoute exact path="/new-restaurant">
+              <CreateRestaurant />
+            </ProtectedRoute>
             {/* <ProtectedRoute path='/reservations' exact={true} >
               <Reservations/>
             </ProtectedRoute>  */}
