@@ -10,27 +10,23 @@ export const ReviewsDisplay = ({restaurant}) => {
 
   return (
       <div>
-        {/* {reviews.map((review) => (
-            <img src={review.imgURL}>
-            <div>
-              {review.rating}
-            </div>
-            <div>
-              {review.review}
-            </div>
-
-        ))} */}
-        {reviews.map((review) => {
+        {reviews.map((review) => (
           <>
-            <img src={review.imgURL} alt=''/>
+            <div>
+              {review.user.first_name}
+            </div>
+            <div>
+              {}
+            </div>
+            <img src={review.imgURL}/>
             <div>
               {review.rating}
             </div>
-            <div>
+              <div>
               {review.review}
-            </div>
+              </div>
           </>
-        })}
+        ))}
       </div>
   )
 }
