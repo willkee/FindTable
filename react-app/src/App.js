@@ -16,9 +16,7 @@ import { Homepage } from './components/Homepage';
 // import { Footer } from "./components/Footer"
 import { SingleRestaurant } from './components/SingleRestaurant';
 import { PageWrapper } from '../src/components/PageWrapper';
-
-import { NewRestaurant } from './Forms/RestaurantForm';
-
+import { CreateRestaurant } from './components/CreateRestaurant'
 import { receiveAllRestaurants } from './store/restaurants';
 import { allUsers } from './store/users';
 import { retrieveSettings } from './store/settings';
@@ -34,8 +32,8 @@ function App() {
 
   const users = useSelector(state => Object.values(state.users))
   const all_restaurants = useSelector(state => Object.values(state.restaurants))
-  const all_settings = useSelector(state => Object.values(state.settings))
-  const all_cuisines = useSelector(state => Object.values(state.cuisines))
+  // const all_settings = useSelector(state => Object.values(state.settings))
+  // const all_cuisines = useSelector(state => Object.values(state.cuisines))
   //const reviews = useSelector(state => Object.values(state.reviews))
   //const reservations = useSelector(state => Object.values(state.reservations))
   //const favorites = useSelector(state => Object.values(state.favorites))
@@ -45,8 +43,8 @@ function App() {
       await dispatch(authenticate());
       await dispatch(receiveAllRestaurants())
       await dispatch(allUsers())
-      await dispatch(retrieveSettings())
-      await dispatch(retrieveCusines())
+      // await dispatch(retrieveSettings())
+      // await dispatch(retrieveCusines())
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -66,7 +64,7 @@ function App() {
               <RestaurantsList all_restaurants={all_restaurants} />
             </Route>
             <ProtectedRoute exact path="/new-restaurant">
-              <NewRestaurant all_settings={all_settings} all_cuisines={all_cuisines}/>
+              <CreateRestaurant />
             </ProtectedRoute>
             <Route exact path="/restaurants/:id">
               <SingleRestaurant />
