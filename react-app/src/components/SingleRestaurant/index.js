@@ -9,6 +9,8 @@ import pattern from './pattern.png'
 import ReviewCounter from '../ReviewCounter';
 // import { createReview } from '../../store/reviews';
 
+// import { ReviewForm } from '../../Forms/ReviewForm';
+import { ReservationForm } from '../../Forms/ReservationForm'
 import { ReviewForm } from '../../Forms/ReviewForm';
 import { UpdateRestaurant } from '../UpdateRestaurant'
 import { showModal, setCurrentModal } from '../../store/modal';
