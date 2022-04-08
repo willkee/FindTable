@@ -21,7 +21,7 @@ def valid_phone_number(form, field):
 
 def valid_image(form, field):
   img_url = field.data
-  if not img_url.endswith('.jpg') or img_url.endswith('.jpeg') or img_url.endswith('.png'):
+  if not (img_url.endswith('.jpg') or img_url.endswith('.jpeg') or img_url.endswith('.png')):
     raise ValidationError('Image format must be .jpg, .jpeg, or .png')
 
 # def valid_website(fomr, field):

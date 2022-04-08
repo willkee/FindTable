@@ -29,7 +29,6 @@ export const SingleRestaurant = () => {
   sessionUser && restaurant.owner_id === sessionUser.id ? isOwner = true : isOwner = false
 
 
-
   const stars = Object.values(restaurant.reviews).map(review => review.stars)
 
 
@@ -45,6 +44,10 @@ export const SingleRestaurant = () => {
 
 
   const getAverageRating = (data) => {
+
+    if (Object.values(restaurant.reviews).length === 0) {
+      return "No"
+    }
     let totalStars = 0;
     Object.values(data.reviews).forEach(review => totalStars += review.stars)
     return (totalStars / Object.values(data.reviews).length).toFixed(1)
@@ -79,10 +82,10 @@ export const SingleRestaurant = () => {
                       <span><i className="fa-solid fa-money-check-dollar"></i> {showPriceRating(restaurant.price_rating)}</span>
 
                       {/* Restaurant Cuisine */}
-                      <span><i className="fa-solid fa-utensils"></i> {restaurant.cuisines.map(cuisine => (<span key={cuisine.id}>{cuisine.type}</span>))}</span>
+                      <span><i className="fa-solid fa-utensils"></i> {restaurant.cuisines.map(cuisine => (<span key={cuisine.id}>{cuisine.type}   </span>))}</span>
 
                       {/* Restaurant Setting */}
-                      <span><i className="fa-solid fa-building"></i> {restaurant.settings.map(setting => (<span key={setting.id}>{setting.type}</span>))}</span>
+                      <span><i className="fa-solid fa-building"></i> {restaurant.settings.map(setting => (<span key={setting.id}>{setting.type}  </span>))}</span>
                     </div>
 
                     <div className={styles.content_sub_header2}>
@@ -92,13 +95,31 @@ export const SingleRestaurant = () => {
                       {/* Restaurant Review Count */}
                       <span><i className="fa-solid fa-message"/> {` ${Object.values(restaurant.reviews).length} Reviews`}</span>
                     </div>
-                    {isOwner && <UpdateRestaurant props={restaurant}/>}
+                    {isOwner && <UpdateRestaurant restaurant={restaurant}/>}
                     {/* Restaurant Cuisine */}
                     <div>{restaurant.description}</div>
+                    {Object.values(restaurant.reviews).length > 0 ?
+                        Object.values(restaurant.reviews).length === 1 ?
+                          <div>
+                            <h3>What {Object.values(restaurant.reviews).length} person is saying</h3>
+                            <hr></hr>
+                            <ReviewCounter stars={stars}/>
+                            <hr></hr>
+                          </div>
+                          :
+                          <div>
+                            <h3>What {Object.values(restaurant.reviews).length} people are saying</h3>
+                            <hr></hr>
+                            <ReviewCounter stars={stars}/>
+                            <hr></hr>
+                          </div>
 
-                    <h3>What {Object.values(restaurant.reviews).length} people are saying</h3>
-                    <hr></hr>
-                    <ReviewCounter stars={stars}/>
+                    :
+                    <div>
+                        <h3>There are no reviews.</h3>
+                        <hr></hr>
+                    </div>
+                    }
                     <ReviewsDisplay restaurant={restaurant}/>
                 </div>
               </div>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { ReservationCard } from '../ReservationCard'
 import { PageContainer } from '../PageContainer'
 import { PageWrapper } from '../PageWrapper'
 
@@ -8,6 +9,7 @@ const ProfilePage = () => {
 
         <PageContainer>
             <h1>Profile Page</h1>
+            <ReservationCard />
         </PageContainer>
         </PageWrapper>
     )

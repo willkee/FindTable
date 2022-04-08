@@ -80,14 +80,17 @@ function App() {
                 <User />
               </ProtectedRoute>
 
-              <Route exact path="/my-profile">
+              <ProtectedRoute exact path="/my-profile">
+                  <ProfilePage />
+              </ProtectedRoute>
+              {/* <Route exact path="/my-profile">
               {sessionUser
                   ?
                   <ProfilePage />
                   :
                   <Redirect to="/" />
                 }
-              </Route>
+              </Route> */}
 
               <ProtectedRoute exact path="/my_reservations">
                 <h1>Hello</h1>
@@ -104,3 +107,6 @@ function App() {
 }
 
 export default App;
+
+
+
