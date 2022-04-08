@@ -1,11 +1,11 @@
-import styles from "./ReservationCard.module.css";
+import styles from "./ReservationForm.module.css";
 // import Calendar from 'react-calendar'
 import { useState } from "react";
 import { useDispatch} from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createReservation } from "../../store/restaurants";
 
-export const ReservationCard = () => {
+export const ReservationForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
