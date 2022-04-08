@@ -37,14 +37,8 @@ const ReviewCounter = ({ stars }) => {
         setFourStar(four)
         setFiveStar(five)
         setTotal(one + two + three + four + five)
-
         setLoaded(true)
     }, [])
-    // style={{color: "red", fontSize: "16px"}}
-
-    const twoCSS = {
-        width: `${(twoStar / total) * 100}}`
-    }
 
     return (
         <div>
@@ -56,19 +50,19 @@ const ReviewCounter = ({ stars }) => {
                     <div>Four Star: {(fourStar / total)*100}</div>
                     <div>Five Star: {(fiveStar / total)*100}</div>
                     <div className={styles.clear_bar}>
-                    <div className={styles.red_bar} style={twoCSS}></div>
+                    <div className={styles.red_bar} style={{width:`${(oneStar / total) * 100}%`}}></div>
                     </div>
                     <div className={styles.clear_bar}>
-                    <div className={styles.red_bar} width={`${(twoStar / total) * 100}px`}></div>
+                    <div className={styles.red_bar} style={{width:`${(twoStar / total) * 100}%`}}></div>
                     </div>
                     <div className={styles.clear_bar}>
-                    <div className={styles.red_bar} width={`${(threeStar / total) * 100}px`}></div>
+                    <div className={styles.red_bar} style={{width:`${(threeStar / total) * 100}%`}}></div>
                     </div>
                     <div className={styles.clear_bar}>
-                    <div className={styles.red_bar} width={`${(fourStar / total) * 100}px`}></div>
+                    <div className={styles.red_bar} style={{width:`${(fourStar / total) * 100}%`}}></div>
                     </div>
                     <div className={styles.clear_bar}>
-                    <div className={styles.red_bar} width={`${(fiveStar / total) * 100}px`}></div>
+                    <div className={styles.red_bar} style={{width:`${(fiveStar / total) * 100}%`}}></div>
                     </div>
                 </div>
             )}
