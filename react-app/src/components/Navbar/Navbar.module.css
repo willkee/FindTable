@@ -45,6 +45,17 @@
   justify-content: space-between;
 }
 
+.right_logged_in {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  right: 2rem;
+  width: 300px;
+  justify-content: space-between;
+  background-color: green;
+}
+
 .right * {
   margin-right: 0.5rem;
 }

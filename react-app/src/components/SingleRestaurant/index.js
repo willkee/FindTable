@@ -10,7 +10,7 @@ import ReviewCounter from '../ReviewCounter';
 // import { createReview } from '../../store/reviews';
 
 // import { ReviewForm } from '../../Forms/ReviewForm';
-// import { ReservationForm } from '../../Forms/ReservationForm'
+import { ReservationForm } from '../../Forms/ReservationForm'
 // import { ReviewForm } from '../../Forms/ReviewForm';
 import { UpdateRestaurant } from '../UpdateRestaurant'
 // import { showModal, setCurrentModal } from '../../store/modal';
@@ -69,7 +69,9 @@ export const SingleRestaurant = () => {
             <PageContainer className={styles.sr_custom_pc}>
               <img src={pattern} className={styles.sr_banner} alt="banner pattern"></img>
               <img className={styles.sr_img} src={restaurant.img_url} alt="" width="200px"></img>
-              <div className={styles.left_sidebar}></div>
+              <div className={styles.left_sidebar}>
+                <ReservationForm />
+              </div>
 
               <div className={styles.sr_parent}>
                 <div className={styles.sr_content}>
@@ -93,7 +95,7 @@ export const SingleRestaurant = () => {
 
                       {/* Restaurant Review Count */}
                       <span><i className="fa-solid fa-message"/> {` ${Object.values(restaurant.reviews).length} Reviews`}</span>
-                    </div>``
+                    </div>
                     {isOwner && <UpdateRestaurant restaurant={restaurant}/>}
                     {/* Restaurant Cuisine */}
                     <div>{restaurant.description}</div>

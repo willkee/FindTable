@@ -41,7 +41,7 @@ const NavBar = () => {
             <Logo /> <span>FindTable</span>
           </NavLink>
         </div>
-        <div className={styles.right}>
+        <div className={styles.right_logged_in}>
             <div>
               <div className={styles.profile_icon}>
                 <ProfileDropdown />
