@@ -27,20 +27,21 @@
     align-items: top;
 }
 
-.discover {
-    width: 1000px;
+.linksBox {
+    width: 250px;
     height: 150px;
     color: white;
 }
 
 .label {
-    font-weight: 800;
+    font-weight: 900;
+    padding: 0px;
 }
 
 .sectionLinks {
     list-style: none;
     color: white;
-    font-weight: 700;
+    font-weight: 300;
     text-decoration: none;
 }
 
@@ -57,6 +58,7 @@
     align-items: center;
     width: 1000px;
     padding: 0px;
+    color: white;
 }
 
 .items {
@@ -68,15 +70,17 @@
 }
 
 .github {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     background-color: white;
     border-radius: 100%;
+    margin-left: 5px;
 }
 
 .linkedin {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     background-color:white;
     border-radius: 5px;
+    margin-left: 5px;
 }
