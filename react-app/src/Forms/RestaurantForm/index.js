@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { PageContainer } from "../../components/PageContainer";
+import { retrieveSettings } from '../../store/settings'
+import { retrieveCusines } from '../../store/cuisines'
 import { createRestaurant } from '../../store/restaurants';
 import { CuisinesIcon, RedStar, RestaurantIcon } from '../../components/Icons';
 import styles from './RestaurantForm.module.css'
 
 
-export const NewRestaurant = ({ all_settings, all_cuisines }) => {
+export const RestaurantForm = ({ all_settings, all_cuisines }) => {
+
     const [name, setName] = useState('')
     const [priceRating, setPriceRating] = useState(1)
     const [description, setDescription] = useState('')
@@ -25,6 +27,14 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
 
     const dispatch = useDispatch()
     const history = useHistory()
+
+    useEffect(() => {
+        (async() => {
+          await dispatch(retrieveSettings())
+          await dispatch(retrieveCusines())
+        })();
+      }, [dispatch]);
+
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -85,8 +95,6 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
     }
 
     return (
-        <PageContainer>
-            <h1 className={styles.header}>Create Your New Restaurant</h1>
             <div className={styles.container}>
                 <div className={styles.form_entries}>
                     <h2>Restaurant Information</h2>
@@ -244,6 +252,5 @@ export const NewRestaurant = ({ all_settings, all_cuisines }) => {
                     </div>
                 </div>
             </div>
-        </PageContainer>
     )
 }

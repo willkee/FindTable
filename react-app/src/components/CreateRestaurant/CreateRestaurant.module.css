@@ -1,0 +1,11 @@
+.update_button {
+    color: red;
+    font-size: 16px;
+    font-weight: 400;
+    width: 100%;
+  }
+
+  .update_button:hover {
+    color: black;
+    background-color: rgba(0,0,0,.03);
+  }
