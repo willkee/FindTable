@@ -44,6 +44,10 @@ def create_restaurant():
     for cuisineId in restaurant_cuisines: # attach cuisines to new restaurant
       new_restaurant.cuisines.append(Cuisine.query.get(int(cuisineId)))
 
+    # find the user's business owner status. If false, update to true
+    if not current_user.business_owner:
+      current_user.business_owner = True
+
     db.session.add(new_restaurant)
 
     db.session.commit()
