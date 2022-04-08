@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './index.css'
 
@@ -16,9 +16,7 @@ import { Homepage } from './components/Homepage';
 // import { Footer } from "./components/Footer"
 import { SingleRestaurant } from './components/SingleRestaurant';
 import { PageWrapper } from '../src/components/PageWrapper';
-
-import { NewRestaurant } from './Forms/RestaurantForm';
-
+import { CreateRestaurant } from './components/CreateRestaurant'
 import { receiveAllRestaurants } from './store/restaurants';
 import { allUsers } from './store/users';
 import { retrieveSettings } from './store/settings';
@@ -32,13 +30,14 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
+  const sessionUser = useSelector(state => state.session.user)
   const users = useSelector(state => Object.values(state.users))
   const all_restaurants = useSelector(state => Object.values(state.restaurants))
-  const all_settings = useSelector(state => Object.values(state.settings))
-  const all_cuisines = useSelector(state => Object.values(state.cuisines))
-  //const reviews = useSelector(state => Object.values(state.reviews))
-  //const reservations = useSelector(state => Object.values(state.reservations))
-  //const favorites = useSelector(state => Object.values(state.favorites))
+  // const all_settings = useSelector(state => Object.values(state.settings))
+  // const all_cuisines = useSelector(state => Object.values(state.cuisines))
+  // const reviews = useSelector(state => Object.values(state.reviews))
+  // const reservations = useSelector(state => Object.values(state.reservations))
+  // const favorites = useSelector(state => Object.values(state.favorites))
 
   useEffect(() => {
     (async() => {
@@ -62,26 +61,38 @@ function App() {
           <Modal />
           <Switch>
             <Route exact path='/'>
-              <Homepage />
-              <RestaurantsList all_restaurants={all_restaurants} />
+              <Homepage all_restaurants={all_restaurants} />
             </Route>
-            <ProtectedRoute exact path="/new-restaurant">
-              <NewRestaurant all_settings={all_settings} all_cuisines={all_cuisines}/>
-            </ProtectedRoute>
             <Route exact path="/restaurants/:id">
               <SingleRestaurant />
             </Route>
+            <ProtectedRoute exact path="/new-restaurant">
+              <CreateRestaurant />
+            </ProtectedRoute>
             {/* <ProtectedRoute path='/reservations' exact={true} >
               <Reservations/>
-            </ProtectedRoute> */}
+            </ProtectedRoute>  */}
             <ProtectedRoute exact path='/users'>
               <UsersList users={users} />
               </ProtectedRoute>
               <ProtectedRoute exact path='/users/:userId'>
                 <User />
               </ProtectedRoute>
+
               <ProtectedRoute exact path="/my-profile">
-                <ProfilePage />
+                  <ProfilePage />
+              </ProtectedRoute>
+              {/* <Route exact path="/my-profile">
+              {sessionUser
+                  ?
+                  <ProfilePage />
+                  :
+                  <Redirect to="/" />
+                }
+              </Route> */}
+
+              <ProtectedRoute exact path="/my_reservations">
+                <h1>Hello</h1>
               </ProtectedRoute>
               <Route exact path='/search/:dateString/:timeParams/:searchWord'>
                 <SearchResults />

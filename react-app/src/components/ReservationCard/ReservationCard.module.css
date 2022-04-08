@@ -1,9 +1,10 @@
-.card {
-    width: 200px;
-    height: 380px;
+img {
+    width: 125px;
+    height: 125px;
     border-radius: 5px;
 }
 
-.calendar {
-    
+p {
+    font-size: 14px;
 }
+

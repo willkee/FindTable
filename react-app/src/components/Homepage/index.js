@@ -1,16 +1,14 @@
 import styles from './Homepage.module.css'
 import {PageContainer} from '../PageContainer'
 import SearchHeader from '../SearchHeader'
+import RestaurantsList from '../RestaurantsList'
 // import { useDispatch } from 'react-redux'
 // import { getLocation } from '../../store/session'
 
-import { useEffect, useState } from 'react'
-
-import { ReservationCard } from '../ReservationCard'
+// import { useEffect, useState } from 'react'
 
 
-
-export const Homepage = () => {
+export const Homepage = ({ all_restaurants }) => {
   // const [location, setLocation] = useState('Brooklyn')
   // const [userLocation, setUserLocation] = useState([])
   // const dispatch = useDispatch()
@@ -58,10 +56,7 @@ export const Homepage = () => {
     <PageContainer>
 
       <SearchHeader className={styles.search_header_component} />
-      {<div>
-        {userLocation}
-      </div>}
-      <ReservationCard />
+      <RestaurantsList all_restaurants={all_restaurants} />
 
     </PageContainer>
   )

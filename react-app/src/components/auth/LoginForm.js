@@ -30,9 +30,9 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
-  if (user) {
-    return <Redirect to='/' />;
-  }
+  // if (user) {
+  //   return <Redirect to='/' />;
+  // }
 
   const showSignUpForm = () => {
     dispatch(setCurrentModal(SignUpForm))
@@ -67,6 +67,7 @@ const LoginForm = () => {
             name='password'
             type='password'
             placeholder='Password'
+            autoComplete='none'
             value={password}
             onChange={updatePassword}
           />
