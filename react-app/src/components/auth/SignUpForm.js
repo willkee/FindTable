@@ -74,6 +74,7 @@ const SignUpForm = () => {
           type='password'
           name='password'
           onChange={e => setPassword(e.target.value)}
+          autoComplete='none'
           value={password}
         ></input>
       </div>
@@ -83,6 +84,7 @@ const SignUpForm = () => {
           type='password'
           name='confirmPassword'
           onChange={e => setConfirmPassword(e.target.value)}
+          autoComplete='none'
           value={confirmPassword}
         ></input>
       </div>

@@ -67,6 +67,7 @@ const LoginForm = () => {
             name='password'
             type='password'
             placeholder='Password'
+            autoComplete='none'
             value={password}
             onChange={updatePassword}
           />
