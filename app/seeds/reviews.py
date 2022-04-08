@@ -108,7 +108,7 @@ food = [
 
 
 def seed_reviews():
-  for i in range(1, 1001):
+  for i in range(1, 501):
     reviews = Review(
       user_id = random.randint(1, 100),
       restaurant_id = random.randint(1, 90),

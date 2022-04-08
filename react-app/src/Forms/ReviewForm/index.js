@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import styles from "./ReviewForm.module.css"
 import { createReview } from '../../store/reviews';
 
@@ -9,7 +9,7 @@ import { createReview } from '../../store/reviews';
 export const ReviewForm = () => {
     const [rating, setRating] = useState(null);
     const [content, setContent] = useState(null);
-    const [imgURL, setimgURL] = useState(null);
+    // const [imgURL, setimgURL] = useState(null);
     const user = useSelector(state => state.session.user)
     const {id} = useParams()
     const dispatch = useDispatch()

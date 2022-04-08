@@ -43,7 +43,7 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
-      await dispatch(receiveAllRestaurants())
+      await dispatch(receiveAllRestaurants()) 
       await dispatch(allUsers())
       await dispatch(retrieveSettings())
       await dispatch(retrieveCusines())

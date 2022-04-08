@@ -2,8 +2,8 @@
 const RETRIEVED_USERS = "/users/RETRIEVED_USERS"
 const ADDED_USER = "/users/ADDED_USER"
 
-const CREATED_FAVORITE = '/favorites/updatedReview'
-const DELETED_FAVORITE ='/favorites/deletedReview'
+// const CREATED_FAVORITE = '/favorites/updatedReview'
+// const DELETED_FAVORITE ='/favorites/deletedReview'
 
 const retrievedUsers = (users_data) => ({
   type: RETRIEVED_USERS,

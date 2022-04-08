@@ -1,5 +1,5 @@
 import styles from "./ReservationCard.module.css";
-import Calendar from 'react-calendar'
+// import Calendar from 'react-calendar'
 import { useState } from "react";
 
 export const ReservationCard = () => {
@@ -16,7 +16,7 @@ export const ReservationCard = () => {
 
 
     const [date, setDate] = useState(dateTimeLocal)
-    const [time, setTime] = useState()
+    // const [time, setTime] = useState()
     const [people, setPeople] = useState(1)
 
     console.log(formatDate)
