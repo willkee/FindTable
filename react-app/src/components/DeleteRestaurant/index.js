@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { DeleteRestaurantForm } from '../../Forms/DeleteRestaurantForm';
 import { showModal, setCurrentModal } from '../../store/modal';
-import styles from './UpdateRestaurant.module.css'
+import styles from './DeleteRestaurant.module.css'
 
 
 export const DeleteRestaurant = ({restaurant_id}) => {
@@ -13,5 +13,5 @@ export const DeleteRestaurant = ({restaurant_id}) => {
         dispatch(showModal());
       }
 
-  return <button onClick={showDeleteForm} className={styles.update_button}>Delete Restaurant</button>;
+  return <div onClick={showDeleteForm} className={styles.button}>Delete Restaurant</div>;
 };

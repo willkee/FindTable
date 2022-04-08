@@ -103,6 +103,14 @@ export const RestaurantForm = ({ restaurant }) => {
         // console.log(cuisines_array)
     }
 
+    const handleClick_Edit = () => {
+        dispatch(hideModal())
+    }
+
+    const handleClick_New = () => {
+        history.push('/')
+    }
+
     return (
             // <div className={styles.container}>
                 <div className={styles.form_entries}>
@@ -238,8 +246,12 @@ export const RestaurantForm = ({ restaurant }) => {
                                 </fieldset>
                             </div>
                         </div>
-                        <div className={styles.submit_button}>
-                            <button  type="submit">Submit</button>
+                        <div className={styles.button_container}>
+                            <button  type="submit" className={styles.button}>Submit</button>
+                            { restaurant
+                            ? <div onClick={handleClick_Edit} role='button' className={styles.button}>Cancel</div>
+                            : <div onClick={handleClick_New} role='button' className={styles.button}>Cancel</div>
+                                }
                         </div>
                     </form>
                 </div>

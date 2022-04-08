@@ -30,6 +30,7 @@
     justify-content: center;
     background-color: #983937;
     border-radius: 5px;
+    font-weight: 600;
 }
 
 .lower_banner_button:hover {
