@@ -52,8 +52,7 @@ const RestaurantsList = ({ all_restaurants }) => {
                 </thead>
                 <tbody>
                     {all_restaurants.map(restaurant => (
-                      <>
-                        <tr>
+                      <tr key={restaurant.id}>
                             <td>{restaurant.id}</td>
                             <td>{restaurant.owner_id}</td>
                             <td>{restaurant.name}</td>
@@ -67,15 +66,14 @@ const RestaurantsList = ({ all_restaurants }) => {
                             <td>{restaurant.accessible ? "Yes" : "No"}</td>
                             <td>{joinSettings(restaurant)}</td>
                             <td>{joinCuisines(restaurant)}</td>
-                        </tr>
-                        <div>
-                          {sessionUser && sessionUser.id === restaurant?.owner_id ?
-                            <Link to={`/restaurants/`} className='delete' onClick={() => onDelete(restaurant.id)}>
-                              Delete
-                            </Link> : null
-                          }
-                        </div>
-                      </>
+                            <td>
+                              {sessionUser && sessionUser.id === restaurant?.owner_id ?
+                                <Link to={`/restaurants/`} className='delete' onClick={() => onDelete(restaurant.id)}>
+                                  Delete
+                                </Link> : null
+                              }
+                            </td>
+                      </tr>
                     ))}
                 </tbody>
             </table>

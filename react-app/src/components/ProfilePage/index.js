@@ -1,10 +1,15 @@
 import React from 'react'
+import { PageContainer } from '../PageContainer'
+import { PageWrapper } from '../PageWrapper'
 
 const ProfilePage = () => {
     return (
-        <div>
+        <PageWrapper>
+
+        <PageContainer>
             <h1>Profile Page</h1>
-        </div>
+        </PageContainer>
+        </PageWrapper>
     )
 }
 

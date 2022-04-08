@@ -33,7 +33,8 @@ const NavBar = () => {
     dispatch(showModal())
   }
 
-  return (
+  if (sessionUser) {
+    return (
     <nav className={styles.container}>
         <div className={styles.logo}>
           <NavLink to='/' exact={true} className={styles.home_link} activeClassName='active'>
@@ -41,34 +42,50 @@ const NavBar = () => {
           </NavLink>
         </div>
         <div className={styles.right}>
-          {!sessionUser &&
-          <>
+            <div>
+              <div className={styles.profile_icon}>
+                <ProfileDropdown />
+              </div>
+              <div className={styles.calendar_icon}>
+                <CalendarDropdown />
+              </div>
+              <div>
+                <GreyVerticalLine />
+              </div>
+            </div>
+            <div className={styles.search_icon} onClick={showSearchForm}>
+              <MagnifyingGlass/>
+            </div>
+        </div>
+    </nav>
+    )
+  } else {
+    return (
+     <nav className={styles.container}>
+        <div className={styles.logo}>
+          <NavLink to='/' exact={true} className={styles.home_link} activeClassName='active'>
+            <Logo /> <span>FindTable</span>
+          </NavLink>
+        </div>
+        <div className={styles.right}>
+
             <div>
               <div className={styles.signin} onClick={showLoginForm}>Log In</div>
             </div>
             <div>
               <div className={styles.signup} onClick={showSignUpForm}>Sign Up</div>
             </div>
-          </>
-          }
-          <ProtectedRoute>
-            <div className={styles.profile_icon}>
-              <ProfileDropdown />
-            </div>
-            <div className={styles.calendar_icon}>
-              <CalendarDropdown />
-            </div>
+
             <div>
-              <GreyVerticalLine />
+                <GreyVerticalLine />
             </div>
-          </ProtectedRoute>
             <div className={styles.search_icon} onClick={showSearchForm}>
               <MagnifyingGlass/>
             </div>
         </div>
-
     </nav>
-  );
+    )
+  }
 }
 
 export default NavBar;

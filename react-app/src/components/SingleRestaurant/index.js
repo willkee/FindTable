@@ -4,28 +4,29 @@ import { PageWrapper } from '../PageWrapper';
 import { PageContainer } from '../PageContainer';
 import { useParams } from 'react-router-dom';
 // import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import pattern from './pattern.png'
 import ReviewCounter from '../ReviewCounter';
 // import { createReview } from '../../store/reviews';
 
 // import { ReviewForm } from '../../Forms/ReviewForm';
-import { ReservationForm } from '../../Forms/ReservationForm'
-import { ReviewForm } from '../../Forms/ReviewForm';
+// import { ReservationForm } from '../../Forms/ReservationForm'
+// import { ReviewForm } from '../../Forms/ReviewForm';
 import { UpdateRestaurant } from '../UpdateRestaurant'
-import { showModal, setCurrentModal } from '../../store/modal';
+// import { showModal, setCurrentModal } from '../../store/modal';
 
 
 export const SingleRestaurant = () => {
-  const dispatch = useDispatch()
   const {id} = useParams()
+  // const [isOwner, setIsOwner] = useState(false)
   // find restaurant owner id and session user id
   const restaurant = useSelector(state => Object.values(state.restaurants))[id - 1]
   const sessionUser = useSelector((state) => state?.session?.user);
   // set isOwner to true if the current user owns the restaurant being viewed
   // this will display the update/delete restaurant buttons
-  let isOwner = false;
-  restaurant.owner_id === sessionUser?.id ? isOwner = true : isOwner = false
+  let isOwner = false
+  sessionUser && restaurant.owner_id === sessionUser.id ? isOwner = true : isOwner = false
+
 
 
   const stars = Object.values(restaurant.reviews).map(review => review.stars)
@@ -90,7 +91,7 @@ export const SingleRestaurant = () => {
                       {/* Restaurant Review Count */}
                       <span><i className="fa-solid fa-message"/> {` ${Object.values(restaurant.reviews).length} Reviews`}</span>
                     </div>
-                    { isOwner ? <UpdateRestaurant restaurant={restaurant}/> : null }
+                    {isOwner && <UpdateRestaurant props={restaurant}/>}
                     {/* Restaurant Cuisine */}
                     <div>{restaurant.description}</div>
 
