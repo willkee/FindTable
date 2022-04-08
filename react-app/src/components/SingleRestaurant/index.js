@@ -28,7 +28,6 @@ export const SingleRestaurant = () => {
   sessionUser && restaurant.owner_id === sessionUser.id ? isOwner = true : isOwner = false
 
 
-
   const stars = Object.values(restaurant.reviews).map(review => review.stars)
 
 
@@ -44,6 +43,10 @@ export const SingleRestaurant = () => {
 
 
   const getAverageRating = (data) => {
+
+    if (Object.values(restaurant.reviews).length === 0) {
+      return "No"
+    }
     let totalStars = 0;
     Object.values(data.reviews).forEach(review => totalStars += review.stars)
     return (totalStars / Object.values(data.reviews).length).toFixed(1)
@@ -91,13 +94,33 @@ export const SingleRestaurant = () => {
                       {/* Restaurant Review Count */}
                       <span><i className="fa-solid fa-message"/> {` ${Object.values(restaurant.reviews).length} Reviews`}</span>
                     </div>``
-                    {isOwner && <UpdateRestaurant props={restaurant}/>}
+                    {isOwner && <UpdateRestaurant restaurant={restaurant}/>}
                     {/* Restaurant Cuisine */}
                     <div>{restaurant.description}</div>
 
-                    <h3>What {Object.values(restaurant.reviews).length} people are saying</h3>
-                    <hr></hr>
-                    <ReviewCounter stars={stars}/>
+                    {Object.values(restaurant.reviews).length > 0 ?
+                        Object.values(restaurant.reviews).length === 1 ?
+                          <div>
+                            <h3>What {Object.values(restaurant.reviews).length} person is saying</h3>
+                            <hr></hr>
+                            <ReviewCounter stars={stars}/>
+                            <hr></hr>
+                          </div>
+                          :
+                          <div>
+                            <h3>What {Object.values(restaurant.reviews).length} people are saying</h3>
+                            <hr></hr>
+                            <ReviewCounter stars={stars}/>
+                            <hr></hr>
+                          </div>
+
+                    :
+                    <div>
+                        <h3>There are no reviews.</h3>
+                        <hr></hr>
+                    </div>
+                    }
+
                 </div>
               </div>
 
