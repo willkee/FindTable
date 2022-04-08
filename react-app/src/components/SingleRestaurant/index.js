@@ -13,6 +13,7 @@ import ReviewCounter from '../ReviewCounter';
 // import { ReservationForm } from '../../Forms/ReservationForm'
 // import { ReviewForm } from '../../Forms/ReviewForm';
 import { UpdateRestaurant } from '../UpdateRestaurant'
+import { ReviewsDisplay } from '../ReviewsDisplay';
 // import { showModal, setCurrentModal } from '../../store/modal';
 
 
@@ -98,6 +99,7 @@ export const SingleRestaurant = () => {
                     <h3>What {Object.values(restaurant.reviews).length} people are saying</h3>
                     <hr></hr>
                     <ReviewCounter stars={stars}/>
+                    <ReviewsDisplay restaurant={restaurant}/>
                 </div>
               </div>
 
