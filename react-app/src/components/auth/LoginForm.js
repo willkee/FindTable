@@ -30,9 +30,9 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
-  if (user) {
-    return <Redirect to='/' />;
-  }
+  // if (user) {
+  //   return <Redirect to='/' />;
+  // }
 
   const showSignUpForm = () => {
     dispatch(setCurrentModal(SignUpForm))

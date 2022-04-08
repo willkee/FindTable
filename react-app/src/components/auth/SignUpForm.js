@@ -30,9 +30,9 @@ const SignUpForm = () => {
     dispatch(setCurrentModal(LoginForm))
   }
 
-  if (user) {
-    return <Redirect to='/' />;
-  }
+  // if (user) {
+  //   return <Redirect to='/' />;
+  // }
 
   return (
     <form onSubmit={onSubmit}>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './index.css'
 
@@ -30,6 +30,7 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
+  const sessionUser = useSelector(state => state.session.user)
   const users = useSelector(state => Object.values(state.users))
   const all_restaurants = useSelector(state => Object.values(state.restaurants))
   // const all_settings = useSelector(state => Object.values(state.settings))
@@ -63,12 +64,12 @@ function App() {
               <Homepage />
               <RestaurantsList all_restaurants={all_restaurants} />
             </Route>
-            <ProtectedRoute exact path="/new-restaurant">
-              <CreateRestaurant />
-            </ProtectedRoute>
             <Route exact path="/restaurants/:id">
               <SingleRestaurant />
             </Route>
+            <ProtectedRoute exact path="/new-restaurant">
+              <CreateRestaurant />
+            </ProtectedRoute>
             {/* <ProtectedRoute path='/reservations' exact={true} >
               <Reservations/>
             </ProtectedRoute>  */}
@@ -78,9 +79,16 @@ function App() {
               <ProtectedRoute exact path='/users/:userId'>
                 <User />
               </ProtectedRoute>
-              <ProtectedRoute exact path="/my-profile">
-                <ProfilePage />
-              </ProtectedRoute>
+
+              <Route exact path="/my-profile">
+              {sessionUser
+                  ?
+                  <ProfilePage />
+                  :
+                  <Redirect to="/" />
+                }
+              </Route>
+
               <ProtectedRoute exact path="/my_reservations">
                 <h1>Hello</h1>
               </ProtectedRoute>

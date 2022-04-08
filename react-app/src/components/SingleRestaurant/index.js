@@ -3,7 +3,6 @@ import styles from './SingleRestaurant.module.css';
 import { PageWrapper } from '../PageWrapper';
 import { PageContainer } from '../PageContainer';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
 // import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import pattern from './pattern.png'
@@ -19,15 +18,15 @@ import { UpdateRestaurant } from '../UpdateRestaurant'
 
 export const SingleRestaurant = () => {
   const {id} = useParams()
-  const [isOwner, setIsOwner] = useState(false)
+  // const [isOwner, setIsOwner] = useState(false)
   // find restaurant owner id and session user id
   const restaurant = useSelector(state => Object.values(state.restaurants))[id - 1]
   const sessionUser = useSelector((state) => state.session.user);
 
   // set isOwner to true if the current user owns the restaurant being viewed
   // this will display the update/delete restaurant buttons
-
-  restaurant.owner_id === sessionUser.id ? setIsOwner(true) : setIsOwner(false)
+  let isOwner = false
+  sessionUser && restaurant.owner_id === sessionUser.id ? isOwner = true : isOwner = false
 
 
   const stars = Object.values(restaurant.reviews).map(review => review.stars)
