@@ -73,7 +73,7 @@ function App() {
             </Route>
             {/* <ProtectedRoute path='/reservations' exact={true} >
               <Reservations/>
-            </ProtectedRoute> */}
+            </ProtectedRoute>  */}
             <ProtectedRoute exact path='/users'>
               <UsersList users={users} />
               </ProtectedRoute>
