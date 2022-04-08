@@ -34,17 +34,17 @@ function App() {
   const all_restaurants = useSelector(state => Object.values(state.restaurants))
   // const all_settings = useSelector(state => Object.values(state.settings))
   // const all_cuisines = useSelector(state => Object.values(state.cuisines))
-  //const reviews = useSelector(state => Object.values(state.reviews))
-  //const reservations = useSelector(state => Object.values(state.reservations))
-  //const favorites = useSelector(state => Object.values(state.favorites))
+  // const reviews = useSelector(state => Object.values(state.reviews))
+  // const reservations = useSelector(state => Object.values(state.reservations))
+  // const favorites = useSelector(state => Object.values(state.favorites))
 
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
       await dispatch(receiveAllRestaurants())
       await dispatch(allUsers())
-      // await dispatch(retrieveSettings())
-      // await dispatch(retrieveCusines())
+      await dispatch(retrieveSettings())
+      await dispatch(retrieveCusines())
       setLoaded(true);
     })();
   }, [dispatch]);
