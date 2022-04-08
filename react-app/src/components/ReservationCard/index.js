@@ -1,6 +1,7 @@
 import styles from "./ReservationCard.module.css";
 import styled from "styled-components";
 import { GreenConfirmationButton, UserIcon, CalendarIcon, GreyVerticalLine } from "../Icons";
+import { useSelector } from "react-redux";
 
 const ReservationContainer = styled.div`
     width: 540px;
@@ -46,7 +47,10 @@ const ModalButton = styled.button`
 `;
 
 
-export const ReservationCard = ({reservation}) => {
+export const ReservationCard = () => {
+    const user = useSelector(state => state.session.user);
+    const reservations = user.reservations;
+
     return (
         <ReservationContainer>
             <img src="https://www.onceuponachef.com/images/2012/11/Vanilla-Birthday-Cake-18.jpg" alt="Restaurant image for <restaurant name>."></img>
