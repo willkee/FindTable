@@ -3,3 +3,66 @@
     height: 900px;
     border: 1px solid grey;
 }
+
+.reviewHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.reviewContainer {
+  border: 1px solid black;
+
+}
+
+
+/* .starsContainer {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateY(180deg);
+  display: flex;
+}
+
+.starsContainer label {
+  display: block;
+  cursor: pointer;
+  width: 25px;
+  padding-left: 10px;
+}
+
+.starsContainer label::before{
+  content: '\f005';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  position: relative;
+  display:block;
+  font-size: 18px;
+  color: #6b6a6a;
+}
+
+.starsContainer input{
+  display: none;
+}
+
+.starsContainer label::after{
+  content: '\f005';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  font-size: 18px;
+  position:absolute;
+  display: block;
+  top: 0;
+  opacity: 0;
+  transition: .5s;
+  background: -webkit-linear-gradient(45deg, #D24E65, #FC6260, #F2BB78);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}
+
+.starsContainer label:hover::after,
+.starsContainer label:hover ~ label::after,
+.starsContainer input:checked ~ label::after{
+  opacity: 1;
+} */

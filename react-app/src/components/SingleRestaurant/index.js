@@ -14,6 +14,7 @@ import ReviewCounter from '../ReviewCounter';
 // import { ReviewForm } from '../../Forms/ReviewForm';
 import { UpdateRestaurant } from '../UpdateRestaurant'
 import { ReviewsDisplay } from '../ReviewsDisplay';
+import {ReviewForm} from '../../Forms/ReviewForm';
 // import { showModal, setCurrentModal } from '../../store/modal';
 
 
@@ -21,7 +22,8 @@ export const SingleRestaurant = () => {
   const {id} = useParams()
   // const [isOwner, setIsOwner] = useState(false)
   // find restaurant owner id and session user id
-  const restaurant = useSelector(state => Object.values(state.restaurants))[id - 1]
+  const restaurantState = useSelector(state => state.restaurants)
+  const restaurant = restaurantState[`${id}`]
   const sessionUser = useSelector((state) => state?.session?.user);
   // set isOwner to true if the current user owns the restaurant being viewed
   // this will display the update/delete restaurant buttons
@@ -120,6 +122,7 @@ export const SingleRestaurant = () => {
                         <hr></hr>
                     </div>
                     }
+                    <ReviewForm restaurant={restaurant}/>
                     <ReviewsDisplay restaurant={restaurant}/>
                 </div>
               </div>

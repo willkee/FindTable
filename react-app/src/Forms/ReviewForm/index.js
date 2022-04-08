@@ -1,20 +1,16 @@
 import { useState } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import { useParams } from 'react-router-dom';
-// import styled from 'styled-components';
 import styles from "./ReviewForm.module.css"
 import { createReview } from '../../store/reviews';
 
 
-export const ReviewForm = () => {
+export const ReviewForm = ({restaurant}) => {
     const [rating, setRating] = useState(null);
     const [content, setContent] = useState(null);
     const [imgURL, setImgURL] = useState(null);
     const user = useSelector(state => state.session.user)
-    const {restaurantId} = useParams()
     const dispatch = useDispatch()
-    const restaurant = useSelector(state => Object.values(state.restaurants)[restaurantId])
-    console.log(restaurant)
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const formData = {
@@ -27,14 +23,18 @@ export const ReviewForm = () => {
         dispatch(createReview(formData))
     }
 
+
     return (
+      <div className={styles.reviewContainer}>
         <form onSubmit={handleSubmit}>
-            <h1>
-                Hi {user.first_name}, how was your experience at {restaurant.name}?
-            </h1>
+          <div className={styles.reviewHeader}>
             <h3>
-                Rate your dining experience!
+                Hi {user?.first_name}, how was your experience at {restaurant.name}?
             </h3>
+            <h5>
+                Rate your dining experience!
+            </h5>
+          </div>
             <select value={rating}
                     onChange={(e) => setRating(e.target.value)}
                     required>
@@ -44,6 +44,29 @@ export const ReviewForm = () => {
                 <option value={4}>****</option>
                 <option value={5}>*****</option>
             </select>
+            {/* <div className={styles.starsContainer}>
+
+              <input type="radio" id="star1" value={1} onChange={e =>{console.log(rating)
+                setRating(e.target.value)}}/>
+              <label for="star1">star 1</label>
+
+              <input type="radio" id="star2" value={2} onChange={e => {console.log(rating)
+                setRating(e.target.value)}}/>
+              <label for="star2">star 2</label>
+
+              <input type="radio" id="star3" value={3} onChange={e => {console.log(rating)
+                setRating(e.target.value)}}/>
+              <label for="star3">star 3</label>
+
+              <input type="radio" id="star4" value={4} onChange={e => {console.log(rating)
+                setRating(e.target.value)}}/>
+              <label for="star4">star 4</label>
+
+              <input type="radio" id="star5" value={5} onChange={e => {console.log(rating)
+                setRating(e.target.value)}}/>
+              <label for="star5">star 5</label>
+
+            </div> */}
             <input type="url"
                     placeholder="Image URL"
                     onChange={e => setImgURL(e.target.value)}
@@ -53,9 +76,11 @@ export const ReviewForm = () => {
             <textarea className={styles.content}
                       name="review"
                       onChange={e => setContent(e.target.value)}
-                      required>
+                      required
+                      placeholder="Tell us how it was!">
             </textarea>
             <button type='submit' disabled={!rating || !content ? true : false}>Submit</button>
         </form>
+      </div>
     )
 }
