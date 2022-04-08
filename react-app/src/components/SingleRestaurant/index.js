@@ -21,12 +21,12 @@ export const SingleRestaurant = () => {
   // const [isOwner, setIsOwner] = useState(false)
   // find restaurant owner id and session user id
   const restaurant = useSelector(state => Object.values(state.restaurants))[id - 1]
-  const sessionUser = useSelector((state) => state.session.user);
-
+  const sessionUser = useSelector((state) => state?.session?.user);
   // set isOwner to true if the current user owns the restaurant being viewed
   // this will display the update/delete restaurant buttons
   let isOwner = false
   sessionUser && restaurant.owner_id === sessionUser.id ? isOwner = true : isOwner = false
+
 
 
   const stars = Object.values(restaurant.reviews).map(review => review.stars)

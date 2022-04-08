@@ -6,9 +6,8 @@ import styles from './UpdateRestaurant.module.css'
 
 export const UpdateRestaurant = ({restaurant}) => {
     const dispatch = useDispatch()
-
     const showRestaurantForm = () => {
-        dispatch(setCurrentModal(RestaurantForm));
+        dispatch(setCurrentModal(() => (<RestaurantForm restaurant={restaurant} />)));
         dispatch(showModal());
       }
 
