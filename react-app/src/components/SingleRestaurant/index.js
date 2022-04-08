@@ -13,6 +13,7 @@ import ReviewCounter from '../ReviewCounter';
 import { ReservationForm } from '../../Forms/ReservationForm'
 // import { ReviewForm } from '../../Forms/ReviewForm';
 import { UpdateRestaurant } from '../UpdateRestaurant'
+import { DeleteRestaurant } from '../DeleteRestaurant'
 import { ReviewsDisplay } from '../ReviewsDisplay';
 // import { showModal, setCurrentModal } from '../../store/modal';
 
@@ -22,15 +23,18 @@ export const SingleRestaurant = () => {
   const [myKey, setMyKey] = useState("")
   const [isLoaded, setIsLoaded] = useState(false)
   // find restaurant owner id and session user id
-  const restaurant = useSelector(state => Object.values(state.restaurants))[id - 1]
+  // const restaurant = useSelector(state => (state.restaurants))
+  const restaurantState = useSelector(state => state.restaurants)
+  const restaurant = restaurantState[`${id}`]
+
   const sessionUser = useSelector((state) => state?.session?.user);
+  console.log('REST ---', restaurant)
   // set isOwner to true if the current user owns the restaurant being viewed
   // this will display the update/delete restaurant buttons
   let isOwner = false
-  sessionUser && restaurant.owner_id === sessionUser.id ? isOwner = true : isOwner = false
+  sessionUser && restaurant?.owner_id === sessionUser.id ? isOwner = true : isOwner = false
 
-
-  const stars = Object.values(restaurant.reviews).map(review => review.stars)
+  const stars = Object?.values(restaurant?.reviews).map(review => review?.stars)
 
 
   // const handleNewReview = () => {
@@ -108,7 +112,11 @@ export const SingleRestaurant = () => {
                       {/* Restaurant Review Count */}
                       <span><i className="fa-solid fa-message"/> {` ${Object.values(restaurant.reviews).length} Reviews`}</span>
                     </div>
-                    {isOwner && <UpdateRestaurant restaurant={restaurant}/>}
+                    {isOwner &&
+                    <>
+                      <UpdateRestaurant restaurant={restaurant}/>
+                      <DeleteRestaurant restaurant_id={restaurant.id}/>
+                    </>}
                     {/* Restaurant Cuisine */}
                     <div>{restaurant.description}</div>
                     {Object.values(restaurant.reviews).length > 0 ?

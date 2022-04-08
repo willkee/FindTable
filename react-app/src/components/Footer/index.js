@@ -10,15 +10,16 @@ export const Footer = () => {
                 <section className={styles.links}>
                     <div className={styles.discover}>
                         <ul className={styles.label}>DISCOVER
-                            <li className={styles.discoverLinks}><Link to="/cuisines">Cuisines Near Me</Link></li>
-                            <li className={styles.discoverLinks}><Link to="/restaurants">Restaurants Near Me</Link></li>
-                            <li className={styles.discoverLinks}><Link to="/restaurants">Restaurants</Link></li>
-                            <li className={styles.discoverLinks}><Link to="/cuisines">Cuisines</Link></li>
+                            <li className={styles.sectionLinks}><Link className={styles.sectionLinks} to="/cuisines">Cuisines Near Me</Link></li>
+                            <li className={styles.sectionLinks}><Link className={styles.sectionLinks} to="/restaurants">Restaurants Near Me</Link></li>
+                            <li className={styles.sectionLinks}><Link className={styles.sectionLinks} to="/restaurants">Restaurants</Link></li>
+                            <li className={styles.sectionLinks}><Link className={styles.sectionLinks} to="/cuisines">Cuisines</Link></li>
                        </ul>
                     </div>
                     <div className={styles.about}>
-                        <ul className={styles.label}>FindTable</ul>
-                        <li><a href="https://github.com/willkee/FindTable" rel="noreferrer" target="_blank">About Us</a></li>
+                        <ul className={styles.label}>FindTable
+                        <li className={styles.sectionLinks}><a className={styles.sectionLinks} href="https://github.com/willkee/FindTable" rel="noreferrer" target="_blank">About Us</a></li>
+                        </ul>
                     </div>
                 </section>
                 <hr className={styles.horizontalLine}></hr>
