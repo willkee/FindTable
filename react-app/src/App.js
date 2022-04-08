@@ -43,8 +43,8 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
-      await dispatch(receiveAllRestaurants()) 
-      await dispatch(allUsers())
+      await dispatch(receiveAllRestaurants())
+      // await dispatch(allUsers())
       await dispatch(retrieveSettings())
       await dispatch(retrieveCusines())
       setLoaded(true);
@@ -74,12 +74,12 @@ function App() {
             {/* <ProtectedRoute path='/reservations' exact={true} >
               <Reservations/>
             </ProtectedRoute> */}
-            <ProtectedRoute exact path='/users'>
+            {/* <ProtectedRoute exact path='/users'>
               <UsersList users={users} />
-              </ProtectedRoute>
-              <ProtectedRoute exact path='/users/:userId'>
+              </ProtectedRoute> */}
+              {/* <ProtectedRoute exact path='/users/:userId'>
                 <User />
-              </ProtectedRoute>
+              </ProtectedRoute> */}
               <ProtectedRoute exact path="/my-profile">
                 <ProfilePage />
               </ProtectedRoute>

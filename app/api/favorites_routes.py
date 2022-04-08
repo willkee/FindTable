@@ -1,4 +1,3 @@
-from distutils.log import FATAL
 from flask import Blueprint, request
 from flask_login import current_user
 from app.models import Favorite, Restaurant, User, db

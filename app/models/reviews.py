@@ -25,5 +25,5 @@ class Review(db.Model):
       'stars': self.stars,
       'img_url': self.img_url,
       'review': self.review,
-      'user': 
+      'user': self.user
     }
