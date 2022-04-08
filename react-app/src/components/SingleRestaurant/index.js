@@ -13,7 +13,7 @@ import ReviewCounter from '../ReviewCounter';
 
 export const SingleRestaurant = () => {
   const {id} = useParams()
-  const restaurant = useSelector(state => Object.values(state.restaurants))[id]
+  const restaurant = useSelector(state => Object.values(state.restaurants))[id-1]
 
   const stars = Object.values(restaurant.reviews).map(review => review.stars)
 

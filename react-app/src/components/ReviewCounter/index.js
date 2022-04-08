@@ -39,7 +39,6 @@ const ReviewCounter = ({ stars }) => {
         setTotal(one + two + three + four + five)
         setLoaded(true)
     }, [])
-// style={{color: "red", fontSize: "16px"}}
 
     return (
         <div>
