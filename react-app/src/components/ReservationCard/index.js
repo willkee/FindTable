@@ -58,6 +58,7 @@ export const ReservationCard = () => {
                         <option value={10}>10 people</option>
                     </select>
                 </div>
+                <hr></hr>
                 <div className={styles.input}>
                     <label htmlFor="date"><strong>Select a date:</strong></label>
                     <input type="date" name="date" value={date} onChange={(e) => setDate(e.target.value)} />

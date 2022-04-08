@@ -23,6 +23,7 @@ hr {
 p {
     font-size: 14px;
     text-align: left;
+    margin-top: 7px;
 }
 
 .party {
@@ -31,6 +32,7 @@ p {
     justify-content: center;
     align-items: left;
     width: 200px;
+    margin-top: -20px;
 }
 
 .input {
@@ -39,6 +41,7 @@ p {
     justify-content: center;
     align-items: left;
     width: 200px;
+    margin-top: -20px;
 }
 
 button {
