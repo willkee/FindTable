@@ -5,7 +5,7 @@ import styled from "styled-components";
 import styles from "./ProfilePage.module.css";
 import { UserIcon, UserIconLarge } from '../Icons';
 
-const Background = styled.div`
+const Background = styled.div`className={styles.button}
     width: 1600px;
     height: auto;
     min-height: 1000px;
@@ -16,7 +16,7 @@ const Background = styled.div`
     background-color: white;
 `;
 
-const UserBox = styled.div`
+const UserBox = styled.div`className={styles.button}
     width: 1600px;
     height: 100px;
     display: flex;
@@ -26,7 +26,7 @@ const UserBox = styled.div`
     padding-left: 30px;
 `;
 
-const MainContent = styled.div`
+const MainContent = styled.div`className={styles.button}
     width: 1200px;
     height: auto;
     display: flex;
@@ -42,7 +42,7 @@ const ProfileInfoBox = styled.aside`
     flex-direction: column;
 `;
 
-const ContentFeed = styled.div`
+const ContentFeed = styled.div`className={styles.button}
     width: 500px;
     height: auto;
     display: flex;
@@ -51,7 +51,7 @@ const ContentFeed = styled.div`
     align-items: center;
 `;
 
-const UpcomingReservations = styled.div`
+const UpcomingReservations = styled.div`className={styles.button}
     width: 900px;
     height: auto;
     background-color: #F3F3F3;
@@ -62,7 +62,7 @@ const UpcomingReservations = styled.div`
     align-items: left;
 `;
 
-const PastReservations = styled.div`
+const PastReservations = styled.div`className={styles.button}
     width: 900px;
     height: auto;
     display: flex;
@@ -84,13 +84,13 @@ const ProfilePage = () => {
                 <ProfileInfoBox>
                     {sessionUser.business_owner && (
                         <>
-                            <div role="button">Restaurant Reservations</div>
-                            <div role="button">Restaurant Reviews</div>
+                            <div className={styles.button} role="button">Restaurant Reservations</div>
+                            <div className={styles.button} role="button">Restaurant Reviews</div>
                         </>
                     )}
-                    <div role="button">My reservations</div>
-                    <div role="button">My Reviews</div>
-                    <div role="button">Favorites</div>
+                    <div className={styles.button} role="button">My reservations</div>
+                    <div className={styles.button} role="button">My Reviews</div>
+                    <div className={styles.button} role="button">Favorites</div>
                 </ProfileInfoBox>
                 <ContentFeed>
                     <UpcomingReservations>
