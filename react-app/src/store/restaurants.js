@@ -213,11 +213,10 @@ export const updateRestaurant = ({formData, id}) =>
   }
 
 export const deleteRestaurant = restaurantId =>
-  async dispatch => {
+async dispatch => {
     const res = await fetch(`/api/restaurants/${restaurantId}`,{
       method: 'DELETE'
     })
-
     const removedRestaurant = await res.json();
     dispatch(deletedRestaurant(removedRestaurant))
     return removedRestaurant
@@ -241,7 +240,9 @@ const restaurantsReducer = (state = {}, action) => {
       return newState;
     }
     case DELETED_RESTAURANT: {
-      delete newState[action.payload?.id]
+      console.log('ACTION.PAYLOAD --', action.payload)
+      console.log('ACTION.PAYLOAD.RESTAURANT.ID --', action.payload.restaurant.id)
+      delete newState[action.payload.restaurant.id]
       //double check the payload because it could already be an Id and id.id doesn't make sense
       return newState
     }
