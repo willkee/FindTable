@@ -9,7 +9,7 @@ import pattern from './pattern.png'
 import ReviewCounter from '../ReviewCounter';
 // import { createReview } from '../../store/reviews';
 // import { ReviewForm } from '../../Forms/ReviewForm';
-
+import { ReservationForm } from '../ReservationForm'
 
 export const SingleRestaurant = () => {
   const {id} = useParams()
