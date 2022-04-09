@@ -52,6 +52,8 @@ export const ReservationForm = ({restaurantId}) => {
             time: time
         }
 
+        console.log(reservationData)
+
         const newReservation = await dispatch(createReservation(reservationData));
 
         if(newReservation.error) {
@@ -132,18 +134,7 @@ export const ReservationForm = ({restaurantId}) => {
                         </optgroup>
                     </select>
                 </div>
-                <div role="button" type="submit" onClick={handleSubmit}>Reserve table</div>
+                <div role="button" type="submit" className={styles.button} onClick={handleSubmit}>Reserve table</div>
             </form>
     )
 }
-
-    // const today = new Date().toISOString();
-    // console.log(today)
-    // const formatDate = today.substring(0,today.length-1)
-    // console.log(formatDate)
-    // const dateTimeLocal = formatDate.slice(0, 16)
-    // console.log(dateTimeLocal)
-    // const reservationTime = formatDate.slice(11, 13)
-    // console.log(reservationTime)
-    // const futureTime = parseInt(reservationTime)+2
-    // console.log(futureTime)

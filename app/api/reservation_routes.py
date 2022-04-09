@@ -22,9 +22,9 @@ def create_reservation():
 
   times = ['8', '8.5' '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13', '13.5', '14', '14.5', '15', '15.5', '16', '16.5', '17', '17.5', '18', '18.5', '19', '19.5', '20', '20.5', '21',' 21.5', '22', '22.5']
 
-  if form.data['time'] in times:
-    return {'error': "Invalid timeslot"}
-  elif form.validate_on_submit():
+  if not form.data['time'] in times:
+    return {'error': 'Invalid timeslot.'}
+  elif form.data['time'] in times and form.validate_on_submit():
     new_reservation = Reservation(
         restaurant_id = request.json['restaurant_id'],
         user_id = current_user.id,
@@ -41,7 +41,6 @@ def create_reservation():
     db.session.commit()
 
     return new_reservation.to_dict()
-
   else:
     return {'error': error_generator(form.errors)}
 
