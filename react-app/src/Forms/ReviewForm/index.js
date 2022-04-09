@@ -2,12 +2,14 @@ import { useState } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import styles from "./ReviewForm.module.css"
 import { createReview } from '../../store/restaurants';
+import {ColorfulStar, OutlineGreyStar} from '../../components/Icons';
 
 
 export const ReviewForm = ({restaurant}) => {
     const [rating, setRating] = useState(1);
     const [content, setContent] = useState(null);
     const [imgURL, setImgURL] = useState(null);
+    // const [star, setStar] = useState(<OutlineGreyStar />)
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
 
@@ -54,7 +56,7 @@ export const ReviewForm = ({restaurant}) => {
             </div>
 
             <div className={styles.div4}>
-              {/* <select value={rating}
+              <select value={rating}
                       onChange={(e) => setRating(e.target.value)}
                       required>
                 <option value={1}>*</option>
@@ -62,8 +64,8 @@ export const ReviewForm = ({restaurant}) => {
                 <option value={3}>***</option>
                 <option value={4}>****</option>
                 <option value={5}>*****</option>
-              </select> */}
-              <div className={styles.starsContainer}>
+              </select>
+              {/* <div className={styles.starsContainer}>
                   <input type="checkbox" id="star5" value={5} onClick={e => setRating(e.target.value)}/>
                   <label for="star5"></label>
 
@@ -78,7 +80,7 @@ export const ReviewForm = ({restaurant}) => {
 
                   <input type="checkbox" id="star1" value={1} onClick={e => setRating(e.target.value)}/>
                   <label for="star1"></label>
-              </div>
+              </div> */}
             </div>
 
             <div className={styles.div5}>

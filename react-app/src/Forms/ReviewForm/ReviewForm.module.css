@@ -184,3 +184,11 @@ grid-row-gap: 0px;
 .starsContainer input:checked ~ label::after{
   opacity: 1;
 }
+
+/* .starsContainer label:nth-child(1):checked ~ label:nth-of-type(-n + 1),
+.starsContainer label:nth-child(2):checked ~ label:nth-of-type(-n + 2),
+.starsContainer label:nth-child(3):checked ~ label:nth-of-type(-n + 3),
+.starsContainer label:nth-child(4):checked ~ label:nth-of-type(-n + 4),
+.starsContainer label:nth-child(5):checked ~ label:nth-of-type(-n + 5) {
+  opacity: 1;
+} */

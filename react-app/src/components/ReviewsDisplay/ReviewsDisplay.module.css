@@ -1,8 +1,12 @@
 .container {
   background-color: white;
   width: 800px;
-  display: grid;
-  gap: 5px;
+  /* display: grid; */
+  /* gap: 5px;
+   */
+  display: flex;
+  flex-direction: column-reverse;
+
 }
 
 .singleReview {
