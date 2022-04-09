@@ -51,7 +51,7 @@ const ContentFeed = styled.div`className={styles.button}
     align-items: center;
 `;
 
-const UpcomingReservations = styled.div`className={styles.button}
+const Reservations = styled.div`className={styles.button}
     width: 900px;
     height: auto;
     background-color: #F3F3F3;
@@ -62,17 +62,21 @@ const UpcomingReservations = styled.div`className={styles.button}
     align-items: left;
 `;
 
-const PastReservations = styled.div`className={styles.button}
-    width: 900px;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: left;
-`;
+// const PastReservations = styled.div`className={styles.button}
+//     width: 900px;
+//     height: auto;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-around;
+//     align-items: left;
+// `;
 
 const ProfilePage = () => {
     const sessionUser = useSelector(state => state.session.user)
+    const reservations = sessionUser.reservations;
+    const reservationsArr = Object.entries(reservations)
+    console.log(reservationsArr)
+
 
     return (
         <Background>
@@ -93,16 +97,13 @@ const ProfilePage = () => {
                     <div className={styles.button} role="button">Favorites</div>
                 </ProfileInfoBox>
                 <ContentFeed>
-                    <UpcomingReservations>
+                    <Reservations>
                         <h2><strong>Upcoming Reservations</strong></h2>
                         <hr></hr>
-                        <ReservationCard />
-                    </UpcomingReservations>
-                    <PastReservations>
-                        <h2><strong>Past Reservations</strong></h2>
-                        <hr></hr>
-                        <ReservationCard />
-                    </PastReservations>
+                        {reservationsArr && reservationsArr.map(reservation => (
+                            <ReservationCard reservation={reservation[1]}/>
+                        ))}
+                    </Reservations>
                 </ContentFeed>
             </MainContent>
         </Background>

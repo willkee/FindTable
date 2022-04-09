@@ -91,7 +91,7 @@ function App() {
                 }
               </Route> */}
 
-              <ProtectedRoute exact path="/my_reservations">
+              <ProtectedRoute exact path="/my_reservations/:id">
                 <h1>Hello</h1>
               </ProtectedRoute>
               <Route exact path='/search/:dateString/:timeParams/:searchWord'>

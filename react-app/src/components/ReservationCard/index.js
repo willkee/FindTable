@@ -47,24 +47,33 @@ const ModalButton = styled.button`
 `;
 
 
-export const ReservationCard = () => {
+export const ReservationCard = ({reservation}) => {
     const user = useSelector(state => state.session.user);
-    const reservations = user.reservations;
+    const restaurants = useSelector(state => state.restaurants);
+    const restaurant = restaurants[reservation.restaurant_id];
+
+    let resTime;
+    let timeUnit;
+
+    reservation.time.includes(".5") ? resTime = reservation.time.replace(/.5/, ":30") : resTime = reservation.time;
+    reservation.time.length < 2 || reservation.time === "11" || reservation.time === "11.5" ? timeUnit = 'AM' : timeUnit = 'PM';
+
+
 
     return (
         <ReservationContainer>
-            <img src="https://www.onceuponachef.com/images/2012/11/Vanilla-Birthday-Cake-18.jpg" alt="Restaurant image for <restaurant name>."></img>
+            <img src={restaurant.img_url} alt={`Restaurant image for ${restaurant.name}`}></img>
             <ReservationDetails>
-                <strong>Restaurant name - City, State | Borough</strong>
+                <strong>{restaurant.name} - {restaurant.street_address} | {restaurant.borough}</strong>
                 <IconTextBox>
                     <GreenConfirmationButton />
                     <p>Reservation confirmed</p>
                 </IconTextBox>
                 <IconTextBox>
                     <UserIcon />
-                    <p>reservation.num_people</p>
+                    <p>{reservation.num_people}</p>
                     <CalendarIcon />
-                    <p>reservation.date, at reservation.time AM/PM</p>
+                    <p>{reservation.date.slice(0, 16)}, at {resTime}{timeUnit}</p>
                 </IconTextBox>
                 <ActionBox>
                    <ModalButton>Modify</ModalButton>
