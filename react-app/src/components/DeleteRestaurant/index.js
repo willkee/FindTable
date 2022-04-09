@@ -13,9 +13,5 @@ export const DeleteRestaurant = ({restaurant_id}) => {
         dispatch(showModal());
       }
 
-<<<<<<< HEAD
-  return <div onClick={showDeleteForm} className={styles.update_button}>Delete Restaurant</div>;
-=======
   return <div onClick={showDeleteForm} className={styles.button}>Delete Restaurant</div>;
->>>>>>> staging
 };

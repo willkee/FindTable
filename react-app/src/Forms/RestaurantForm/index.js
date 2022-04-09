@@ -207,8 +207,8 @@ export const RestaurantForm = ({ restaurant }) => {
                                     <legend className={styles.legend}>Attributes</legend>
                                     <div className={styles.input_container} >
                                         <label htmlFor='cuisines' className={styles.check_label}>
-                                            Cuisines
                                             <CuisinesIcon />
+                                            Cuisines
                                         </label>
                                         <div className={styles.cuisines_container}>
                                         {cuisinesState.map(cuisine => (
@@ -221,8 +221,8 @@ export const RestaurantForm = ({ restaurant }) => {
                                     </div>
                                     <div className={styles.input_container}>
                                         <label htmlFor='settings' className={styles.check_label}>
-                                            Settings
                                             <RestaurantIcon />
+                                            Settings
                                         </label>
                                         <div className={styles.settings_container}>
                                         {settingsState.map(setting => (
@@ -235,12 +235,12 @@ export const RestaurantForm = ({ restaurant }) => {
                                     </div>
                                     <div className={styles.input_container}>
                                         <div>
+                                            <i className="fa-solid fa-wheelchair"></i>
+                                            <label htmlFor='accessible'>Wheelchair Accessible?</label>
                                             <input type="checkbox"
                                                     value={accessible}
                                                     onChange={() => setAccessible(!accessible)}>
                                             </input>
-                                            <label htmlFor='accessible'>Accessible?</label>
-                                            <i className="fa-solid fa-wheelchair"></i>
                                         </div>
                                     </div>
                                 </fieldset>
