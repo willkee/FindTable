@@ -18,7 +18,6 @@ export const DeleteRestaurantForm = ({restaurant_id}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log('FRONT ID--', restaurant_id)
     await dispatch(hideModal())
     await history.push(`/`)
     await dispatch(deleteRestaurant(restaurant_id))

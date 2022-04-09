@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styles from "./Footer.module.css";
 import github from "../../company-logos/GitHub.png"
 import linkedin from "../../company-logos/LinkedIn.png"
@@ -10,18 +9,18 @@ export const Footer = () => {
                 <section className={styles.links}>
                         <h5>TECHNOLOGIES</h5>
                         <div className={styles.devicons}>
-                            <i class="devicon-python-plain-wordmark"></i>
-                            <i class="devicon-flask-original-wordmark"></i>
-                            <i class="devicon-postgresql-plain-wordmark"></i>
+                            <i className="devicon-python-plain-wordmark"></i>
+                            <i className="devicon-flask-original-wordmark"></i>
+                            <i className="devicon-postgresql-plain-wordmark"></i>
 
-                            <i class="devicon-react-original-wordmark"></i>
-                            <i class="devicon-redux-original"></i>
+                            <i className="devicon-react-original-wordmark"></i>
+                            <i className="devicon-redux-original"></i>
                             <i className="devicon-postgresql-plain"></i>
-                            <i class="devicon-html5-plain-wordmark"></i>
-                            <i class="devicon-css3-plain-wordmark"></i>
-                            <i class="devicon-illustrator-line"></i>
-                            <i class="devicon-aftereffects-plain"></i>
-                            <i class="devicon-xd-line"></i>
+                            <i className="devicon-html5-plain-wordmark"></i>
+                            <i className="devicon-css3-plain-wordmark"></i>
+                            <i className="devicon-illustrator-line"></i>
+                            <i className="devicon-aftereffects-plain"></i>
+                            <i className="devicon-xd-line"></i>
                             <i className="devicon-heroku-plain"></i>
                         </div>
                 </section>
@@ -47,8 +46,8 @@ export const Footer = () => {
                                 <a href="https://github.com/ohpaul28" rel="noreferrer" target="_blank">
                                     <img src={github} className={styles.github} alt="Link to Paul Oh's LinkedIn profile."/>
                                 </a>
-                                <a href="https://www.linkedin.com/in/paul-oh/" target="_blank">
-                                    <img src={linkedin} className={styles.linkedin} alt="Image link to Paul Oh's LinkedIn profile."/>
+                                <a href="https://www.linkedin.com/in/paul-oh/" rel="noreferrer" target="_blank">
+                                    <img src={linkedin} className={styles.linkedin} alt="Link to Paul Oh's LinkedIn profile."/>
                                 </a>
                             </span>
                         </div>

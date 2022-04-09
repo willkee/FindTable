@@ -1,34 +1,41 @@
 import React from 'react'
-import styles from './SingleRestaurant.module.css';
-import { PageWrapper } from '../PageWrapper';
-import { PageContainer } from '../PageContainer';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import pattern from './pattern.png'
-import ReviewCounter from '../ReviewCounter';
-// import { createReview } from '../../store/reviews';
+import { useSelector, useDispatch } from 'react-redux';
 
-// import { ReviewForm } from '../../Forms/ReviewForm';
+import pattern from './pattern.png'
+import styles from './SingleRestaurant.module.css';
+
+import { PageWrapper } from '../PageWrapper';
+import { PageContainer } from '../PageContainer';
+
+import ReviewCounter from '../ReviewCounter';
+import { ReviewsDisplay } from '../ReviewsDisplay';
 import { ReservationForm } from '../../Forms/ReservationForm'
-// import { ReviewForm } from '../../Forms/ReviewForm';
 import { UpdateRestaurant } from '../UpdateRestaurant'
 import { DeleteRestaurant } from '../DeleteRestaurant'
-import { ReviewsDisplay } from '../ReviewsDisplay';
+import { receiveOneRestaurant } from '../../store/restaurants';
+
 // import { showModal, setCurrentModal } from '../../store/modal';
+// import { ReviewForm } from '../../Forms/ReviewForm';
+// import { createReview } from '../../store/reviews';
+// import { ReviewForm } from '../../Forms/ReviewForm';
 
 
 export const SingleRestaurant = () => {
-  const {id} = useParams()
+  const { id } = useParams()
   const [myKey, setMyKey] = useState("")
   const [isLoaded, setIsLoaded] = useState(false)
   // find restaurant owner id and session user id
   // const restaurant = useSelector(state => (state.restaurants))
+
+  const dispatch = useDispatch()
+
   const restaurantState = useSelector(state => state.restaurants)
   const restaurant = restaurantState[`${id}`]
 
   const sessionUser = useSelector((state) => state?.session?.user);
-  console.log('REST ---', restaurant)
+
   // set isOwner to true if the current user owns the restaurant being viewed
   // this will display the update/delete restaurant buttons
   let isOwner = false
@@ -48,15 +55,13 @@ export const SingleRestaurant = () => {
           const res = await fetch(`/api/auth/get_key`);
           const key = await res.json();
           setMyKey(key)
+
+          await dispatch(receiveOneRestaurant(id))
           setIsLoaded(true)
         })();
-      }, [])
+      }, [dispatch, id])
 
-
-
-  // const API_KEY = process.env.REACT_APP_GMAPS_KEY;
   const API_URL = `https://maps.googleapis.com/maps/api/staticmap?center=${restaurant.street_address}&zoom=16&size=300x500&maptype=roadmap&markers=color:red%7Clabel:.%7C${restaurant.street_address}&key=${myKey.key}`
-
 
   const getAverageRating = (data) => {
 
@@ -134,7 +139,6 @@ export const SingleRestaurant = () => {
                             <ReviewCounter stars={stars}/>
                             <hr></hr>
                           </div>
-
                     :
                     <div>
                         <h3>There are no reviews.</h3>
@@ -144,8 +148,6 @@ export const SingleRestaurant = () => {
                     <ReviewsDisplay restaurant={restaurant}/>
                 </div>
               </div>
-
-
 
               <div className={styles.right_sidebar}>
                   <div className={styles.gmaps_static}><img src={API_URL} alt="Google Maps"></img></div>

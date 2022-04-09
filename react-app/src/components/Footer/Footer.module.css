@@ -10,7 +10,7 @@
     bottom: 0;
     z-index: 99;
     overflow-y: hidden;
-    transition: all 1s ease-in;
+    transition: all 0.75s ease-in;
 }
 
 .footer:hover {
