@@ -5,6 +5,8 @@ import { setCurrentModal, hideModal } from '../../store/modal';
 import { login } from '../../store/session';
 import LoginForm from './LoginForm';
 import styles from './Auth.module.css'
+import animation from "../../video/FindTable-loading.mp4";
+
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -38,63 +40,83 @@ const SignUpForm = () => {
   }
 
   return (
-    <form>
-      <div>
-        {errors.map((error, i) => (
-          <div key={i}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label>First Name</label>
-        <input
-          type='text'
-          name='firstName'
-          onChange={e => setFirstName(e.target.value)}
-          value={firstName}
-        ></input>
-      </div>
-      <div>
-        <label>Last Name</label>
-        <input
-          type='text'
-          name='lastName'
-          onChange={e => setLastName(e.target.value)}
-          value={lastName}
-        ></input>
-      </div>
-      <div>
-        <label>Email</label>
-        <input
-          type='text'
-          name='email'
-          onChange={e => setEmail(e.target.value)}
-          value={email}
-        ></input>
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          onChange={e => setPassword(e.target.value)}
-          autoComplete='none'
-          value={password}
-        ></input>
-      </div>
-      <div>
-        <label>Confirm Password</label>
-        <input
-          type='password'
-          name='confirmPassword'
-          onChange={e => setConfirmPassword(e.target.value)}
-          autoComplete='none'
-          value={confirmPassword}
-        ></input>
-      </div>
-      <div role='button' className={styles.div_button} onClick={handleSubmit}>Sign Up</div>
-      <div role='button' className={styles.div_button} onClick={showLoginForm}>Already signed up? Log in!</div>
-      <div role='button' className={styles.div_button} onClick={loginDemo}>Demo User</div>
-    </form>
+    <div className={styles.parent}>
+      {!errors.length ?
+          <video loop autoPlay width="250">
+            <source src={animation}
+              type="video/mp4" />
+            Sorry, your browser doesn't support embedded videos.
+          </video>
+        :
+          <video loop autoPlay width="150">
+            <source src={animation}
+              type="video/mp4" />
+            Sorry, your browser doesn't support embedded videos.
+          </video>
+    }
+        <h4>Welcome to FindTable!</h4>
+        {errors.length > 0 &&
+          <div className={styles.error_container}>
+            {errors.map((error, i) => (
+              <div key={i}>{error}</div>
+            ))}
+          </div>
+        }
+      <form className={styles.signup_form}>
+        <div className={styles.fields}>
+          <div>
+            <label>First Name</label>
+            <input
+              type='text'
+              name='firstName'
+              onChange={e => setFirstName(e.target.value)}
+              value={firstName}
+            ></input>
+          </div>
+          <div>
+            <label>Last Name</label>
+            <input
+              type='text'
+              name='lastName'
+              onChange={e => setLastName(e.target.value)}
+              value={lastName}
+            ></input>
+          </div>
+          <div>
+            <label>Email</label>
+            <input
+              type='text'
+              name='email'
+              onChange={e => setEmail(e.target.value)}
+              value={email}
+            ></input>
+          </div>
+          <div>
+            <label>Password</label>
+            <input
+              type='password'
+              name='password'
+              onChange={e => setPassword(e.target.value)}
+              autoComplete='none'
+              value={password}
+            ></input>
+          </div>
+          <div>
+            <label>Confirm Password</label>
+            <input
+              type='password'
+              name='confirmPassword'
+              onChange={e => setConfirmPassword(e.target.value)}
+              autoComplete='none'
+              value={confirmPassword}
+            ></input>
+          </div>
+        </div>
+        <div role='button' className={styles.div_button} onClick={handleSubmit}>Sign Up</div>
+        <div role='button' className={styles.div_button} onClick={loginDemo}>Demo User</div>
+        <div role='button' className={styles.switch} onClick={showLoginForm}>Already signed up? Log in!</div>
+      </form>
+    </div>
   );
 };
 

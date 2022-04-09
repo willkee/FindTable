@@ -1,10 +1,52 @@
+.parent {
+    padding: 25px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form_element {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.error_container {
+    background-color: #c1c1c1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 5px;
+    margin: 15px 0;
+    width: 100%;
+}
+
+.fields {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.fields div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.fields div input {
+    width: 200px;
+    margin-left: 20px;
+}
+
 .div_button {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #7D2C3B;
     cursor: pointer;
-    margin: 10px 0;
     border-radius: 3px;
     color: white;
     padding: 5px 10px;
@@ -13,4 +55,19 @@
 
 .div_button:hover {
     background-color: #983937;
+}
+
+/* SIGN UP */
+
+.signup_form {
+    padding: 15px;
+    width: 400px;
+}
+
+.switch {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
 }
