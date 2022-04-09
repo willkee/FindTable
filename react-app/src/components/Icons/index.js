@@ -221,19 +221,17 @@ export const RestaurantCircle = () => {
     return (
         <svg id="Restaurant" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34">
             <defs>
-                <clipPath id="clip-path">
+            <clipPath id="clip-path">
                 <rect id="Rectangle_371" dataname="Rectangle 371" width="18" height="15.69" transform="translate(0 0)" fill="none"/>
-                </clipPath>
+            </clipPath>
             </defs>
-            <g id="Ellipse_26" dataname="Ellipse 26" fill="#24599d" stroke="#c7c7c7" strokeWidth="1">
-                <circle cx="17" cy="17" r="17" stroke="none"/>
-                <circle cx="17" cy="17" r="16.5" fill="none"/>
-            </g>
+            <circle id="Ellipse_26" dataname="Ellipse 26" cx="17" cy="17" r="17" fill="#24599d"/>
             <g id="Group_307" dataname="Group 307" transform="translate(7.935 9.31)">
-                <g id="Group_306" dataname="Group 306" clipPath="url(#clip-path)">
+            <g id="Group_306" dataname="Group 306" clipPath="url(#clip-path)">
                 <path id="Path_229" dataname="Path 229" d="M17.86,5.25,15.78,0H2.22L.14,5.25,0,5.6V15.69H18V5.6ZM2.99.85H15.01l1.63,4.1-2.647-2.1a1.071,1.071,0,0,0-1.34.008L11.615,3.7a1.072,1.072,0,0,1-1.35,0l-.836-.68a1.071,1.071,0,0,0-1.355,0l-.816.669a1.071,1.071,0,0,1-1.357,0l-.782-.639a1.069,1.069,0,0,0-1.357,0L1.31,5.07Zm8.44,14H6.57V8.72h4.86Zm5.53,0H12.48V7.87H5.52v6.98H1.04V6.1H16.96Z" fill="#fff"/>
-                </g>
             </g>
-        </svg>
+            </g>
+      </svg>
+
     )
 }

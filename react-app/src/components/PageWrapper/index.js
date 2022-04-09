@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const PageWrapper = styled.div`
-    width: 1600px;
+    width: 100vw;
     height: auto;
     min-height: 100vh;
-    background-color: grey;
+    background-color: #E1E1E1;
     display: flex;
     position: absolute;
     top: 0;
