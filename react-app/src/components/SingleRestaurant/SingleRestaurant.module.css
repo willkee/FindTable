@@ -120,3 +120,8 @@
 .address_text {
     margin-bottom: 20px;
 }
+
+.button_container {
+    display: flex;
+    flex-direction: row;
+}
