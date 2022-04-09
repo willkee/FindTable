@@ -113,10 +113,10 @@ export const SingleRestaurant = () => {
                       <span><i className="fa-solid fa-message"/> {` ${Object.values(restaurant.reviews).length} Reviews`}</span>
                     </div>
                     {isOwner &&
-                    <>
+                    <div className={styles.button_container}>
                       <UpdateRestaurant restaurant={restaurant}/>
                       <DeleteRestaurant restaurant_id={restaurant.id}/>
-                    </>}
+                    </div>}
                     {/* Restaurant Cuisine */}
                     <div>{restaurant.description}</div>
                     {Object.values(restaurant.reviews).length > 0 ?

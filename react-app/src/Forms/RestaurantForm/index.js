@@ -11,7 +11,7 @@ export const RestaurantForm = ({ restaurant }) => {
     const [name, setName] = useState(restaurant?.name || '')
     const [priceRating, setPriceRating] = useState(restaurant?.priceRating || 1)
     const [description, setDescription] = useState(restaurant?.description || '')
-    const [imageURL, setImageURL] = useState(restaurant?.image_url || '')
+    const [imageURL, setImageURL] = useState(restaurant?.img_url || '')
     const [phoneNumber, setPhoneNumber] = useState(restaurant?.phone_number || '')
     const [website, setWebsite] = useState(restaurant?.website || '')
     const [streetAddress, setStreetAddress] = useState(restaurant?.street_address || '')
@@ -26,7 +26,6 @@ export const RestaurantForm = ({ restaurant }) => {
     const dispatch = useDispatch()
     const history = useHistory()
     // const { id } = useParams()
-
 
     // useEffect(() => {
     //     (async() => {
@@ -103,6 +102,14 @@ export const RestaurantForm = ({ restaurant }) => {
         // console.log(cuisines_array)
     }
 
+    const handleClick_Edit = () => {
+        dispatch(hideModal())
+    }
+
+    const handleClick_New = () => {
+        history.push('/')
+    }
+
     return (
             // <div className={styles.container}>
                 <div className={styles.form_entries}>
@@ -110,6 +117,7 @@ export const RestaurantForm = ({ restaurant }) => {
                     <ul>
                         {errors && errors.map(error => <li key={error} className={styles.error_messages}>{error}</li>)}
                     </ul>
+                    { restaurant ? <h3 style={{color: 'red'}}> - Please fill out your attributes again. </h3> : null }
                     <form onSubmit={onSubmit}>
                         <div className={styles.form_container}>
                             <div className={styles.left_entries}>
@@ -193,24 +201,14 @@ export const RestaurantForm = ({ restaurant }) => {
                                         <option value="Staten Island">Staten Island</option>
                                     </select>
                                 </div>
-                                <div className={styles.input_container}>
-                                    <div>
-                                        <input type="checkbox"
-                                                value={accessible}
-                                                onChange={() => setAccessible(!accessible)}>
-                                        </input>
-                                        <i className="fa-solid fa-wheelchair"></i>
-                                        <label htmlFor='accessible'>Accessible?</label>
-                                    </div>
-                                </div>
                             </div>
                             <div className={styles.right_entries}>
                                 <fieldset>
                                     <legend className={styles.legend}>Attributes</legend>
                                     <div className={styles.input_container} >
                                         <label htmlFor='cuisines' className={styles.check_label}>
-                                            Cuisines
                                             <CuisinesIcon />
+                                            Cuisines
                                         </label>
                                         <div className={styles.cuisines_container}>
                                         {cuisinesState.map(cuisine => (
@@ -223,8 +221,8 @@ export const RestaurantForm = ({ restaurant }) => {
                                     </div>
                                     <div className={styles.input_container}>
                                         <label htmlFor='settings' className={styles.check_label}>
-                                            Settings
                                             <RestaurantIcon />
+                                            Settings
                                         </label>
                                         <div className={styles.settings_container}>
                                         {settingsState.map(setting => (
@@ -235,11 +233,25 @@ export const RestaurantForm = ({ restaurant }) => {
                                         ))}
                                         </div>
                                     </div>
+                                    <div className={styles.input_container}>
+                                        <div>
+                                            <i className="fa-solid fa-wheelchair"></i>
+                                            <label htmlFor='accessible'>Wheelchair Accessible?</label>
+                                            <input type="checkbox"
+                                                    value={accessible}
+                                                    onChange={() => setAccessible(!accessible)}>
+                                            </input>
+                                        </div>
+                                    </div>
                                 </fieldset>
                             </div>
                         </div>
-                        <div className={styles.submit_button}>
-                            <button  type="submit">Submit</button>
+                        <div className={styles.button_container}>
+                            <button  type="submit" className={styles.button}>Submit</button>
+                            { restaurant
+                            ? <div onClick={handleClick_Edit} role='button' className={styles.button}>Cancel</div>
+                            : <div onClick={handleClick_New} role='button' className={styles.button}>Cancel</div>
+                                }
                         </div>
                     </form>
                 </div>
