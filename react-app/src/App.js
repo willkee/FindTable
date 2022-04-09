@@ -88,7 +88,7 @@ function App() {
               </Route>
             </Switch>
             <div className='return_to_top_button'><a href="#top"><i className="fa-solid fa-angles-up"></i></a></div>
-            {/* <Footer /> */}
+            <Footer />
       </PageWrapper>
     </BrowserRouter>
   );

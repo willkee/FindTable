@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { ReservationCard } from '../ReservationCard'
 import styled from "styled-components";
 import styles from "./ProfilePage.module.css";
-import { UserIcon, UserIconLarge } from '../Icons';
+import { UserIconLarge } from '../Icons';
 
 const Background = styled.div`className={styles.button}
     width: 1600px;

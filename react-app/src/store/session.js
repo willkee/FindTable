@@ -15,14 +15,14 @@ const removeUser = () => ({
   type: REMOVE_USER,
 })
 
-const addFavorite = (user) => ({
-  type: ADD_FAVORITE,
-  payload: user
-});
+// const addFavorite = (user) => ({
+//   type: ADD_FAVORITE,
+//   payload: user
+// });
 
-const removeFavorite = () => ({
-  type: REMOVE_FAVORITE,
-})
+// const removeFavorite = () => ({
+//   type: REMOVE_FAVORITE,
+// })
 
 const initialState = { user: null };
 
