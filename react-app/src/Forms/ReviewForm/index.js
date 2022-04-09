@@ -2,7 +2,6 @@ import { useState } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import styles from "./ReviewForm.module.css"
 import { createReview } from '../../store/restaurants';
-import {ColorfulStar, OutlineGreyStar} from '../../components/Icons';
 
 
 export const ReviewForm = ({restaurant}) => {
@@ -38,7 +37,7 @@ export const ReviewForm = ({restaurant}) => {
       <div>
         <div className={styles.reviewHeader}>
           <div>
-              <strong>Hi {user?.first_name}, how was your experience at {restaurant.name}?</strong>
+              <strong>Hi {user?.first_name}, how was your experience?</strong>
           </div>
         </div>
         <div>

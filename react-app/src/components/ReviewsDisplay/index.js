@@ -2,11 +2,15 @@ import React from 'react'
 import styles from './ReviewsDisplay.module.css';
 import { useSelector } from 'react-redux';
 import { ReviewIcon } from '../Icons';
+import {ReviewEdit} from '../ReviewEdit';
 
 
 export const ReviewsDisplay = ({restaurant}) => {
   const allUsers = useSelector(state => state.users)
   const reviews = Object.values(restaurant?.reviews)
+  // const sessionUser = useSelector(state => state.sesion.user)
+  const sessionUser = useSelector(state => state.session.user)
+  console.log(sessionUser)
 
 
   const starRender = (stars) => {
@@ -61,7 +65,9 @@ export const ReviewsDisplay = ({restaurant}) => {
     return Math.floor(Math.random() * max);
   }
 
-  //colors[getRandomInt(5)]
+  const deleteReview = () => {
+
+  }
 
   const colors = [
     "#7D2C3B",
@@ -72,7 +78,6 @@ export const ReviewsDisplay = ({restaurant}) => {
   ]
 
   return (
-    <>
       <div className={styles.container}>
         {reviews.map((review) => (
           <div className={styles.singleReview}>
@@ -88,8 +93,8 @@ export const ReviewsDisplay = ({restaurant}) => {
               {Object.values(allUsers[`${review.user_id}`].reviews).length} reviews
               </div>
             </div>
-            <div className={styles.imageContainer}>
-            <img src={review.img_url} alt='' className={styles.image}/>
+            <div className={styles.image}>
+              <img src={review.img_url} alt='' className={styles.image}/>
             </div>
             <div className={styles.stars}>
               {starRender(review.stars)}
@@ -97,9 +102,14 @@ export const ReviewsDisplay = ({restaurant}) => {
             <div className={styles.content}>
               {review.review}
             </div>
-          </div>
-        ))}
+            <div className={styles.editDelete}>
+              {review.user_id === sessionUser.id ?
+                <ReviewEdit review={review}/> : null
+              }
+              {review.user_id === sessionUser.id ?
+                <div className={styles.delete} onClick={deleteReview}>Delete</div> : null
+              }
+            </div>
+          </div>))}
       </div>
-    </>
-  )
-}
+)}

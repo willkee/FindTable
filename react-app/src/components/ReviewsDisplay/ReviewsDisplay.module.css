@@ -17,6 +17,7 @@
   grid-template-rows: 80px 70px repeat(3, 0);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+  margin-top: 10px;
 }
 
 .iconContainer {
@@ -74,4 +75,13 @@
 
 .imageContainer {
   padding-top: 15px;
+}
+
+.editDelete {
+  background-color: green;
+  display: flex;
+  width: 100px;
+  justify-content: space-around;
+  top: 0;
+  right: 0;
 }
