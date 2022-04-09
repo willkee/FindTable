@@ -43,40 +43,43 @@ const LoginForm = () => {
   }
 
   return (
-    <div>
+    <div className={styles.parent}>
       <video loop autoPlay width="250">
         <source src={animation}
           type="video/mp4" />
         Sorry, your browser doesn't support embedded videos.
       </video>
-      <form>
-        <div>
+      <form className={styles.form_element}>
+        {errors.length > 0 && <div className={styles.error_container}>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
+        </div>}
+        <div className={styles.fields}>
+          <div>
+            <label htmlFor='email'>Email</label>
+            <input
+              name='email'
+              type='text'
+              placeholder='Email'
+              value={email}
+              onChange={updateEmail}
+            />
+          </div>
+          <div>
+            <label htmlFor='password'>Password</label>
+            <input
+              name='password'
+              type='password'
+              placeholder='Password'
+              autoComplete='none'
+              value={password}
+              onChange={updatePassword}
+            />
+          </div>
         </div>
-        <div>
-          <label htmlFor='email'>Email</label>
-          <input
-            name='email'
-            type='text'
-            placeholder='Email'
-            value={email}
-            onChange={updateEmail}
-          />
-        </div>
-        <div>
-          <label htmlFor='password'>Password</label>
-          <input
-            name='password'
-            type='password'
-            placeholder='Password'
-            autoComplete='none'
-            value={password}
-            onChange={updatePassword}
-          />
-          <div role='button' className={styles.div_button} onClick={onLogin}>Login</div>
-        </div>
+
+            <div role='button' className={styles.div_button} onClick={onLogin}>Login</div>
             <div role='button' className={styles.div_button} onClick={showSignUpForm}>Don't have an account? Sign up!</div>
             <div role='button' className={styles.div_button} onClick={loginDemo}>Demo User</div>
       </form>

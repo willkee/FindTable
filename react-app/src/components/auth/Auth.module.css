@@ -1,10 +1,43 @@
+.parent {
+    padding: 25px;
+}
+
+.form_element {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.error_container {
+    background-color: #c1c1c1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 5px;
+    margin: 15px 0;
+}
+
+.fields {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.fields div {
+    display: flex;
+    justify-content: space-between;
+}
+.fields div:first-child {
+    margin-bottom: 20px;
+}
+
 .div_button {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #7D2C3B;
     cursor: pointer;
-    margin: 10px 0;
     border-radius: 3px;
     color: white;
     padding: 5px 10px;

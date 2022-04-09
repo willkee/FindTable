@@ -4,14 +4,14 @@ import { useSelector } from 'react-redux';
 
 
 export const ReviewsDisplay = ({restaurant}) => {
-  const allUsers = useSelector(state => state.users)
+  const allUsers = useSelector(state => state?.users)
   const reviews = Object.values(restaurant?.reviews)
 
   return (
     <>
       <div className={styles.container}>
         {reviews.map((review) => (
-          <div className={styles.singleReview}>
+          <div className={styles.singleReview} key={review.id}>
             <div className={styles.icon}>
               {allUsers[`${review.user_id}`].first_name[0]}{allUsers[`${review.user_id}`].last_name[0]}
             </div>
