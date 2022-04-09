@@ -1,11 +1,12 @@
 .lower_banner {
     background-image: url('../../images/pexels-cottonbro-3298637.jpg');
-    width: 1200px;
+    width: 100%;
     height: 300px;
     background-size: cover;
     background-repeat: no-repeat;
     /* opacity: 0.95; */
-    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     align-items: center;
     justify-content: center;
     display: flex;
@@ -29,7 +30,6 @@
     align-items: center;
     justify-content: center;
     background-color: #983937;
-    border-radius: 5px;
     font-weight: 600;
 }
 
