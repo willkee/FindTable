@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export const LocationIcon = () => {
     return (
         <svg id="Directions" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
@@ -172,10 +174,19 @@ export const RedStar = () => {
 }
 
 export const GreyStar = () => {
+    const [color, setColor] = useState("#e1e1e1")
+    const [fillColor, setFillColor] = useState("red")
+
+    const changeColor = (e) => {
+        e.preventDefault();
+
+        color === "#e1e1e1" ? setColor("red") : setColor("#e1e1e1")
+    }
+
     return (
         <svg xmlns="http://www.w3.org/2000/svg" width="16.444" height="15.679" viewBox="0 0 16.444 15.679">
             <g id="Grey_star" dataname="Grey star" transform="translate(0.001)">
-                <path id="Path_89" dataname="Path 89" d="M3047.225,3.133l2.221,4.5a.412.412,0,0,0,.31.225l4.968.722a.412.412,0,0,1,.228.7l-3.595,3.5a.411.411,0,0,0-.119.364l.849,4.948a.412.412,0,0,1-.6.434l-4.443-2.336a.412.412,0,0,0-.383,0l-4.444,2.336a.412.412,0,0,1-.6-.434l.848-4.948a.411.411,0,0,0-.118-.364l-3.595-3.5a.412.412,0,0,1,.228-.7l4.968-.722a.411.411,0,0,0,.31-.225l2.222-4.5a.412.412,0,0,1,.738,0" transform="translate(-3038.635 -2.903)" fill="#e1e1e1"/>
+                <path onClick={changeColor} id="Path_89" dataname="Path 89" d="M3047.225,3.133l2.221,4.5a.412.412,0,0,0,.31.225l4.968.722a.412.412,0,0,1,.228.7l-3.595,3.5a.411.411,0,0,0-.119.364l.849,4.948a.412.412,0,0,1-.6.434l-4.443-2.336a.412.412,0,0,0-.383,0l-4.444,2.336a.412.412,0,0,1-.6-.434l.848-4.948a.411.411,0,0,0-.118-.364l-3.595-3.5a.412.412,0,0,1,.228-.7l4.968-.722a.411.411,0,0,0,.31-.225l2.222-4.5a.412.412,0,0,1,.738,0" transform="translate(-3038.635 -2.903)" fill={color}/>
             </g>
         </svg>
     )

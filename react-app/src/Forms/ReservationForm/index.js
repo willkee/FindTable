@@ -2,17 +2,18 @@ import styles from "./ReservationForm.module.css";
 // import Calendar from 'react-calendar'
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { createReservation } from "../../store/restaurants";
+import { GreyStar } from "../../components/Icons";
 
 export const ReservationForm = ({restaurantId}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
     const user = useSelector(state => state.session.user)
     const [date, setDate] = useState(new Date().toISOString().slice(0, 10))
     const [time, setTime] = useState("")
     const [people, setPeople] = useState(1)
     const [errors, setErrors] = useState([])
+    const hour = new Date().getHours();
 
     // const localString = new Date().toLocaleDateString() //4/8/2022
     // const todayInput = localString.replaceAll('/', '-')
@@ -21,12 +22,11 @@ export const ReservationForm = ({restaurantId}) => {
     // const todaysString = todaysDate.toDateString(); //Fri Apr 08 2022
     // const thisYear = todaysDate.getFullYear(); //2022
     // const thisMonth = todaysDate.getMonth() + 1; // 3 (because it's 0-23 so add 1 and you get April)
-    // const hour = todaysDate.getHours(); //17
+    // const hour = new Date().getHours(); //17
     // const minute = todaysDate.getMinutes(); //25
     // const today = todaysDate.getDate(); //8
     const today = new Date().toISOString().slice(0, 10) // This is the one you want for inputs
-    console.log(new Date().getMinutes())
-    const minTime = new Date()
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -44,7 +44,7 @@ export const ReservationForm = ({restaurantId}) => {
             setErrors(newReservation.error)
         } else {
             console.log("success")
-            history.push('/my-profile')
+            return <Redirect to="/my-profile" />;
             // history.push(`/my_reservations/${newReservation.id}`)
         }
     }
@@ -77,9 +77,48 @@ export const ReservationForm = ({restaurantId}) => {
                     <input type="date" name="date" min={today} value={date} onChange={(e) => setDate(e.target.value)} />
                     <label htmlFor="time" style={{marginTop: "10px"}}><strong>Select a time:</strong></label>
                     <p style={{padding: "0px", marginTop: "0px"}}>Please pick a time between 8AM and 10:00PM.</p>
-                    <input type="time" name="time" value={time}  max="23:30" onChange={(e) => setTime(e.target.value)} />
+                    <select value={people} onChange={(e) => setTime(e.target.value)}>
+                        <optgroup label="Breakfast">
+                            <option value={8} disabled={hour > 6 ? true : false}>8:00 AM</option>
+                            <option value={8.5} disabled={hour > 6 ? true : false}>8:30 AM</option>
+                            <option value={9} disabled={hour > 7 ? true : false}>9:00 AM</option>
+                            <option value={9.5} disabled={hour > 7 ? true : false}>9:30 AM</option>
+                            <option value={10} disabled={hour > 8 ? true : false}>10:00 AM</option>
+                            <option value={10.5} disabled={hour > 8 ? true : false}>10:30 AM</option>
+                        </optgroup>
+                        <optgroup label="Lunch">
+                            <option value={11} disabled={hour > 9 ? true : false}>11:00 AM</option>
+                            <option value={11.5} disabled={hour > 9 ? true : false}>11:30 AM</option>
+                            <option value={12} disabled={hour > 10 ? true : false}>12:00 PM</option>
+                            <option value={12.5} disabled={hour > 10 ? true : false}>12:30 PM</option>
+                            <option value={13} disabled={hour > 11 ? true : false}>1:00 PM</option>
+                            <option value={13.5} disabled={hour > 11 ? true : false}>1:30 PM</option>
+                            <option value={14} disabled={hour > 12 ? true : false}>2:00 PM</option>
+                        </optgroup>
+                        <optgroup label="Afternoon">
+                            <option value={14.5} disabled={hour > 12 ? true : false}>2:30 PM</option>
+                            <option value={15} disabled={hour > 13 ? true : false}>3:00 PM</option>
+                            <option value={15.5} disabled={hour > 13 ? true : false}>3:30 PM</option>
+                            <option value={16} disabled={hour > 14 ? true : false}>4:00 PM</option>
+                            <option value={16.5} disabled={hour > 14 ? true : false}>4:30 PM</option>
+                        </optgroup>
+                        <optgroup>
+                            <option value={17} disabled={hour > 15 ? true : false}>5:00 PM</option>
+                            <option value={17.5} disabled={hour > 15 ? true : false}>5:30 PM</option>
+                            <option value={18} disabled={hour > 16 ? true : false}>6:00 PM</option>
+                            <option value={18.5} disabled={hour > 16 ? true : false}>6:30 PM</option>
+                            <option value={19} disabled={hour > 17 ? true : false}>7:00 PM</option>
+                            <option value={19.5} disabled={hour > 17 ? true : false}>7:30 PM</option>
+                            <option value={20} disabled={hour > 18 ? true : false}>8:00 PM</option>
+                            <option value={20.5} disabled={hour > 18 ? true : false}>8:30 PM</option>
+                            <option value={21} disabled={hour > 19 ? true : false}>9:00 PM</option>
+                            <option value={21.5} disabled={hour > 19 ? true : false}>9:30 PM</option>
+                            <option value={22} disabled={hour > 20 ? true : false}>10:00 PM</option>
+                        </optgroup>
+                    </select>
                 </div>
-                <button type="submit" disabled={!people || !date || !time ? true : false}>Reserve table</button>
+                <div role="button" type="submit" onClick={handleSubmit}>Reserve table</div>
+                <GreyStar />
             </form>
     )
 }

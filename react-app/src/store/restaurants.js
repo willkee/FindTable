@@ -265,7 +265,9 @@ const restaurantsReducer = (state = {}, action) => {
     }
     case CREATED_RESERVATION: {
       const restaurant = newState[action.payload.restaurant_id]
+      console.log(restaurant)
       const reservations = restaurant.reservations
+      console.log(reservations)
       reservations[action.payload.id] = action.payload
       return newState
     }
