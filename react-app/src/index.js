@@ -5,7 +5,6 @@ import { Provider, useDispatch } from 'react-redux';
 import './index.css';
 import App from './App';
 import configureStore from './store';
-import { ModalProvider } from './context/Modal';
 
 import { setModalMount } from './store/modal';
 
@@ -31,9 +30,7 @@ const Root = () => {
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ModalProvider>
         <Root />
-      </ModalProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

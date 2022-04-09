@@ -4,6 +4,8 @@ from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
 
+from os import environ
+
 auth_routes = Blueprint('auth', __name__)
 
 
@@ -26,6 +28,10 @@ def authenticate():
     if current_user.is_authenticated:
         return current_user.to_dict()
     return {'errors': ['Unauthorized']}
+
+@auth_routes.route('/get_key', methods=['GET'])
+def gmaps_api():
+    return {'key': environ.get('REACT_APP_GMAPS_KEY')}
 
 
 @auth_routes.route('/login', methods=['POST'])

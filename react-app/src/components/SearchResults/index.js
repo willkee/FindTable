@@ -3,28 +3,13 @@ import { useSelector } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
 import { PageContainer } from '../PageContainer'
 import styles from './SearchResults.module.css'
+import { Footer } from '../Footer'
 
 const SearchResults = () => {
-    const { dateString, timeParams, searchWord } = useParams()
+    const { searchWord } = useParams()
     const history = useHistory()
 
     const restaurants = useSelector(state => Object.values(state.restaurants))
-
-    const timeManipulation = (time) => {
-        const splitTime = timeParams.split(":")
-        const hour = parseInt(splitTime[0], 10)
-
-        if (hour < 12) {
-            splitTime.push("AM")
-        } else {
-            if (hour > 12) splitTime[0] -= 12
-            splitTime.push("PM")
-        }
-
-        return `${parseInt(splitTime[0], 10)}:${splitTime[1]} ${splitTime[2]}`
-    }
-
-    console.log(timeManipulation(timeParams))
 
     const restaurants_set = new Set()
     restaurants.forEach((restaurant, index) => {
@@ -39,21 +24,25 @@ const SearchResults = () => {
         }
     })
 
+    const sendToRestaurant = (restaurant_index) => {
+        history.push(`/restaurants/${restaurant_index + 1}`)
+    }
+
     const matched_restaurants = Array.from(restaurants_set)
 
     return (
         <PageContainer>
             <h1>Search Results</h1>
-            <button className={styles.return_home} onClick={() => history.push("/")}>Return Home</button>
+            <div className={styles.return_home} onClick={() => history.push("/")}>Return Home</div>
             <div className={styles.all_restaurants}>
                 {matched_restaurants.length
                 ?
                 (<div className={styles.parent_container_each}>
-                        <div className={styles.search_intro_message}>{`You searched for "${searchWord}" for ${new Date(dateString).toDateString()} at ${timeManipulation(timeParams)}`}:</div>
+                        <div className={styles.search_intro_message}>{`You searched for "${searchWord}":`}</div>
                         <div><strong>{`Your search result has returned ${matched_restaurants.length} restaurants: `}</strong></div>
                         <div className={styles.each_restaurant}>
                             {matched_restaurants.map(restaurant_index => (
-                                <div className={styles.each_wrapper} key={restaurant_index}>
+                                <div className={styles.each_wrapper} onClick={() => sendToRestaurant(restaurant_index)} key={restaurant_index}>
                                     <img src={restaurants[restaurant_index].img_url} alt="" width="200px"></img>
                                     <div className={styles.each_wrapper_info}>
                                         <div>{restaurants[restaurant_index].name}</div>
@@ -79,6 +68,7 @@ const SearchResults = () => {
                 )
             }
             </div>
+            <Footer />
         </PageContainer>
     )
 }

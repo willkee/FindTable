@@ -45,9 +45,9 @@ def create_restaurant():
       new_restaurant.cuisines.append(Cuisine.query.get(int(cuisineId)))
 
     # find the user's business owner status. If false, update to true
-    if not current_user.business_owner:
-      current_user.business_owner = True
-
+    # if not current_user.business_owner:
+    #   current_user.business_owner = True
+    current_user.owner_status()
     db.session.add(new_restaurant)
 
     db.session.commit()
@@ -62,6 +62,11 @@ def restaurants():
   restaurants_list = Restaurant.query.all()
   return {'restaurants': [restaurant.to_dict() for restaurant in restaurants_list]}
 
+@restaurant_routes.route('/home', methods=["GET"])
+def restaurants_home_grid():
+  restaurants_list = Restaurant.query.all()
+  return {'restaurants': [restaurant.home_to_dict() for restaurant in restaurants_list]}
+
 
 @restaurant_routes.route('/<int:id>', methods=["GET"])
 def restaurant(id):
@@ -75,8 +80,6 @@ def restaurantUpdate(id):
 
   restaurant_settings = request.json['settings']
   restaurant_cuisines = request.json['cuisines']
-
-  print('\n\n REST --', restaurant_settings, '\n\n')
 
   form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -110,8 +113,15 @@ def restaurantDelete(id):
   data = {}
   restaurant = Restaurant.query.get(id)
   data['restaurant'] = restaurant.to_dict()
+
   db.session.delete(restaurant)
+  current_user.owner_status()
   db.session.commit()
+
+
+  # find the user's business owner status. If the user has no restaurants, set business_owner to False
+
+
   return data
 
 

@@ -27,9 +27,9 @@ def reviewCreate():
     new_review = Review(
       user_id = request_initial['user_id'],
       restaurant_id = request_initial['restaurant_id'],
-      stars = form.data['stars'],
-      img_url = form.data['img_url'],
-      review = form.data['review']
+      stars = request_initial['stars'],
+      img_url = request_initial['img_url'],
+      review = request_initial['review']
     )
 
     db.session.add(new_review)
@@ -52,9 +52,9 @@ def reviewUpdate(id):
     review = Review.query.get(id)
     review.user_id = request_initial['user_id'],
     review.restaurant_id = request_initial['restaurant_id'],
-    review.stars = form.data['stars'],
-    review.img_url = form.data['img_url'],
-    review.review = form.data['review']
+    review.stars = request_initial['stars'],
+    review.img_url = request_initial['img_url'],
+    review.review = request_initial['review']
 
     db.session.commit()
 

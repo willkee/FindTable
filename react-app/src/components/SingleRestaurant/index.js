@@ -1,39 +1,48 @@
 import React from 'react'
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import pattern from './pattern.png'
 import styles from './SingleRestaurant.module.css';
+
 import { PageWrapper } from '../PageWrapper';
 import { PageContainer } from '../PageContainer';
-import { useParams } from 'react-router-dom';
-// import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import pattern from './pattern.png'
-import ReviewCounter from '../ReviewCounter';
-// import { createReview } from '../../store/reviews';
 
-// import { ReviewForm } from '../../Forms/ReviewForm';
-// import { ReservationForm } from '../../Forms/ReservationForm'
-// import { ReviewForm } from '../../Forms/ReviewForm';
+import ReviewCounter from '../ReviewCounter';
+import { ReviewsDisplay } from '../ReviewsDisplay';
+import { ReservationForm } from '../../Forms/ReservationForm'
 import { UpdateRestaurant } from '../UpdateRestaurant'
 import { DeleteRestaurant } from '../DeleteRestaurant'
-import { ReviewsDisplay } from '../ReviewsDisplay';
+import { receiveOneRestaurant } from '../../store/restaurants';
+
+import StarCount from './StarCount';
+
+// import { showModal, setCurrentModal } from '../../store/modal';
+// import { ReviewForm } from '../../Forms/ReviewForm';
+// import { createReview } from '../../store/reviews';
+// import { ReviewForm } from '../../Forms/ReviewForm';
+import {ReviewForm} from '../../Forms/ReviewForm';
 // import { showModal, setCurrentModal } from '../../store/modal';
 
-
 export const SingleRestaurant = () => {
-  const {id} = useParams()
-  // const [isOwner, setIsOwner] = useState(false)
+  const { id } = useParams()
+  const [myKey, setMyKey] = useState("")
+  const [isLoaded, setIsLoaded] = useState(false)
   // find restaurant owner id and session user id
-  // const restaurant = useSelector(state => (state.restaurants))
-  const restaurantState = useSelector(state => state.restaurants)
-  const restaurant = restaurantState[`${id}`]
 
+  // const restaurant = useSelector(state => (state.restaurants))
+
+  const dispatch = useDispatch()
+
+  const restaurant = useSelector(state => state.restaurants)[`${id}`]
   const sessionUser = useSelector((state) => state?.session?.user);
-  console.log('REST ---', restaurant)
+
   // set isOwner to true if the current user owns the restaurant being viewed
   // this will display the update/delete restaurant buttons
   let isOwner = false
   sessionUser && restaurant?.owner_id === sessionUser.id ? isOwner = true : isOwner = false
 
-  const stars = Object?.values(restaurant?.reviews).map(review => review?.stars)
 
 
   // const handleNewReview = () => {
@@ -42,10 +51,18 @@ export const SingleRestaurant = () => {
       //   }))
       // }
 
+      useEffect(() => {
+        (async () => {
+          const res = await fetch(`/api/auth/get_key`);
+          const key = await res.json();
+          setMyKey(key)
 
-  const API_KEY = process.env.REACT_APP_GMAPS_KEY;
-  const API_URL = `https://maps.googleapis.com/maps/api/staticmap?center=${restaurant.street_address}&zoom=16&size=300x500&maptype=roadmap&markers=color:red%7Clabel:.%7C${restaurant.street_address}&key=${API_KEY}`
+        })();
+        dispatch(receiveOneRestaurant(id)).then(() => setIsLoaded(true)).catch(e => console.error("Error: ", e))
+      }, [dispatch, id])
 
+
+  const API_URL = `https://maps.googleapis.com/maps/api/staticmap?center=${restaurant.street_address}&zoom=16&size=300x500&maptype=roadmap&markers=color:red%7Clabel:.%7C${restaurant.street_address}&key=${myKey.key}`
 
   const getAverageRating = (data) => {
 
@@ -70,11 +87,13 @@ export const SingleRestaurant = () => {
   }
 
   return (
-        <PageWrapper>
+        <PageWrapper>{isLoaded &&
             <PageContainer className={styles.sr_custom_pc}>
               <img src={pattern} className={styles.sr_banner} alt="banner pattern"></img>
-              <img className={styles.sr_img} src={restaurant.img_url} alt="" width="200px"></img>
-              <div className={styles.left_sidebar}></div>
+              <img className={styles.sr_img} src={restaurant.img_url} alt="restaurant"/>
+              <div className={styles.left_sidebar}>
+                <ReservationForm />
+              </div>
 
               <div className={styles.sr_parent}>
                 <div className={styles.sr_content}>
@@ -94,7 +113,7 @@ export const SingleRestaurant = () => {
 
                     <div className={styles.content_sub_header2}>
                       {/* Restaurant Star Rating */}
-                      <span><i className="fa-solid fa-star"></i> {getAverageRating(restaurant)} Stars</span>
+                      <span><StarCount rating={getAverageRating(restaurant)}/>{getAverageRating(restaurant)}</span>
 
                       {/* Restaurant Review Count */}
                       <span><i className="fa-solid fa-message"/> {` ${Object.values(restaurant.reviews).length} Reviews`}</span>
@@ -110,29 +129,31 @@ export const SingleRestaurant = () => {
                         Object.values(restaurant.reviews).length === 1 ?
                           <div>
                             <h3>What {Object.values(restaurant.reviews).length} person is saying</h3>
-                            <hr></hr>
-                            <ReviewCounter stars={stars}/>
-                            <hr></hr>
+                            <hr className={styles.horiz_line}></hr>
+                            <ReviewCounter stars={Object.values(restaurant.reviews).map(review => review.stars)}/>
+                            <hr className={styles.horiz_line}></hr>
                           </div>
                           :
                           <div>
                             <h3>What {Object.values(restaurant.reviews).length} people are saying</h3>
-                            <hr></hr>
-                            <ReviewCounter stars={stars}/>
-                            <hr></hr>
+                            <hr className={styles.horiz_line}></hr>
+                            <ReviewCounter stars={Object.values(restaurant.reviews).map(review => review.stars)}/>
+                            <hr className={styles.horiz_line}></hr>
                           </div>
-
                     :
                     <div>
                         <h3>There are no reviews.</h3>
                         <hr></hr>
                     </div>
                     }
-                    <ReviewsDisplay restaurant={restaurant}/>
                 </div>
+                    <div className={styles.review_parent_container}>
+                      {sessionUser &&
+                      <ReviewForm restaurant={restaurant}/>
+                      }
+                      <ReviewsDisplay restaurant={restaurant}/>
+                    </div>
               </div>
-
-
 
               <div className={styles.right_sidebar}>
                   <div className={styles.gmaps_static}><img src={API_URL} alt="Google Maps"></img></div>
@@ -142,10 +163,9 @@ export const SingleRestaurant = () => {
                   </div>
                   <div><a href={restaurant.website} target="_blank" rel="noreferrer"><i className="fa-solid fa-earth-americas"></i> Website</a></div>
                   <div><a href={`https://www.google.com/maps/place/${restaurant.street_address}`} target="_blank" rel="noreferrer"><i className="fa-solid fa-diamond-turn-right"/>Get Directions</a>
-</div>
-
               </div>
-            </PageContainer>
+              </div>
+            </PageContainer>}
         </PageWrapper>
     )
 }

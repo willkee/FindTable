@@ -1,5 +1,9 @@
 const CREATED_RESTAURANT = '/restaurants/createdRestaurant'
 const ALL_RESTAURANTS_RECEIVED = '/restaurants/allRestaurantsReceived'
+
+const ONE_RESTAURANT = '/restaurants/oneRestaurant'
+const HOME_GRID_RESTAURANTS_RECEIVED = '/restaurants/homeRestaurantsOnly'
+
 const UPDATED_RESTAURANT = '/restaurants/updatedRestaurant'
 const DELETED_RESTAURANT = '/restaurants/deletedRestaurant'
 const CREATED_REVIEW = '/reviews/createdReview'
@@ -73,6 +77,46 @@ const allRestaurantsReceived = (payload) => {
   }
 }
 
+// NEW CODE NEW CODE
+// -----------------------------------------------------
+
+const oneRestaurantReceived = (payload) => {
+  return {
+    type: ONE_RESTAURANT,
+    payload
+  }
+}
+
+const homeRestaurantsReceived = (payload) => {
+  return {
+    type: HOME_GRID_RESTAURANTS_RECEIVED,
+    payload
+  }
+}
+
+export const receiveHomeRestaurants = () => async dispatch => {
+    const res = await fetch('/api/restaurants/home')
+    if (res.ok) {
+      const restaurants = await res.json();
+      dispatch(homeRestaurantsReceived(Object.values(restaurants)[0]))
+      return restaurants
+    }
+  }
+
+  export const receiveOneRestaurant = restaurantId =>
+  async dispatch => {
+    const res = await fetch(`/api/restaurants/${restaurantId}`)
+
+    if (res.ok) {
+      const restaurant = await res.json();
+      dispatch(oneRestaurantReceived(restaurant));
+      return restaurant
+    }
+  }
+
+// -----------------------------------------------------
+// NEW CODE NEW CODE
+
 
 const updatedRestaurant = (payload) => {
   return {
@@ -135,8 +179,14 @@ async dispatch => {
     body: JSON.stringify(data)
   })
   const newReview = await res.json()
-  dispatch(createdReview(newReview))
-  return newReview
+
+  if (newReview.error) {
+    console.log("DATA!!!!\n\n\n\n\n\n\n\n", newReview.error)
+    return newReview.error
+  } else {
+    dispatch(createdReview(newReview))
+    return newReview
+  }
 }
 
 export const updateReview = data =>
@@ -188,16 +238,7 @@ export const receiveAllRestaurants = () => async dispatch => {
     }
   }
 
-// export const receiveOneRestaurant = restaurantId =>
-//   async dispatch => {
-//     const res = await fetch(`api/restaurants/${restaurantId}`)
 
-//     if (res.ok) {
-//       const restaurant = await res.json();
-//       dispatch(oneRestaurantReceived(restaurant));
-//       return restaurant
-//     }
-//   }
 
 export const updateRestaurant = ({formData, id}) =>
   async dispatch => {
@@ -235,6 +276,14 @@ const restaurantsReducer = (state = {}, action) => {
       action.payload.forEach((restaurant) => newState[restaurant.id] = restaurant)
       return newState;
     }
+    case HOME_GRID_RESTAURANTS_RECEIVED: {
+      action.payload.forEach((restaurant) => newState[restaurant.id] = restaurant)
+      return newState;
+    }
+    case ONE_RESTAURANT: {
+      newState[action.payload.id] = action.payload
+      return newState
+    }
     case UPDATED_RESTAURANT: {
       newState[action.payload?.id] = action.payload
       return newState;
@@ -245,7 +294,8 @@ const restaurantsReducer = (state = {}, action) => {
     }
     case CREATED_REVIEW: {
       const restaurant = newState[action.payload.restaurant_id]
-      const reviews = restaurant.review
+      console.log("\n\n\n\n\n", action.payload, "\n\n\n\n\n JKHFDSKJFHSKJDFHSKJDFHSDF")
+      const reviews = restaurant.reviews
       reviews[action.payload.id] = action.payload
       return newState
     }
