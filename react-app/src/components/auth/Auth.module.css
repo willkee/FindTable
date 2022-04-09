@@ -1,5 +1,10 @@
 .parent {
     padding: 25px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .form_element {
@@ -16,6 +21,7 @@
     text-align: center;
     padding: 5px;
     margin: 15px 0;
+    width: 100%;
 }
 
 .fields {
@@ -27,9 +33,12 @@
 .fields div {
     display: flex;
     justify-content: space-between;
-}
-.fields div:first-child {
     margin-bottom: 20px;
+}
+
+.fields div input {
+    width: 200px;
+    margin-left: 20px;
 }
 
 .div_button {
@@ -46,4 +55,19 @@
 
 .div_button:hover {
     background-color: #983937;
+}
+
+/* SIGN UP */
+
+.signup_form {
+    padding: 15px;
+    width: 400px;
+}
+
+.switch {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
 }

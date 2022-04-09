@@ -49,6 +49,7 @@ const LoginForm = () => {
           type="video/mp4" />
         Sorry, your browser doesn't support embedded videos.
       </video>
+      <h4>Welcome back! Please login.</h4>
       <form className={styles.form_element}>
         {errors.length > 0 && <div className={styles.error_container}>
           {errors.map((error, ind) => (
@@ -80,8 +81,8 @@ const LoginForm = () => {
         </div>
 
             <div role='button' className={styles.div_button} onClick={onLogin}>Login</div>
-            <div role='button' className={styles.div_button} onClick={showSignUpForm}>Don't have an account? Sign up!</div>
             <div role='button' className={styles.div_button} onClick={loginDemo}>Demo User</div>
+            <div role='button' className={styles.switch} onClick={showSignUpForm}>Don't have an account? Sign up!</div>
       </form>
     </div>
   );
