@@ -2,6 +2,7 @@ import styles from './Homepage.module.css'
 import {PageContainer} from '../PageContainer'
 import SearchHeader from '../SearchHeader'
 import RestaurantsList from '../RestaurantsList'
+import { useHistory } from 'react-router-dom'
 // import { useDispatch } from 'react-redux'
 // import { getLocation } from '../../store/session'
 
@@ -9,6 +10,7 @@ import RestaurantsList from '../RestaurantsList'
 
 
 export const Homepage = ({ all_restaurants }) => {
+  const history = useHistory();
   // const [location, setLocation] = useState('Brooklyn')
   // const [userLocation, setUserLocation] = useState([])
   // const dispatch = useDispatch()
@@ -49,6 +51,9 @@ export const Homepage = ({ all_restaurants }) => {
 
   //   locState()
   // },[dispatch])
+  const handleClick = () => {
+      history.push('/new-restaurant')
+  }
 
 
 
@@ -57,6 +62,14 @@ export const Homepage = ({ all_restaurants }) => {
 
       <SearchHeader className={styles.search_header_component} />
       <RestaurantsList all_restaurants={all_restaurants} />
+      <div className={styles.lower_banner}>
+        <h1 className={styles.lower_banner_text}>Restauranteurs Join Us</h1>
+        <h2 className={styles.lower_banner_text}> Join a rich community of restaurants which fill seats and</h2>
+        <h2 className={styles.lower_banner_text}> build their reputation with FindTable.</h2>
+        <div onClick={handleClick} role='button' className={styles.lower_banner_button}>
+          Create Your Restaurant
+        </div>
+      </div>
 
     </PageContainer>
   )

@@ -1,0 +1,33 @@
+.button {
+    height: 45px;
+    width: 100px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #983937;
+    border-radius: 5px;
+    font-weight: 600;
+    margin-left: 20px;
+  }
+
+  .button:hover {
+    cursor: pointer;
+  }
+
+  .button_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+
+.text_container {
+    text-align: center;
+    align-items: center;
+}
+
+.main_container {
+    text-align: center;
+}

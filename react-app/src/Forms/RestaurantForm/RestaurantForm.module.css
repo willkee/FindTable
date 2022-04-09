@@ -92,17 +92,6 @@
     font-size: 15px;
     padding: 2px;
 }
-.submit_button {
-    align-items: center
-}
-.submit_button button {
-    border: none;
-    border-radius: 5px;
-    width: 100px;
-    background-color: #da3743;
-    color: white;
-    transition: all linear 0.3s;
-}
 
 .error_messages {
     color: #da3743;
@@ -110,4 +99,26 @@
 
 .card_header {
     margin-top: 0;
+}
+
+.button_container {
+    display: flex;
+    flex-direction: row;
+}
+
+.button {
+    height: 45px;
+    width: 100px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #983937;
+    border-radius: 5px;
+    font-weight: 600;
+    margin-left: 20px;
+}
+
+.button:hover {
+    cursor: pointer;
 }
