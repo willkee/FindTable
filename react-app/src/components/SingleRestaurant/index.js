@@ -16,6 +16,8 @@ import { UpdateRestaurant } from '../UpdateRestaurant'
 import { DeleteRestaurant } from '../DeleteRestaurant'
 import { receiveOneRestaurant } from '../../store/restaurants';
 
+import StarCount from './StarCount';
+
 // import { showModal, setCurrentModal } from '../../store/modal';
 // import { ReviewForm } from '../../Forms/ReviewForm';
 // import { createReview } from '../../store/reviews';
@@ -31,9 +33,7 @@ export const SingleRestaurant = () => {
 
   const dispatch = useDispatch()
 
-  const restaurantState = useSelector(state => state.restaurants)
-  const restaurant = restaurantState[`${id}`]
-
+  const restaurant = useSelector(state => state.restaurants)[`${id}`]
   const sessionUser = useSelector((state) => state?.session?.user);
 
   // set isOwner to true if the current user owns the restaurant being viewed
@@ -41,7 +41,6 @@ export const SingleRestaurant = () => {
   let isOwner = false
   sessionUser && restaurant?.owner_id === sessionUser.id ? isOwner = true : isOwner = false
 
-  const stars = Object?.values(restaurant?.reviews).map(review => review?.stars)
 
 
   // const handleNewReview = () => {
@@ -56,10 +55,10 @@ export const SingleRestaurant = () => {
           const key = await res.json();
           setMyKey(key)
 
-          await dispatch(receiveOneRestaurant(id))
-          setIsLoaded(true)
         })();
+        dispatch(receiveOneRestaurant(id)).then(() => setIsLoaded(true)).catch(e => console.error("Error: ", e))
       }, [dispatch, id])
+
 
   const API_URL = `https://maps.googleapis.com/maps/api/staticmap?center=${restaurant.street_address}&zoom=16&size=300x500&maptype=roadmap&markers=color:red%7Clabel:.%7C${restaurant.street_address}&key=${myKey.key}`
 
@@ -89,7 +88,7 @@ export const SingleRestaurant = () => {
         <PageWrapper>{isLoaded &&
             <PageContainer className={styles.sr_custom_pc}>
               <img src={pattern} className={styles.sr_banner} alt="banner pattern"></img>
-              <img className={styles.sr_img} src={restaurant.img_url} alt="" width="200px"></img>
+              <img className={styles.sr_img} src={restaurant.img_url} alt="restaurant"/>
               <div className={styles.left_sidebar}>
                 <ReservationForm />
               </div>
@@ -112,7 +111,7 @@ export const SingleRestaurant = () => {
 
                     <div className={styles.content_sub_header2}>
                       {/* Restaurant Star Rating */}
-                      <span><i className="fa-solid fa-star"></i> {getAverageRating(restaurant)} Stars</span>
+                      <span><StarCount rating={getAverageRating(restaurant)}/>{getAverageRating(restaurant)}</span>
 
                       {/* Restaurant Review Count */}
                       <span><i className="fa-solid fa-message"/> {` ${Object.values(restaurant.reviews).length} Reviews`}</span>
@@ -128,16 +127,16 @@ export const SingleRestaurant = () => {
                         Object.values(restaurant.reviews).length === 1 ?
                           <div>
                             <h3>What {Object.values(restaurant.reviews).length} person is saying</h3>
-                            <hr></hr>
-                            <ReviewCounter stars={stars}/>
-                            <hr></hr>
+                            <hr className={styles.horiz_line}></hr>
+                            <ReviewCounter stars={Object.values(restaurant.reviews).map(review => review.stars)}/>
+                            <hr className={styles.horiz_line}></hr>
                           </div>
                           :
                           <div>
                             <h3>What {Object.values(restaurant.reviews).length} people are saying</h3>
-                            <hr></hr>
-                            <ReviewCounter stars={stars}/>
-                            <hr></hr>
+                            <hr className={styles.horiz_line}></hr>
+                            <ReviewCounter stars={Object.values(restaurant.reviews).map(review => review.stars)}/>
+                            <hr className={styles.horiz_line}></hr>
                           </div>
                     :
                     <div>

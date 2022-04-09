@@ -7,7 +7,7 @@ user_routes = Blueprint('users', __name__)
 @user_routes.route('/')
 def users():
     user_list = User.query.all()
-    return {'users': [user.to_dict() for user in user_list]}
+    return {'users': [user.other_user_dict() for user in user_list]}
 
 
 @user_routes.route('/<int:id>')

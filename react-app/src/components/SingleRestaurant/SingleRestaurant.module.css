@@ -12,9 +12,9 @@
 
 .sr_img {
     position: absolute;
-    top: 125px;
-    width: 150px;
-    height: 150px;
+    top: 100px;
+    width: 200px;
+    height: 200px;
     border-radius: 5px;
     object-fit: cover;
     z-index: 100;
@@ -35,7 +35,7 @@
 
 .sr_content {
     position: absolute;
-    top: 75px;
+    top: 100px;
     padding: 0 20px;
     text-align: left;
     display: flex;
@@ -44,7 +44,6 @@
     align-items: center;
     width: 100%;
 }
-
 
 .sr_content h2 {
     text-align: center;
@@ -124,4 +123,9 @@
 .button_container {
     display: flex;
     flex-direction: row;
+}
+
+.horiz_line {
+    width: 100%;
+    margin: 25px 0;
 }

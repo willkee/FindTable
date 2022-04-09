@@ -3,10 +3,18 @@ import {PageContainer} from '../PageContainer'
 import styles from './Homepage.module.css'
 import SearchHeader from '../SearchHeader'
 import RestaurantsList from '../RestaurantsList'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { receiveHomeRestaurants } from '../../store/restaurants'
 
 export const Homepage = ({ all_restaurants }) => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const handleClick = () => history.push('/new-restaurant')
+
+  useEffect(() => {
+    dispatch(receiveHomeRestaurants())
+  }, [dispatch])
 
   return (
     <PageContainer>

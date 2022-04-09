@@ -1,7 +1,7 @@
 const CREATED_RESTAURANT = '/restaurants/createdRestaurant'
 const ALL_RESTAURANTS_RECEIVED = '/restaurants/allRestaurantsReceived'
-const ONE_RESTAURANT = '/restaurants/oneRestaurant'
 
+const ONE_RESTAURANT = '/restaurants/oneRestaurant'
 const HOME_GRID_RESTAURANTS_RECEIVED = '/restaurants/homeRestaurantsOnly'
 
 const UPDATED_RESTAURANT = '/restaurants/updatedRestaurant'

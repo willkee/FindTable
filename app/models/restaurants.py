@@ -69,5 +69,5 @@ class Restaurant(db.Model):
             'accessible': self.accessible,
             'settings': [setting.to_dict() for setting in self.settings],
             'cuisines': [cuisine.to_dict() for cuisine in self.cuisines],
-            'reviews': {review.id:review.to_dict() for review in self.reviews},
+            # 'reviews': {review.id:review.to_dict() for review in self.reviews},
         }
