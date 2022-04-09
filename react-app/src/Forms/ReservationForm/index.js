@@ -1,40 +1,38 @@
 import styles from "./ReservationForm.module.css";
 // import Calendar from 'react-calendar'
 import { useState } from "react";
-import { useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createReservation } from "../../store/restaurants";
 
 export const ReservationForm = ({restaurantId}) => {
     const dispatch = useDispatch();
     const history = useHistory();
-
+    const user = useSelector(state => state.session.user)
     const [date, setDate] = useState(new Date().toISOString().slice(0, 10))
     const [time, setTime] = useState("")
     const [people, setPeople] = useState(1)
     const [errors, setErrors] = useState([])
 
-    const localString = new Date().toLocaleDateString() //4/8/2022
-    const todayInput = localString.replaceAll('/', '-')
-    console.log(todayInput)
-    const todaysDate = new Date(); //Fri Apr 08 2022 17:23:40 GMT-0600 (Mountain Daylight Time)
-    const todaysString = todaysDate.toDateString(); //Fri Apr 08 2022
-    const thisYear = todaysDate.getFullYear(); //2022
-    const thisMonth = todaysDate.getMonth() + 1; // 3 (because it's 0-23 so add 1 and you get April)
-    const hour = todaysDate.getHours(); //17
-    const minute = todaysDate.getMinutes(); //25
-    const today = todaysDate.getDate(); //8
-    const dateThing = new Date().toISOString().slice(0, 10)
-
-    console.log(thisMonth)
-    const input = "0"+thisMonth.toString()+"-"+"0"+""
-
+    // const localString = new Date().toLocaleDateString() //4/8/2022
+    // const todayInput = localString.replaceAll('/', '-')
+    // console.log(todayInput)
+    // const todaysDate = new Date(); //Fri Apr 08 2022 17:23:40 GMT-0600 (Mountain Daylight Time)
+    // const todaysString = todaysDate.toDateString(); //Fri Apr 08 2022
+    // const thisYear = todaysDate.getFullYear(); //2022
+    // const thisMonth = todaysDate.getMonth() + 1; // 3 (because it's 0-23 so add 1 and you get April)
+    // const hour = todaysDate.getHours(); //17
+    // const minute = todaysDate.getMinutes(); //25
+    // const today = todaysDate.getDate(); //8
+    const today = new Date().toISOString().slice(0, 10) // This is the one you want for inputs
+    console.log(new Date().getMinutes())
+    const minTime = new Date()
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(e)
 
         const reservationData = {
             restaurant_id: restaurantId,
+            user_id: user.id,
             num_people: people,
             date: date,
             time: time
@@ -45,6 +43,7 @@ export const ReservationForm = ({restaurantId}) => {
         if(newReservation.error) {
             setErrors(newReservation.error)
         } else {
+            console.log("success")
             history.push('/my-profile')
             // history.push(`/my_reservations/${newReservation.id}`)
         }
@@ -74,10 +73,11 @@ export const ReservationForm = ({restaurantId}) => {
                 </div>
                 <hr></hr>
                 <div className={styles.input}>
-                    <label htmlFor="date"><strong>Select a date:</strong></label>
-                    <input type="date" name="date" min={dateThing} value={date} onChange={(e) => setDate(e.target.value)} />
-                    <label htmlFor="time" min={today}><strong>Select a time:</strong></label>
-                    <input type="time" name="time" value={time} onChange={(e) => setTime(e.target.value)} />
+                    <label htmlFor="date" style={{marginTop: "10px"}}><strong>Select a date:</strong></label>
+                    <input type="date" name="date" min={today} value={date} onChange={(e) => setDate(e.target.value)} />
+                    <label htmlFor="time" style={{marginTop: "10px"}}><strong>Select a time:</strong></label>
+                    <p style={{padding: "0px", marginTop: "0px"}}>Please pick a time between 8AM and 10:00PM.</p>
+                    <input type="time" name="time" value={time}  max="23:30" onChange={(e) => setTime(e.target.value)} />
                 </div>
                 <button type="submit" disabled={!people || !date || !time ? true : false}>Reserve table</button>
             </form>

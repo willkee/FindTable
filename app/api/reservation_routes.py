@@ -26,7 +26,7 @@ def create_reservation():
     # Add create instances of a new restaurant and populate with form data
     new_reservation = Reservation(
         restaurant_id = request.json['restaurant_id'],
-        user_id = request.json['user_id'],
+        user_id = current_user.id,
         num_people = form.data['num_people'],
         date = form.data['date'],
         time = form.data['time']
