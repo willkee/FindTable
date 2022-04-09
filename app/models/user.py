@@ -54,6 +54,7 @@ class User(db.Model, UserMixin):
             'reservations': {reservation.id:reservation.to_dict() for reservation in self.reservations},
             'reviews': {review.id:review.to_dict() for review in self.reviews},
             'favorites': {favorite.id:favorite.to_dict() for favorite in self.favorites},
+            'created_at': self.created_at
         }
 
     def other_user_dict(self):

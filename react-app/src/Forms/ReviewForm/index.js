@@ -8,11 +8,12 @@ export const ReviewForm = ({restaurant}) => {
     const [rating, setRating] = useState(1);
     const [content, setContent] = useState("");
     const [imgURL, setImgURL] = useState("");
+    const [errors, setErrors] = useState([])
     // const [star, setStar] = useState(<OutlineGreyStar />)
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = {
           user_id: user.id,
@@ -21,7 +22,8 @@ export const ReviewForm = ({restaurant}) => {
           img_url: imgURL,
           review: content
         }
-        dispatch(createReview(formData))
+        const data = await dispatch(createReview(formData));
+        if (data) return setErrors(data)
     }
 
     const handleReset = (e) => {
@@ -39,6 +41,9 @@ export const ReviewForm = ({restaurant}) => {
           <div>
               <strong>Hi {user?.first_name}, how was your experience?</strong>
           </div>
+          {errors.length > 0 &&
+            <div className={styles.error_container}>{errors.map(error => <div key={error}>{error.split(":")[1]}</div>)}</div>
+            }
         </div>
         <div>
           <form className={styles.reviewContainer}>

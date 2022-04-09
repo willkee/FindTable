@@ -148,7 +148,9 @@ export const SingleRestaurant = () => {
                     }
                 </div>
                     <div className={styles.review_parent_container}>
+                      {sessionUser &&
                       <ReviewForm restaurant={restaurant}/>
+                      }
                       <ReviewsDisplay restaurant={restaurant}/>
                     </div>
               </div>

@@ -1,6 +1,7 @@
 // import styles from "./ReservationCard.module.css";
 import styled from "styled-components";
 import { GreenConfirmationButton, UserIcon, CalendarIcon, GreyVerticalLine } from "../Icons";
+import styles from './ReservationCard.module.css'
 
 const ReservationContainer = styled.div`
     width: 540px;
