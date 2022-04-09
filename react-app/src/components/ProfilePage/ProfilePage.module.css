@@ -1,0 +1,13 @@
+.userIcon {
+    width: 30px;
+    height: 30px;
+    background-color: red;
+}
+
+button {
+    color: black;
+    font-size: 18px;
+    text-align: left;
+    background-color: none;
+    border: none;
+}

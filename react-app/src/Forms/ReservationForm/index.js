@@ -14,8 +14,6 @@ export const ReservationForm = () => {
     const [people, setPeople] = useState(1)
     const [errors, setErrors] = useState([])
 
-    // console.log(formatDate)
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(e)
@@ -32,7 +30,7 @@ export const ReservationForm = () => {
         if(newReservation.error) {
             setErrors(newReservation.error)
         } else {
-            console.log(newReservation)
+            // console.log(newReservation)
             history.push(`/my_reservations/${newReservation.id}`)
         }
     }

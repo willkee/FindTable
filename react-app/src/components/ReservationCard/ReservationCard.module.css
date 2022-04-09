@@ -2,9 +2,9 @@ img {
     width: 125px;
     height: 125px;
     border-radius: 5px;
+    object-fit: cover;
 }
 
 p {
     font-size: 14px;
 }
-

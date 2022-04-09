@@ -2,6 +2,9 @@
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
 
+const ADD_FAVORITE = 'session/ADD_FAVORITE';
+const REMOVE_FAVORITE = 'session/REMOVE_FAVORITE';
+
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -11,6 +14,15 @@ const setUser = (user) => ({
 const removeUser = () => ({
   type: REMOVE_USER,
 })
+
+// const addFavorite = (user) => ({
+//   type: ADD_FAVORITE,
+//   payload: user
+// });
+
+// const removeFavorite = () => ({
+//   type: REMOVE_FAVORITE,
+// })
 
 const initialState = { user: null };
 
@@ -100,10 +112,16 @@ export const signUp = (firstName, lastName, email, password) => async (dispatch)
 }
 
 export default function sessionReducer(state = initialState, action) {
+  // let newState = {...state}
   switch (action.type) {
     case SET_USER:
       return { user: action.payload }
     case REMOVE_USER:
+      return { user: null }
+    case ADD_FAVORITE:
+      // console.log('FAVORITE - NEWSTATE ---', newState)
+      return { user: action.payload }
+    case REMOVE_FAVORITE:
       return { user: null }
     default:
       return state;

@@ -4,6 +4,7 @@ import { login } from '../../store/session';
 import { setCurrentModal, hideModal } from '../../store/modal';
 import SignUpForm from './SignUpForm';
 import animation from "../../video/FindTable-loading.mp4";
+import styles from './Auth.module.css'
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -42,42 +43,46 @@ const LoginForm = () => {
   }
 
   return (
-    <div>
+    <div className={styles.parent}>
       <video loop autoPlay width="250">
         <source src={animation}
           type="video/mp4" />
         Sorry, your browser doesn't support embedded videos.
       </video>
-      <form onSubmit={onLogin}>
-        <div>
+      <h4>Welcome back! Please login.</h4>
+      <form className={styles.form_element}>
+        {errors.length > 0 && <div className={styles.error_container}>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
+        </div>}
+        <div className={styles.fields}>
+          <div>
+            <label htmlFor='email'>Email</label>
+            <input
+              name='email'
+              type='text'
+              placeholder='Email'
+              value={email}
+              onChange={updateEmail}
+            />
+          </div>
+          <div>
+            <label htmlFor='password'>Password</label>
+            <input
+              name='password'
+              type='password'
+              placeholder='Password'
+              autoComplete='none'
+              value={password}
+              onChange={updatePassword}
+            />
+          </div>
         </div>
-        <div>
-          <label htmlFor='email'>Email</label>
-          <input
-            name='email'
-            type='text'
-            placeholder='Email'
-            value={email}
-            onChange={updateEmail}
-          />
-        </div>
-        <div>
-          <label htmlFor='password'>Password</label>
-          <input
-            name='password'
-            type='password'
-            placeholder='Password'
-            autoComplete='none'
-            value={password}
-            onChange={updatePassword}
-          />
-          <button type='submit'>Login</button>
-        </div>
-            <button onClick={showSignUpForm}>Don't have an account? Sign up!</button>
-            <button type='button' onClick={loginDemo}>Demo User</button>
+
+            <div role='button' className={styles.div_button} onClick={onLogin}>Login</div>
+            <div role='button' className={styles.div_button} onClick={loginDemo}>Demo User</div>
+            <div role='button' className={styles.switch} onClick={showSignUpForm}>Don't have an account? Sign up!</div>
       </form>
     </div>
   );

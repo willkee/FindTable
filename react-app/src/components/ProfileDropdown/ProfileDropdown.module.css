@@ -51,3 +51,15 @@
   color: black;
   background-color: rgba(0,0,0,.03);
 }
+
+.profile_link {
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile_link:hover {
+    background-color: rgba(0,0,0,.03);
+}

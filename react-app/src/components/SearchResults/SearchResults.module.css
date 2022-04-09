@@ -26,6 +26,8 @@
     border-radius: 5px;
     color: white;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
 }
 
 .return_home:hover {

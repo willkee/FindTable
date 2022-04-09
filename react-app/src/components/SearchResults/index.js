@@ -3,14 +3,13 @@ import { useSelector } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
 import { PageContainer } from '../PageContainer'
 import styles from './SearchResults.module.css'
+import { Footer } from '../Footer'
 
 const SearchResults = () => {
-    console.log("JDSFHSKJDFHSKJDFHKJSDFH")
     const { searchWord } = useParams()
     const history = useHistory()
 
     const restaurants = useSelector(state => Object.values(state.restaurants))
-    console.log(searchWord)
 
     const restaurants_set = new Set()
     restaurants.forEach((restaurant, index) => {
@@ -30,12 +29,11 @@ const SearchResults = () => {
     }
 
     const matched_restaurants = Array.from(restaurants_set)
-    console.log(matched_restaurants)
 
     return (
         <PageContainer>
             <h1>Search Results</h1>
-            <button className={styles.return_home} onClick={() => history.push("/")}>Return Home</button>
+            <div className={styles.return_home} onClick={() => history.push("/")}>Return Home</div>
             <div className={styles.all_restaurants}>
                 {matched_restaurants.length
                 ?
@@ -70,6 +68,7 @@ const SearchResults = () => {
                 )
             }
             </div>
+            <Footer />
         </PageContainer>
     )
 }

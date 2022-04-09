@@ -1,0 +1,38 @@
+.lower_banner {
+    background-image: url('../../images/pexels-cottonbro-3298637.jpg');
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* opacity: 0.95; */
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.lower_banner_text {
+    margin-top: -10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.lower_banner_button {
+    height: 45px;
+    width: 200px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #983937;
+    font-weight: 600;
+}
+
+.lower_banner_button:hover {
+    cursor: pointer;
+}
