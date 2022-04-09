@@ -2,12 +2,13 @@ import styles from "./ReservationForm.module.css";
 // import Calendar from 'react-calendar'
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { createReservation } from "../../store/restaurants";
 import { GreyStar } from "../../components/Icons";
 
 export const ReservationForm = ({restaurantId}) => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const user = useSelector(state => state.session.user)
     const [date, setDate] = useState("")
     const [time, setTime] = useState("")
@@ -52,16 +53,12 @@ export const ReservationForm = ({restaurantId}) => {
             time: time
         }
 
-        console.log(reservationData)
-
         const newReservation = await dispatch(createReservation(reservationData));
 
         if(newReservation.error) {
             setErrors(newReservation.error)
         } else {
-            console.log("success")
-            return <Redirect to="/my-profile" />;
-            // history.push(`/my_reservations/${newReservation.id}`)
+            history.push(`/my_reservations/${newReservation.id}`)
         }
     }
 
