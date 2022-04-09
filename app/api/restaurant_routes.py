@@ -45,9 +45,9 @@ def create_restaurant():
       new_restaurant.cuisines.append(Cuisine.query.get(int(cuisineId)))
 
     # find the user's business owner status. If false, update to true
-    if not current_user.business_owner:
-      current_user.business_owner = True
-
+    # if not current_user.business_owner:
+    #   current_user.business_owner = True
+    current_user.owner_status()
     db.session.add(new_restaurant)
 
     db.session.commit()
@@ -110,8 +110,15 @@ def restaurantDelete(id):
   data = {}
   restaurant = Restaurant.query.get(id)
   data['restaurant'] = restaurant.to_dict()
+
   db.session.delete(restaurant)
+  current_user.owner_status()
   db.session.commit()
+
+
+  # find the user's business owner status. If the user has no restaurants, set business_owner to False
+
+
   return data
 
 
