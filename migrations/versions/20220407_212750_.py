@@ -1,7 +1,7 @@
 """empty message
 
 Revision ID: 5f34525b25f7
-Revises: 
+Revises:
 Create Date: 2022-04-07 21:27:50.602347
 
 """
@@ -74,7 +74,7 @@ def upgrade():
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('num_people', sa.Integer(), nullable=True),
     sa.Column('date', sa.Date(), nullable=False),
-    sa.Column('time', sa.Time(), nullable=False),
+    sa.Column('time', sa.String(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['restaurant_id'], ['restaurants.id'], ),

@@ -9,7 +9,7 @@ import { GreyStar } from "../../components/Icons";
 export const ReservationForm = ({restaurantId}) => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
-    const [date, setDate] = useState(new Date().toISOString().slice(0, 10))
+    const [date, setDate] = useState("")
     const [time, setTime] = useState("")
     const [people, setPeople] = useState(1)
     const [errors, setErrors] = useState([])
@@ -25,7 +25,21 @@ export const ReservationForm = ({restaurantId}) => {
     // const hour = new Date().getHours(); //17
     // const minute = todaysDate.getMinutes(); //25
     // const today = todaysDate.getDate(); //8
-    const today = new Date().toISOString().slice(0, 10) // This is the one you want for inputs
+    // const today = new Date().toISOString().slice(0, 10) // This is the one you want for inputs but ISO is in London
+
+    const timeObj = new Date();
+    // convert local time zone offset from minutes to milliseconds
+    const zone = timeObj.getTimezoneOffset() * 60 * 1000;
+    // subtract offset from t
+    let tLocal = timeObj - zone;
+    // create shifted Date object
+    const localTime = new Date(tLocal)
+    //convert to iso format string
+    const iso = localTime.toISOString()
+    //drop the milliseconds and zone
+    const isoNoZone = iso.slice(0, 19)
+    //replace the T
+    const today = isoNoZone.replace("T", " ").slice(0, 10)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -77,43 +91,44 @@ export const ReservationForm = ({restaurantId}) => {
                     <input type="date" name="date" min={today} value={date} onChange={(e) => setDate(e.target.value)} />
                     <label htmlFor="time" style={{marginTop: "10px"}}><strong>Select a time:</strong></label>
                     <p style={{padding: "0px", marginTop: "0px"}}>Please pick a time between 8AM and 10:00PM.</p>
-                    <select value={people} onChange={(e) => setTime(e.target.value)}>
+                    <select value={time} onChange={(e) => setTime(e.target.value)}>
+                        <option value="">--Select a time--</option>
                         <optgroup label="Breakfast">
-                            <option value={'8'} disabled={hour > 6 ? true : false}>8:00 AM</option>
-                            <option value={'8.5'} disabled={hour > 6 ? true : false}>8:30 AM</option>
-                            <option value={'9'} disabled={hour > 7 ? true : false}>9:00 AM</option>
-                            <option value={'9.5'} disabled={hour > 7 ? true : false}>9:30 AM</option>
-                            <option value={'10'} disabled={hour > 8 ? true : false}>10:00 AM</option>
-                            <option value={'10.5'} disabled={hour > 8 ? true : false}>10:30 AM</option>
+                            <option value={'8'} disabled={date === today && hour > 6 ? true : false}>8:00 AM</option>
+                            <option value={'8.5'} disabled={date === today && hour > 6 ? true : false}>8:30 AM</option>
+                            <option value={'9'} disabled={date === today && hour > 7 ? true : false}>9:00 AM</option>
+                            <option value={'9.5'} disabled={date === today && hour > 7 ? true : false}>9:30 AM</option>
+                            <option value={'10'} disabled={date === today && hour > 8 ? true : false}>10:00 AM</option>
+                            <option value={'10.5'} disabled={date === today && hour > 8 ? true : false}>10:30 AM</option>
                         </optgroup>
                         <optgroup label="Lunch">
-                            <option value={'11'} disabled={hour > 9 ? true : false}>11:00 AM</option>
-                            <option value={'11.5'} disabled={hour > 9 ? true : false}>11:30 AM</option>
-                            <option value={'12'} disabled={hour > 10 ? true : false}>12:00 PM</option>
-                            <option value={'12.5'} disabled={hour > 10 ? true : false}>12:30 PM</option>
-                            <option value={'13'} disabled={hour > 11 ? true : false}>1:00 PM</option>
-                            <option value={'13.5'} disabled={hour > 11 ? true : false}>1:30 PM</option>
-                            <option value={'14'} disabled={hour > 12 ? true : false}>2:00 PM</option>
+                            <option value={'11'} disabled={date === today && hour > 9 ? true : false}>11:00 AM</option>
+                            <option value={'11.5'} disabled={date === today && hour > 9 ? true : false}>11:30 AM</option>
+                            <option value={'12'} disabled={date === today && hour > 10 ? true : false}>12:00 PM</option>
+                            <option value={'12.5'} disabled={date === today && hour > 10 ? true : false}>12:30 PM</option>
+                            <option value={'13'} disabled={date === today && hour > 11 ? true : false}>1:00 PM</option>
+                            <option value={'13.5'} disabled={date === today && hour > 11 ? true : false}>1:30 PM</option>
+                            <option value={'14'} disabled={date === today && hour > 12 ? true : false}>2:00 PM</option>
                         </optgroup>
                         <optgroup label="Afternoon">
-                            <option value={'14.5'} disabled={hour > 12 ? true : false}>2:30 PM</option>
-                            <option value={'15'} disabled={hour > 13 ? true : false}>3:00 PM</option>
-                            <option value={'15.5'} disabled={hour > 13 ? true : false}>3:30 PM</option>
-                            <option value={'16'} disabled={hour > 14 ? true : false}>4:00 PM</option>
-                            <option value={'16.5'} disabled={hour > 14 ? true : false}>4:30 PM</option>
+                            <option value={'14.5'} disabled={date === today && hour > 12 ? true : false}>2:30 PM</option>
+                            <option value={'15'} disabled={date === today && hour > 13 ? true : false}>3:00 PM</option>
+                            <option value={'15.5'} disabled={date === today && hour > 13 ? true : false}>3:30 PM</option>
+                            <option value={'16'} disabled={date === today && hour > 14 ? true : false}>4:00 PM</option>
+                            <option value={'16.5'} disabled={date === today && hour > 14 ? true : false}>4:30 PM</option>
                         </optgroup>
-                        <optgroup>
-                            <option value={'17'} disabled={hour > 15 ? true : false}>5:00 PM</option>
-                            <option value={'17.5'} disabled={hour > 15 ? true : false}>5:30 PM</option>
-                            <option value={'18'} disabled={hour > 16 ? true : false}>6:00 PM</option>
-                            <option value={'18.5'} disabled={hour > 16 ? true : false}>6:30 PM</option>
-                            <option value={'19'} disabled={hour > 17 ? true : false}>7:00 PM</option>
-                            <option value={'19.5'} disabled={hour > 17 ? true : false}>7:30 PM</option>
-                            <option value={'20'} disabled={hour > 18 ? true : false}>8:00 PM</option>
-                            <option value={'20.5'} disabled={hour > 18 ? true : false}>8:30 PM</option>
-                            <option value={'21'} disabled={hour > 19 ? true : false}>9:00 PM</option>
-                            <option value={'21.5'} disabled={hour > 19 ? true : false}>9:30 PM</option>
-                            <option value={'22'} disabled={hour > 20 ? true : false}>10:00 PM</option>
+                        <optgroup label="Dinner">
+                            <option value={'17'} disabled={date === today && hour > 15 ? true : false}>5:00 PM</option>
+                            <option value={'17.5'} disabled={date === today && hour > 15 ? true : false}>5:30 PM</option>
+                            <option value={'18'} disabled={date === today && hour > 16 ? true : false}>6:00 PM</option>
+                            <option value={'18.5'} disabled={date === today && hour > 16 ? true : false}>6:30 PM</option>
+                            <option value={'19'} disabled={date === today && hour > 17 ? true : false}>7:00 PM</option>
+                            <option value={'19.5'} disabled={date === today && hour > 17 ? true : false}>7:30 PM</option>
+                            <option value={'20'} disabled={date === today && hour > 18 ? true : false}>8:00 PM</option>
+                            <option value={'20.5'} disabled={date === today && hour > 18 ? true : false}>8:30 PM</option>
+                            <option value={'21'} disabled={date === today && hour > 19 ? true : false}>9:00 PM</option>
+                            <option value={'21.5'} disabled={date === today && hour > 19 ? true : false}>9:30 PM</option>
+                            <option value={'22'} disabled={date === today && hour > 20 ? true : false}>10:00 PM</option>
                         </optgroup>
                     </select>
                 </div>
