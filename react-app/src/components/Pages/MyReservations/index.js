@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReservationCard } from "../../ReservationCard";
+import { ReservationCard } from "../../Reservations/ReservationCard";
 import { useParams } from "react-router-dom";
 
 const Wrapper = styled.div`
@@ -31,7 +31,7 @@ export const MyReservations = () => {
         <Wrapper>
             <aside></aside>
             <ReservationContainer reservationId={reservationId}>
-                <ReservationCard
+                <ReservationCard />
             </ReservationContainer>
         </Wrapper>
 

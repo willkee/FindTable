@@ -17,7 +17,6 @@
     top: 110%;
     right: 100%;
     background-color: rgb(255, 255, 255);
-    z-index: 999;
     padding: 10px;
     border: 1px solid black;
 }

@@ -10,9 +10,9 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    top: 100%;
+    top: 100%; /* What is this even doing why are you using %*/
     right: 0;
-    width: 20rem;
+    width: 20rem; /* rem is for fonts not containers don't use what you don't understand */
     background-color: rgb(225, 225, 225);
     border-radius: 5px;
     border: 1px solid black;
@@ -20,9 +20,10 @@
     z-index: 999;
 }
 
+
 @keyframes dropdown-animation {
     0% {
-        transform: translateY(-1em);
+        transform: translateY(-1em); /* em is also for font size, don't use it */
         opacity: 0.2;
     }
     100% {

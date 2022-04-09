@@ -8,6 +8,7 @@
   position: -webkit-sticky;
   align-items: center;
   background-color: #f7f7f7;
+  z-index: 100;
 }
 
 /* @media only screen and (max-width: 1200px) {

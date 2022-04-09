@@ -75,8 +75,6 @@ const ProfilePage = () => {
     const sessionUser = useSelector(state => state.session.user)
     const reservations = sessionUser.reservations;
     const reservationsArr = Object.entries(reservations)
-    console.log(reservationsArr)
-
 
     return (
         <Background>

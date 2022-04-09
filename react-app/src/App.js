@@ -57,7 +57,7 @@ function App() {
   return (
     <BrowserRouter>
       <PageWrapper>
-          <NavBar />
+          <NavBar sessionUser={sessionUser}/>
           <Modal />
           <Switch>
             <Route exact path='/'>

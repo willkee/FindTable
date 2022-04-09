@@ -1,6 +1,6 @@
 import styles from "./ReservationCard.module.css";
 import styled from "styled-components";
-import { GreenConfirmationButton, UserIcon, CalendarIconSmall, GreyVerticalLine } from "../Icons";
+import { GreenConfirmationButton, UserIcon, CalendarIconSmall, GreyVerticalLine } from "../../Icons";
 import { useSelector } from "react-redux";
 
 const ReservationContainer = styled.div`

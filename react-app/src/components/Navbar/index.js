@@ -5,7 +5,8 @@ import styles from './Navbar.module.css'
 import {MagnifyingGlass, GreyVerticalLine} from '../Icons'
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileDropdown from '../ProfileDropdown';
-import CalendarDropdown from '../CalendarDropdown';
+// import CalendarDropdown from '../CalendarDropdown';
+import { ReservationNav } from '../Reservations/ReservationNav';
 import { Logo } from '../Logo';
 
 import LoginForm from '../auth/LoginForm';
@@ -16,6 +17,9 @@ import { showModal, setCurrentModal } from '../../store/modal';
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
+  const reservations = sessionUser.reservations;
+  const reservationsArr = Object.entries(reservations);
+
   const dispatch = useDispatch()
 
   const showLoginForm = () => {
@@ -46,7 +50,7 @@ const NavBar = () => {
               <ProfileDropdown />
             </div>
             <div className={styles.calendar_icon}>
-              <CalendarDropdown />
+              <ReservationNav reservations={reservationsArr}/>
             </div>
             <div>
               <GreyVerticalLine />
