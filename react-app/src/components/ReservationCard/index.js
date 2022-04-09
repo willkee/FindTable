@@ -1,6 +1,6 @@
 import styles from "./ReservationCard.module.css";
 import styled from "styled-components";
-import { GreenConfirmationButton, UserIcon, CalendarIcon, GreyVerticalLine } from "../Icons";
+import { GreenConfirmationButton, UserIcon, CalendarIconSmall, GreyVerticalLine } from "../Icons";
 import { useSelector } from "react-redux";
 
 const ReservationContainer = styled.div`
@@ -67,13 +67,15 @@ export const ReservationCard = ({reservation}) => {
                 <strong>{restaurant.name} - {restaurant.street_address} | {restaurant.borough}</strong>
                 <IconTextBox>
                     <GreenConfirmationButton />
-                    <p>Reservation confirmed</p>
+                    <h4>Reservation confirmed</h4>
                 </IconTextBox>
                 <IconTextBox>
                     <UserIcon />
-                    <p>{reservation.num_people}</p>
-                    <CalendarIcon />
-                    <p>{reservation.date.slice(0, 16)}, at {resTime}{timeUnit}</p>
+                    <h4 className={styles.people}>{reservation.num_people}</h4>
+                    <div className={styles.res}>
+                        <CalendarIconSmall />
+                        <h4>{reservation.date.slice(0, 16)}, at {resTime}{timeUnit}</h4>
+                    </div>
                 </IconTextBox>
                 <ActionBox>
                    <ModalButton>Modify</ModalButton>

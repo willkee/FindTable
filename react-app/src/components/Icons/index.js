@@ -40,6 +40,15 @@ export const CalendarIcon = () => {
     )
 }
 
+export const CalendarIconSmall = () => {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="14.292" viewBox="0 0 15 14.292">
+            <path id="Path_208" data-name="Path 208" d="M46.879,2.307H45.538V1.033H44.123V2.307H39.968V.75H38.553V2.307H37.121A2.626,2.626,0,0,0,34.5,4.927v7.494a2.626,2.626,0,0,0,2.621,2.621h9.758A2.626,2.626,0,0,0,49.5,12.422V4.927a2.626,2.626,0,0,0-2.621-2.621m1.206,10.115a1.21,1.21,0,0,1-1.206,1.206H37.121a1.21,1.21,0,0,1-1.206-1.206v-5.3h12.17Zm0-6.719H35.915V4.927a1.21,1.21,0,0,1,1.206-1.206h9.758a1.21,1.21,0,0,1,1.206,1.206Z" transform="translate(-34.5 -0.75)"/>
+        </svg>
+
+    )
+}
+
 export const GreyVerticalLine = () => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" width="1" height="34" viewBox="0 0 1 34">
