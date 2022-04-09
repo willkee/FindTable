@@ -94,6 +94,14 @@ export const UserIcon = () => {
   )
 }
 
+export const UserIconLarge = () => {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="25.963" height="28.5" viewBox="0 0 25.963 28.5">
+            <path id="Path_207" dataname="Path 207" d="M26.24,59.14a13.191,13.191,0,0,0-8.03-9.22,8.257,8.257,0,1,0-9.7-.01A13.2,13.2,0,0,0,.47,59.14a3.574,3.574,0,0,0,.66,3.03A3.5,3.5,0,0,0,3.88,63.5H22.83a3.5,3.5,0,0,0,2.75-1.33,3.574,3.574,0,0,0,.66-3.03M7.61,43.25A5.75,5.75,0,1,1,13.36,49a5.751,5.751,0,0,1-5.75-5.75m16,17.37a.978.978,0,0,1-.78.38H3.88a.978.978,0,0,1-.78-.38,1.055,1.055,0,0,1-.2-.89,10.756,10.756,0,0,1,20.91,0,1.055,1.055,0,0,1-.2.89" transform="translate(-0.373 -35)"/>
+        </svg>
+    )
+}
+
 export const RestaurantIcon = () => {
   return (
     <svg id="Restaurants" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="18" height="15.69" viewBox="0 0 18 15.69">
@@ -215,4 +223,19 @@ export const OutlineGreyStar = () => {
     </svg>
 
   )
+}
+
+export const CommentIcon = () => {
+    return (
+        <svg id="Group_462" dataname="Group 462" xmlns="http://www.w3.org/2000/svg"  width="27.617" height="23.381" viewBox="0 0 27.617 23.381">
+            <defs>
+                <clipPath id="clip-path">
+                <rect id="Rectangle_523" dataname="Rectangle 523" width="27.617" height="23.38" transform="translate(0 0)" fill="none"/>
+                </clipPath>
+            </defs>
+            <g id="Group_461" dataname="Group 461" clip-path="url(#clip-path)">
+                <path id="Path_432" dataname="Path 432" d="M23.365,23.38a1.228,1.228,0,0,1-.834-.323l-4.944-4.426L1.451,18.624A1.417,1.417,0,0,1,0,17.246V1.378A1.418,1.418,0,0,1,1.451,0H26.174a1.414,1.414,0,0,1,1.443,1.378V17.246a1.413,1.413,0,0,1-1.443,1.378h-1.6v3.593a1.147,1.147,0,0,1-.7,1.057,1.248,1.248,0,0,1-.505.106m.169-1.438,0,0,0,0M1.5,17.123H17.68a1.543,1.543,0,0,1,.441.068l.161.048,4.792,4.291V17.319l.818-.195h2.225V1.5H1.5Z"/>
+            </g>
+        </svg>
+    )
 }

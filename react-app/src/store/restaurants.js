@@ -1,5 +1,9 @@
 const CREATED_RESTAURANT = '/restaurants/createdRestaurant'
 const ALL_RESTAURANTS_RECEIVED = '/restaurants/allRestaurantsReceived'
+
+const ONE_RESTAURANT = '/restaurants/oneRestaurant'
+const HOME_GRID_RESTAURANTS_RECEIVED = '/restaurants/homeRestaurantsOnly'
+
 const UPDATED_RESTAURANT = '/restaurants/updatedRestaurant'
 const DELETED_RESTAURANT = '/restaurants/deletedRestaurant'
 const CREATED_REVIEW = '/reviews/createdReview'
@@ -72,6 +76,46 @@ const allRestaurantsReceived = (payload) => {
     payload
   }
 }
+
+// NEW CODE NEW CODE
+// -----------------------------------------------------
+
+const oneRestaurantReceived = (payload) => {
+  return {
+    type: ONE_RESTAURANT,
+    payload
+  }
+}
+
+const homeRestaurantsReceived = (payload) => {
+  return {
+    type: HOME_GRID_RESTAURANTS_RECEIVED,
+    payload
+  }
+}
+
+export const receiveHomeRestaurants = () => async dispatch => {
+    const res = await fetch('/api/restaurants/home')
+    if (res.ok) {
+      const restaurants = await res.json();
+      dispatch(homeRestaurantsReceived(Object.values(restaurants)[0]))
+      return restaurants
+    }
+  }
+
+  export const receiveOneRestaurant = restaurantId =>
+  async dispatch => {
+    const res = await fetch(`/api/restaurants/${restaurantId}`)
+
+    if (res.ok) {
+      const restaurant = await res.json();
+      dispatch(oneRestaurantReceived(restaurant));
+      return restaurant
+    }
+  }
+
+// -----------------------------------------------------
+// NEW CODE NEW CODE
 
 
 const updatedRestaurant = (payload) => {
@@ -188,16 +232,7 @@ export const receiveAllRestaurants = () => async dispatch => {
     }
   }
 
-// export const receiveOneRestaurant = restaurantId =>
-//   async dispatch => {
-//     const res = await fetch(`api/restaurants/${restaurantId}`)
 
-//     if (res.ok) {
-//       const restaurant = await res.json();
-//       dispatch(oneRestaurantReceived(restaurant));
-//       return restaurant
-//     }
-//   }
 
 export const updateRestaurant = ({formData, id}) =>
   async dispatch => {
@@ -213,11 +248,10 @@ export const updateRestaurant = ({formData, id}) =>
   }
 
 export const deleteRestaurant = restaurantId =>
-  async dispatch => {
+async dispatch => {
     const res = await fetch(`/api/restaurants/${restaurantId}`,{
       method: 'DELETE'
     })
-
     const removedRestaurant = await res.json();
     dispatch(deletedRestaurant(removedRestaurant))
     return removedRestaurant
@@ -236,13 +270,20 @@ const restaurantsReducer = (state = {}, action) => {
       action.payload.forEach((restaurant) => newState[restaurant.id] = restaurant)
       return newState;
     }
+    case HOME_GRID_RESTAURANTS_RECEIVED: {
+      action.payload.forEach((restaurant) => newState[restaurant.id] = restaurant)
+      return newState;
+    }
+    case ONE_RESTAURANT: {
+      newState[action.payload.id] = action.payload
+      return newState
+    }
     case UPDATED_RESTAURANT: {
       newState[action.payload?.id] = action.payload
       return newState;
     }
     case DELETED_RESTAURANT: {
-      delete newState[action.payload?.id]
-      //double check the payload because it could already be an Id and id.id doesn't make sense
+      delete newState[action.payload.restaurant.id]
       return newState
     }
     case CREATED_REVIEW: {

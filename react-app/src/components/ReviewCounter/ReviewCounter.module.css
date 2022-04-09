@@ -1,5 +1,5 @@
 .review_counter_parent {
-    margin: 20px 0;
+    margin: 20px;
 }
 
 .each_rating_container {
@@ -44,4 +44,9 @@
     height: 100%;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
+}
+
+.star_icon_container {
+    width: 150px;
+    margin-left: 10px;
 }

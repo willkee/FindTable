@@ -6,7 +6,7 @@ import {ReviewEdit} from '../ReviewEdit';
 
 
 export const ReviewsDisplay = ({restaurant}) => {
-  const allUsers = useSelector(state => state.users)
+  const allUsers = useSelector(state => state?.users)
   const reviews = Object.values(restaurant?.reviews)
   const sessionUser = useSelector(state => state.session.user)
   console.log(sessionUser)

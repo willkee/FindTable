@@ -34,6 +34,15 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.hashed_password, password)
 
+    def owner_status(self):
+        if not self.business_owner:
+             self.business_owner = True
+        elif not bool(self.restaurants):
+             self.business_owner = False
+        else:
+            self.business_owner = True
+
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -44,6 +53,13 @@ class User(db.Model, UserMixin):
             'restaurants': {restaurant.id:restaurant.to_dict() for restaurant in self.restaurants},
             'reservations': {reservation.id:reservation.to_dict() for reservation in self.reservations},
             'reviews': {review.id:review.to_dict() for review in self.reviews},
-            'favorites': [favorite.to_dict() for favorite in self.favorites]
+            'favorites': {favorite.id:favorite.to_dict() for favorite in self.favorites},
+        }
 
+    def other_user_dict(self):
+        return {
+            'id': self.id,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'reviews': {review.id:review.to_dict() for review in self.reviews},
         }
