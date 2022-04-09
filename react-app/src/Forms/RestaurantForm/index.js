@@ -11,7 +11,7 @@ export const RestaurantForm = ({ restaurant }) => {
     const [name, setName] = useState(restaurant?.name || '')
     const [priceRating, setPriceRating] = useState(restaurant?.priceRating || 1)
     const [description, setDescription] = useState(restaurant?.description || '')
-    const [imageURL, setImageURL] = useState(restaurant?.image_url || '')
+    const [imageURL, setImageURL] = useState(restaurant?.img_url || '')
     const [phoneNumber, setPhoneNumber] = useState(restaurant?.phone_number || '')
     const [website, setWebsite] = useState(restaurant?.website || '')
     const [streetAddress, setStreetAddress] = useState(restaurant?.street_address || '')
@@ -26,7 +26,6 @@ export const RestaurantForm = ({ restaurant }) => {
     const dispatch = useDispatch()
     const history = useHistory()
     // const { id } = useParams()
-
 
     // useEffect(() => {
     //     (async() => {
@@ -118,6 +117,7 @@ export const RestaurantForm = ({ restaurant }) => {
                     <ul>
                         {errors && errors.map(error => <li key={error} className={styles.error_messages}>{error}</li>)}
                     </ul>
+                    { restaurant ? <h3 style={{color: 'red'}}> - Please fill out your attributes again. </h3> : null }
                     <form onSubmit={onSubmit}>
                         <div className={styles.form_container}>
                             <div className={styles.left_entries}>
@@ -201,16 +201,6 @@ export const RestaurantForm = ({ restaurant }) => {
                                         <option value="Staten Island">Staten Island</option>
                                     </select>
                                 </div>
-                                <div className={styles.input_container}>
-                                    <div>
-                                        <input type="checkbox"
-                                                value={accessible}
-                                                onChange={() => setAccessible(!accessible)}>
-                                        </input>
-                                        <i className="fa-solid fa-wheelchair"></i>
-                                        <label htmlFor='accessible'>Accessible?</label>
-                                    </div>
-                                </div>
                             </div>
                             <div className={styles.right_entries}>
                                 <fieldset>
@@ -241,6 +231,16 @@ export const RestaurantForm = ({ restaurant }) => {
                                             <label htmlFor='setting' className={styles.box_label}>{setting.type}</label>
                                         </div>
                                         ))}
+                                        </div>
+                                    </div>
+                                    <div className={styles.input_container}>
+                                        <div>
+                                            <input type="checkbox"
+                                                    value={accessible}
+                                                    onChange={() => setAccessible(!accessible)}>
+                                            </input>
+                                            <label htmlFor='accessible'>Accessible?</label>
+                                            <i className="fa-solid fa-wheelchair"></i>
                                         </div>
                                     </div>
                                 </fieldset>
