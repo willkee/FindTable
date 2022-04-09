@@ -6,8 +6,8 @@ import { createReview } from '../../store/restaurants';
 
 export const ReviewForm = ({restaurant}) => {
     const [rating, setRating] = useState(1);
-    const [content, setContent] = useState(null);
-    const [imgURL, setImgURL] = useState(null);
+    const [content, setContent] = useState("");
+    const [imgURL, setImgURL] = useState("");
     // const [star, setStar] = useState(<OutlineGreyStar />)
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
@@ -25,23 +25,23 @@ export const ReviewForm = ({restaurant}) => {
     }
 
     const handleReset = (e) => {
-      e.preventDefault();
+      e.preventDefault()
       setRating(1)
-      setContent(null)
-      setImgURL()
+      setContent("")
+      setImgURL("")
     }
 
     console.log(rating)
 
     return (
-      <div>
+      <div className={styles.review_form_parent}>
         <div className={styles.reviewHeader}>
           <div>
               <strong>Hi {user?.first_name}, how was your experience?</strong>
           </div>
         </div>
         <div>
-          <form onSubmit={handleSubmit} className={styles.reviewContainer}>
+          <form className={styles.reviewContainer}>
             <div className={styles.div1}>
               {imgURL? <img src={imgURL} alt="" height="190px" width="190px" className={styles.image}/> : null}
             </div>
@@ -58,11 +58,11 @@ export const ReviewForm = ({restaurant}) => {
               <select value={rating}
                       onChange={(e) => setRating(e.target.value)}
                       required>
-                <option value={1}>*</option>
-                <option value={2}>**</option>
-                <option value={3}>***</option>
-                <option value={4}>****</option>
-                <option value={5}>*****</option>
+                <option value={1}>⭐️</option>
+                <option value={2}>⭐️⭐️</option>
+                <option value={3}>⭐️⭐️⭐️</option>
+                <option value={4}>⭐️⭐️⭐️⭐️</option>
+                <option value={5}>⭐️⭐️⭐️⭐️⭐️</option>
               </select>
               {/* <div className={styles.starsContainer}>
                   <input type="checkbox" id="star5" value={5} onClick={e => setRating(e.target.value)}/>
@@ -85,6 +85,7 @@ export const ReviewForm = ({restaurant}) => {
             <div className={styles.div5}>
               <textarea className={styles.content}
                           name="review"
+                          value={content}
                           onChange={e => setContent(e.target.value)}
                           required
                           placeholder="Tell us how it was!">

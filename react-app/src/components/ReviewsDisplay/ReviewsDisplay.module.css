@@ -6,6 +6,9 @@
    */
   display: flex;
   flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
 
 }
 
@@ -14,10 +17,10 @@
   border-bottom: 1px solid black;
   display: grid;
   grid-template-columns: 100px 130px repeat(2, 0) 500px;
-  grid-template-rows: 80px 70px repeat(3, 0);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  margin-top: 10px;
+  /* grid-template-rows: 80px 70px repeat(3, 0); */
+  gap: 5px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
 }
 
 .iconContainer {
@@ -62,7 +65,7 @@
   grid-area: 1 / 4 / 2 / 6;
   display: flex;
   align-items: flex-end;
-  color: #FC6260
+  color: #FC6260;
 }
 
 .reviewCount {

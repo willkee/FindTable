@@ -21,6 +21,7 @@ export const DeleteRestaurantForm = ({restaurant_id}) => {
     await dispatch(hideModal())
     await history.push(`/`)
     await dispatch(deleteRestaurant(restaurant_id))
+    setErrors([])
   };
 
   return (

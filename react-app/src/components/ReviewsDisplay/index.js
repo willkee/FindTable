@@ -102,10 +102,10 @@ export const ReviewsDisplay = ({restaurant}) => {
               {review.review}
             </div>
             <div className={styles.editDelete}>
-              {review.user_id === sessionUser.id ?
+              {sessionUser && review.user_id === sessionUser.id ?
                 <ReviewEdit review={review}/> : null
               }
-              {review.user_id === sessionUser.id ?
+              {sessionUser && review.user_id === sessionUser.id ?
                 <div className={styles.delete} onClick={deleteReview}>Delete</div> : null
               }
             </div>

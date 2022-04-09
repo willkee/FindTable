@@ -22,8 +22,6 @@ import StarCount from './StarCount';
 // import { ReviewForm } from '../../Forms/ReviewForm';
 // import { createReview } from '../../store/reviews';
 // import { ReviewForm } from '../../Forms/ReviewForm';
-import { UpdateRestaurant } from '../UpdateRestaurant'
-import { ReviewsDisplay } from '../ReviewsDisplay';
 import {ReviewForm} from '../../Forms/ReviewForm';
 // import { showModal, setCurrentModal } from '../../store/modal';
 
@@ -148,9 +146,11 @@ export const SingleRestaurant = () => {
                         <hr></hr>
                     </div>
                     }
-                    <ReviewForm restaurant={restaurant}/>
-                    <ReviewsDisplay restaurant={restaurant}/>
                 </div>
+                    <div className={styles.review_parent_container}>
+                      <ReviewForm restaurant={restaurant}/>
+                      <ReviewsDisplay restaurant={restaurant}/>
+                    </div>
               </div>
 
               <div className={styles.right_sidebar}>
