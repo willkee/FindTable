@@ -14,7 +14,7 @@ export const ReviewForm = () => {
     const {restaurantId} = useParams()
     const dispatch = useDispatch()
     const restaurant = useSelector(state => Object.values(state.restaurants)[restaurantId])
-    console.log(restaurant)
+    // console.log(restaurant)
     const handleSubmit = (e) => {
         e.preventDefault();
         const formData = {

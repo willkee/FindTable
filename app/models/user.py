@@ -55,3 +55,11 @@ class User(db.Model, UserMixin):
             'reviews': {review.id:review.to_dict() for review in self.reviews},
             'favorites': {favorite.id:favorite.to_dict() for favorite in self.favorites},
         }
+
+    def other_user_dict(self):
+        return {
+            'id': self.id,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'reviews': {review.id:review.to_dict() for review in self.reviews},
+        }

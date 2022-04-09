@@ -30,7 +30,7 @@ export const ReservationForm = () => {
         if(newReservation.error) {
             setErrors(newReservation.error)
         } else {
-            console.log(newReservation)
+            // console.log(newReservation)
             history.push(`/my_reservations/${newReservation.id}`)
         }
     }

@@ -62,6 +62,11 @@ def restaurants():
   restaurants_list = Restaurant.query.all()
   return {'restaurants': [restaurant.to_dict() for restaurant in restaurants_list]}
 
+@restaurant_routes.route('/home', methods=["GET"])
+def restaurants_home_grid():
+  restaurants_list = Restaurant.query.all()
+  return {'restaurants': [restaurant.home_to_dict() for restaurant in restaurants_list]}
+
 
 @restaurant_routes.route('/<int:id>', methods=["GET"])
 def restaurant(id):
@@ -75,8 +80,6 @@ def restaurantUpdate(id):
 
   restaurant_settings = request.json['settings']
   restaurant_cuisines = request.json['cuisines']
-
-  print('\n\n REST --', restaurant_settings, '\n\n')
 
   form['csrf_token'].data = request.cookies['csrf_token']
 

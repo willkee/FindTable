@@ -112,14 +112,14 @@ export const signUp = (firstName, lastName, email, password) => async (dispatch)
 }
 
 export default function sessionReducer(state = initialState, action) {
-  let newState = {...state}
+  // let newState = {...state}
   switch (action.type) {
     case SET_USER:
       return { user: action.payload }
     case REMOVE_USER:
       return { user: null }
     case ADD_FAVORITE:
-      console.log('FAVORITE - NEWSTATE ---', newState)
+      // console.log('FAVORITE - NEWSTATE ---', newState)
       return { user: action.payload }
     case REMOVE_FAVORITE:
       return { user: null }
