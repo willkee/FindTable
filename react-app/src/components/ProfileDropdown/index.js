@@ -3,8 +3,10 @@ import { useSelector } from "react-redux";
 import { UserProfileIcon } from "../Icons";
 import styles from './ProfileDropdown.module.css'
 import LogoutButton from "../LogoutButton";
+import { useHistory } from "react-router-dom";
 
 const Profile = () => {
+    const history = useHistory()
     const [showBox, setShowBox] = useState(false)
     const sessionUser = useSelector(state => state.session.user)
 
@@ -19,6 +21,11 @@ const Profile = () => {
         return () => document.removeEventListener("click", closeBox)
     })
 
+    const goToProfile = () => {
+        history.push('/my-profile')
+        return
+    }
+
     return (
         <div className={styles.profileOuterContainer}>
             <div className={styles.profileIconContainer} onClick={openBox}>
@@ -27,7 +34,7 @@ const Profile = () => {
             {showBox && (
                 <div id="profile_dropdown" className={styles.dropdown} onClick={e => e.stopPropagation()}>
                     <h3>Hello {sessionUser.first_name}!</h3>
-                    <button><a href="/my-profile">My Profile</a></button>
+                    <div className={styles.profile_link} onClick={goToProfile}>My Profile</div>
                     <LogoutButton />
                 </div>
             )}

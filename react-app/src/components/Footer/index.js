@@ -8,22 +8,38 @@ export const Footer = () => {
         <footer className={styles.footer}>
             <div className={styles.container}>
                 <section className={styles.links}>
-                    <div className={styles.discover}>
+                    <div className={styles.linksBox}>
                         <ul className={styles.label}>DISCOVER
-                            <li className={styles.discoverLinks}><Link to="/cuisines">Cuisines Near Me</Link></li>
-                            <li className={styles.discoverLinks}><Link to="/restaurants">Restaurants Near Me</Link></li>
-                            <li className={styles.discoverLinks}><Link to="/restaurants">Restaurants</Link></li>
-                            <li className={styles.discoverLinks}><Link to="/cuisines">Cuisines</Link></li>
+                            <li className={styles.sectionLinks}><Link className={styles.sectionLinks} to="/cuisines">Cuisines Near Me</Link></li>
+                            <li className={styles.sectionLinks}><Link className={styles.sectionLinks} to="/restaurants">Restaurants Near Me</Link></li>
+                            <li className={styles.sectionLinks}><Link className={styles.sectionLinks} to="/restaurants">Restaurants</Link></li>
+                            <li className={styles.sectionLinks}><Link className={styles.sectionLinks} to="/cuisines">Cuisines</Link></li>
+                        <div className={styles.devicons}>
+                            <i class="devicon-python-plain-wordmark"></i>
+                            <i class="devicon-flask-original-wordmark"></i>
+                            <i class="devicon-postgresql-plain-wordmark"></i>
+
+                            <i class="devicon-react-original-wordmark"></i>
+                            <i class="devicon-redux-original"></i>
+                            <i className="devicon-postgresql-plain"></i>
+                            <i class="devicon-html5-plain-wordmark"></i>
+                            <i class="devicon-css3-plain-wordmark"></i>
+                            <i class="devicon-illustrator-line"></i>
+                            <i class="devicon-aftereffects-plain"></i>
+                            <i class="devicon-xd-line"></i>
+                            <i className="devicon-heroku-plain"></i>
+                        </div>
                        </ul>
                     </div>
-                    <div className={styles.about}>
-                        <ul className={styles.label}>FindTable</ul>
-                        <li><a href="https://github.com/willkee/FindTable" rel="noreferrer" target="_blank">About Us</a></li>
+                    <div className={styles.linksBox}>
+                        <ul className={styles.label}>FindTable
+                            <li className={styles.sectionLinks}><a className={styles.sectionLinks} href="https://github.com/willkee/FindTable" rel="noreferrer" target="_blank">GitHub Repository</a></li>
+                        </ul>
                     </div>
                 </section>
                 <hr className={styles.horizontalLine}></hr>
                 <ul className={styles.descriptions}>
-                    FindTable is an App Academy project created by the following developers:
+                    FindTable is an App Academy project created by the following full-stack developers:
                     <li className={styles.items}>
                         <p>Nikolas Garza</p>
                         <a href="https://github.com/nmgarza5" rel="noreferrer" target="_blank">

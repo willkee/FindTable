@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { createRestaurant, updateRestaurant } from '../../store/restaurants';
-import { CuisinesIcon, RedStar, RestaurantIcon } from '../../components/Icons';
+import { CuisinesIcon, RestaurantIcon } from '../../components/Icons';
 import styles from './RestaurantForm.module.css'
 import { hideModal } from '../../store/modal';
 
@@ -117,7 +117,7 @@ export const RestaurantForm = ({ restaurant }) => {
                                     <label htmlFor='name'>Name</label>
                                     <input name='name'
                                         type='text'
-                                        placeholder='Name'
+                                        placeholder="Enter your restaurant's name."
                                         value={name}
                                         required
                                         onChange={e => setName(e.target.value)}>
@@ -138,6 +138,7 @@ export const RestaurantForm = ({ restaurant }) => {
                                     <label htmlFor='description'>Description</label>
                                     <textarea name='description'
                                             value={description}
+                                            placeholder='Tell us what makes your restaurant special.'
                                             onChange={e => setDescription(e.target.value)}>
                                     </textarea>
                                 </div>
@@ -145,6 +146,7 @@ export const RestaurantForm = ({ restaurant }) => {
                                     <label htmlFor='image_url'>Image Link</label>
                                     <input type="text"
                                             name='image_url'
+                                            placeholder='Image format must be ".jpg" ".jpeg" or ".png".'
                                             value={imageURL}
                                             required
                                             onChange={e => setImageURL(e.target.value)}>
@@ -155,6 +157,7 @@ export const RestaurantForm = ({ restaurant }) => {
                                     <input type="text"
                                             name='phone_number'
                                             value={phoneNumber}
+                                            placeholder='Please enter 10 numbers. No special characters.'
                                             required
                                             onChange={e => setPhoneNumber(e.target.value)}>
                                     </input>
@@ -164,6 +167,7 @@ export const RestaurantForm = ({ restaurant }) => {
                                     <input type="text"
                                             name='web'
                                             value={website}
+                                            placeholder="Enter your website's name."
                                             onChange={e => setWebsite(e.target.value)}>
                                     </input>
                                 </div>
@@ -172,6 +176,7 @@ export const RestaurantForm = ({ restaurant }) => {
                                     <input type="text"
                                             name='street_address'
                                             value={streetAddress}
+                                            placeholder="Example: 342 E 6th St, 10003"
                                             required
                                             onChange={e => setStreetAddress(e.target.value)}>
                                     </input>

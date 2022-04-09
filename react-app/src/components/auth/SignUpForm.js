@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
 import { signUp } from '../../store/session';
 import { setCurrentModal, hideModal } from '../../store/modal';
+import { login } from '../../store/session';
 import LoginForm from './LoginForm';
+import styles from './Auth.module.css'
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -12,10 +13,16 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
-  const onSubmit = async (e) => {
+  const loginDemo = async (e) => {
+    e.preventDefault()
+    const data = await dispatch(login("demo@user.com", "password"));
+    if (data) return setErrors(data)
+    dispatch(hideModal())
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
       const data = await dispatch(signUp(firstName, lastName, email, password));
@@ -30,12 +37,8 @@ const SignUpForm = () => {
     dispatch(setCurrentModal(LoginForm))
   }
 
-  // if (user) {
-  //   return <Redirect to='/' />;
-  // }
-
   return (
-    <form onSubmit={onSubmit}>
+    <form>
       <div>
         {errors.map((error, i) => (
           <div key={i}>{error}</div>
@@ -88,8 +91,9 @@ const SignUpForm = () => {
           value={confirmPassword}
         ></input>
       </div>
-      <button type='submit'>Sign Up</button>
-      <button onClick={showLoginForm}>Already signed up? Log in!</button>
+      <div role='button' className={styles.div_button} onClick={handleSubmit}>Sign Up</div>
+      <div role='button' className={styles.div_button} onClick={showLoginForm}>Already signed up? Log in!</div>
+      <div role='button' className={styles.div_button} onClick={loginDemo}>Demo User</div>
     </form>
   );
 };

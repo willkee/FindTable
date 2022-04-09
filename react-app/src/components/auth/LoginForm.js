@@ -1,17 +1,25 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { login } from '../../store/session';
 import { setCurrentModal, hideModal } from '../../store/modal';
 import SignUpForm from './SignUpForm';
 import animation from "../../video/FindTable-loading.mp4";
+import styles from './Auth.module.css'
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+
+  const loginDemo = async (e) => {
+    e.preventDefault()
+    const data = await dispatch(login("demo@user.com", "password"));
+    if (data) return setErrors(data)
+    dispatch(hideModal())
+  }
+
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -30,10 +38,6 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
-  // if (user) {
-  //   return <Redirect to='/' />;
-  // }
-
   const showSignUpForm = () => {
     dispatch(setCurrentModal(SignUpForm))
   }
@@ -45,7 +49,7 @@ const LoginForm = () => {
           type="video/mp4" />
         Sorry, your browser doesn't support embedded videos.
       </video>
-      <form onSubmit={onLogin}>
+      <form>
         <div>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
@@ -71,9 +75,10 @@ const LoginForm = () => {
             value={password}
             onChange={updatePassword}
           />
-          <button type='submit'>Login</button>
+          <div role='button' className={styles.div_button} onClick={onLogin}>Login</div>
         </div>
-            <button onClick={showSignUpForm}>Don't have an account? Sign up!</button>
+            <div role='button' className={styles.div_button} onClick={showSignUpForm}>Don't have an account? Sign up!</div>
+            <div role='button' className={styles.div_button} onClick={loginDemo}>Demo User</div>
       </form>
     </div>
   );
