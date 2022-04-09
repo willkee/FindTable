@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { ReservationCard } from '../ReservationCard'
+import { ReservationCard } from "../Reservations/ReservationCard"
 import styled from "styled-components";
 import styles from "./ProfilePage.module.css";
 import { UserIcon, UserIconLarge } from '../Icons';

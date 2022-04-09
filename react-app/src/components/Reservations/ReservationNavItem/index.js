@@ -39,7 +39,7 @@ export const ReservationNavItem = ({reservation}) => {
     const showCancelModal = (e) => {
         e.preventDefault();
 
-        
+
     }
 
     return (
@@ -63,7 +63,7 @@ export const ReservationNavItem = ({reservation}) => {
                     <Link to="/my-profile">View</Link>
                     <Link to={`/my_reservations/${reservation.id}`}>Modify</Link>
                 </Row>
-                <div role="button" onClick={}>Cancel</div>
+                <div role="button" onClick={showCancelModal}>Cancel</div>
             </ReservationInfo>
         </ReservationContainer>
 

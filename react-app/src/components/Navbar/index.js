@@ -1,12 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import ProtectedRoute from '../auth/ProtectedRoute'
 import styles from './Navbar.module.css'
 import {MagnifyingGlass, GreyVerticalLine} from '../Icons'
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileDropdown from '../ProfileDropdown';
-// import CalendarDropdown from '../CalendarDropdown';
-import { ReservationNav } from '../Reservations/ReservationNav';
+import CalendarDropdown from '../CalendarDropdown';
 import { Logo } from '../Logo';
 
 import LoginForm from '../auth/LoginForm';
@@ -50,7 +48,7 @@ const NavBar = () => {
               <ProfileDropdown />
             </div>
             <div className={styles.calendar_icon}>
-              <ReservationNav reservations={reservationsArr}/>
+              <CalendarDropdown reservationsArr={reservationsArr}/>
             </div>
             <div>
               <GreyVerticalLine />

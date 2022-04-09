@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {Link} from "reat-router-dom";
+import {Link} from "react-router-dom";
 import { ReservationNavItem } from "../ReservationNavItem";
 
 const ReservationDropdown = styled.div`
@@ -16,7 +16,7 @@ const ReservationDropdown = styled.div`
 
 export const ReservationNav = ({reservationsArr}) => {
 
-    if (!reservationsArr.length) {
+    if (reservationsArr.length < 1) {
         return (
             <ReservationDropdown>
                 <h3>Upcoming reservations</h3>
