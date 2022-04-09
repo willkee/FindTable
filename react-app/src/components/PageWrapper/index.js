@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 export const PageWrapper = styled.div`
-    width: 85vw;
-    height: 100vh;
+    width: 1600px;
+    height: auto;
+    min-height: 100vh;
     background-color: grey;
     display: flex;
     position: absolute;

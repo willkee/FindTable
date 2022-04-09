@@ -37,21 +37,19 @@ const NavBar = () => {
     return (
     <nav className={styles.container}>
         <div className={styles.logo}>
-          <NavLink to='/' exact={true} className={styles.home_link} activeClassName='active'>
+          <NavLink to='/' exact={true} className={styles.home_link}>
             <Logo /> <span>FindTable</span>
           </NavLink>
         </div>
         <div className={styles.right}>
+            <div className={styles.profile_icon}>
+              <ProfileDropdown />
+            </div>
+            <div className={styles.calendar_icon}>
+              <CalendarDropdown />
+            </div>
             <div>
-              <div className={styles.profile_icon}>
-                <ProfileDropdown />
-              </div>
-              <div className={styles.calendar_icon}>
-                <CalendarDropdown />
-              </div>
-              <div>
-                <GreyVerticalLine />
-              </div>
+              <GreyVerticalLine />
             </div>
             <div className={styles.search_icon} onClick={showSearchForm}>
               <MagnifyingGlass/>
