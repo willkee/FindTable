@@ -30,9 +30,13 @@
     align-items: center;
     justify-content: center;
     background-color: #983937;
+    border-radius: 5px;
     font-weight: 600;
+    margin-left: 20px;
+    transition: all 0.3s ease 0s;
 }
 
 .lower_banner_button:hover {
     cursor: pointer;
+    background-color: #24599D
 }
