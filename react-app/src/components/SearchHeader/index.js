@@ -24,7 +24,7 @@ const SearchHeader = () => {
     return (
         <div className={styles.search_header}>
             <h1>Find your table for any occasion</h1>
-                <form >
+                <form>
                     <div className={styles.search_inputs}>
                         <div className={styles.search_inner_div}>
                             <input className={styles.search_box_field} type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder='Search'></input>
