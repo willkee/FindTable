@@ -1,71 +1,25 @@
 import React from 'react'
 import styles from './ReviewsDisplay.module.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ReviewIcon } from '../Icons';
 import {ReviewEdit} from '../ReviewEdit';
+import { deleteReview } from '../../store/restaurants';
+import { starRender } from './starRender';
+
 
 
 export const ReviewsDisplay = ({restaurant}) => {
   const allUsers = useSelector(state => state?.users)
   const reviews = Object.values(restaurant?.reviews)
   const sessionUser = useSelector(state => state.session.user)
-  console.log(sessionUser)
-
-
-  const starRender = (stars) => {
-    if (stars === 1) {
-      return (
-        <>
-        <i className="fa-solid fa-star"></i>
-        </>
-      )
-    }
-    if (stars === 2) {
-      return (
-        <>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-solid fa-star"></i>
-        </>
-      )
-    }
-    if (stars === 3) {
-      return (
-        <>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-solid fa-star"></i>
-        </>
-      )
-    }
-    if (stars === 4) {
-      return (
-        <>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-solid fa-star"></i>
-        </>
-      )
-    }
-    if (stars === 5) {
-      return (
-        <>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-solid fa-star"></i>
-        </>
-      )
-    }
-  }
+  const dispatch = useDispatch();
 
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
 
-  const deleteReview = () => {
-
+  const handleDelete = (id) => {
+    dispatch(deleteReview(id))
   }
 
   const colors = [
@@ -106,7 +60,7 @@ export const ReviewsDisplay = ({restaurant}) => {
                 <ReviewEdit review={review}/> : null
               }
               {sessionUser && review.user_id === sessionUser.id ?
-                <div className={styles.delete} onClick={deleteReview}>Delete</div> : null
+                <div className={styles.delete} onClick={handleDelete(review.id)}>Delete</div> : null
               }
             </div>
           </div>))}
