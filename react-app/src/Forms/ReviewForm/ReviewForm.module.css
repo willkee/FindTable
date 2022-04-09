@@ -32,6 +32,8 @@
   grid-template-rows: repeat(2, 50px) 100px 50px 0;
   grid-column-gap: 8px;
   grid-row-gap: 0px;
+  border-bottom: 1px solid grey;
+  margin-bottom: 20px;
 }
 
 .div1 {
