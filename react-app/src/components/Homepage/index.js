@@ -57,7 +57,6 @@ export const Homepage = ({ all_restaurants }) => {
 
       <SearchHeader className={styles.search_header_component} />
       <RestaurantsList all_restaurants={all_restaurants} />
-
     </PageContainer>
   )
 }

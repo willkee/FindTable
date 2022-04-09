@@ -1,25 +1,9 @@
 import React from "react";
-import { deleteRestaurant } from "../../store/restaurants";
-import {useHistory, Link} from 'react-router-dom';
-import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from 'react-router-dom';
 import styles from './RestaurantsList.module.css'
 
 const RestaurantsList = ({ all_restaurants }) => {
-    const sessionUser = useSelector(state => state.session.user);
     const history = useHistory();
-    const dispatch = useDispatch();
-
-
-    function onDelete(restaurantId) {
-      let result = window.confirm('Are you sure you want to delete your restaurant listing?')
-      if (result) {
-        let res = dispatch(deleteRestaurant(restaurantId))
-        if (res) {
-          history.push(`/restaurants/`)
-        }
-      }
-    }
-
     const joinSettings = (restaurant => {
         let joined = '|'
         restaurant.settings.map(setting => joined = ` ${joined} ${setting.type} `)
@@ -50,16 +34,10 @@ const RestaurantsList = ({ all_restaurants }) => {
                                             restaurant.price_rating === 3 ? "$$$" :
                                                 restaurant.price_rating === 2 ? "$$" : "$"}`}</span></div>
 
-
-
-
                                 <div className={styles.categories}>
                                   <span>{restaurant.accessible ? <i className="fa-brands fa-accessible-icon"></i> : ""}</span>
                                   <span>{joinSettings(restaurant)}</span>
                                   <span>{joinCuisines(restaurant)}</span></div>
-                                {/* <div>{sessionUser && sessionUser.id === restaurant?.owner_id ?
-                                    <Link to={`/restaurants/`} className='delete' onClick={() => onDelete(restaurant.id)}>
-                                      Delete</Link> : null}</div> */}
                             </div>
                       </div>
                     ))}

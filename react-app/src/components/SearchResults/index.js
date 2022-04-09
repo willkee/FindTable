@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
 import { PageContainer } from '../PageContainer'
 import styles from './SearchResults.module.css'
+import { Footer } from '../Footer'
 
 const SearchResults = () => {
     const { searchWord } = useParams()
@@ -67,6 +68,7 @@ const SearchResults = () => {
                 )
             }
             </div>
+            <Footer />
         </PageContainer>
     )
 }
