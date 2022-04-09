@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import styles from "./ReviewForm.module.css"
-import { createReview } from '../../store/reviews';
+import { createReview } from '../../store/restaurants';
 
 
 export const ReviewForm = ({restaurant}) => {
-    const [rating, setRating] = useState(null);
+    const [rating, setRating] = useState(1);
     const [content, setContent] = useState(null);
     const [imgURL, setImgURL] = useState(null);
     const user = useSelector(state => state.session.user)
@@ -23,64 +23,96 @@ export const ReviewForm = ({restaurant}) => {
         dispatch(createReview(formData))
     }
 
+    const handleReset = (e) => {
+      e.preventDefault();
+      setRating(1)
+      setContent(null)
+      setImgURL()
+    }
+
+    console.log(rating)
 
     return (
-      <div className={styles.reviewContainer}>
-        <form onSubmit={handleSubmit}>
-          <div className={styles.reviewHeader}>
-            <h3>
-                Hi {user?.first_name}, how was your experience at {restaurant.name}?
-            </h3>
-            <h5>
-                Rate your dining experience!
-            </h5>
+      <div>
+        <div className={styles.reviewHeader}>
+          <div>
+              <strong>Hi {user?.first_name}, how was your experience at {restaurant.name}?</strong>
           </div>
-            <select value={rating}
-                    onChange={(e) => setRating(e.target.value)}
-                    required>
+        </div>
+        <div>
+          <form onSubmit={handleSubmit} className={styles.reviewContainer}>
+            <div className={styles.div1}>
+              {imgURL? <img src={imgURL} alt="" height="190px" width="190px" className={styles.image}/> : null}
+            </div>
+
+            <div className={styles.div2}>
+              <strong>Image Preview</strong>
+            </div>
+
+            <div className={styles.div3}>
+              <strong>Rate your experience</strong>
+            </div>
+
+            <div className={styles.div4}>
+              {/* <select value={rating}
+                      onChange={(e) => setRating(e.target.value)}
+                      required>
                 <option value={1}>*</option>
                 <option value={2}>**</option>
                 <option value={3}>***</option>
                 <option value={4}>****</option>
                 <option value={5}>*****</option>
-            </select>
-            {/* <div className={styles.starsContainer}>
+              </select> */}
+              <div className={styles.starsContainer}>
+                  <input type="checkbox" id="star5" value={5} onClick={e => setRating(e.target.value)}/>
+                  <label for="star5"></label>
 
-              <input type="radio" id="star1" value={1} onChange={e =>{console.log(rating)
-                setRating(e.target.value)}}/>
-              <label for="star1">star 1</label>
+                  <input type="checkbox" id="star4" value={4} onClick={e => setRating(e.target.value)}/>
+                  <label for="star4"></label>
 
-              <input type="radio" id="star2" value={2} onChange={e => {console.log(rating)
-                setRating(e.target.value)}}/>
-              <label for="star2">star 2</label>
+                  <input type="checkbox" id="star3" value={3} onClick={e => setRating(e.target.value)}/>
+                  <label for="star3"></label>
 
-              <input type="radio" id="star3" value={3} onChange={e => {console.log(rating)
-                setRating(e.target.value)}}/>
-              <label for="star3">star 3</label>
+                  <input type="checkbox" id="star2" value={2} onClick={e => setRating(e.target.value)}/>
+                  <label for="star2"></label>
 
-              <input type="radio" id="star4" value={4} onChange={e => {console.log(rating)
-                setRating(e.target.value)}}/>
-              <label for="star4">star 4</label>
+                  <input type="checkbox" id="star1" value={1} onClick={e => setRating(e.target.value)}/>
+                  <label for="star1"></label>
+              </div>
+            </div>
 
-              <input type="radio" id="star5" value={5} onChange={e => {console.log(rating)
-                setRating(e.target.value)}}/>
-              <label for="star5">star 5</label>
+            <div className={styles.div5}>
+              <textarea className={styles.content}
+                          name="review"
+                          onChange={e => setContent(e.target.value)}
+                          required
+                          placeholder="Tell us how it was!">
+              </textarea>
+            </div>
 
-            </div> */}
-            <input type="url"
-                    placeholder="Image URL"
-                    onChange={e => setImgURL(e.target.value)}
-                    value={imgURL}>
-            </input>
-            <label htmlFor="review"></label>
-            <textarea className={styles.content}
-                      name="review"
-                      onChange={e => setContent(e.target.value)}
-                      required
-                      placeholder="Tell us how it was!">
-            </textarea>
-            <button type='submit' disabled={!rating || !content ? true : false}>Submit</button>
-        </form>
+            <div className={styles.div6}>
+              <input type="url"
+                      placeholder="Enter your image URL"
+                      onChange={e => setImgURL(e.target.value)}
+                      value={imgURL}
+                      className={styles.url}>
+              </input>
+            </div>
+
+            <div className={styles.div7}>
+              <div className={styles.reset} role='button' onClick={handleReset}>
+                Reset
+              </div>
+            </div>
+
+            <div className={styles.div8}>
+              <div className={styles.submit} role='button' onClick={handleSubmit} disabled={!rating || !content ? true : false}>
+                Submit
+              </div>
+            </div>
+
+          </form>
+        </div>
       </div>
     )
 }

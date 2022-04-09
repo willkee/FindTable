@@ -247,7 +247,7 @@ const restaurantsReducer = (state = {}, action) => {
     }
     case CREATED_REVIEW: {
       const restaurant = newState[action.payload.restaurant_id]
-      const reviews = restaurant.review
+      const reviews = restaurant.reviews
       reviews[action.payload.id] = action.payload
       return newState
     }
