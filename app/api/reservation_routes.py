@@ -18,12 +18,13 @@ def error_generator(validation_errors):
 def create_reservation():
   form = ReservationForm()
 
-  request_initial = request.json  # request object
-
   form['csrf_token'].data = request.cookies['csrf_token']
 
-  if form.validate_on_submit():
-    # Add create instances of a new restaurant and populate with form data
+  times = ['8', '8.5' '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13', '13.5', '14', '14.5', '15', '15.5', '16', '16.5', '17', '17.5', '18', '18.5', '19', '19.5', '20', '20.5', '21',' 21.5', '22', '22.5']
+
+  if form.data['time'] in times:
+    return {'error': "Invalid timeslot"}
+  elif form.validate_on_submit():
     new_reservation = Reservation(
         restaurant_id = request.json['restaurant_id'],
         user_id = current_user.id,
@@ -39,8 +40,7 @@ def create_reservation():
 
     db.session.commit()
 
-    # return new_reservation.to_dict()
-    return "success"
+    return new_reservation.to_dict()
 
   else:
     return {'error': error_generator(form.errors)}
@@ -48,19 +48,19 @@ def create_reservation():
 @reservation_routes.route('/<int:id>', methods=['PUT'])
 def reservationUpdate():
     form = ReservationForm()
-    request_initial = request.json  # request object
-    request_string = json.dumps(request_initial) # request object to string
-    request_dict = json.loads(request_string) # turn string back into python dict
-    form['csrf_token'].data = request.cookies['csrf_token']
 
-    if form.validate_on_submit():
-        reservation = Reservation.query.get(request_dict['reservation_id']) # Use useParams to get reservationid in frontend
+    times = ['8', '8.5' '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13', '13.5', '14', '14.5', '15', '15.5', '16', '16.5', '17', '17.5', '18', '18.5', '19', '19.5', '20', '20.5', '21',' 21.5', '22', '22.5']
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.data['time'] in times:
+      return {'error': "Invalid timeslot"}
+    elif form.validate_on_submit():
+        reservation = Reservation.query.get(request.json['reservation_id']) # Use useParams to get reservationid in frontend
         reservation.num_people = form.data['num_people']
         reservation.date = form.data['date']
         reservation.time = form.data['time']
         db.session.commit()
         return reservation.to_dict()
-
     else:
         return {'errors': error_generator(form.errors)}
 

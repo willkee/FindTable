@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import (
-  IntegerField, DateField,SubmitField )
+  IntegerField, DateField, StringField, SubmitField )
 from wtforms.validators import DataRequired
 
 class ReservationForm(FlaskForm):
@@ -8,5 +8,5 @@ class ReservationForm(FlaskForm):
     # In the near future, this will be an AWS S3 URL
   num_people = IntegerField('Number of people', validators=[DataRequired()])
   date = DateField('Reservation date', format="%Y-%m-%d", validators=[DataRequired()])
-  time = IntegerField('Reservation time', validators=[DataRequired()])
+  time = StringField('Reservation time', validators=[DataRequired()])
   submit = SubmitField('Submit')
