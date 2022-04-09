@@ -4,6 +4,7 @@ import { hideModal } from '../../store/modal';
 import animation from "../../video/FindTable-loading.mp4";
 import { deleteRestaurant } from '../../store/restaurants';
 import { useHistory } from 'react-router-dom';
+import styles from './DeleteRestaurantForm.module.css'
 
 export const DeleteRestaurantForm = ({restaurant_id}) => {
   const [errors, setErrors] = useState([]);
@@ -24,7 +25,7 @@ export const DeleteRestaurantForm = ({restaurant_id}) => {
   };
 
   return (
-    <div>
+    <div className={styles.main_container}>
       <video loop autoPlay width="250">
         <source src={animation}
           type="video/mp4" />
@@ -35,12 +36,12 @@ export const DeleteRestaurantForm = ({restaurant_id}) => {
             <div key={ind}>{error}</div>
           ))}
         </div>
-        <div>
+        <div className={styles.text_container}>
           <h2>Are you sure you want to Delete your Restaurant?</h2>
-          <p>This will delete all of its information.</p>
-          <div>
-            <button type='submit' onClick={handleSubmit}>Yes</button>
-            <button type='submit' onClick={closeModal}>Cancel</button>
+          <h3>This will delete all of its information from our records.</h3>
+          <div className={styles.button_container}>
+            <div type='submit' onClick={handleSubmit} className={styles.button}>Delete</div>
+            <div type='submit' onClick={closeModal} className={styles.button}>Cancel</div>
           </div>
         </div>
     </div>
