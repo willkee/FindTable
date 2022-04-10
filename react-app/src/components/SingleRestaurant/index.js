@@ -144,12 +144,14 @@ export const SingleRestaurant = () => {
                         <DeleteRestaurant restaurant_id={restaurant.id}/>
                       </div>
                     }
+                    { sessionUser &&
                         <div role='button' className={styles.favorite_container} onClick={handleFavorite}>
                         {favToggle
                         ? <div className={styles.favorite_star}><RedStar /></div>
                         : <div className={styles.favorite_star}><GreyStar /></div>}
                           Add to Favorites
-                        </div>
+                        </div> }
+
 
                     {/* Restaurant Cuisine */}
                     <div>{restaurant.description}</div>
