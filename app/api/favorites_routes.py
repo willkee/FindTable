@@ -6,21 +6,21 @@ import json
 favorites_routes = Blueprint('favorites', __name__)
 
 ''' Favorites Routes '''
-@favorites_routes.route('/favorites', methods=['POST'])
-def addFavorite(restaurant_id):
+@favorites_routes.route('/', methods=['POST'])
+def addFavorite():
+  id = request.json
   favorite = Favorite()
   favorite.user_id = current_user.id
-  favorite.restaurant_id = restaurant_id
+  favorite.restaurant_id = id
   db.session.add(favorite)
   db.session.commit()
+  return favorite.to_dict()
 
 
-@favorites_routes.route('/<int:id>/favorites', methods=['DELETE'])
-def removeFavorite(restaurant_id):
-  restaurant = Restaurant.query.filter(Restaurant.id == restaurant_id)
-  user_id = current_user.id
-  favorites_list = restaurant.favorites
-  for favorite in favorites_list:
-    if favorite.user_id == user_id:
-      favorites_list.remove(favorite)
+@favorites_routes.route('/', methods=['DELETE'])
+def removeFavorite():
+  id = request.json
+  favorite = Favorite.query.get(int(id))
+  current_user.favorites.remove(favorite)
   db.session.commit()
+  return favorite.to_dict()

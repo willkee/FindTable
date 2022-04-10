@@ -15,6 +15,7 @@ import { ReservationForm } from '../../Forms/ReservationForm'
 import { UpdateRestaurant } from '../UpdateRestaurant'
 import { DeleteRestaurant } from '../DeleteRestaurant'
 import { receiveOneRestaurant } from '../../store/restaurants';
+import { addFavorite, removeFavorite } from '../../store/session';
 
 import StarCount from './StarCount';
 
@@ -23,20 +24,31 @@ import StarCount from './StarCount';
 // import { createReview } from '../../store/reviews';
 // import { ReviewForm } from '../../Forms/ReviewForm';
 import {ReviewForm} from '../../Forms/ReviewForm';
+import { GreyStar, RedStar } from '../Icons';
 // import { showModal, setCurrentModal } from '../../store/modal';
 
 export const SingleRestaurant = () => {
+  const sessionUser = useSelector((state) => state?.session?.user);
   const { id } = useParams()
+  const restaurant = useSelector(state => state.restaurants)[`${id}`]
+
+  let isFavorite;
+  const favId = sessionUser?.favorites[`${id}`]?.id // if the user has selected this favorite. Find the id of the instance of the Favorite
+  sessionUser?.favorites?.hasOwnProperty(`${id}`) ? isFavorite = true : isFavorite = false
+
   const [myKey, setMyKey] = useState("")
   const [isLoaded, setIsLoaded] = useState(false)
+  const [favToggle, setFavToggle] = useState(isFavorite)
   // find restaurant owner id and session user id
 
   // const restaurant = useSelector(state => (state.restaurants))
 
   const dispatch = useDispatch()
 
-  const restaurant = useSelector(state => state.restaurants)[`${id}`]
-  const sessionUser = useSelector((state) => state?.session?.user);
+
+  // console.log('isFavorite ---', isFavorite)
+
+
 
   // set isOwner to true if the current user owns the restaurant being viewed
   // this will display the update/delete restaurant buttons
@@ -50,16 +62,24 @@ export const SingleRestaurant = () => {
 
       //   }))
       // }
+  const handleFavorite = async () => {
+    setFavToggle(!favToggle)
+    !favToggle ? dispatch(addFavorite(id)) : dispatch(removeFavorite(favId))
+  }
 
-      useEffect(() => {
-        (async () => {
-          const res = await fetch(`/api/auth/get_key`);
-          const key = await res.json();
-          setMyKey(key)
+  // useEffect(() => {
+  //   favToggle ? dispatch(addFavorite(id)) : dispatch(removeFavorite(id))
+  // },[dispatch, favToggle])
 
-        })();
-        dispatch(receiveOneRestaurant(id)).then(() => setIsLoaded(true)).catch(e => console.error("Error: ", e))
-      }, [dispatch, id])
+  useEffect(() => {
+    (async () => {
+      const res = await fetch(`/api/auth/get_key`);
+      const key = await res.json();
+      setMyKey(key)
+
+    })();
+    dispatch(receiveOneRestaurant(id)).then(() => setIsLoaded(true)).catch(e => console.error("Error: ", e))
+  }, [dispatch, id])
 
 
   const API_URL = `https://maps.googleapis.com/maps/api/staticmap?center=${restaurant.street_address}&zoom=16&size=300x500&maptype=roadmap&markers=color:red%7Clabel:.%7C${restaurant.street_address}&key=${myKey.key}`
@@ -119,10 +139,18 @@ export const SingleRestaurant = () => {
                       <span><i className="fa-solid fa-message"/> {` ${Object.values(restaurant.reviews).length} Reviews`}</span>
                     </div>
                     {isOwner &&
-                    <div className={styles.button_container}>
-                      <UpdateRestaurant restaurant={restaurant}/>
-                      <DeleteRestaurant restaurant_id={restaurant.id}/>
-                    </div>}
+                      <div className={styles.button_container}>
+                        <UpdateRestaurant restaurant={restaurant}/>
+                        <DeleteRestaurant restaurant_id={restaurant.id}/>
+                      </div>
+                    }
+                        <div role='button' className={styles.favorite_container} onClick={handleFavorite}>
+                        {favToggle
+                        ? <div className={styles.favorite_star}><RedStar /></div>
+                        : <div className={styles.favorite_star}><GreyStar /></div>}
+                          Add to Favorites
+                        </div>
+
                     {/* Restaurant Cuisine */}
                     <div>{restaurant.description}</div>
                     {Object.values(restaurant.reviews).length > 0 ?

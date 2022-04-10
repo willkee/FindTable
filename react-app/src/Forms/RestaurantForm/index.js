@@ -247,7 +247,7 @@ export const RestaurantForm = ({ restaurant }) => {
                             </div>
                         </div>
                         <div className={styles.button_container}>
-                            <button  type="submit" className={styles.button}>Submit</button>
+                            <div  onClick={onSubmit} className={styles.button}>Submit</div>
                             { restaurant
                             ? <div onClick={handleClick_Edit} role='button' className={styles.button}>Cancel</div>
                             : <div onClick={handleClick_New} role='button' className={styles.button}>Cancel</div>
