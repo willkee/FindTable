@@ -7,6 +7,6 @@ class ReservationForm(FlaskForm):
     # Users can post one picture that is an image URL right now
     # In the near future, this will be an AWS S3 URL
   num_people = IntegerField('Number of people', validators=[DataRequired()])
-  date = DateField('Reservation date', format="%m/%d/%Y", validators=[DataRequired()])
+  date = DateField('Reservation date', format="%Y-%m-%d", validators=[DataRequired()])
   time = StringField('Reservation time', validators=[DataRequired()])
   submit = SubmitField('Submit')

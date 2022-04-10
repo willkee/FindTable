@@ -16,17 +16,6 @@ export const ReservationForm = ({restaurantId}) => {
     const [errors, setErrors] = useState([])
     const hour = new Date().getHours();
 
-    // const localString = new Date().toLocaleDateString() //4/8/2022
-    // const todayInput = localString.replaceAll('/', '-')
-    // console.log(todayInput)
-    // const todaysDate = new Date(); //Fri Apr 08 2022 17:23:40 GMT-0600 (Mountain Daylight Time)
-    // const todaysString = todaysDate.toDateString(); //Fri Apr 08 2022
-    // const thisYear = todaysDate.getFullYear(); //2022
-    // const thisMonth = todaysDate.getMonth() + 1; // 3 (because it's 0-23 so add 1 and you get April)
-    // const hour = new Date().getHours(); //17
-    // const minute = todaysDate.getMinutes(); //25
-    // const today = todaysDate.getDate(); //8
-    // const today = new Date().toISOString().slice(0, 10) // This is the one you want for inputs but ISO is in London
 
     const timeObj = new Date();
     // convert local time zone offset from minutes to milliseconds
@@ -35,11 +24,11 @@ export const ReservationForm = ({restaurantId}) => {
     let tLocal = timeObj - zone;
     // create shifted Date object
     const localTime = new Date(tLocal)
-    //convert to iso format string
+    // convert to iso format string
     const iso = localTime.toISOString()
-    //drop the milliseconds and zone
+    // drop the milliseconds and zone
     const isoNoZone = iso.slice(0, 19)
-    //replace the T
+    // replace the T
     const today = isoNoZone.replace("T", " ").slice(0, 10)
 
     const handleSubmit = async (e) => {
@@ -52,6 +41,7 @@ export const ReservationForm = ({restaurantId}) => {
             date: date,
             time: time
         }
+        console.log(reservationData)
 
         const newReservation = await dispatch(createReservation(reservationData));
 

@@ -1,8 +1,11 @@
-    const localString = new Date().toLocaleDateString() //4/8/2022
-    const todaysDate = new Date(); //Fri Apr 08 2022 17:23:40 GMT-0600 (Mountain Daylight Time)
-    const todaysString = todaysDate.toDateString(); //Fri Apr 08 2022
-    const thisYear = todaysDate.getFullYear(); //2022
-    const thisMonth = todaysDate.getMonth(); // 3 (because it's 0-23 so add 1 and you get April)
-    const hour = todaysDate.getHours(); //17
-    const minute = todaysDate.getMinutes(); //25
-    const today = todaysDate.getDate(); //8
+    // const localString = new Date().toLocaleDateString() //4/8/2022
+    // const todayInput = localString.replaceAll('/', '-')
+    // console.log(todayInput)
+    // const todaysDate = new Date(); //Fri Apr 08 2022 17:23:40 GMT-0600 (Mountain Daylight Time)
+    // const todaysString = todaysDate.toDateString(); //Fri Apr 08 2022
+    // const thisYear = todaysDate.getFullYear(); //2022
+    // const thisMonth = todaysDate.getMonth() + 1; // 3 (because it's 0-23 so add 1 and you get April)
+    // const hour = new Date().getHours(); //17
+    // const minute = todaysDate.getMinutes(); //25
+    // const today = todaysDate.getDate(); //8
+    // const today = new Date().toISOString().slice(0, 10) // This is the one you want for inputs but ISO is in London
