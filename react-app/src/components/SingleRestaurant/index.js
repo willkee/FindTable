@@ -108,7 +108,7 @@ export const SingleRestaurant = () => {
               <img src={pattern} className={styles.sr_banner} alt="banner pattern"></img>
               <img className={styles.sr_img} src={restaurant.img_url} alt="" width="200px"></img>
               <div className={styles.left_sidebar}>
-                <ReservationForm restaurantId={id} />
+                <ReservationForm restaurant={restaurant} />
               </div>
               <div className={styles.sr_parent}>
                 <div className={styles.sr_content}>
