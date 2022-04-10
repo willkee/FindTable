@@ -56,7 +56,7 @@ const ContentFeed = styled.div`className={styles.button}
     align-items: center;
 `;
 
-const Reservations = styled.div`className={styles.button}
+const Reservations = styled.div`
     width: 900px;
     height: auto;
     background-color: #F3F3F3;
@@ -67,6 +67,7 @@ const Reservations = styled.div`className={styles.button}
     margin: 20px;
     align-items: left;
     padding: 10px 30px;
+    cursor: pointer;
 `;
 
 // const PastReservations = styled.div`className={styles.button}

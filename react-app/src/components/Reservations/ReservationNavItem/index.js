@@ -1,8 +1,9 @@
+import React from 'react';
 import styled from "styled-components";
 import { RestaurantCircle, UserIcon, ClockIcon, CalendarIconSmall  } from "../../Icons";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { showModal, setCurrentModal } from "../../../store/modal";
+import { DeleteReservation } from "../DeleteReservation";
 
 const ReservationContainer = styled.div`
     width: 285px;
@@ -43,11 +44,6 @@ export const ReservationNavItem = ({reservation}) => {
     reservation.time.includes(".5") ? resTime = reservation.time.replace(/.5/, ":30") : resTime = reservation.time;
     reservation.time.length < 2 || reservation.time === "11" || reservation.time === "11.5" ? timeUnit = 'AM' : timeUnit = 'PM';
 
-    const showCancelModal = () => {
-        dispatch(setCurrentModal())
-        dispatch(showModal())
-    }
-
     return (
         <ReservationContainer>
             <RestaurantCircle />
@@ -70,7 +66,7 @@ export const ReservationNavItem = ({reservation}) => {
                     <h5>|</h5>
                     <Link style={{color: "#4895FD", textDecoration: "none"}} to={`/my_reservations/${reservation.id}`}>Modify</Link>
                 </Row>
-                <div role="button" onClick={showCancelModal}>Cancel</div>
+                <DeleteReservation reservationId={reservation.id} />
             </ReservationInfo>
         </ReservationContainer>
 

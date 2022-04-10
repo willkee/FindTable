@@ -10,9 +10,9 @@ const CREATED_REVIEW = '/reviews/createdReview'
 const UPDATED_REVIEW = '/reviews/updatedReview'
 const DELETED_REVIEW ='/reviews/deletedReview'
 
-const CREATED_RESERVATION = '/reviews/createdReservation'
-const UPDATED_RESERVATION = '/reviews/updatedReview'
-const DELETED_RESERVATION ='/reviews/deletedReview'
+const CREATED_RESERVATION = '/reservations/createdReservation'
+const UPDATED_RESERVATION = '/reservations/updatedReservation'
+const DELETED_RESERVATION ='/reservations/deletedReservation'
 
 //action creators for reservations
 const createdReservation = (payload) => {
@@ -166,6 +166,7 @@ async dispatch => {
   })
 
   const deleted = await res.json();
+  console.log(deleted)
   dispatch(deletedReservation(deleted))
   return deleted
 }
@@ -324,9 +325,13 @@ const restaurantsReducer = (state = {}, action) => {
       return newState
     }
     case DELETED_RESERVATION: {
-      const restaurant = newState[action.payload.restaurant_id]
-      const reservations = restaurant.reviews
+      console.log(newState)
+      const restaurant = newState[action.payload.reservation.restaurant_id]
+      console.log(restaurant)
+      const reservations = restaurant.reservations
+      console.log(reservations)
       delete reservations[action.payload.id]
+      console.log(newState)
       return newState
     }
     default:
