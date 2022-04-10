@@ -15,8 +15,10 @@ import { showModal, setCurrentModal } from '../../store/modal';
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
-  const reservations = sessionUser.reservations;
-  const reservationsArr = Object.entries(reservations);
+  let reservations;
+  sessionUser ? reservations = sessionUser.reservations : reservations = null;
+  let reservationsArr;
+  reservations ? reservationsArr = Object.entries(reservations) : reservationsArr = null;
 
   const dispatch = useDispatch()
 
@@ -68,20 +70,18 @@ const NavBar = () => {
           </NavLink>
         </div>
         <div className={styles.right}>
-
-            <div>
-              <div className={styles.signin} onClick={showLoginForm}>Log In</div>
-            </div>
-            <div>
-              <div className={styles.signup} onClick={showSignUpForm}>Sign Up</div>
-            </div>
-
-            <div>
-                <GreyVerticalLine />
-            </div>
-            <div className={styles.search_icon} onClick={showSearchForm}>
-              <MagnifyingGlass/>
-            </div>
+          <div>
+            <div className={styles.signin} onClick={showLoginForm}>Log In</div>
+          </div>
+          <div>
+            <div className={styles.signup} onClick={showSignUpForm}>Sign Up</div>
+          </div>
+          <div>
+              <GreyVerticalLine />
+          </div>
+          <div className={styles.search_icon} onClick={showSearchForm}>
+            <MagnifyingGlass/>
+          </div>
         </div>
     </nav>
     )

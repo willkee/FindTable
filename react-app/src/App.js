@@ -31,7 +31,6 @@ function App() {
   const dispatch = useDispatch();
 
   const users = useSelector(state => Object.values(state.users))
-  const sessionUser = useSelector(state => state.session.user)
   const all_restaurants = useSelector(state => Object.values(state.restaurants))
   // const all_settings = useSelector(state => Object.values(state.settings))
   // const all_cuisines = useSelector(state => Object.values(state.cuisines))
@@ -57,39 +56,39 @@ function App() {
   return (
     <BrowserRouter>
       <PageWrapper>
-          <NavBar sessionUser={sessionUser}/>
-          <Modal />
-          <Switch>
-            <Route exact path='/'>
-              <Homepage all_restaurants={all_restaurants} />
-            </Route>
-            <Route exact path="/restaurants/:id">
-              <SingleRestaurant />
-            </Route>
-            <ProtectedRoute exact path="/new-restaurant">
-              <CreateRestaurant />
+        <NavBar/>
+        <Modal />
+        <Switch>
+          <Route exact path='/'>
+            <Homepage all_restaurants={all_restaurants} />
+          </Route>
+          <Route exact path="/restaurants/:id">
+            <SingleRestaurant />
+          </Route>
+          <ProtectedRoute exact path="/new-restaurant">
+            <CreateRestaurant />
+          </ProtectedRoute>
+          {/* <ProtectedRoute path='/reservations' exact={true} >
+            <Reservations/>
+          </ProtectedRoute>  */}
+          <ProtectedRoute exact path='/users'>
+            <UsersList users={users} />
             </ProtectedRoute>
-            {/* <ProtectedRoute path='/reservations' exact={true} >
-              <Reservations/>
-            </ProtectedRoute>  */}
-            <ProtectedRoute exact path='/users'>
-              <UsersList users={users} />
-              </ProtectedRoute>
-              <ProtectedRoute exact path='/users/:userId'>
-                <User />
-              </ProtectedRoute>
-              <ProtectedRoute exact path="/my-profile">
-                  <ProfilePage />
-              </ProtectedRoute>
-              <ProtectedRoute exact path="/my_reservations/:id">
-                <h1>Hello</h1>
-              </ProtectedRoute>
-              <Route exact path='/search/:searchWord'>
-                <SearchResults />
-              </Route>
-            </Switch>
-            <div className='return_to_top_button'><a href="#top"><i className="fa-solid fa-angles-up"></i></a></div>
-          <Footer />
+            <ProtectedRoute exact path='/users/:userId'>
+              <User />
+            </ProtectedRoute>
+            <ProtectedRoute exact path="/my-profile">
+                <ProfilePage />
+            </ProtectedRoute>
+            <ProtectedRoute exact path="/my_reservations/:id">
+              <h1>Hello</h1>
+            </ProtectedRoute>
+            <Route exact path='/search/:searchWord'>
+              <SearchResults />
+            </Route>
+          </Switch>
+          <div className='return_to_top_button'><a href="#top"><i className="fa-solid fa-angles-up"></i></a></div>
+        <Footer />
       </PageWrapper>
     </BrowserRouter>
   );
