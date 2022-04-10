@@ -16,10 +16,7 @@ const SearchResults = () => {
         if (restaurant.name.toLowerCase().includes(searchWord.toLowerCase())) {
             restaurants_set.add(index)
         }
-        if (restaurant.street_address.toLowerCase().includes(searchWord.toLowerCase())) {
-            restaurants_set.add(index)
-        }
-        if (restaurant.phone_number === searchWord) {
+        if (restaurant.borough.toLowerCase().includes(searchWord.toLowerCase())) {
             restaurants_set.add(index)
         }
     })
@@ -47,13 +44,26 @@ const SearchResults = () => {
                                     <div className={styles.each_wrapper_info}>
                                         <div>{restaurants[restaurant_index].name}</div>
                                         <div><i className="fa-solid fa-map-location-dot"></i>
-                                        <span>{restaurants[restaurant_index].street_address.split(",")[0]}, </span>
                                         <span>{restaurants[restaurant_index].borough}</span>
                                         </div>
-                                        <div><i className="fa-solid fa-phone"></i>{`
-                                        (${restaurants[restaurant_index].phone_number.slice(0, 3)}) ${restaurants[restaurant_index].phone_number.slice(3, 6)}-${restaurants[restaurant_index].phone_number.slice(6)}
-                                        `}</div>
-                                        <div><i className="fa-solid fa-earth-americas"></i>{restaurants[restaurant_index].website}</div>
+                                        <div>
+                                            <span>
+                                                {`${restaurants[restaurant_index].price_rating === 4 ? "$$$$" :
+                                                    restaurants[restaurant_index].price_rating === 3 ? "$$$" :
+                                                    restaurants[restaurant_index].price_rating === 2 ? "$$" : "$"}`}
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <span>
+                                                {Object.values(restaurants[restaurant_index].settings).map(setting =>
+                                                <span>{` ${setting.type} | `}</span>
+                                                )}
+                                            </span>
+                                            <span>
+                                                {Object.values(restaurants[restaurant_index].cuisines).map(cuisine =>
+                                                <span>{` ${cuisine.type} `}</span>)}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             ))}
