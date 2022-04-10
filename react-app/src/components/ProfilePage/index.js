@@ -6,11 +6,12 @@ import styles from "./ProfilePage.module.css";
 import { UserIconLarge } from '../Icons';
 import { PageContainer } from '../PageContainer';
 import { useState } from 'react';
-import { Favorites } from './Tabs/Favorites';
-import { MyReservations } from './Tabs/MyReservations';
-import { MyReviews } from './Tabs/MyReviews';
-import { RestaurantReservations } from './Tabs/RestaurantReservations';
-import { RestaurantReviews } from './Tabs/RestaurantReviews';
+import { Favorites } from './Tabs/Favorites/index.js';
+import { MyReservations } from './Tabs/MyReservations/index.js';
+import { MyReviews } from './Tabs/MyReviews/index.js';
+import { RestaurantReservations } from './Tabs/RestaurantReservations/index.js';
+import { RestaurantReviews } from './Tabs/RestaurantReviews/index.js';
+
 
 // const Background = styled.div`className={styles.button}
 //     width: 100%;
