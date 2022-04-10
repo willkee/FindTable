@@ -4,9 +4,10 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createReservation } from "../../store/restaurants";
+import { getUser } from "../../store/session";
 // import { GreyStar } from "../../components/Icons";
 
-export const ReservationForm = ({ restaurantId }) => {
+export const ReservationForm = ({ restaurant }) => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const user = useSelector((state) => state.session.user);
@@ -41,17 +42,18 @@ export const ReservationForm = ({ restaurantId }) => {
 		e.preventDefault();
 
 		const reservationData = {
-			restaurant_id: restaurantId,
+			restaurant_id: restaurant.id,
 			user_id: user.id,
 			num_people: people,
 			date: date,
 			time: time,
 		};
-		console.log(reservationData);
 
 		const newReservation = await dispatch(
 			createReservation(reservationData)
-		);
+		)
+
+		await dispatch(getUser())
 
 		if (newReservation.error) {
 			setErrors(newReservation.error);

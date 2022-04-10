@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useSelector } from 'react-redux';
 import { ProfileReservationCard } from "../Reservations/ProfileReservationCard"
 import styled from "styled-components";
@@ -178,6 +178,9 @@ const ProfilePage = () => {
       tab5.style.color = "#FC6260"
     }
 
+    useEffect(() => {
+        console.log(sessionUser)
+    },[sessionUser, reservations])
 
 
     return (

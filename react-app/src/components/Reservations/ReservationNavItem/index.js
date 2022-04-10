@@ -4,7 +4,7 @@ import { RestaurantCircle, UserIcon, ClockIcon, CalendarIconSmall  } from "../..
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { DeleteReservation } from "../DeleteReservation";
-
+import { UpdateReservation } from "../UpdateReservation";
 const ReservationContainer = styled.div`
     width: 285px;
     height: 175px;
@@ -38,15 +38,10 @@ export const ReservationNavItem = ({reservation}) => {
     let people;
     reservation.num_people === 1 ? people = " person" : people = " people"
 
-<<<<<<< HEAD
     const showCancelModal = (e) => {
         e.preventDefault();
-
-
     }
 
-=======
->>>>>>> reservation-test
     return (
         <ReservationContainer>
             <RestaurantCircle />
@@ -65,14 +60,9 @@ export const ReservationNavItem = ({reservation}) => {
                     <h4>{reservation.date.slice(0, 16)}</h4>
                 </Row>
                 <Row>
-<<<<<<< HEAD
                     <Link to="/my-profile">View</Link>
-                    <Link to={`/my_reservations/${reservation.id}`}>Modify</Link>
-=======
-                    <Link style={{color: "#4895FD", textDecoration: "none"}} to={`/my_reservations/${reservation.id}`}>View</Link>
-                    <h5>|</h5>
-                    <Link style={{color: "#4895FD", textDecoration: "none"}} to={`/my_reservations/${reservation.id}`}>Modify</Link>
->>>>>>> reservation-test
+                     <h5>|</h5>
+                    <UpdateReservation reservation={reservation}>Modify</UpdateReservation>
                 </Row>
                 <DeleteReservation reservationId={reservation.id} />
             </ReservationInfo>
