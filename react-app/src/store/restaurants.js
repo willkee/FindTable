@@ -186,8 +186,13 @@ export const updateReview = (data) => async (dispatch) => {
 	});
 
 	const updated = await res.json();
-	await dispatch(updatedReview(updated));
-	return updated;
+
+	if (updated.errors) {
+		return updated;
+	} else {
+		await dispatch(updatedReview(updated));
+		return updated;
+	}
 };
 
 export const deleteReview = (reviewId, restaurantId) => async (dispatch) => {

@@ -35,8 +35,9 @@ const EditReviewForm = ({ review }) => {
 		};
 
 		const data = await dispatch(updateReview(formData));
+
 		if (data.errors) {
-			return setErrors(data);
+			return setErrors(data.errors);
 		}
 		return dispatch(hideModal());
 	};
