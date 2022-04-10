@@ -169,11 +169,6 @@ export const createReview = (data) => async (dispatch) => {
 		body: JSON.stringify(data),
 	});
 	const newReview = await res.json();
-	console.log(
-		"DISPATCH NEW REVIEW \n\n\n\n\n\n\n\n",
-		newReview,
-		"\n\n\n\n\n\n\n\n"
-	);
 
 	if (newReview.error) {
 		return newReview.error;
@@ -284,11 +279,6 @@ const restaurantsReducer = (state = {}, action) => {
 		}
 		case CREATED_REVIEW: {
 			const restaurant = newState[action.payload.restaurant_id];
-			console.log(
-				"\n\n\n\n\n",
-				action.payload,
-				"\n\n\n\n\n JKHFDSKJFHSKJDFHSKJDFHSDF"
-			);
 			const reviews = restaurant.reviews;
 			reviews[action.payload.id] = action.payload;
 			return newState;

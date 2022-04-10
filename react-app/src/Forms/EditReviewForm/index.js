@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import styles from "./ReviewForm.module.css";
-import { createReview } from "../../store/restaurants";
+import { useParams } from "react-router-dom";
+import { hideModal } from "../../store/modal";
+import styles from "./EditReviewForm.module.css";
+import { updateReview } from "../../store/restaurants";
 
-export const ReviewForm = ({ restaurant, review }) => {
-	const [rating, setRating] = useState(1);
-	const [content, setContent] = useState("");
-	const [imgURL, setImgURL] = useState("");
+const EditReviewForm = ({ review }) => {
+	const [rating, setRating] = useState(review.stars);
+	const [content, setContent] = useState(review.review);
+	const [imgURL, setImgURL] = useState(review.img_url);
 	const [errors, setErrors] = useState([]);
-	console.log(review, "SDFSDFSDF");
-	// const [star, setStar] = useState(<OutlineGreyStar />)
+
 	const user = useSelector((state) => state.session.user);
 	const dispatch = useDispatch();
+	// const { restaurantId } = useParams();
 
 	useEffect(() => {
 		if (review) {
@@ -24,24 +26,19 @@ export const ReviewForm = ({ restaurant, review }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const formData = {
+			id: review.id,
 			user_id: user.id,
-			restaurant_id: restaurant.id,
+			restaurant_id: review.restaurant_id,
 			stars: rating,
 			img_url: imgURL,
 			review: content,
 		};
-		setRating(1);
-		setContent("");
-		setImgURL("");
-		const data = await dispatch(createReview(formData));
-		if (data) return setErrors(data);
-	};
 
-	const handleReset = (e) => {
-		e.preventDefault();
-		setRating(1);
-		setContent("");
-		setImgURL("");
+		const data = await dispatch(updateReview(formData));
+		if (data.errors) {
+			return setErrors(data);
+		}
+		return dispatch(hideModal());
 	};
 
 	console.log(rating);
@@ -96,22 +93,6 @@ export const ReviewForm = ({ restaurant, review }) => {
 								<option value={4}>⭐️⭐️⭐️⭐️</option>
 								<option value={5}>⭐️⭐️⭐️⭐️⭐️</option>
 							</select>
-							{/* <div className={styles.starsContainer}>
-                  <input type="checkbox" id="star5" value={5} onClick={e => setRating(e.target.value)}/>
-                  <label for="star5"></label>
-
-                  <input type="checkbox" id="star4" value={4} onClick={e => setRating(e.target.value)}/>
-                  <label for="star4"></label>
-
-                  <input type="checkbox" id="star3" value={3} onClick={e => setRating(e.target.value)}/>
-                  <label for="star3"></label>
-
-                  <input type="checkbox" id="star2" value={2} onClick={e => setRating(e.target.value)}/>
-                  <label for="star2"></label>
-
-                  <input type="checkbox" id="star1" value={1} onClick={e => setRating(e.target.value)}/>
-                  <label for="star1"></label>
-              </div> */}
 						</div>
 					</div>
 
@@ -140,9 +121,9 @@ export const ReviewForm = ({ restaurant, review }) => {
 						<div
 							className={styles.reset}
 							role="button"
-							onClick={handleReset}
+							onClick={() => dispatch(hideModal())}
 						>
-							Reset
+							Cancel
 						</div>
 						<div
 							className={styles.submit}
@@ -158,3 +139,5 @@ export const ReviewForm = ({ restaurant, review }) => {
 		</div>
 	);
 };
+
+export default EditReviewForm;

@@ -46,6 +46,7 @@ def reviewUpdate(id):
 
   form = ReviewForm()
   form['csrf_token'].data = request.cookies['csrf_token']
+  print("\n\n\n\n\n\n\n\n REQ", request.json, "\n\n\n\n\n\n\n\n\n REQUEST")
 
   if form.validate_on_submit():
     review = Review.query.get(id)
