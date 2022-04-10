@@ -184,7 +184,6 @@ export const RedStar = () => {
 
 export const GreyStar = () => {
     const [color, setColor] = useState("#e1e1e1")
-    const [fillColor, setFillColor] = useState("red")
 
     const changeColor = (e) => {
         e.preventDefault();

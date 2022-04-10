@@ -3,6 +3,7 @@ from flask_login import current_user
 from app.models import db, Restaurant, User, Reservation
 from app.forms import ReservationForm
 import json
+from time import strftime, localtime
 
 reservation_routes = Blueprint('reservations', __name__)
 
@@ -20,20 +21,42 @@ def create_reservation():
 
   form['csrf_token'].data = request.cookies['csrf_token']
 
-  times = ['8', '8.5' '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13', '13.5', '14', '14.5', '15', '15.5', '16', '16.5', '17', '17.5', '18', '18.5', '19', '19.5', '20', '20.5', '21',' 21.5', '22', '22.5']
+  year = strftime("%Y", localtime())
+  month = strftime("%m", localtime())
+  day = strftime("%d", localtime())
+  # tuples are immutable
+  times = ('8', '8.5' '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13', '13.5', '14', '14.5', '15', '15.5', '16', '16.5', '17', '17.5', '18', '18.5', '19', '19.5', '20', '20.5', '21',' 21.5', '22', '22.5')
 
-  if not form.data['time'] in times:
-    return {'error': 'Invalid timeslot.'}
+  # form_date = form.data['date']
+  # form_year = form_date[6:11]
+  # form_month = form_date[0:2]
+  # form_day = form_date[3:5]
+
+  form_date = request.json['date']
+  form_year = form_date[6:11]
+  form_month = form_date[0:2]
+  form_day = form_date[3:5]
+
+  # Check date and time for past
+  if form_year < year:
+    return {'error': 'Invalid year.', 'message': 'Please do not try to break our app. We have worked countless hours.'}
+  elif form_year == year and form_month < month:
+    return {'error': 'Invalid month.', 'message': 'Please do not try to break our app. We have worked countless hours.'}
+  elif form_year == year and form_month == month and form_day < day:
+    return {'error': 'Invalid day.', 'message': 'Please do not try to break our app. We have worked countless hours.'}
+  elif not form.data['time'] in times:
+    return {'error': 'Invalid timeslot.', 'message': 'Please do not try to break our app. We have worked countless hours.'}
   elif form.data['time'] in times and form.validate_on_submit():
     new_reservation = Reservation(
         restaurant_id = request.json['restaurant_id'],
-        user_id = current_user.id,
-        num_people = form.data['num_people'],
-        date = form.data['date'],
-        time = form.data['time']
-        # num_people = request.json['num_people'],
-        # date = request.json['date'],
-        # time = request.json['time']
+        # user_id = current_user.id,
+        # num_people = form.data['num_people'],
+        # date = form.data['date'],
+        # time = form.data['time']
+        user_id = request.json["user_id"],
+        num_people = request.json['num_people'],
+        date = request.json['date'],
+        time = request.json['time']
     )
 
     db.session.add(new_reservation)
@@ -46,22 +69,37 @@ def create_reservation():
 
 @reservation_routes.route('/<int:id>', methods=['PUT'])
 def reservationUpdate():
-    form = ReservationForm()
+  form = ReservationForm()
 
-    times = ['8', '8.5' '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13', '13.5', '14', '14.5', '15', '15.5', '16', '16.5', '17', '17.5', '18', '18.5', '19', '19.5', '20', '20.5', '21',' 21.5', '22', '22.5']
+  year = strftime("%Y", localtime())
+  month = strftime("%m", localtime())
+  day = strftime("%d", localtime())
+  # tuples are immutable
+  times = ('8', '8.5' '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13', '13.5', '14', '14.5', '15', '15.5', '16', '16.5', '17', '17.5', '18', '18.5', '19', '19.5', '20', '20.5', '21',' 21.5', '22', '22.5')
 
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.data['time'] in times:
-      return {'error': "Invalid timeslot"}
-    elif form.validate_on_submit():
-        reservation = Reservation.query.get(request.json['reservation_id']) # Use useParams to get reservationid in frontend
-        reservation.num_people = form.data['num_people']
-        reservation.date = form.data['date']
-        reservation.time = form.data['time']
-        db.session.commit()
-        return reservation.to_dict()
-    else:
-        return {'errors': error_generator(form.errors)}
+  form_date = form.data['date']
+  form_year = form_date[6:11]
+  form_month = form_date[0:2]
+  form_day = form_date[3:5]
+
+  # Check date and time for past
+  if form_year < year:
+    return {'error': 'Invalid year.', 'message': 'Please do not try to break our app. We have worked countless hours.'}
+  elif form_year == year and form_month < month:
+    return {'error': 'Invalid month.', 'message': 'Please do not try to break our app. We have worked countless hours.'}
+  elif form_year == year and form_month == month and form_day < day:
+    return {'error': 'Invalid day.', 'message': 'Please do not try to break our app. We have worked countless hours.'}
+  elif not form.data['time'] in times:
+    return {'error': 'Invalid timeslot.', 'message': 'Please do not try to break our app. We have worked countless hours.'}
+  elif form.data['time'] in times and form.validate_on_submit():
+    reservation = Reservation.query.get(request.json['reservation_id']) # Use useParams to get reservationid in frontend
+    reservation.num_people = form.data['num_people']
+    reservation.date = form.data['date']
+    reservation.time = form.data['time']
+    db.session.commit()
+    return reservation.to_dict()
+  else:
+    return {'errors': error_generator(form.errors)}
 
 @reservation_routes.route('/<int:id>', methods=['DELETE'])
 def reservationDelete():
