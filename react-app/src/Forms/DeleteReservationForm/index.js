@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 import { hideModal } from "../../store/modal";
 import { deleteReservation } from "../../store/restaurants";
 import styles from "./DeleteReservationForm.module.css";
@@ -29,7 +30,11 @@ const Row = styled.div`
 `
 
 export const DeleteReservationForm = ({reservationId}) => {
+    const current = window.location.href;
+    const url = current.slice(22, current.length)
+
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const closeModal = async(e) => {
         e.preventDefault();
@@ -40,6 +45,7 @@ export const DeleteReservationForm = ({reservationId}) => {
         e.preventDefault();
         await dispatch(hideModal());
         await dispatch(deleteReservation(reservationId));
+        await history.push(url);
     }
 
     return (

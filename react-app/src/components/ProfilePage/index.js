@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { ReservationCard } from "../Reservations/ReservationCard"
+import { ProfileReservationCard } from "../Reservations/ProfileReservationCard"
 import styled from "styled-components";
 import styles from "./ProfilePage.module.css";
 import { UserIconLarge } from '../Icons';
@@ -81,8 +81,8 @@ const Reservations = styled.div`
 
 const ProfilePage = () => {
     const sessionUser = useSelector(state => state.session.user)
-    const reservations = sessionUser.reservations;
-    const reservationsArr = Object.entries(reservations)
+    const reservations = Object.values(sessionUser.reservations);
+    console.log(reservations)
 
     const memberSince = () => {
         const dateString = new Date(sessionUser.created_at).toDateString()
@@ -113,8 +113,8 @@ const ProfilePage = () => {
                     <Reservations>
                         <h2><strong>Upcoming Reservations</strong></h2>
                         <hr></hr>
-                        {reservationsArr && reservationsArr.map(reservation => (
-                            <ReservationCard reservation={reservation[1]}/>
+                        {reservations && reservations.map(reservation => (
+                            <ProfileReservationCard reservation={reservation}/>
                         ))}
                     </Reservations>
                 </ContentFeed>

@@ -62,7 +62,7 @@ export const ReservationNavItem = ({reservation}) => {
                     <h4>{reservation.date.slice(0, 16)}</h4>
                 </Row>
                 <Row>
-                    <Link style={{color: "#4895FD", textDecoration: "none"}} to="/my-profile">View</Link>
+                    <Link style={{color: "#4895FD", textDecoration: "none"}} to={`/my_reservations/${reservation.id}`}>View</Link>
                     <h5>|</h5>
                     <Link style={{color: "#4895FD", textDecoration: "none"}} to={`/my_reservations/${reservation.id}`}>Modify</Link>
                 </Row>

@@ -16,6 +16,7 @@ import { Footer } from "./components/Footer"
 import { SingleRestaurant } from './components/SingleRestaurant';
 import { PageWrapper } from '../src/components/PageWrapper';
 import { CreateRestaurant } from './components/CreateRestaurant'
+import { MyReservations } from './components/Pages/MyReservations';
 // import { receiveAllRestaurants } from './store/restaurants';
 import { allUsers } from './store/users';
 import { retrieveSettings } from './store/settings';
@@ -81,7 +82,7 @@ function App() {
                 <ProfilePage />
             </ProtectedRoute>
             <ProtectedRoute exact path="/my_reservations/:id">
-              <h1>Hello</h1>
+              <MyReservations />
             </ProtectedRoute>
             <Route exact path='/search/:searchWord'>
               <SearchResults />

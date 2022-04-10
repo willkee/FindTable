@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { ReservationCard } from "../../Reservations/ReservationCard";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Wrapper = styled.div`
     width: 1600px;
@@ -25,12 +26,13 @@ const ReservationContainer = styled.div`
 `
 
 export const MyReservations = () => {
-    const reservationId = useParams();
 
     return (
         <Wrapper>
-            <aside></aside>
-            <ReservationContainer reservationId={reservationId}>
+            <aside>
+                <div></div>
+            </aside>
+            <ReservationContainer>
                 <ReservationCard />
             </ReservationContainer>
         </Wrapper>

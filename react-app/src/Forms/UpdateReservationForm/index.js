@@ -1,24 +1,30 @@
-import styles from "./ReservationForm.module.css";
-// import Calendar from 'react-calendar'
+import React from 'react';
+import { hideModal } from '../../store/modal';
+import styles from "./UpdateReservationForm.module.css";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { createReservation } from "../../store/restaurants";
-// import { GreyStar } from "../../components/Icons";
+import { updateReservation } from "../../store/restaurants";
+import animation from "../../video/FindTable-loading.mp4";
 
-export const ReservationForm = ({restaurant}) => {
+export const UpdateReservationForm = ({reservation}) => {
     const dispatch = useDispatch();
     const history = useHistory();
+
     const user = useSelector(state => state.session.user)
-    const [date, setDate] = useState("")
-    const [time, setTime] = useState("")
-    const [people, setPeople] = useState(1)
+    const restaurant = useSelector(state => state.restaurants)[reservation.restaurant_id]
+
+    const [date, setDate] = useState(reservation.date)
+    const [time, setTime] = useState(reservation.time)
+    const [people, setPeople] = useState(reservation.num_people)
+
     const [errors, setErrors] = useState([])
+
     const hour = new Date().getHours();
 
     const reservationTimes = []
     const reservations = Object.entries(restaurant.reservations);
-    
+
     reservations.forEach(reservation => (
         reservationTimes.push(reservation.time)
     ));
@@ -36,6 +42,11 @@ export const ReservationForm = ({restaurant}) => {
     const isoNoZone = iso.slice(0, 19)
     // replace the T
     const today = isoNoZone.replace("T", " ").slice(0, 10)
+
+    const closeModal = async(e) => {
+        e.preventDefault();
+        await dispatch(hideModal())
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -56,12 +67,13 @@ export const ReservationForm = ({restaurant}) => {
             time: time
         }
 
-        const newReservation = await dispatch(createReservation(reservationData));
+        const newReservation = await dispatch(updateReservation(reservationData));
 
         if(newReservation.error) {
             setErrors(newReservation.error)
         } else {
-            history.push(`/my_reservations/${newReservation.id}`)
+            await dispatch(hideModal());
+            await history.push(`/my_reservations/${newReservation.id}`)
         }
     }
 
@@ -137,7 +149,8 @@ export const ReservationForm = ({restaurant}) => {
                     </select>
                 </div>
                 <hr></hr>
-                <div role="button" type="submit" className={styles.button} onClick={handleSubmit}>Reserve table</div>
+                <div role="button" className={styles.button} onClick={handleSubmit}>Reserve table</div>
+                <div role="button" className={styles.button} onClick={closeModal}>Cancel</div>
             </form>
     )
 }
