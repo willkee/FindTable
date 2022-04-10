@@ -11,15 +11,19 @@
 	margin-bottom: 100px;
 }
 
+.rw_parent {
+	width: 100%;
+}
+
 .singleReview {
 	background-color: white;
-	border-bottom: 1px solid black;
+	border-top: 1px solid black;
 	display: grid;
 	grid-template-columns: 20% 23% 55%;
 	grid-template-areas: "name img text";
 	gap: 5px;
 	margin-bottom: 20px;
-	padding-bottom: 20px;
+	padding-top: 10px;
 	width: 100%;
 }
 
@@ -28,14 +32,14 @@
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 }
 
 .r_right {
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-evenly;
+	justify-content: space-between;
 	padding: 5px;
 	font-size: 14px;
 }
@@ -97,9 +101,21 @@
 }
 
 .editDelete {
+	grid-column: 1 / 4;
 	display: flex;
-	width: 100px;
-	justify-content: space-around;
+	width: 100%;
+	justify-content: flex-end;
 	top: 0;
 	right: 0;
+}
+
+.delete {
+	margin-left: 15px;
+	cursor: pointer;
+	transition: all linear 0.2s;
+	color: black;
+}
+
+.delete:hover {
+	color: rgb(186, 33, 33);
 }

@@ -86,7 +86,7 @@ export const SingleRestaurant = () => {
 
 	const getAverageRating = (data) => {
 		if (Object.values(restaurant?.reviews).length === 0) {
-			return "No";
+			return "No Ratings";
 		}
 		let totalStars = 0;
 		Object.values(data?.reviews).forEach(
@@ -163,15 +163,19 @@ export const SingleRestaurant = () => {
 									<StarCount
 										rating={getAverageRating(restaurant)}
 									/>
-									{getAverageRating(restaurant)}
+									<span className={styles.rating_num_header}>
+										{getAverageRating(restaurant)}
+									</span>
 								</span>
 
 								{/* Restaurant Review Count */}
 								<span>
 									<i className="fa-solid fa-message" />{" "}
-									{` ${
+									<span
+										className={styles.rating_num_header}
+									>{` ${
 										Object.values(restaurant.reviews).length
-									} Reviews`}
+									} Reviews`}</span>
 								</span>
 							</div>
 

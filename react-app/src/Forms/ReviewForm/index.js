@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./ReviewForm.module.css";
 import { createReview } from "../../store/restaurants";
+import { allUsers } from "../../store/users";
 
 export const ReviewForm = ({ restaurant, review }) => {
 	const [rating, setRating] = useState(1);
@@ -33,7 +34,9 @@ export const ReviewForm = ({ restaurant, review }) => {
 		setRating(1);
 		setContent("");
 		setImgURL("");
-		const data = await dispatch(createReview(formData));
+		const data = await dispatch(createReview(formData)).then(() =>
+			dispatch(allUsers())
+		);
 		if (data) return setErrors(data);
 	};
 

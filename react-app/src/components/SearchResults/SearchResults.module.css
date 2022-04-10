@@ -1,119 +1,123 @@
 .all_restaurants {
-    width: 80%;
-    overflow-y: auto;
+	width: 80%;
+	overflow-y: auto;
+}
+
+.header_results {
+	padding-top: 50px;
 }
 
 .parent_container_each {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(228, 228, 228);
-    border-radius: 10px;
-    padding: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: rgb(228, 228, 228);
+	border-radius: 10px;
+	padding: 20px;
 }
 
 .parent_container_each div:first-child {
-    margin-top: 20px;
+	margin-top: 20px;
 }
 
 .return_home {
-    width: 200px;
-    padding: 10px;
-    margin-bottom: 50px;
-    border: none;
-    background-color: #da3743;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
+	width: 200px;
+	padding: 10px;
+	margin-bottom: 50px;
+	border: none;
+	background-color: #da3743;
+	border-radius: 5px;
+	color: white;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
 }
 
 .return_home:hover {
-    background-color: #ac1d27;
+	background-color: #ac1d27;
 }
 
 .each_restaurant {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
 }
 
 .each_wrapper {
-    border: 1px solid rgba(0, 0, 0, 0.229);
-    border-radius: 8px;
-    margin: 20px 10px;
-    padding: 25px;
-    display: grid;
-    grid-template-columns: 30% 70%;
-    justify-content: center;
-    align-items: center;
-    width: 600px;
-    background-color: white;
-    transition: all ease-out 0.25s;
-    cursor: pointer;
+	border: 1px solid rgba(0, 0, 0, 0.229);
+	border-radius: 8px;
+	margin: 20px 10px;
+	padding: 25px;
+	display: grid;
+	grid-template-columns: 30% 70%;
+	justify-content: center;
+	align-items: center;
+	width: 600px;
+	background-color: white;
+	transition: all ease-out 0.25s;
+	cursor: pointer;
 }
 
 .each_wrapper:hover {
-    filter: drop-shadow(0 3px 6px rgba(87, 87, 87, 0.508))
+	filter: drop-shadow(0 3px 6px rgba(87, 87, 87, 0.508));
 }
 
 .each_wrapper_info {
-    display: flex;
-    flex-direction: column;
-    line-height: 30px;
-    height: 100%;
+	display: flex;
+	flex-direction: column;
+	line-height: 30px;
+	height: 100%;
 }
 
 .each_wrapper_info div {
-    font-size: 14px;
+	font-size: 14px;
 }
 
 .each_wrapper_info div:first-child {
-    font-weight: bolder;
-    font-size: 20px;
-    margin-top: 8px;
-    margin-bottom: 10px;
+	font-weight: bolder;
+	font-size: 20px;
+	margin-top: 8px;
+	margin-bottom: 10px;
 }
 
 .each_wrapper_info div i {
-    margin-right: 15px;
+	margin-right: 15px;
 }
 
 .each_wrapper img {
-    grid-column: 1 / 2;
-    margin-right: 20px;
-    border-radius: 8px;
-    height: 150px;
-    width: 150px;
-    object-fit: cover;
+	grid-column: 1 / 2;
+	margin-right: 20px;
+	border-radius: 8px;
+	height: 150px;
+	width: 150px;
+	object-fit: cover;
 }
 
 .no_search_results {
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 .no_search_results button {
-    margin-top: 20px;
-    border-radius: 5px;
-    padding: 5px 10px;
-    border: none;
-    background-color: #da3743;
-    color: rgb(255, 255, 255);
-    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.16))
+	margin-top: 20px;
+	border-radius: 5px;
+	padding: 5px 10px;
+	border: none;
+	background-color: #da3743;
+	color: rgb(255, 255, 255);
+	filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.16));
 }
 
 .no_search_results button:hover {
-    background-color: #ac1d27;
+	background-color: #ac1d27;
 }
 
 .search_intro_message {
-    margin-bottom: 30px;
+	margin-bottom: 30px;
 }
