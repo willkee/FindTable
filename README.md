@@ -6,6 +6,7 @@
 
 -   [Link to Live Site](https://github.com/willkee/FindTable#link-to-live-site)
 -   [Description](https://github.com/willkee/FindTable#description)
+-   [Getting Started]()
 -   [Technologies](https://github.com/willkee/FindTable#technologies)
 -   [Features](https://github.com/willkee/FindTable#features)
 -   [Wireframes](https://github.com/willkee/FindTable#wireframes)
@@ -23,6 +24,45 @@
 FindTable is based on OpenTable specifically centered on the New York City metropolitan area. This will include the five boroughs of Manhattan, Brooklyn, Queens, The Bronx, and Staten Island. Users will be able to add a restaurant (minus the verification process), see all available restaurants, and update and delete the listing if the logged-in user is the owner of the listing. Users will also be able to make new reservations, or see, edit and delete existing reservations. Users may also leave a rating and review on an existing restaurant and add a restaurant to their favorites list.
 
 <br>
+
+## Getting Started
+
+1. Clone this repository (only this branch)
+
+   ```bash
+   git clone git@github.com:willkee/FindTable.git
+   ```
+
+2. Install dependencies
+
+      ```bash
+      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
+      ```
+
+3. Create a **.env** file based on the example with proper settings for your
+   development environment
+4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+
+5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+
+   ```bash
+   pipenv shell
+   ```
+
+   ```bash
+   flask db upgrade
+   ```
+
+   ```bash
+   flask seed all
+   ```
+
+   ```bash
+   flask run
+   ```
+
+6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+
 
 ## Technologies
 
