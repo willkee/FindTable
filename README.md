@@ -59,8 +59,21 @@ FindTable is based on OpenTable specifically centered on the New York City metro
 
 ## Features
 
+-   The home page displays a list of all of the restaurants on the platform
+-   Users can add new restaurants
+-   Users can see existing restaurants, and edit/delete restaurants that they own
+-   Users can post reviews (with a rating) to an existing restaurant (also read, edit and delete)
+-   Users can add (or remove) restaurants to/from their list of favorites
+-   Users can make, read, edit or delete a reservation for an existing restaurant
+-   Unauthenticated users can view all restaurants and reviews but may not add a new review or restaurant
+
+<br>
 
 ## Wireframes
 
+- User testing version:
+    - [Adobe XD User testing](https://xd.adobe.com/view/f24f50db-4213-46fb-aae1-a84d179022c4-a71c/?fullscreen&hints=off)
 
+- Design feedback version:
+    - [Design review](https://xd.adobe.com/view/f24f50db-4213-46fb-aae1-a84d179022c4-a71c/)
 
