@@ -47,7 +47,7 @@ const ProfileInfoBox = styled.aside`
     left: 30px;
 `;
 
-const ContentFeed = styled.div`className={styles.button}
+const ContentFeed = styled.div`
     height: auto;
     width: 700px;
     display: flex;

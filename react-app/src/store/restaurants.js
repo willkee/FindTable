@@ -325,13 +325,9 @@ const restaurantsReducer = (state = {}, action) => {
       return newState
     }
     case DELETED_RESERVATION: {
-      console.log(newState)
       const restaurant = newState[action.payload.reservation.restaurant_id]
-      console.log(restaurant)
       const reservations = restaurant.reservations
-      console.log(reservations)
       delete reservations[action.payload.id]
-      console.log(newState)
       return newState
     }
     default:

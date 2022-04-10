@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import {Link} from "react-router-dom";
+import { useEffect } from "react";
+import {useSelector} from "react-redux";
 import { ReservationNavItem } from "../ReservationNavItem";
 
 const ReservationDropdown = styled.div`
@@ -26,8 +28,14 @@ const HorizontalLine = styled.hr`
     margin-top: -10px;
 `
 
-export const ReservationNav = ({reservationsArr}) => {
-    const resCopy = [...reservationsArr].slice(0, 3)
+export const ReservationNav = () => {
+    const sessionUser = useSelector(state => state.session.user)
+    let reservations;
+    sessionUser ? reservations = sessionUser.reservations : reservations = null;
+    let reservationsArr;
+    reservations ? reservationsArr = Object.entries(reservations) : reservationsArr = null;
+    const resCopy = [...reservationsArr].slice(0, 3);
+
     if (reservationsArr.length < 1) {
         return (
             <ReservationDropdown>

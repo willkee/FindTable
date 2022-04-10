@@ -39,7 +39,6 @@ export const DeleteReservationForm = ({reservationId}) => {
     const handleDelete = async(e) => {
         e.preventDefault();
         await dispatch(hideModal());
-        console.log(reservationId) // 1
         await dispatch(deleteReservation(reservationId));
     }
 

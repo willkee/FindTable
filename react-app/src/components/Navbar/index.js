@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Navbar.module.css'
 import {MagnifyingGlass, GreyVerticalLine} from '../Icons'
@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import ProfileDropdown from '../ProfileDropdown';
 import CalendarDropdown from '../CalendarDropdown';
 import { Logo } from '../Logo';
-
 import LoginForm from '../auth/LoginForm';
 import SignUpForm from '../auth/SignUpForm';
 import SearchSection from '../SearchSection';
@@ -15,10 +14,6 @@ import { showModal, setCurrentModal } from '../../store/modal';
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
-  let reservations;
-  sessionUser ? reservations = sessionUser.reservations : reservations = null;
-  let reservationsArr;
-  reservations ? reservationsArr = Object.entries(reservations) : reservationsArr = null;
 
   const dispatch = useDispatch()
 
@@ -50,7 +45,7 @@ const NavBar = () => {
               <ProfileDropdown />
             </div>
             <div className={styles.calendar_icon}>
-              <CalendarDropdown reservationsArr={reservationsArr}/>
+              <CalendarDropdown />
             </div>
             <div>
               <GreyVerticalLine />
