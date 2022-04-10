@@ -13,3 +13,7 @@
     cursor: pointer;
     width:fit-content;
 }
+
+.button:hover {
+  color: #FC6260;
+}

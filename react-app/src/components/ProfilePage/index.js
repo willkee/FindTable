@@ -6,6 +6,11 @@ import styles from "./ProfilePage.module.css";
 import { UserIconLarge } from '../Icons';
 import { PageContainer } from '../PageContainer';
 import { useState } from 'react';
+import { Favorites } from './Tabs/Favorites';
+import { MyReservations } from './Tabs/MyReservations';
+import { MyReviews } from './Tabs/MyReviews';
+import { RestaurantReservations } from './Tabs/RestaurantReservations';
+import { RestaurantReviews } from './Tabs/RestaurantReviews';
 
 // const Background = styled.div`className={styles.button}
 //     width: 100%;
@@ -97,30 +102,56 @@ const ProfilePage = () => {
         const month = dateString.split(" ")[1]
         const year = dateString.split(" ")[3]
         return <span>{`${month} ${year}`}</span>
-    }
+      }
+      const tab1 = document?.getElementById("tab1")
+      const tab2 = document?.getElementById("tab2")
+      const tab3 = document?.getElementById("tab3")
+      const tab4 = document?.getElementById("tab4")
+      const tab5 = document?.getElementById("tab5")
 
     const onClickRestReservations = () => {
-      setSelected(<h1>rest res</h1>)
+      setSelected(<RestaurantReservations/>)
+      tab1.style.color = "#FC6260"
+      tab2.style.color = "black"
+      tab3.style.color = "black"
+      tab4.style.color = "black"
+      tab5.style.color = "black"
     }
 
     const onClickRestReviews = () => {
-      setSelected(<h1>rest reviews</h1>)
-
+      setSelected(<RestaurantReviews/>)
+      tab1.style.color = "black"
+      tab2.style.color = "#FC6260"
+      tab3.style.color = "black"
+      tab4.style.color = "black"
+      tab5.style.color = "black"
     }
 
     const onClickMyReservations = () => {
-      setSelected(<h1>my res</h1>)
-
+      setSelected(<MyReservations/>)
+      tab1.style.color = "black"
+      tab2.style.color = "black"
+      tab3.style.color = "#FC6260"
+      tab4.style.color = "black"
+      tab5.style.color = "black"
     }
 
     const onClickMyReviews = () => {
-      setSelected(<h1>my reviews</h1>)
-
+      setSelected(<MyReviews/>)
+      tab1.style.color = "black"
+      tab2.style.color = "black"
+      tab3.style.color = "black"
+      tab4.style.color = "#FC6260"
+      tab5.style.color = "black"
     }
 
     const onClickFavorites = () => {
-      setSelected(<h1>favorites</h1>)
-
+      setSelected(<Favorites/>)
+      tab1.style.color = "black"
+      tab2.style.color = "black"
+      tab3.style.color = "black"
+      tab4.style.color = "black"
+      tab5.style.color = "#FC6260"
     }
 
 
@@ -135,13 +166,13 @@ const ProfilePage = () => {
                 <ProfileInfoBox>
                     {sessionUser.business_owner && (
                         <>
-                            <div className={styles.button} onClick={() => onClickRestReservations()}>Restaurant Reservations</div>
-                            <div className={styles.button} onClick={() => onClickRestReviews()}>Restaurant Reviews</div>
+                            <div className={styles.button} id="tab1" onClick={() => onClickRestReservations()}>Restaurant Reservations</div>
+                            <div className={styles.button} id="tab2" onClick={() => onClickRestReviews()}>Restaurant Reviews</div>
                         </>
                     )}
-                    <div className={styles.button} onClick={() => onClickMyReservations()}>My reservations</div>
-                    <div className={styles.button} onClick={() => onClickMyReviews()}>My Reviews</div>
-                    <div className={styles.button} onClick={() => onClickFavorites()}>Favorites</div>
+                    <div className={styles.button} id="tab3" onClick={() => onClickMyReservations()}>My reservations</div>
+                    <div className={styles.button} id="tab4" onClick={() => onClickMyReviews()}>My Reviews</div>
+                    <div className={styles.button} id="tab5" onClick={() => onClickFavorites()}>Favorites</div>
                 </ProfileInfoBox>
                 <TabContent>
                   {selected}
