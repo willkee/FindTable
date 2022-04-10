@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { createRestaurant, updateRestaurant } from '../../store/restaurants';
 import { CuisinesIcon, RestaurantIcon } from '../../components/Icons';
 import styles from './RestaurantForm.module.css'
 import { hideModal } from '../../store/modal';
 
-export const RestaurantForm = ({ restaurant }) => {
+export const RestaurantForm = ({restaurant}) => {
+    // const { id } = useParams();
+    // const restaurant = useSelector((state) => state.restaurants)[`${id}`];
+
+    console.log('rest------', restaurant)
+    console.log('PRICE------', restaurant?.price_rating)
+    // conso
 
     const [name, setName] = useState(restaurant?.name || '')
-    const [priceRating, setPriceRating] = useState(restaurant?.priceRating || 1)
+    const [priceRating, setPriceRating] = useState(restaurant?.price_rating || 1)
     const [description, setDescription] = useState(restaurant?.description || '')
     const [imageURL, setImageURL] = useState(restaurant?.img_url || '')
     const [phoneNumber, setPhoneNumber] = useState(restaurant?.phone_number || '')
@@ -22,17 +28,18 @@ export const RestaurantForm = ({ restaurant }) => {
     const [errors, setErrors] = useState([])
     const settingsState = useSelector(state => Object.values(state.settings))
     const cuisinesState = useSelector(state => Object.values(state.cuisines))
+    // console.log(priceRating)
 
     const dispatch = useDispatch()
     const history = useHistory()
     // const { id } = useParams()
 
     // useEffect(() => {
-    //     (async() => {
-    //       await dispatch(retrieveSettings())
-    //       await dispatch(retrieveCusines())
-    //     })();
-    //   }, [dispatch]);
+    //     // (async() => {
+    //     //   await dispatch(retrieveSettings())
+    //     //   await dispatch(retrieveCusines())
+    //     // })();
+    //   }, [ priceRating, ]);
     // console.log("\n\n UpdateForm ---", restaurant, "\n\n")
 
     const onSubmit = async (e) => {
@@ -193,6 +200,7 @@ export const RestaurantForm = ({ restaurant }) => {
                                     <label htmlFor='borough'>Borough</label>
                                     <select name='borough'
                                             value={borough}
+                                            selected={borough}
                                             onChange={e => setBorough(e.target.value)}>
                                         <option value="Manhattan">Manhattan</option>
                                         <option value="Brooklyn">Brooklyn</option>
@@ -239,6 +247,7 @@ export const RestaurantForm = ({ restaurant }) => {
                                             <label htmlFor='accessible'>Wheelchair Accessible?</label>
                                             <input type="checkbox"
                                                     value={accessible}
+                                                    selected={accessible}
                                                     onChange={() => setAccessible(!accessible)}>
                                             </input>
                                         </div>

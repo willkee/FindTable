@@ -13,6 +13,8 @@ import { UpdateRestaurant } from "../UpdateRestaurant";
 import { DeleteRestaurant } from "../DeleteRestaurant";
 import { receiveOneRestaurant } from "../../store/restaurants";
 import { addFavorite, removeFavorite } from "../../store/session";
+import { FavoriteMessage } from "../FavoriteMessage";
+import { showModal, setCurrentModal } from '../../store/modal';
 
 import StarCount from "./StarCount";
 
@@ -56,11 +58,15 @@ export const SingleRestaurant = () => {
 	// }
 	const handleFavorite = async () => {
 		setFavToggle(!favToggle);
-		!favToggle
-			? dispatch(addFavorite(id))
-			: dispatch(removeFavorite(favId));
-	};
+		if (!favToggle) {
+			dispatch(addFavorite(id))
 
+		} else {
+			dispatch(removeFavorite(favId));
+		}
+		dispatch(setCurrentModal(() => (<FavoriteMessage favToggle={favToggle} />)));
+        dispatch(showModal());
+	}
 	// useEffect(() => {
 	//   favToggle ? dispatch(addFavorite(id)) : dispatch(removeFavorite(id))
 	// },[dispatch, favToggle])
@@ -183,30 +189,24 @@ export const SingleRestaurant = () => {
 							)}
 
 							{sessionUser && (
-								<>
-									<div
-										role="button"
-										className={styles.favorite_container}
-										onClick={handleFavorite}
-									>
-										{favToggle ? (
-											<div
-												className={styles.favorite_star}
-											>
-												<RedStar />
-											</div>
-										) : (
-											<div
-												className={styles.favorite_star}
-											>
-												<GreyStar />
-											</div>
-										)}
-										Add to Favorites
-									</div>
-									<div>Added to Favorites!</div>
-									<div>Removed from Favorites!</div>
-								</>
+                <>
+								<div
+									role="button"
+									className={styles.favorite_container}
+									onClick={handleFavorite}
+								>
+									{favToggle ? (
+										<div className={styles.favorite_star}>
+											<RedStar />
+										</div>
+									) : (
+										<div className={styles.favorite_star}>
+											<GreyStar />
+										</div>
+									)}
+									Add to Favorites
+								</div>
+                </>
 							)}
 
 							<div className={styles.desc}>
