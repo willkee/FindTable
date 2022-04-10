@@ -17,20 +17,6 @@ export const ReservationForm = ({restaurant}) => {
     const [errors, setErrors] = useState([])
     const hour = new Date().getHours();
 
-    const timeObj = new Date();
-	// convert local time zone offset from minutes to milliseconds
-    const zone = timeObj.getTimezoneOffset() * 60 * 1000;
-    // subtract offset from t
-    let tLocal = timeObj - zone;
-    // create shifted Date object
-    const localTime = new Date(tLocal);
-    // convert to iso format string
-    const iso = localTime.toISOString();
-    // drop the milliseconds and zone
-    const isoNoZone = iso.slice(0, 19);
-    // replace the T
-    const today = isoNoZone.replace("T", " ").slice(0, 10);
-
     const reservationTimes =[]
     restaurant.reservations.forEach(reservation => (
         reservationTimes.push(reservation.time)
@@ -40,7 +26,7 @@ export const ReservationForm = ({restaurant}) => {
 		e.preventDefault();
 
 		const reservationData = {
-			restaurant_id: restaurant.Id,
+			restaurant_id: restaurantId,
 			user_id: user.id,
 			num_people: people,
 			date: date,
@@ -55,6 +41,14 @@ export const ReservationForm = ({restaurant}) => {
         } else if (!time) {
             alert('Please select a timeslot for your reservation.');
             return
+        }
+
+        const reservationData = {
+            restaurant_id: restaurant.id,
+            user_id: user.id,
+            num_people: people,
+            date: date,
+            time: time
         }
 
 		const newReservation = await dispatch(
@@ -144,3 +138,4 @@ export const ReservationForm = ({restaurant}) => {
             </form>
     )
 }
+

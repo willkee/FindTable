@@ -71,7 +71,7 @@ export const ReviewsDisplay = ({ restaurant }) => {
 						<div className={styles.content}>{review.review}</div>
 					</div>
 
-					{/* <div className={styles.editDelete}>
+					<div className={styles.editDelete}>
 						{sessionUser && review.user_id === sessionUser.id ? (
 							<ReviewEdit review={review} />
 						) : null}
@@ -83,7 +83,7 @@ export const ReviewsDisplay = ({ restaurant }) => {
 								Delete
 							</div>
 						) : null}
-					</div> */}
+					</div>
 				</div>
 			))}
 		</div>
