@@ -94,7 +94,7 @@ const ProfilePage = () => {
     const sessionUser = useSelector(state => state.session.user)
     const reservations = sessionUser.reservations;
     const reservationsArr = Object.entries(reservations)
-    const [selected, setSelected] = useState(null);
+    const [selected, setSelected] = useState("");
 
 
     const memberSince = () => {
