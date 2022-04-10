@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { hideModal } from "../../store/modal";
 import { deleteReservation } from "../../store/restaurants";
+import { getUser } from "../../store/session";
 import styles from "./DeleteReservationForm.module.css";
 import styled from 'styled-components';
 import animation from "../../video/FindTable-loading.mp4"
@@ -30,9 +31,6 @@ const Row = styled.div`
 `
 
 export const DeleteReservationForm = ({reservationId}) => {
-    const current = window.location.href;
-    const url = current.slice(22, current.length)
-
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -45,7 +43,7 @@ export const DeleteReservationForm = ({reservationId}) => {
         e.preventDefault();
         await dispatch(hideModal());
         await dispatch(deleteReservation(reservationId));
-        await history.push(url);
+        await dispatch(getUser())
     }
 
     return (
