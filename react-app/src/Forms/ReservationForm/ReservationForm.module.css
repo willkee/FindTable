@@ -7,6 +7,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    background-color: white;
 }
 
 .title {
@@ -45,16 +46,18 @@ p {
     margin-top: -20px;
 }
 
-button {
+.button {
     width: 200px;
-    /* height: 30px; */
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: white;
     background-color: #983937;
     opacity: 50%;
-    border: none;
     border-radius: 5px;
 }
 
-button:hover {
+.button:hover {
     opacity: 100%;
 }

@@ -1,7 +1,8 @@
 // import styles from "./ReservationCard.module.css";
 import styled from "styled-components";
-import { GreenConfirmationButton, UserIcon, CalendarIcon, GreyVerticalLine } from "../Icons";
-import styles from './ReservationCard.module.css'
+import { GreenConfirmationButton, UserIcon, CalendarIconSmall, GreyVerticalLine } from "../../Icons";
+import { useSelector } from "react-redux";
+// import { updateReservation, deleteReservation } from "../../../store/restaurants";
 
 const ReservationContainer = styled.div`
     width: 540px;
@@ -48,20 +49,34 @@ const ModalButton = styled.button`
 
 
 export const ReservationCard = ({reservation}) => {
+    // const user = useSelector(state => state.session.user);
+    const restaurants = useSelector(state => state.restaurants);
+    const restaurant = restaurants[reservation.restaurant_id];
+
+    let resTime;
+    let timeUnit;
+
+    reservation.time.includes(".5") ? resTime = reservation.time.replace(/.5/, ":30") : resTime = reservation.time;
+    reservation.time.length < 2 || reservation.time === "11" || reservation.time === "11.5" ? timeUnit = 'AM' : timeUnit = 'PM';
+
+
+
     return (
         <ReservationContainer>
-            <img className={styles.card_image} src="https://www.onceuponachef.com/images/2012/11/Vanilla-Birthday-Cake-18.jpg" alt="Restaurant for <restaurant name>."></img>
+            <img src={restaurant.img_url} alt={`Restaurant image for ${restaurant.name}`}></img>
             <ReservationDetails>
-                <strong>Restaurant name - City, State | Borough</strong>
+                <strong>{restaurant.name} - {restaurant.street_address} | {restaurant.borough}</strong>
                 <IconTextBox>
                     <GreenConfirmationButton />
-                    <p>Reservation confirmed</p>
+                    <h4>Reservation confirmed</h4>
                 </IconTextBox>
                 <IconTextBox>
                     <UserIcon />
-                    <p>reservation.num_people</p>
-                    <CalendarIcon />
-                    <p>reservation.date, at reservation.time AM/PM</p>
+                    <h4 className={styles.people}>{reservation.num_people}</h4>
+                    <div className={styles.res}>
+                        <CalendarIconSmall />
+                        <h4>{reservation.date.slice(0, 16)}, at {resTime}{timeUnit}</h4>
+                    </div>
                 </IconTextBox>
                 <ActionBox>
                    <ModalButton>Modify</ModalButton>

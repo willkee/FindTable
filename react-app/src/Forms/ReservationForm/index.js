@@ -1,36 +1,53 @@
 import styles from "./ReservationForm.module.css";
 // import Calendar from 'react-calendar'
 import { useState } from "react";
-import { useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createReservation } from "../../store/restaurants";
+import { GreyStar } from "../../components/Icons";
 
-export const ReservationForm = () => {
+export const ReservationForm = ({restaurantId}) => {
     const dispatch = useDispatch();
     const history = useHistory();
-
-    const [date, setDate] = useState(new Date())
+    const user = useSelector(state => state.session.user)
+    const [date, setDate] = useState("")
     const [time, setTime] = useState("")
     const [people, setPeople] = useState(1)
     const [errors, setErrors] = useState([])
+    const hour = new Date().getHours();
+
+
+    const timeObj = new Date();
+    // convert local time zone offset from minutes to milliseconds
+    const zone = timeObj.getTimezoneOffset() * 60 * 1000;
+    // subtract offset from t
+    let tLocal = timeObj - zone;
+    // create shifted Date object
+    const localTime = new Date(tLocal)
+    // convert to iso format string
+    const iso = localTime.toISOString()
+    // drop the milliseconds and zone
+    const isoNoZone = iso.slice(0, 19)
+    // replace the T
+    const today = isoNoZone.replace("T", " ").slice(0, 10)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(e)
 
         const reservationData = {
-            restaurant_id: 10,
+            restaurant_id: restaurantId,
+            user_id: user.id,
             num_people: people,
             date: date,
             time: time
         }
+        console.log(reservationData)
 
         const newReservation = await dispatch(createReservation(reservationData));
 
         if(newReservation.error) {
             setErrors(newReservation.error)
         } else {
-            // console.log(newReservation)
             history.push(`/my_reservations/${newReservation.id}`)
         }
     }
@@ -55,27 +72,56 @@ export const ReservationForm = () => {
                         <option value={8}>8 people</option>
                         <option value={9}>9 people</option>
                         <option value={10}>10 people</option>
-                    </select>
+                    </select>'
                 </div>
                 <hr></hr>
                 <div className={styles.input}>
-                    <label htmlFor="date"><strong>Select a date:</strong></label>
-                    <input type="date" name="date" value={date} onChange={(e) => setDate(e.target.value)} />
-                    <label htmlFor="time"><strong>Select a time:</strong></label>
-                    <input type="time" name="time" value={time} onChange={(e) => setTime(e.target.value)} />
+                    <label htmlFor="date" style={{marginTop: "10px"}}><strong>Select a date:</strong></label>
+                    <input type="date" name="date" min={today} value={date} onChange={(e) => setDate(e.target.value)} />
+                    <label htmlFor="time" style={{marginTop: "10px"}}><strong>Select a time:</strong></label>
+                    <p style={{padding: "0px", marginTop: "0px"}}>Please pick a time between 8AM and 10:00PM.</p>
+                    <select value={time} onChange={(e) => setTime(e.target.value)}>
+                        <option value="">--Select a time--</option>
+                        <optgroup label="Breakfast">
+                            <option value={'8'} disabled={date === today && hour > 6 ? true : false}>8:00 AM</option>
+                            <option value={'8.5'} disabled={date === today && hour > 6 ? true : false}>8:30 AM</option>
+                            <option value={'9'} disabled={date === today && hour > 7 ? true : false}>9:00 AM</option>
+                            <option value={'9.5'} disabled={date === today && hour > 7 ? true : false}>9:30 AM</option>
+                            <option value={'10'} disabled={date === today && hour > 8 ? true : false}>10:00 AM</option>
+                            <option value={'10.5'} disabled={date === today && hour > 8 ? true : false}>10:30 AM</option>
+                        </optgroup>
+                        <optgroup label="Lunch">
+                            <option value={'11'} disabled={date === today && hour > 9 ? true : false}>11:00 AM</option>
+                            <option value={'11.5'} disabled={date === today && hour > 9 ? true : false}>11:30 AM</option>
+                            <option value={'12'} disabled={date === today && hour > 10 ? true : false}>12:00 PM</option>
+                            <option value={'12.5'} disabled={date === today && hour > 10 ? true : false}>12:30 PM</option>
+                            <option value={'13'} disabled={date === today && hour > 11 ? true : false}>1:00 PM</option>
+                            <option value={'13.5'} disabled={date === today && hour > 11 ? true : false}>1:30 PM</option>
+                            <option value={'14'} disabled={date === today && hour > 12 ? true : false}>2:00 PM</option>
+                        </optgroup>
+                        <optgroup label="Afternoon">
+                            <option value={'14.5'} disabled={date === today && hour > 12 ? true : false}>2:30 PM</option>
+                            <option value={'15'} disabled={date === today && hour > 13 ? true : false}>3:00 PM</option>
+                            <option value={'15.5'} disabled={date === today && hour > 13 ? true : false}>3:30 PM</option>
+                            <option value={'16'} disabled={date === today && hour > 14 ? true : false}>4:00 PM</option>
+                            <option value={'16.5'} disabled={date === today && hour > 14 ? true : false}>4:30 PM</option>
+                        </optgroup>
+                        <optgroup label="Dinner">
+                            <option value={'17'} disabled={date === today && hour > 15 ? true : false}>5:00 PM</option>
+                            <option value={'17.5'} disabled={date === today && hour > 15 ? true : false}>5:30 PM</option>
+                            <option value={'18'} disabled={date === today && hour > 16 ? true : false}>6:00 PM</option>
+                            <option value={'18.5'} disabled={date === today && hour > 16 ? true : false}>6:30 PM</option>
+                            <option value={'19'} disabled={date === today && hour > 17 ? true : false}>7:00 PM</option>
+                            <option value={'19.5'} disabled={date === today && hour > 17 ? true : false}>7:30 PM</option>
+                            <option value={'20'} disabled={date === today && hour > 18 ? true : false}>8:00 PM</option>
+                            <option value={'20.5'} disabled={date === today && hour > 18 ? true : false}>8:30 PM</option>
+                            <option value={'21'} disabled={date === today && hour > 19 ? true : false}>9:00 PM</option>
+                            <option value={'21.5'} disabled={date === today && hour > 19 ? true : false}>9:30 PM</option>
+                            <option value={'22'} disabled={date === today && hour > 20 ? true : false}>10:00 PM</option>
+                        </optgroup>
+                    </select>
                 </div>
-                <button type="submit" disabled={!people || !date || !time ? true : false}>Reserve table</button>
+                <div role="button" type="submit" className={styles.button} onClick={handleSubmit}>Reserve table</div>
             </form>
     )
 }
-
-    // const today = new Date().toISOString();
-    // console.log(today)
-    // const formatDate = today.substring(0,today.length-1)
-    // console.log(formatDate)
-    // const dateTimeLocal = formatDate.slice(0, 16)
-    // console.log(dateTimeLocal)
-    // const reservationTime = formatDate.slice(11, 13)
-    // console.log(reservationTime)
-    // const futureTime = parseInt(reservationTime)+2
-    // console.log(futureTime)

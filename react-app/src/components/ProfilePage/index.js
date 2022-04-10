@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { ReservationCard } from '../ReservationCard'
+import { ReservationCard } from "../Reservations/ReservationCard"
 import styled from "styled-components";
 import styles from "./ProfilePage.module.css";
 import { UserIconLarge } from '../Icons';
@@ -56,8 +56,8 @@ const ContentFeed = styled.div`className={styles.button}
     align-items: center;
 `;
 
-const UpcomingReservations = styled.div`className={styles.button}
-    width: 600px;
+const Reservations = styled.div`className={styles.button}
+    width: 900px;
     height: auto;
     background-color: #F3F3F3;
     border-radius: 5px;
@@ -69,19 +69,19 @@ const UpcomingReservations = styled.div`className={styles.button}
     padding: 10px 30px;
 `;
 
-const PastReservations = styled.div`className={styles.button}
-    width: 600px;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: left;
-    margin: 20px;
-    padding: 10px 30px;
-`;
+// const PastReservations = styled.div`className={styles.button}
+//     width: 900px;
+//     height: auto;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-around;
+//     align-items: left;
+// `;
 
 const ProfilePage = () => {
     const sessionUser = useSelector(state => state.session.user)
+    const reservations = sessionUser.reservations;
+    const reservationsArr = Object.entries(reservations)
 
     const memberSince = () => {
         const dateString = new Date(sessionUser.created_at).toDateString()
@@ -109,16 +109,13 @@ const ProfilePage = () => {
                     <div className={styles.button} role="button">Favorites</div>
                 </ProfileInfoBox>
                 <ContentFeed>
-                    <UpcomingReservations>
+                    <Reservations>
                         <h2><strong>Upcoming Reservations</strong></h2>
                         <hr></hr>
-                        <ReservationCard />
-                    </UpcomingReservations>
-                    <PastReservations>
-                        <h2><strong>Past Reservations</strong></h2>
-                        <hr></hr>
-                        <ReservationCard />
-                    </PastReservations>
+                        {reservationsArr && reservationsArr.map(reservation => (
+                            <ReservationCard reservation={reservation[1]}/>
+                        ))}
+                    </Reservations>
                 </ContentFeed>
             </MainContent>
         </PageContainer>

@@ -15,6 +15,9 @@ import { showModal, setCurrentModal } from '../../store/modal';
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
+  const reservations = sessionUser.reservations;
+  const reservationsArr = Object.entries(reservations);
+
   const dispatch = useDispatch()
 
   const showLoginForm = () => {
@@ -36,16 +39,24 @@ const NavBar = () => {
     return (
     <nav className={styles.container}>
         <div className={styles.logo}>
-          <NavLink to='/' exact={true} className={styles.home_link} activeClassName='active'>
+          <NavLink to='/' exact={true} className={styles.home_link}>
             <Logo /> <span>FindTable</span>
           </NavLink>
         </div>
+<<<<<<< HEAD
+        <div className={styles.right}>
+=======
         <div className={styles.right_logged_in}>
+>>>>>>> staging
             <div className={styles.profile_icon}>
               <ProfileDropdown />
             </div>
             <div className={styles.calendar_icon}>
+<<<<<<< HEAD
+              <CalendarDropdown reservationsArr={reservationsArr}/>
+=======
               <CalendarDropdown />
+>>>>>>> staging
             </div>
             <div>
               <GreyVerticalLine />

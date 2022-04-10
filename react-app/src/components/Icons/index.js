@@ -1,5 +1,3 @@
-// import useState from 'react';
-
 export const LocationIcon = () => {
   return (
     <svg id="Directions" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
@@ -38,6 +36,15 @@ export const CalendarIcon = () => {
       <path id="Path_208" dataname="Path 208" d="M56.37,3.5H54V1.25H51.5V3.5H44.16V.75h-2.5V3.5H39.13A4.639,4.639,0,0,0,34.5,8.13V21.37A4.639,4.639,0,0,0,39.13,26H56.37A4.639,4.639,0,0,0,61,21.37V8.13A4.639,4.639,0,0,0,56.37,3.5M58.5,21.37a2.138,2.138,0,0,1-2.13,2.13H39.13A2.138,2.138,0,0,1,37,21.37V12H58.5Zm0-11.87H37V8.13A2.138,2.138,0,0,1,39.13,6H56.37A2.138,2.138,0,0,1,58.5,8.13Z" transform="translate(-34.5 -0.75)" />
     </svg>
   )
+}
+
+export const CalendarIconSmall = () => {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="14.292" viewBox="0 0 15 14.292">
+            <path id="Path_208" data-name="Path 208" d="M46.879,2.307H45.538V1.033H44.123V2.307H39.968V.75H38.553V2.307H37.121A2.626,2.626,0,0,0,34.5,4.927v7.494a2.626,2.626,0,0,0,2.621,2.621h9.758A2.626,2.626,0,0,0,49.5,12.422V4.927a2.626,2.626,0,0,0-2.621-2.621m1.206,10.115a1.21,1.21,0,0,1-1.206,1.206H37.121a1.21,1.21,0,0,1-1.206-1.206v-5.3h12.17Zm0-6.719H35.915V4.927a1.21,1.21,0,0,1,1.206-1.206h9.758a1.21,1.21,0,0,1,1.206,1.206Z" transform="translate(-34.5 -0.75)"/>
+        </svg>
+
+    )
 }
 
 export const GreyVerticalLine = () => {
@@ -237,5 +244,25 @@ export const CommentIcon = () => {
                 <path id="Path_432" dataname="Path 432" d="M23.365,23.38a1.228,1.228,0,0,1-.834-.323l-4.944-4.426L1.451,18.624A1.417,1.417,0,0,1,0,17.246V1.378A1.418,1.418,0,0,1,1.451,0H26.174a1.414,1.414,0,0,1,1.443,1.378V17.246a1.413,1.413,0,0,1-1.443,1.378h-1.6v3.593a1.147,1.147,0,0,1-.7,1.057,1.248,1.248,0,0,1-.505.106m.169-1.438,0,0,0,0M1.5,17.123H17.68a1.543,1.543,0,0,1,.441.068l.161.048,4.792,4.291V17.319l.818-.195h2.225V1.5H1.5Z"/>
             </g>
         </svg>
+    )
+}
+
+
+export const RestaurantCircle = () => {
+    return (
+        <svg id="Restaurant" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34">
+            <defs>
+            <clipPath id="clip-path">
+                <rect id="Rectangle_371" dataname="Rectangle 371" width="18" height="15.69" transform="translate(0 0)" fill="none"/>
+            </clipPath>
+            </defs>
+            <circle id="Ellipse_26" dataname="Ellipse 26" cx="17" cy="17" r="17" fill="#24599d"/>
+            <g id="Group_307" dataname="Group 307" transform="translate(7.935 9.31)">
+            <g id="Group_306" dataname="Group 306" clipPath="url(#clip-path)">
+                <path id="Path_229" dataname="Path 229" d="M17.86,5.25,15.78,0H2.22L.14,5.25,0,5.6V15.69H18V5.6ZM2.99.85H15.01l1.63,4.1-2.647-2.1a1.071,1.071,0,0,0-1.34.008L11.615,3.7a1.072,1.072,0,0,1-1.35,0l-.836-.68a1.071,1.071,0,0,0-1.355,0l-.816.669a1.071,1.071,0,0,1-1.357,0l-.782-.639a1.069,1.069,0,0,0-1.357,0L1.31,5.07Zm8.44,14H6.57V8.72h4.86Zm5.53,0H12.48V7.87H5.52v6.98H1.04V6.1H16.96Z" fill="#fff"/>
+            </g>
+            </g>
+      </svg>
+
     )
 }

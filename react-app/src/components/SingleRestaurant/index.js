@@ -21,7 +21,7 @@ import StarCount from './StarCount';
 
 // import { showModal, setCurrentModal } from '../../store/modal';
 // import { ReviewForm } from '../../Forms/ReviewForm';
-// import { createReview } from '../../store/reviews';
+import { ReservationForm } from '../../Forms/ReservationForm'
 // import { ReviewForm } from '../../Forms/ReviewForm';
 import {ReviewForm} from '../../Forms/ReviewForm';
 import { GreyStar, RedStar } from '../Icons';
@@ -110,11 +110,10 @@ export const SingleRestaurant = () => {
         <PageWrapper>{isLoaded &&
             <PageContainer className={styles.sr_custom_pc}>
               <img src={pattern} className={styles.sr_banner} alt="banner pattern"></img>
-              <img className={styles.sr_img} src={restaurant.img_url} alt="restaurant"/>
+              <img className={styles.sr_img} src={restaurant.img_url} alt="" width="200px"></img>
               <div className={styles.left_sidebar}>
-                <ReservationForm />
+                <ReservationForm restaurantId={id} />
               </div>
-
               <div className={styles.sr_parent}>
                 <div className={styles.sr_content}>
                     {/* Restaurant Name */}

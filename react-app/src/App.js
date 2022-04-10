@@ -56,7 +56,7 @@ function App() {
   return (
     <BrowserRouter>
       <PageWrapper>
-          <NavBar />
+          <NavBar sessionUser={sessionUser}/>
           <Modal />
           <Switch>
             <Route exact path='/'>
@@ -77,11 +77,10 @@ function App() {
               <ProtectedRoute exact path='/users/:userId'>
                 <User />
               </ProtectedRoute>
-
               <ProtectedRoute exact path="/my-profile">
                   <ProfilePage />
               </ProtectedRoute>
-              <ProtectedRoute exact path="/my_reservations">
+              <ProtectedRoute exact path="/my_reservations/:id">
                 <h1>Hello</h1>
               </ProtectedRoute>
               <Route exact path='/search/:searchWord'>
@@ -89,7 +88,7 @@ function App() {
               </Route>
             </Switch>
             <div className='return_to_top_button'><a href="#top"><i className="fa-solid fa-angles-up"></i></a></div>
-            <Footer />
+          <Footer />
       </PageWrapper>
     </BrowserRouter>
   );

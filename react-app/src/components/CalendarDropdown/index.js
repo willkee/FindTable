@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { CalendarIcon } from "../Icons";
 import styles from './Calendar.module.css'
+import { ReservationNav } from "../Reservations/ReservationNav";
 
-const CalendarIconDropdown = () => {
+const CalendarIconDropdown = ({reservationsArr}) => {
     const [showBox, setShowBox] = useState(false)
 
     const openBox = () => setShowBox(!showBox)
@@ -22,10 +23,7 @@ const CalendarIconDropdown = () => {
                 <CalendarIcon />
             </div>
             {showBox && (
-                <div id="CalendarIcon_dropdown" className={styles.dropdown} onClick={e => e.stopPropagation()}>
-                    <h5>Upcoming Reservations</h5>
-                    <p>You have no upcoming reservations.</p>
-                </div>
+                <ReservationNav reservationsArr={reservationsArr} />
             )}
         </div>
     )
