@@ -1,63 +1,81 @@
 .footer {
     background-color: #24599D;
-    width: 1600px;
-    height: 260px;
+    width: 100%;
+    height: 65px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+    position: fixed;
+    bottom: 0;
+    z-index: 99;
+    overflow-y: hidden;
+    transition: all 0.75s ease-in;
+}
+
+.footer:hover {
+    height: 250px;
 }
 
 .container {
-    height: 260px;
-    width: 1000px;
+    width: 100%;
+    font-weight: 600;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: space-around;
+    color: white;
+    padding: 10px 25px 0 25px;
 }
 
 .links {
-    height: 260px;
-    width: 1000px;
+    width: 100%;
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+    flex-direction: column;
+    justify-content: space-evenly;
     align-items: top;
 }
 
-.linksBox {
-    width: 250px;
-    height: 150px;
-    color: white;
+.links h5 {
+    text-align: center;
+}
+
+.devicons {
+    font-size: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.devicons i:hover {
+    color: rgb(183, 183, 183);
 }
 
 .label {
     font-weight: 900;
-    padding: 0px;
+    /* padding: 5px; */
 }
 
-.sectionLinks {
-    list-style: none;
-    color: white;
-    font-weight: 300;
-    text-decoration: none;
-}
 
 .horizontalLine {
-    width: 1000px;
+    width: 100%;
     height: 2px;
     background-color: #C7C7C7;
+    margin: 20px 0;
 }
 
 .descriptions {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    width: 1000px;
-    padding: 0px;
+    width: 100%;
+    padding: 0;
     color: white;
+}
+.items_container {
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .items {
@@ -66,6 +84,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    width: 150px;
 }
 
 .github {

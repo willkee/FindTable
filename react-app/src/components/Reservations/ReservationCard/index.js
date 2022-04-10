@@ -1,8 +1,8 @@
-import styles from "./ReservationCard.module.css";
+// import styles from "./ReservationCard.module.css";
 import styled from "styled-components";
 import { GreenConfirmationButton, UserIcon, CalendarIconSmall, GreyVerticalLine } from "../../Icons";
 import { useSelector } from "react-redux";
-import { updateReservation, deleteReservation } from "../../../store/restaurants";
+// import { updateReservation, deleteReservation } from "../../../store/restaurants";
 
 const ReservationContainer = styled.div`
     width: 540px;
@@ -49,7 +49,7 @@ const ModalButton = styled.button`
 
 
 export const ReservationCard = ({reservation}) => {
-    const user = useSelector(state => state.session.user);
+    // const user = useSelector(state => state.session.user);
     const restaurants = useSelector(state => state.restaurants);
     const restaurant = restaurants[reservation.restaurant_id];
 

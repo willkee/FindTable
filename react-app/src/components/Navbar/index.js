@@ -43,12 +43,20 @@ const NavBar = () => {
             <Logo /> <span>FindTable</span>
           </NavLink>
         </div>
+<<<<<<< HEAD
         <div className={styles.right}>
+=======
+        <div className={styles.right_logged_in}>
+>>>>>>> staging
             <div className={styles.profile_icon}>
               <ProfileDropdown />
             </div>
             <div className={styles.calendar_icon}>
+<<<<<<< HEAD
               <CalendarDropdown reservationsArr={reservationsArr}/>
+=======
+              <CalendarDropdown />
+>>>>>>> staging
             </div>
             <div>
               <GreyVerticalLine />

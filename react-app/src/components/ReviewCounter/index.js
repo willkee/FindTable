@@ -46,7 +46,7 @@ const ReviewCounter = ({ stars }) => {
 
                     {/* 1 */}
                     <div className={styles.each_rating_container}>
-                        <div className={styles.counter_left}><span>{oneStar}</span><span><i className="fa-solid fa-star"/></span></div>
+                        <div className={styles.counter_left}><span>{oneStar}</span><span className={styles.star_icon_container}><i className="fa-solid fa-star"/></span></div>
                         <div>
                             <div className={styles.clear_bar}>
                             <div className={styles.red_bar} style={{width:`${(oneStar / total) * 100}%`}}></div>
@@ -56,7 +56,7 @@ const ReviewCounter = ({ stars }) => {
 
                     {/* 2 */}
                     <div className={styles.each_rating_container}>
-                        <div className={styles.counter_left}><span>{twoStar}</span><span><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/></span></div>
+                        <div className={styles.counter_left}><span>{twoStar}</span><span className={styles.star_icon_container}><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/></span></div>
                         <div>
                             <div className={styles.clear_bar}>
                             <div className={styles.red_bar} style={{width:`${(twoStar / total) * 100}%`}}></div>
@@ -66,7 +66,7 @@ const ReviewCounter = ({ stars }) => {
 
                     {/* 3 */}
                     <div className={styles.each_rating_container}>
-                        <div className={styles.counter_left}><span>{threeStar}</span><span><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/></span></div>
+                        <div className={styles.counter_left}><span>{threeStar}</span><span className={styles.star_icon_container}><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/></span></div>
                         <div>
                             <div className={styles.clear_bar}>
                             <div className={styles.red_bar} style={{width:`${(threeStar / total) * 100}%`}}></div>
@@ -76,7 +76,7 @@ const ReviewCounter = ({ stars }) => {
 
                     {/* 4 */}
                     <div className={styles.each_rating_container}>
-                        <div className={styles.counter_left}><span>{fourStar}</span><span><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/></span></div>
+                        <div className={styles.counter_left}><span>{fourStar}</span><span className={styles.star_icon_container}><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/></span></div>
                         <div>
                             <div className={styles.clear_bar}>
                             <div className={styles.red_bar} style={{width:`${(fourStar / total) * 100}%`}}></div>
@@ -86,7 +86,7 @@ const ReviewCounter = ({ stars }) => {
 
                     {/* 5 */}
                     <div className={styles.each_rating_container}>
-                        <div className={styles.counter_left}><span>{fiveStar}</span><span><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/></span></div>
+                        <div className={styles.counter_left}><span>{fiveStar}</span><span className={styles.star_icon_container}><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/></span></div>
                         <div>
                             <div className={styles.clear_bar}>
                             <div className={styles.red_bar} style={{width:`${(fiveStar / total) * 100}%`}}></div>

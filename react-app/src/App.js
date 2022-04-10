@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './index.css'
 
@@ -9,7 +9,6 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import User from './components/User'
 import Modal from './components/Modal/Modal';
 import UsersList from './components/UsersList';
-import RestaurantsList from './components/RestaurantsList';
 import ProfilePage from './components/ProfilePage';
 import SearchResults from './components/SearchResults';
 import { Homepage } from './components/Homepage';
@@ -17,11 +16,12 @@ import { Footer } from "./components/Footer"
 import { SingleRestaurant } from './components/SingleRestaurant';
 import { PageWrapper } from '../src/components/PageWrapper';
 import { CreateRestaurant } from './components/CreateRestaurant'
-import { receiveAllRestaurants } from './store/restaurants';
+// import { receiveAllRestaurants } from './store/restaurants';
 import { allUsers } from './store/users';
 import { retrieveSettings } from './store/settings';
 import { authenticate } from './store/session';
 import { retrieveCusines } from './store/cuisines';
+import { receiveHomeRestaurants } from './store/restaurants';
 
 
 
@@ -30,7 +30,6 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
-  const sessionUser = useSelector(state => state.session.user)
   const users = useSelector(state => Object.values(state.users))
   const all_restaurants = useSelector(state => Object.values(state.restaurants))
   // const all_settings = useSelector(state => Object.values(state.settings))
@@ -42,7 +41,7 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
-      await dispatch(receiveAllRestaurants())
+      await dispatch(receiveHomeRestaurants())
       await dispatch(allUsers())
       await dispatch(retrieveSettings())
       await dispatch(retrieveCusines())
@@ -78,23 +77,13 @@ function App() {
               <ProtectedRoute exact path='/users/:userId'>
                 <User />
               </ProtectedRoute>
-
               <ProtectedRoute exact path="/my-profile">
                   <ProfilePage />
               </ProtectedRoute>
-              {/* <Route exact path="/my-profile">
-              {sessionUser
-                  ?
-                  <ProfilePage />
-                  :
-                  <Redirect to="/" />
-                }
-              </Route> */}
-
               <ProtectedRoute exact path="/my_reservations/:id">
                 <h1>Hello</h1>
               </ProtectedRoute>
-              <Route exact path='/search/:dateString/:timeParams/:searchWord'>
+              <Route exact path='/search/:searchWord'>
                 <SearchResults />
               </Route>
             </Switch>

@@ -1,6 +1,6 @@
 .button {
   height: 45px;
-  width: 200px;
+  width: 100px;
   color: white;
   display: flex;
   align-items: center;
@@ -16,4 +16,21 @@
 .button:hover {
   cursor: pointer;
   background-color: #24599D
+}
+
+  .button_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+
+.text_container {
+    text-align: center;
+    align-items: center;
+}
+
+.main_container {
+    text-align: center;
 }

@@ -48,7 +48,7 @@
     border: none;
     background-color: transparent;
     padding: 5px;
-    width: 200px;
+    width: 300px;
 }
 
 .search_inputs {
@@ -99,25 +99,19 @@
     align-items: center;
 }
 
-/* .time_object table {
-    display: flex;
-    transform: rotate(-90deg);
-    position: absolute;
-    top: 100%;
-    z-index: 999;
-    width: 200px;
-
-    background-color: grey;
-} */
-
 .search_button {
     margin-left: 20px;
     border: none;
     border-radius: 5px;
-    width: 100px;
+    width: 6rem;
     background-color: #da3743;
     color: white;
     transition: all linear 0.3s;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
 }
 
 .search_button:hover {

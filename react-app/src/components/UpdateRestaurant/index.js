@@ -11,5 +11,5 @@ export const UpdateRestaurant = ({restaurant}) => {
         dispatch(showModal());
       }
 
-  return <button onClick={showRestaurantForm} className={styles.update_button}>Update Restaurant</button>;
+  return <div onClick={showRestaurantForm} className={styles.button}>Update Restaurant</div>;
 };
