@@ -4,11 +4,11 @@
 
 ## FindTable: Table of Contents
 
--   [Link to Live Site](https://github.com/willkee/FindTable/edit/main/README.md#link-to-live-site)
--   [Description](https://github.com/willkee/FindTable/edit/main/README.md#description)
--   [Technologies](https://github.com/willkee/FindTable/edit/main/README.md#technologies)
--   [Features](https://github.com/willkee/FindTable/edit/main/README.md#features)
--   [Wireframes](https://github.com/willkee/FindTable/edit/main/README.md#wireframes)
+-   [Link to Live Site](https://github.com/willkee/FindTable#link-to-live-site)
+-   [Description](https://github.com/willkee/FindTable#description)
+-   [Technologies](https://github.com/willkee/FindTable#technologies)
+-   [Features](https://github.com/willkee/FindTable#features)
+-   [Wireframes](https://github.com/willkee/FindTable#wireframes)
 
 <br>
 
