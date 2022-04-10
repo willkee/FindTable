@@ -2,6 +2,7 @@ import styles from "./ReservationCard.module.css";
 import styled from "styled-components";
 import { GreenConfirmationButton, UserIcon, CalendarIconSmall, GreyVerticalLine } from "../../Icons";
 import { useSelector } from "react-redux";
+import { updateReservation, deleteReservation } from "../../../store/restaurants";
 
 const ReservationContainer = styled.div`
     width: 540px;
