@@ -73,7 +73,11 @@ export const ReviewsDisplay = ({ restaurant }) => {
 
 					<div className={styles.editDelete}>
 						{sessionUser && review.user_id === sessionUser.id ? (
-							<ReviewEdit review={review} />
+							<ReviewEdit
+								review={review}
+								edit={true}
+								restaurantEdit={restaurant}
+							/>
 						) : null}
 						{sessionUser && review.user_id === sessionUser.id ? (
 							<div
