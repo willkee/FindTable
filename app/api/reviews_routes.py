@@ -18,18 +18,18 @@ def error_generator(validation_errors):
 @review_routes.route('/', methods=['POST'])
 def reviewCreate():
 
-  request_initial = request.json
+  # request_initial = request.json
 
   form = ReviewForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
   if form.validate_on_submit():
     new_review = Review(
-      user_id = request_initial['user_id'],
-      restaurant_id = request_initial['restaurant_id'],
-      stars = request_initial['stars'],
-      img_url = request_initial['img_url'],
-      review = request_initial['review']
+      user_id = request.json['user_id'],
+      restaurant_id = request.json['restaurant_id'],
+      stars = form.data['stars'],
+      img_url = form.data['img_url'],
+      review = form.data['review']
     )
 
     db.session.add(new_review)
@@ -43,18 +43,17 @@ def reviewCreate():
 
 @review_routes.route('/<int:id>', methods=['PUT'])
 def reviewUpdate(id):
-  request_initial = request.json
 
   form = ReviewForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
   if form.validate_on_submit():
     review = Review.query.get(id)
-    review.user_id = request_initial['user_id'],
-    review.restaurant_id = request_initial['restaurant_id'],
-    review.stars = request_initial['stars'],
-    review.img_url = request_initial['img_url'],
-    review.review = request_initial['review']
+    review.user_id = request.json['user_id'],
+    review.restaurant_id = request.json['restaurant_id'],
+    review.stars = form.data['stars'],
+    review.img_url = form.data['img_url'],
+    review.review = form.data['review']
 
     db.session.commit()
 
@@ -63,13 +62,14 @@ def reviewUpdate(id):
   return {'errors': error_generator(form.errors)}
 
 #delete reviews
-@review_routes.route('/<int:id>', methods=['DELETE'])
+@review_routes.route('/<int:id>/delete', methods=['DELETE'])
 def reviewDelete(id):
-  data = {}
+  # data = {}
   review = Review.query.get(id)
-  data['review'] = review.to_dict()
+  # data['review'] = review.to_dict()
 
   db.session.delete(review)
   db.session.commit()
 
-  return data
+  # return data
+  return review.to_dict()

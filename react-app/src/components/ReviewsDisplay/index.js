@@ -25,7 +25,7 @@ export const ReviewsDisplay = ({ restaurant }) => {
 	return (
 		<div className={styles.container}>
 			{reviews.map((review) => (
-				<div className={styles.singleReview}>
+				<div key={review.id} className={styles.singleReview}>
 					<div className={styles.r_left}>
 						<div className={styles.iconContainer}>
 							<div
@@ -78,7 +78,7 @@ export const ReviewsDisplay = ({ restaurant }) => {
 						{sessionUser && review.user_id === sessionUser.id ? (
 							<div
 								className={styles.delete}
-								onClick={handleDelete(review.id)}
+								onClick={() => handleDelete(review.id)}
 							>
 								Delete
 							</div>
