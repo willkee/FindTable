@@ -6,7 +6,7 @@
 
 -   [Link to Live Site](https://github.com/willkee/FindTable#link-to-live-site)
 -   [Description](https://github.com/willkee/FindTable#description)
--   [Getting Started]()
+-   [Getting Started](https://github.com/willkee/FindTable#getting-started)
 -   [Technologies](https://github.com/willkee/FindTable#technologies)
 -   [Features](https://github.com/willkee/FindTable#features)
 -   [Wireframes](https://github.com/willkee/FindTable#wireframes)
