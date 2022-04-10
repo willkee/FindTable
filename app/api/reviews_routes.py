@@ -72,4 +72,5 @@ def reviewDelete(id):
   db.session.commit()
 
   # return data
-  return review.to_dict()
+  # return review.to_dict()
+  return {"id": id }

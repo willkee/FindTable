@@ -17,7 +17,7 @@ export const ReviewsDisplay = ({ restaurant }) => {
 	}
 
 	const handleDelete = (id) => {
-		dispatch(deleteReview(id));
+		dispatch(deleteReview(id, restaurant.id));
 	};
 
 	const colors = ["#7D2C3B", "#983937", "#4E3C24", "#7E4675", "#24599D"];
