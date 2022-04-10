@@ -6,21 +6,22 @@ import { ReviewIcon } from "../Icons";
 import { ReviewEdit } from "../ReviewEdit";
 import { deleteReview } from "../../store/restaurants";
 import { starRender } from "./starRender";
+import { allUsers as userList } from "../../store/users";
 
 export const ReviewsDisplay = ({ restaurant }) => {
 	const allUsers = useSelector((state) => state?.users);
+
 	const reviews = Object.values(restaurant?.reviews);
 	const sessionUser = useSelector((state) => state.session.user);
 	const dispatch = useDispatch();
-
-	useEffect(() => {}, [reviews]);
 
 	function getRandomInt(max) {
 		return Math.floor(Math.random() * max);
 	}
 
-	const handleDelete = (id) => {
-		dispatch(deleteReview(id, restaurant.id));
+	const handleDelete = async (id) => {
+		await dispatch(deleteReview(id, restaurant.id));
+		await dispatch(userList());
 	};
 
 	const colors = ["#7D2C3B", "#983937", "#4E3C24", "#7E4675", "#24599D"];

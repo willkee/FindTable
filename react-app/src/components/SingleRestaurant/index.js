@@ -80,7 +80,7 @@ export const SingleRestaurant = () => {
 
 	const getAverageRating = (data) => {
 		if (Object.values(restaurant?.reviews).length === 0) {
-			return "No";
+			return "No Ratings";
 		}
 		let totalStars = 0;
 		Object.values(data?.reviews).forEach(
@@ -157,15 +157,19 @@ export const SingleRestaurant = () => {
 									<StarCount
 										rating={getAverageRating(restaurant)}
 									/>
-									{getAverageRating(restaurant)}
+									<span className={styles.rating_num_header}>
+										{getAverageRating(restaurant)}
+									</span>
 								</span>
 
 								{/* Restaurant Review Count */}
 								<span>
 									<i className="fa-solid fa-message" />{" "}
-									{` ${
+									<span
+										className={styles.rating_num_header}
+									>{` ${
 										Object.values(restaurant.reviews).length
-									} Reviews`}
+									} Reviews`}</span>
 								</span>
 							</div>
 
@@ -179,26 +183,30 @@ export const SingleRestaurant = () => {
 							)}
 
 							{sessionUser && (
-                <>
-								<div
-									role="button"
-									className={styles.favorite_container}
-									onClick={handleFavorite}
-								>
-									{favToggle ? (
-										<div className={styles.favorite_star}>
-											<RedStar />
-										</div>
-									) : (
-										<div className={styles.favorite_star}>
-											<GreyStar />
-										</div>
-									)}
-									Add to Favorites
-								</div>
-                <div >Added to Favorites!</div>
-                <div>Removed from Favorites!</div>
-                </>
+								<>
+									<div
+										role="button"
+										className={styles.favorite_container}
+										onClick={handleFavorite}
+									>
+										{favToggle ? (
+											<div
+												className={styles.favorite_star}
+											>
+												<RedStar />
+											</div>
+										) : (
+											<div
+												className={styles.favorite_star}
+											>
+												<GreyStar />
+											</div>
+										)}
+										Add to Favorites
+									</div>
+									<div>Added to Favorites!</div>
+									<div>Removed from Favorites!</div>
+								</>
 							)}
 
 							<div className={styles.desc}>
