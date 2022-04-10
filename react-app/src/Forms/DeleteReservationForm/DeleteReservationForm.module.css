@@ -1,0 +1,42 @@
+
+.yes {
+    width: 150px;
+    height: 40px;
+    background-color: #D24E65;
+    border-radius: 5px;
+    color: black;
+    font-size: 1.3rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -20px;
+}
+
+.yes:hover {
+    cursor: pointer;
+}
+
+.no {
+    width: 150px;
+    height: 40px;
+    background-color: #F2BB78;
+    border-radius: 5px;
+    color: black;
+    font-size: 1.3rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -20px;
+}
+
+.no:hover {
+    cursor: pointer;
+}
+
+h2 {
+    text-align: center;
+    width: 300px;
+    margin-top: -10px;
+}

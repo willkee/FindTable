@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { ReservationCard } from "../Reservations/ReservationCard"
+import { ProfileReservationCard } from "../Reservations/ProfileReservationCard"
 import styled from "styled-components";
 import styles from "./ProfilePage.module.css";
 import { UserIconLarge } from '../Icons';
@@ -53,7 +53,7 @@ const ProfileInfoBox = styled.aside`
     left: 30px;
 `;
 
-const ContentFeed = styled.div`className={styles.button}
+const ContentFeed = styled.div`
     height: auto;
     width: fit-content;
     display: flex;
@@ -62,7 +62,7 @@ const ContentFeed = styled.div`className={styles.button}
     align-items: center;
 `;
 
-const Reservations = styled.div`className={styles.button}
+const Reservations = styled.div`
     width: 900px;
     height: auto;
     background-color: #F3F3F3;
@@ -74,6 +74,7 @@ const Reservations = styled.div`className={styles.button}
     align-items: left;
     padding: 10px 30px;
     position: relative;
+    cursor: pointer;
 `;
 
 const TabContent = styled.div`
@@ -93,8 +94,9 @@ const TabContent = styled.div`
 
 const ProfilePage = () => {
     const sessionUser = useSelector(state => state.session.user)
-    const reservations = sessionUser.reservations;
-    const reservationsArr = Object.entries(reservations)
+
+    const reservations = Object.values(sessionUser.reservations);
+    console.log(reservations)
     const [selected, setSelected] = useState("");
 
 
@@ -203,8 +205,8 @@ const ProfilePage = () => {
                     <Reservations>
                         <h2><strong>Upcoming Reservations</strong></h2>
                         <hr></hr>
-                        {reservationsArr && reservationsArr.map(reservation => (
-                            <ReservationCard reservation={reservation[1]}/>
+                        {reservations && reservations.map(reservation => (
+                            <ProfileReservationCard reservation={reservation}/>
                         ))}
                     </Reservations>
                 </ContentFeed>

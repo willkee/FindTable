@@ -40,8 +40,8 @@ export const DeleteRestaurantForm = ({restaurant_id}) => {
           <h2>Are you sure you want to Delete your Restaurant?</h2>
           <h3>This will delete all of its information from our records.</h3>
           <div className={styles.button_container}>
-            <div type='submit' onClick={handleSubmit} className={styles.button}>Delete</div>
-            <div type='submit' onClick={closeModal} className={styles.button}>Cancel</div>
+            <div role='button' onClick={handleSubmit} className={styles.button}>Delete</div>
+            <div role='button' onClick={closeModal} className={styles.button}>Cancel</div>
           </div>
         </div>
     </div>

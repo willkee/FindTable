@@ -30,6 +30,13 @@ export const ReservationForm = ({ restaurantId }) => {
 	// replace the T
 	const today = isoNoZone.replace("T", " ").slice(0, 10);
 
+	const reservationTimes = []
+    const reservations = Object.entries(restaurant.reservations);
+
+    reservations.forEach(reservation => (
+        reservationTimes.push(reservation.time)
+    ));
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 

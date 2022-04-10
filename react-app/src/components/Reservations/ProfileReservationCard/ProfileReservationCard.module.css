@@ -1,0 +1,28 @@
+img {
+    width: 125px;
+    height: 125px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+h4 {
+    font-weight: normal;
+    margin-left: 5px;
+    font-size: 1rem;
+}
+
+.icon {
+    width: 15px;
+    height: 15px;
+}
+
+.people {
+    margin-right: 10px;
+}
+
+.res {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}

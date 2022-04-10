@@ -23,7 +23,7 @@ const CalendarIconDropdown = ({reservationsArr}) => {
                 <CalendarIcon />
             </div>
             {showBox && (
-                <ReservationNav reservationsArr={reservationsArr} />
+                <ReservationNav />
             )}
         </div>
     )

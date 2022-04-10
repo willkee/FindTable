@@ -16,6 +16,7 @@ import { SingleRestaurant } from "./components/SingleRestaurant";
 import { PageWrapper } from "../src/components/PageWrapper";
 import { CreateRestaurant } from "./components/CreateRestaurant";
 import ErrorPage from "./components/ErrorPage";
+import { MyReservations } from './components/Pages/MyReservations';
 // import { receiveAllRestaurants } from './store/restaurants';
 import { allUsers } from "./store/users";
 import { retrieveSettings } from "./store/settings";
@@ -98,6 +99,7 @@ function App() {
 			</PageWrapper>
 		</BrowserRouter>
 	);
+
 }
 
 export default App;
