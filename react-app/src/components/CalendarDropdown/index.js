@@ -3,7 +3,7 @@ import { CalendarIcon } from "../Icons";
 import styles from './Calendar.module.css'
 import { ReservationNav } from "../Reservations/ReservationNav";
 
-const CalendarIconDropdown = ({reservationsArr}) => {
+const CalendarIconDropdown = ({ reservationsArr }) => {
     const [showBox, setShowBox] = useState(false)
 
     const openBox = () => setShowBox(!showBox)
