@@ -62,16 +62,16 @@ export const RestaurantForm = ({ restaurant }) => {
             const id = restaurant?.id
             const updateData = { formData, id }
             const updatedRestaurant = await dispatch(updateRestaurant(updateData))
-            if (updatedRestaurant.error) {
-                setErrors(updatedRestaurant.error)
+            if (updatedRestaurant.errors) {
+                setErrors(updatedRestaurant.errors)
             }
             else {
                 dispatch(hideModal())
             }
         } else {
             const newRestaurant = await dispatch(createRestaurant(formData))
-            if (newRestaurant.error) {
-                setErrors(newRestaurant.error)
+            if (newRestaurant.errors) {
+                setErrors(newRestaurant.errors)
             }
             else {
                 history.push(`/restaurants/${newRestaurant.id}`)

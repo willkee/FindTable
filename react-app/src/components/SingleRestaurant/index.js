@@ -79,14 +79,14 @@ export const SingleRestaurant = () => {
 	const API_URL = `https://maps.googleapis.com/maps/api/staticmap?center=${restaurant.street_address}&zoom=16&size=300x500&maptype=roadmap&markers=color:red%7Clabel:.%7C${restaurant.street_address}&key=${myKey.key}`;
 
 	const getAverageRating = (data) => {
-		if (Object.values(restaurant.reviews).length === 0) {
+		if (Object.values(restaurant?.reviews).length === 0) {
 			return "No";
 		}
 		let totalStars = 0;
-		Object.values(data.reviews).forEach(
+		Object.values(data?.reviews).forEach(
 			(review) => (totalStars += review.stars)
 		);
-		return (totalStars / Object.values(data.reviews).length).toFixed(1);
+		return (totalStars / Object.values(data?.reviews).length).toFixed(1);
 	};
 
 	const showPriceRating = (num) => {
@@ -133,7 +133,7 @@ export const SingleRestaurant = () => {
 								{/* Restaurant Cuisine */}
 								<span>
 									<i className="fa-solid fa-utensils"></i>{" "}
-									{restaurant.cuisines.map((cuisine) => (
+									{restaurant?.cuisines?.map((cuisine) => (
 										<span key={cuisine.id}>
 											{cuisine.type}{" "}
 										</span>
@@ -143,7 +143,7 @@ export const SingleRestaurant = () => {
 								{/* Restaurant Setting */}
 								<span>
 									<i className="fa-solid fa-building"></i>{" "}
-									{restaurant.settings.map((setting) => (
+									{restaurant?.settings?.map((setting) => (
 										<span key={setting.id}>
 											{setting.type}{" "}
 										</span>

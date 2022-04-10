@@ -209,8 +209,12 @@ export const createRestaurant = (data) => async (dispatch) => {
 		body: JSON.stringify(data),
 	});
 	const newRestaurant = await res.json();
-	dispatch(createdRestaurant(newRestaurant));
-	return newRestaurant;
+	if (newRestaurant.errors) {
+		return newRestaurant;
+	} else {
+		dispatch(createdRestaurant(newRestaurant));
+		return newRestaurant;
+	}
 };
 
 export const receiveAllRestaurants = () => async (dispatch) => {
@@ -231,9 +235,15 @@ export const updateRestaurant =
 			body: JSON.stringify(formData),
 		});
 
-		const updated = await res.json();
-		dispatch(updatedRestaurant(updated));
-		return updated;
+		const update = await res.json();
+		console.log('UPDATE ---', update)
+		console.log('UPDATE.errors ---', update.errors)
+		if (update.errors) {
+			return update
+		} else {
+			dispatch(updatedRestaurant(update));
+			return update;
+		}
 	};
 
 export const deleteRestaurant = (restaurantId) => async (dispatch) => {
