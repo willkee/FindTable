@@ -1,233 +1,259 @@
 .review_form_parent {
-  display: flex;
-  flex-direction: column;
-  /* background-color: green; */
-  width: 100%;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
 }
 
 .content {
-    width: 100%;
-    height: 100px;
-    border: 1px solid grey;
-    grid-area: 1 / 2 / 2 / 3;
-    resize: none;
-    border-radius: 8px;
+	width: 100%;
+	height: 60px;
+	border: 1px solid grey;
+	grid-area: 1 / 2 / 2 / 3;
+	resize: none;
+	border-radius: 5px;
+	overflow-y: scroll;
+	margin: 0;
+	padding: 8px;
+	font-size: 14px;
+}
+
+.error_container {
+	background-color: #c1c1c1;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	text-align: center;
+	padding: 20px;
+	margin: 15px 0;
+	width: 100%;
 }
 
 .reviewHeader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 .reviewContainer {
-  height: 250px;
-  /* width: 800px; */
-  width: 100%;
-  display: grid;
-  grid-template-columns: 200px 350px repeat(2, 125px) 0;
-  grid-template-rows: repeat(2, 50px) 100px 50px 0;
-  grid-column-gap: 8px;
-  grid-row-gap: 0px;
-  border-bottom: 1px solid grey;
-  margin-bottom: 20px;
+	height: 200px;
+	width: 100%;
+	display: grid;
+	grid-template-columns: 25% 75%;
+	grid-template-areas: "img ";
+	border-bottom: 1px solid grey;
+	margin-bottom: 20px;
 }
 
-.div1 {
-  /* border: 2px solid black; */
-  grid-area: 1 / 1 / 4 / 2;
-  height: 200px;
-  width: 200px;
-  border-bottom: none;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  /* object-fit: cover; */
+.image {
+	height: 100%;
+	object-fit: cover;
 }
 
-.div2 {
-  /* border: 2px solid black; */
-  grid-area: 4 / 1 / 5 / 2;
-  height: 50px;
-  width: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-top:none;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+.sub1 {
+	width: 100%;
+	height: 200px;
+	border-bottom: none;
+	object-fit: cover;
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.div3 {
-  /* border: 2px solid black; */
-  grid-area: 1 / 2 / 2 / 5;
-  height: 50px;
-  width: 600px;
-  display: flex;
-  /* flex-direction: column; */
-  align-items: flex-end;
+.sub2 {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding: 10px;
 }
 
-.div4 {
-  /* border: 2px solid black; */
-  grid-area: 2 / 2 / 3 / 5;
-  height: 50px;
-  width: 600px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+/* .textbox {
+	margin: 10px 0;
+} */
+
+.rating_container {
+	display: flex;
+	justify-content: space-between;
 }
 
-.div4 select {
-  background-color: rgb(46, 46, 46);
-  color: white;
-  padding: 5px;
-  border-radius: 5px;
-}
-
-.div5 {
-  /* border: 2px solid black; */
-  grid-area: 3 / 2 / 4 / 5;
-  height: 100px;
-  width: 600px;
-}
-
-.div6 {
-  /* border: 2px solid black; */
-  grid-area: 4 / 2 / 5 / 3;
-  height: 50px;
-  width: 350px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.div7 {
-  /* border: 2px solid black; */
-  grid-area: 4 / 3 / 5 / 4;
-  height: 50px;
-  width: 125px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.div8 {
-  /* border: 2px solid black; */
-  grid-area: 4 / 4 / 5 / 5;
-  height: 50px;
-  width: 125px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.url {
-  width: 300px;
-  border-radius: 8px;
+select {
+	background-color: rgb(46, 46, 46);
+	color: white;
+	padding: 5px;
+	border-radius: 5px;
+	border: none;
+	width: 200px;
+	font-size: 12px;
+	margin-bottom: 10px;
 }
 
 .reset {
-  border: 2px solid black;
-  width: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 8px;
-  cursor: pointer;
+	border: 1px solid black;
+	width: 80px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-right: 20px;
+	background-color: #c1c1c1;
 }
 
 .reset,
 .submit {
-  transition: all linear 0.25s;
+	transition: all linear 0.25s;
 }
 
 .reset:hover,
 .submit:hover {
-  background-color: #6b6a6a;
-  color: white;
+	opacity: 0.85;
 }
 
 .submit {
-  border: 2px solid black;
-  width: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 8px;
-  cursor: pointer;
+	border: 1px solid black;
+	width: 80px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 5px;
+	cursor: pointer;
+	color: white;
+	background-color: #7d2c3b;
 }
 
-.image {
-  border-radius: 8px;
-  object-fit: cover;
-  /* object-fit:fill */
+.url {
+	width: 100%;
+	border-radius: 5px;
+	border: 1px solid black;
+	filter: none;
+	font-size: 12px;
+	height: 25px;
+	padding: 8px;
 }
 
+.reset_submit {
+	display: flex;
+	padding: 10px 0 5px 5px;
+	justify-content: flex-end;
+}
+/*
+.div2 {
+	height: 50px;
+	width: 200px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-top: none;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
 
+.div3 {
+	height: 50px;
+	width: 600px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
+.div4 {
+	height: 50px;
+	width: 600px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.div4 select {
+
+}
+
+.div5 {
+	height: 100px;
+	width: 600px;
+}
+
+.div6 {
+	height: 50px;
+	width: 350px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.div7 {
+	height: 50px;
+	width: 125px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.div8 {
+	height: 50px;
+	width: 125px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+} */
+
+/*
+
+
+*/
+/*
 .starsContainer {
-  transform: translate(-50%, -50%) rotateY(180deg);
-  display: flex;
-  justify-content: center;
-  margin-left: 80px;
-  margin-top: 20px;
+	transform: translate(-50%, -50%) rotateY(180deg);
+	display: flex;
+	justify-content: center;
+	margin-left: 80px;
+	margin-top: 20px;
 }
 
 .starsContainer label {
-  display: block;
-  cursor: pointer;
-  width: 25px;
-  padding-left: 10px;
+	display: block;
+	cursor: pointer;
+	width: 25px;
+	padding-left: 10px;
 }
 
-.starsContainer label::before{
-  content: '\f005';
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
-  position: relative;
-  display:block;
-  font-size: 18px;
-  color: #6b6a6a;
+.starsContainer label::before {
+	content: "\f005";
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	position: relative;
+	display: block;
+	font-size: 18px;
+	color: #6b6a6a;
 }
 
-.starsContainer input{
-  display: none;
+.starsContainer input {
+	display: none;
 }
 
-.starsContainer label::after{
-  content: '\f005';
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
-  font-size: 18px;
-  position:absolute;
-  display: block;
-  top: 0;
-  opacity: 0;
-  transition: .5s;
-  background: -webkit-linear-gradient(45deg, #D24E65, #FC6260, #F2BB78);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-
+.starsContainer label::after {
+	content: "\f005";
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	font-size: 18px;
+	position: absolute;
+	display: block;
+	top: 0;
+	opacity: 0;
+	transition: 0.5s;
+	background: -webkit-linear-gradient(45deg, #d24e65, #fc6260, #f2bb78);
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 .starsContainer label:hover::after,
 .starsContainer label:hover ~ label::after,
-.starsContainer input:checked ~ label::after{
-  opacity: 1;
-}
-
-.error_container {
-    background-color: #c1c1c1;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    padding: 5px;
-    margin: 15px 0;
-    width: 100%;
-}
+.starsContainer input:checked ~ label::after {
+	opacity: 1;
+} */
 
 /* .starsContainer label:nth-child(1):checked ~ label:nth-of-type(-n + 1),
 .starsContainer label:nth-child(2):checked ~ label:nth-of-type(-n + 2),
