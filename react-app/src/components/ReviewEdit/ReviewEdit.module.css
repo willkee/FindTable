@@ -1,0 +1,9 @@
+.edit {
+	color: black;
+	cursor: pointer;
+	transition: all linear 0.2s;
+}
+
+.edit:hover {
+	color: #dbb323;
+}

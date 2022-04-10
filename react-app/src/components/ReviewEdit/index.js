@@ -15,7 +15,7 @@ export const ReviewEdit = ({ review }) => {
 
 	return (
 		<div onClick={showReviewEditForm} className={styles.edit}>
-			Edit
+			<i className="fa-solid fa-pen-to-square"></i>
 		</div>
 	);
 };
