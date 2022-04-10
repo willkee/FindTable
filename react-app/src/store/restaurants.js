@@ -51,10 +51,11 @@ const updatedReview = (payload) => {
 	};
 };
 
-const deletedReview = (payload) => {
+const deletedReview = (reviewId, restaurantId) => {
 	return {
 		type: DELETED_REVIEW,
-		payload,
+		reviewId,
+		restaurantId,
 	};
 };
 
@@ -194,13 +195,14 @@ export const updateReview = (data) => async (dispatch) => {
 	return updated;
 };
 
-export const deleteReview = (reviewId) => async (dispatch) => {
+export const deleteReview = (reviewId, restaurantId) => async (dispatch) => {
 	const res = await fetch(`/api/reviews/${reviewId}/delete`, {
 		method: "DELETE",
 	});
 
 	const removedReview = await res.json();
-	await dispatch(deletedReview(removedReview));
+	console.log(removedReview, "removed review \n\n\n\n");
+	await dispatch(deletedReview(removedReview.id, restaurantId));
 	return removedReview;
 };
 
@@ -298,9 +300,9 @@ const restaurantsReducer = (state = {}, action) => {
 			return newState;
 		}
 		case DELETED_REVIEW: {
-			const restaurant = newState[action.payload.restaurant_id];
+			const restaurant = newState[action.restaurantId];
 			const reviews = restaurant.reviews;
-			delete reviews[action.payload.id];
+			delete reviews[action.reviewId];
 			return newState;
 		}
 		case CREATED_RESERVATION: {

@@ -6,9 +6,6 @@ import { useSelector, useDispatch } from "react-redux";
 import pattern from "./pattern.png";
 import styles from "./SingleRestaurant.module.css";
 
-import { PageWrapper } from "../PageWrapper";
-import { PageContainer } from "../PageContainer";
-
 import ReviewCounter from "../ReviewCounter";
 import { ReviewsDisplay } from "../ReviewsDisplay";
 import { ReservationForm } from "../../Forms/ReservationForm";
