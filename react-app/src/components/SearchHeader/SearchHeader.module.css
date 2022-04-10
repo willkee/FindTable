@@ -116,6 +116,8 @@
 
 .search_button:hover {
     background-color: #bc202b;
+    cursor: pointer;
+
 }
 
 .search_header form {
