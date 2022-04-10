@@ -1,6 +1,6 @@
 .form {
     width: 250px;
-    height: 380px;
+    height: 450px;
     border: 1px solid #E1E1E1;
     border-radius: 5px;
     display: flex;
@@ -8,10 +8,12 @@
     align-items: center;
     justify-content: space-around;
     background-color: white;
+    margin: 0px;
+    padding: 0px;
 }
 
 .title {
-    font-size: 21px;
+    font-size: 1.35rem;
 }
 
 hr {

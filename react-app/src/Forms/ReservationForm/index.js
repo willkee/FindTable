@@ -19,7 +19,7 @@ export const ReservationForm = ({restaurant}) => {
     const reservationTimes =[]
     restaurant.reservations.forEach(reservation => (
         reservationTimes.push(reservation.time)
-    ))
+    ));
 
     const timeObj = new Date();
     // convert local time zone offset from minutes to milliseconds
@@ -65,7 +65,6 @@ export const ReservationForm = ({restaurant}) => {
 
     return (
             <form className={styles.form} onSubmit={handleSubmit}>
-                <ul>{errors && errors.map(error => (<li>{error}</li>))}</ul>
                 <strong className={styles.title}>Make a reservation</strong>
                 <hr></hr>
                 <div className={styles.party}>
@@ -83,12 +82,15 @@ export const ReservationForm = ({restaurant}) => {
                         <option value={8}>8 people</option>
                         <option value={9}>9 people</option>
                         <option value={10}>10 people</option>
-                    </select>'
+                    </select>
                 </div>
                 <hr></hr>
                 <div className={styles.input}>
                     <label htmlFor="date" style={{marginTop: "10px"}}><strong>Select a date:</strong></label>
                     <input type="date" name="date" min={today} value={date} onChange={(e) => setDate(e.target.value)} />
+                </div>
+                <hr></hr>
+                <div className={styles.input}>
                     <label htmlFor="time" style={{marginTop: "10px"}}><strong>Select a time:</strong></label>
                     <p style={{padding: "0px", marginTop: "0px"}}>Please pick a time between 8AM and 10:00PM.</p>
                     <select value={time} onChange={(e) => setTime(e.target.value)}>
@@ -132,6 +134,7 @@ export const ReservationForm = ({restaurant}) => {
                         </optgroup>
                     </select>
                 </div>
+                <hr></hr>
                 <div role="button" type="submit" className={styles.button} onClick={handleSubmit}>Reserve table</div>
             </form>
     )
