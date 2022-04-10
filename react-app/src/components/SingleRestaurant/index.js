@@ -20,12 +20,8 @@ import { addFavorite, removeFavorite } from '../../store/session';
 import StarCount from './StarCount';
 
 // import { showModal, setCurrentModal } from '../../store/modal';
-// import { ReviewForm } from '../../Forms/ReviewForm';
-import { ReservationForm } from '../../Forms/ReservationForm'
-// import { ReviewForm } from '../../Forms/ReviewForm';
-import {ReviewForm} from '../../Forms/ReviewForm';
+import { ReviewForm } from '../../Forms/ReviewForm';
 import { GreyStar, RedStar } from '../Icons';
-// import { showModal, setCurrentModal } from '../../store/modal';
 
 export const SingleRestaurant = () => {
   const sessionUser = useSelector((state) => state?.session?.user);

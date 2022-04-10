@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createReservation } from "../../store/restaurants";
-import { GreyStar } from "../../components/Icons";
+// import { GreyStar } from "../../components/Icons";
 
 export const ReservationForm = ({restaurantId}) => {
     const dispatch = useDispatch();

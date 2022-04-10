@@ -31,6 +31,7 @@ function App() {
   const dispatch = useDispatch();
 
   const users = useSelector(state => Object.values(state.users))
+  const sessionUser = useSelector(state => state.session.user)
   const all_restaurants = useSelector(state => Object.values(state.restaurants))
   // const all_settings = useSelector(state => Object.values(state.settings))
   // const all_cuisines = useSelector(state => Object.values(state.cuisines))

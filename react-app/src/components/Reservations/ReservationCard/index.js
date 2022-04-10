@@ -2,6 +2,7 @@
 import styled from "styled-components";
 import { GreenConfirmationButton, UserIcon, CalendarIconSmall, GreyVerticalLine } from "../../Icons";
 import { useSelector } from "react-redux";
+import styles from './ReservationCard.module.css'
 // import { updateReservation, deleteReservation } from "../../../store/restaurants";
 
 const ReservationContainer = styled.div`
@@ -63,7 +64,7 @@ export const ReservationCard = ({reservation}) => {
 
     return (
         <ReservationContainer>
-            <img src={restaurant.img_url} alt={`Restaurant image for ${restaurant.name}`}></img>
+            <img src={restaurant.img_url} alt={`Restaurant for ${restaurant.name}`}></img>
             <ReservationDetails>
                 <strong>{restaurant.name} - {restaurant.street_address} | {restaurant.borough}</strong>
                 <IconTextBox>

@@ -53,7 +53,7 @@ export const ReservationNavItem = ({reservation}) => {
                 </Row>
                 <Row>
                     <ClockIcon />
-                    <h4></h4>
+                    <h4> </h4>
                 </Row>
                 <Row>
                     <CalendarIconSmall />
