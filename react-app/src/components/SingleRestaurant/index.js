@@ -182,6 +182,7 @@ export const SingleRestaurant = () => {
 							)}
 
 							{sessionUser && (
+                <>
 								<div
 									role="button"
 									className={styles.favorite_container}
@@ -198,6 +199,9 @@ export const SingleRestaurant = () => {
 									)}
 									Add to Favorites
 								</div>
+                <div >Added to Favorites!</div>
+                <div>Removed from Favorites!</div>
+                </>
 							)}
 
 							<div className={styles.desc}>

@@ -235,7 +235,7 @@ export const RestaurantForm = ({ restaurant }) => {
                                     </div>
                                     <div className={styles.input_container}>
                                         <div>
-                                            <i className="fa-solid fa-wheelchair"></i>
+                                        <i className="fa-solid fa-wheelchair-move" style={{width: '20px',height: '20px'}}></i>
                                             <label htmlFor='accessible'>Wheelchair Accessible?</label>
                                             <input type="checkbox"
                                                     value={accessible}
