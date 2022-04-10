@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const PageContainer = styled.div`
-    width: 1600px;
+    width: 85vw;
     height: auto;
     display: flex;
     flex-direction: column;

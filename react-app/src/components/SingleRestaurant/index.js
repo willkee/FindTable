@@ -1,27 +1,27 @@
-import React from 'react'
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from "react";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-import pattern from './pattern.png'
-import styles from './SingleRestaurant.module.css';
+import pattern from "./pattern.png";
+import styles from "./SingleRestaurant.module.css";
 
-import { PageWrapper } from '../PageWrapper';
-import { PageContainer } from '../PageContainer';
+import { PageWrapper } from "../PageWrapper";
+import { PageContainer } from "../PageContainer";
 
-import ReviewCounter from '../ReviewCounter';
-import { ReviewsDisplay } from '../ReviewsDisplay';
-import { ReservationForm } from '../../Forms/ReservationForm'
-import { UpdateRestaurant } from '../UpdateRestaurant'
-import { DeleteRestaurant } from '../DeleteRestaurant'
-import { receiveOneRestaurant } from '../../store/restaurants';
-import { addFavorite, removeFavorite } from '../../store/session';
+import ReviewCounter from "../ReviewCounter";
+import { ReviewsDisplay } from "../ReviewsDisplay";
+import { ReservationForm } from "../../Forms/ReservationForm";
+import { UpdateRestaurant } from "../UpdateRestaurant";
+import { DeleteRestaurant } from "../DeleteRestaurant";
+import { receiveOneRestaurant } from "../../store/restaurants";
+import { addFavorite, removeFavorite } from "../../store/session";
 
-import StarCount from './StarCount';
+import StarCount from "./StarCount";
 
 // import { showModal, setCurrentModal } from '../../store/modal';
-import { ReviewForm } from '../../Forms/ReviewForm';
-import { GreyStar, RedStar } from '../Icons';
+import { ReviewForm } from "../../Forms/ReviewForm";
+import { GreyStar, RedStar } from "../Icons";
 
 export const SingleRestaurant = () => {
   const sessionUser = useSelector((state) => state?.session?.user);
@@ -194,3 +194,4 @@ export const SingleRestaurant = () => {
         </PageWrapper>
     )
 }
+

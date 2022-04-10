@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import { createReservation } from "../../store/restaurants";
 // import { GreyStar } from "../../components/Icons";
 
+
 export const ReservationForm = ({restaurant}) => {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -21,22 +22,18 @@ export const ReservationForm = ({restaurant}) => {
         reservationTimes.push(reservation.time)
     ));
 
-    const timeObj = new Date();
-    // convert local time zone offset from minutes to milliseconds
-    const zone = timeObj.getTimezoneOffset() * 60 * 1000;
-    // subtract offset from t
-    let tLocal = timeObj - zone;
-    // create shifted Date object
-    const localTime = new Date(tLocal)
-    // convert to iso format string
-    const iso = localTime.toISOString()
-    // drop the milliseconds and zone
-    const isoNoZone = iso.slice(0, 19)
-    // replace the T
-    const today = isoNoZone.replace("T", " ").slice(0, 10)
+	const handleSubmit = async (e) => {
+		e.preventDefault();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+		const reservationData = {
+			restaurant_id: restaurantId,
+			user_id: user.id,
+			num_people: people,
+			date: date,
+			time: time,
+		};
+		console.log(reservationData);
+
 
         if(!date) {
             alert('Please select a date for your reservation.');
@@ -54,7 +51,9 @@ export const ReservationForm = ({restaurant}) => {
             time: time
         }
 
-        const newReservation = await dispatch(createReservation(reservationData));
+		const newReservation = await dispatch(
+			createReservation(reservationData)
+		);
 
         if(newReservation.error) {
             setErrors(newReservation.error)
@@ -139,3 +138,4 @@ export const ReservationForm = ({restaurant}) => {
             </form>
     )
 }
+
