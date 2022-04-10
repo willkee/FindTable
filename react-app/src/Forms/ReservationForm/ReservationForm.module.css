@@ -1,20 +1,4 @@
 .form {
-    width: 250px;
-    height: 450px;
-    border: 1px solid #E1E1E1;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    background-color: white;
-    margin: 0px;
-    padding: 0px;
-}
-
-.title {
-    font-size: 1.35rem;
-
 	width: 100%;
 	height: 500px;
 	border: 1px solid #e1e1e1;
@@ -27,6 +11,9 @@
 	padding: 10px;
 }
 
+.title {
+	font-size: 21px;
+}
 
 hr {
 	height: 0.5px;

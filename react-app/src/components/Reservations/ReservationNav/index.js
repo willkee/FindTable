@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import { ReservationNavItem } from "../ReservationNavItem";
 
 const ReservationDropdown = styled.div`
-    width: 300px;
+    width: 350px;
     position: absolute;
     height: auto;
     min-height: 100px;
@@ -16,23 +16,17 @@ const ReservationDropdown = styled.div`
     align-items: space-around;
     justify-content: left;
     padding-left: 15px;
-    margin-left: -273px;
-`;
 
-const HorizontalLine = styled.hr`
-    width: 299px;
-    height: 1px;
-    margin-left: -15px;
-    margin-top: -10px;
-`
+`;
 
 export const ReservationNav = ({reservationsArr}) => {
     const resCopy = [...reservationsArr].slice(0, 3)
+    console.log(reservationsArr.length)
     if (reservationsArr.length < 1) {
         return (
             <ReservationDropdown>
                 <h3>Upcoming reservations</h3>
-                <HorizontalLine />
+                <hr></hr>
                 <h4>You have no reservations.</h4>
             </ReservationDropdown>
         )
@@ -40,25 +34,25 @@ export const ReservationNav = ({reservationsArr}) => {
        return (
             <ReservationDropdown>
                 <h3>Upcoming reservations</h3>
-                <HorizontalLine />
+                <hr></hr>
                 {reservationsArr.map(reservation => (
                     <>
                         <ReservationNavItem reservation={reservation[1]} />
-                        <HorizontalLine />
+                        <hr></hr>
                     </>
                 ))}
-                <Link to="/my-profile">View all of your reservations</Link>
+                <Link to="/my-profile" />
             </ReservationDropdown>
         )
     } else {
         return (
             <ReservationDropdown>
                 <h3>Upcoming reservations</h3>
-                <HorizontalLine />
+                <hr></hr>
                 {resCopy.map(reservation => (
                     <>
                         <ReservationNavItem reservation={reservation[1]} />
-                        <HorizontalLine />
+                        <hr></hr>
                     </>
                 ))}
                 <Link to="/my-profile">View all of your reservations</Link>
