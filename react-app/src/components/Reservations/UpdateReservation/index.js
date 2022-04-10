@@ -13,5 +13,5 @@ export const UpdateReservation = ({reservation}) => {
         dispatch(showModal());
       }
 
-  return <div type="button" onClick={showUpdateForm} className={styles.button}>cancel</div>;
+  return <div type="button" onClick={showUpdateForm} className={styles.button}>Modify</div>;
 };

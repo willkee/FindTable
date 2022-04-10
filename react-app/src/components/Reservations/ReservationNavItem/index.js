@@ -1,10 +1,13 @@
 import React from 'react';
 import styled from "styled-components";
+import styles from "./ReservationNavItem.module.css"
 import { RestaurantCircle, UserIcon, ClockIcon, CalendarIconSmall  } from "../../Icons";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { DeleteReservation } from "../DeleteReservation";
 import { UpdateReservation } from "../UpdateReservation";
+import { getUser } from "../../../store/session";
+
 const ReservationContainer = styled.div`
     width: 285px;
     height: 175px;
@@ -38,10 +41,6 @@ export const ReservationNavItem = ({reservation}) => {
     let people;
     reservation.num_people === 1 ? people = " person" : people = " people"
 
-    const showCancelModal = (e) => {
-        e.preventDefault();
-    }
-
     return (
         <ReservationContainer>
             <RestaurantCircle />
@@ -60,9 +59,9 @@ export const ReservationNavItem = ({reservation}) => {
                     <h4>{reservation.date.slice(0, 16)}</h4>
                 </Row>
                 <Row>
-                    <Link to="/my-profile">View</Link>
+                    <Link className={styles.button} to="/my-profile">View</Link>
                      <h5>|</h5>
-                    <UpdateReservation reservation={reservation}>Modify</UpdateReservation>
+                    <UpdateReservation reservation={reservation}></UpdateReservation>
                 </Row>
                 <DeleteReservation reservationId={reservation.id} />
             </ReservationInfo>
