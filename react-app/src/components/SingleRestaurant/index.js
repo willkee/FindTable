@@ -171,6 +171,9 @@ export const SingleRestaurant = () => {
 										Object.values(restaurant.reviews).length
 									} Reviews`}</span>
 								</span>
+								<span>
+									{restaurant.accessible ? "Yes" : "No"}
+								</span>
 							</div>
 
 							{isOwner && (
