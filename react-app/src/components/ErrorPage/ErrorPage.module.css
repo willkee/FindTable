@@ -1,0 +1,21 @@
+.error_parent {
+	width: 85vw;
+	background-color: white;
+	height: 100%;
+	position: absolute;
+	top: 0;
+}
+
+.error_parent div {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	top: 55px;
+}
+
+.error_parent div img {
+	width: 500px;
+	height: 500px;
+}

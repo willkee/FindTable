@@ -43,7 +43,7 @@
 	display: grid;
 	grid-template-columns: 25% 75%;
 	grid-template-areas: "img ";
-	border-bottom: 1px solid grey;
+	/* border-bottom: 1px solid grey; */
 	margin-bottom: 20px;
 }
 
