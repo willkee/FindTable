@@ -5,6 +5,7 @@ import styled from "styled-components";
 import styles from "./ProfilePage.module.css";
 import { UserIconLarge } from '../Icons';
 import { PageContainer } from '../PageContainer';
+import { useState } from 'react';
 
 // const Background = styled.div`className={styles.button}
 //     width: 100%;
@@ -34,7 +35,6 @@ const MainContent = styled.div`className={styles.button}
     flex-direction: row;
     justify-content: space-between;
     align-items: top;
-    margin-left: 40px;
 `;
 
 const ProfileInfoBox = styled.aside`
@@ -49,10 +49,10 @@ const ProfileInfoBox = styled.aside`
 
 const ContentFeed = styled.div`className={styles.button}
     height: auto;
-    width: 700px;
+    width: fit-content;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 `;
 
@@ -67,7 +67,14 @@ const Reservations = styled.div`className={styles.button}
     margin: 20px;
     align-items: left;
     padding: 10px 30px;
+    position: relative;
 `;
+
+const TabContent = styled.div`
+    width: 600px;
+
+`
+
 
 // const PastReservations = styled.div`className={styles.button}
 //     width: 900px;
@@ -82,6 +89,8 @@ const ProfilePage = () => {
     const sessionUser = useSelector(state => state.session.user)
     const reservations = sessionUser.reservations;
     const reservationsArr = Object.entries(reservations)
+    const [selected, setSelected] = useState(null);
+
 
     const memberSince = () => {
         const dateString = new Date(sessionUser.created_at).toDateString()
@@ -89,6 +98,32 @@ const ProfilePage = () => {
         const year = dateString.split(" ")[3]
         return <span>{`${month} ${year}`}</span>
     }
+
+    const onClickRestReservations = () => {
+      setSelected(<h1>rest res</h1>)
+    }
+
+    const onClickRestReviews = () => {
+      setSelected(<h1>rest reviews</h1>)
+
+    }
+
+    const onClickMyReservations = () => {
+      setSelected(<h1>my res</h1>)
+
+    }
+
+    const onClickMyReviews = () => {
+      setSelected(<h1>my reviews</h1>)
+
+    }
+
+    const onClickFavorites = () => {
+      setSelected(<h1>favorites</h1>)
+
+    }
+
+
 
     return (
         <PageContainer>
@@ -100,14 +135,17 @@ const ProfilePage = () => {
                 <ProfileInfoBox>
                     {sessionUser.business_owner && (
                         <>
-                            <div className={styles.button} role="button">Restaurant Reservations</div>
-                            <div className={styles.button} role="button">Restaurant Reviews</div>
+                            <div className={styles.button} onClick={() => onClickRestReservations()}>Restaurant Reservations</div>
+                            <div className={styles.button} onClick={() => onClickRestReviews()}>Restaurant Reviews</div>
                         </>
                     )}
-                    <div className={styles.button} role="button">My reservations</div>
-                    <div className={styles.button} role="button">My Reviews</div>
-                    <div className={styles.button} role="button">Favorites</div>
+                    <div className={styles.button} onClick={() => onClickMyReservations()}>My reservations</div>
+                    <div className={styles.button} onClick={() => onClickMyReviews()}>My Reviews</div>
+                    <div className={styles.button} onClick={() => onClickFavorites()}>Favorites</div>
                 </ProfileInfoBox>
+                <TabContent>
+                  {selected}
+                </TabContent>
                 <ContentFeed>
                     <Reservations>
                         <h2><strong>Upcoming Reservations</strong></h2>

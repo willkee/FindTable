@@ -4,10 +4,12 @@
     background-color: red;
 }
 
-button {
+.button {
     color: black;
     font-size: 18px;
     text-align: left;
     background-color: none;
     border: none;
+    cursor: pointer;
+    width:fit-content;
 }
