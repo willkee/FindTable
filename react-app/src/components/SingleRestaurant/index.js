@@ -14,7 +14,7 @@ import { DeleteRestaurant } from "../DeleteRestaurant";
 import { receiveOneRestaurant } from "../../store/restaurants";
 import { addFavorite, removeFavorite } from "../../store/session";
 import { FavoriteMessage } from "../FavoriteMessage";
-import { showModal, setCurrentModal } from '../../store/modal';
+import { showModal, setCurrentModal } from "../../store/modal";
 
 import StarCount from "./StarCount";
 
@@ -59,14 +59,15 @@ export const SingleRestaurant = () => {
 	const handleFavorite = async () => {
 		setFavToggle(!favToggle);
 		if (!favToggle) {
-			dispatch(addFavorite(id))
-
+			dispatch(addFavorite(id));
 		} else {
 			dispatch(removeFavorite(favId));
 		}
-		dispatch(setCurrentModal(() => (<FavoriteMessage favToggle={favToggle} />)));
-        dispatch(showModal());
-	}
+		dispatch(
+			setCurrentModal(() => <FavoriteMessage favToggle={favToggle} />)
+		);
+		dispatch(showModal());
+	};
 	// useEffect(() => {
 	//   favToggle ? dispatch(addFavorite(id)) : dispatch(removeFavorite(id))
 	// },[dispatch, favToggle])
@@ -178,7 +179,14 @@ export const SingleRestaurant = () => {
 									} Reviews`}</span>
 								</span>
 								<span>
-									{restaurant.accessible ? "Yes" : "No"}
+									{restaurant.accessible ? (
+										<span>
+											<i className="fa-solid fa-wheelchair"></i>
+											Wheelchair Accessible
+										</span>
+									) : (
+										"Not Wheelchair Accessible"
+									)}
 								</span>
 							</div>
 
@@ -192,24 +200,28 @@ export const SingleRestaurant = () => {
 							)}
 
 							{sessionUser && (
-                <>
-								<div
-									role="button"
-									className={styles.favorite_container}
-									onClick={handleFavorite}
-								>
-									{favToggle ? (
-										<div className={styles.favorite_star}>
-											<RedStar />
-										</div>
-									) : (
-										<div className={styles.favorite_star}>
-											<GreyStar />
-										</div>
-									)}
-									Add to Favorites
-								</div>
-                </>
+								<>
+									<div
+										role="button"
+										className={styles.favorite_container}
+										onClick={handleFavorite}
+									>
+										{favToggle ? (
+											<div
+												className={styles.favorite_star}
+											>
+												<RedStar />
+											</div>
+										) : (
+											<div
+												className={styles.favorite_star}
+											>
+												<GreyStar />
+											</div>
+										)}
+										Add to Favorites
+									</div>
+								</>
 							)}
 
 							<div className={styles.desc}>
@@ -286,7 +298,7 @@ export const SingleRestaurant = () => {
 								<img src={API_URL} alt="Google Maps"></img>
 							</div>
 							<div className={styles.address_text}>
-								<div>
+								{/* <div>
 									{restaurant.street_address
 										.split(",")[0]
 										.split(" ")
@@ -296,10 +308,12 @@ export const SingleRestaurant = () => {
 												word.slice(1)
 										)
 										.join(" ")}
-								</div>
-								<div>{`${restaurant.borough}, NY ${
+								</div> */}
+								<div>{restaurant.street_address}</div>
+								<div>{`${restaurant.borough}, NY`}</div>
+								{/* <div>{`${restaurant.borough}, NY ${
 									restaurant.street_address.split(",")[1]
-								}`}</div>
+								}`}</div> */}
 							</div>
 							<div>
 								<a
@@ -307,8 +321,10 @@ export const SingleRestaurant = () => {
 									target="_blank"
 									rel="noreferrer"
 								>
-									<i className="fa-solid fa-earth-americas"></i>{" "}
-									Website
+									<span>
+										<i className="fa-solid fa-earth-americas"></i>{" "}
+										Website
+									</span>
 								</a>
 							</div>
 							<div>
@@ -317,9 +333,23 @@ export const SingleRestaurant = () => {
 									target="_blank"
 									rel="noreferrer"
 								>
-									<i className="fa-solid fa-diamond-turn-right" />
-									Get Directions
+									<span>
+										<i className="fa-solid fa-diamond-turn-right" />
+										Get Directions
+									</span>
 								</a>
+							</div>
+							<div className={styles.ph_num}>
+								<span>
+									<i className="fa-solid fa-phone"></i>
+									{`(${restaurant.phone_number.slice(
+										0,
+										3
+									)}) ${restaurant.phone_number.slice(
+										3,
+										6
+									)}-${restaurant.phone_number.slice(6)}`}
+								</span>
 							</div>
 						</div>
 					</div>

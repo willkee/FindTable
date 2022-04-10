@@ -152,9 +152,14 @@
 	margin-left: 10px;
 }
 
+span i {
+	margin-right: 5px;
+}
+
+.ph_num {
+	margin-top: 20px;
+}
 /*
-
-
 
 .right_sidebar {
     background-color: rgb(227, 227, 227);
