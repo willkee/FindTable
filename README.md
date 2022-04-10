@@ -27,7 +27,7 @@ FindTable is based on OpenTable specifically centered on the New York City metro
 
 ## Getting Started
 
-1. Clone this repository (only this branch)
+1. Clone this repository
 
    ```bash
    git clone git@github.com:willkee/FindTable.git
@@ -39,11 +39,11 @@ FindTable is based on OpenTable specifically centered on the New York City metro
       pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
       ```
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+3. Create a **.env** file based on the .env.example file with credentials of your choice. You may need to set up Google Maps API credentials [here](https://developers.google.com/maps/documentation/embed/get-api-key) to obtain an API key.
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+4. Setup your PostgreSQL user, password and database to match your chosen credentials in the .env file.
+
+5. Enter your shell environment, upgrade and seed your database, and run your flask app
 
    ```bash
    pipenv shell
@@ -61,7 +61,7 @@ FindTable is based on OpenTable specifically centered on the New York City metro
    flask run
    ```
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+6. To run the React App, go inside the `react-app` directory and type `npm start`. This should open your browser automatically but if not, you may navigate to `localhost:3000` to access the application.
 
 
 ## Technologies
