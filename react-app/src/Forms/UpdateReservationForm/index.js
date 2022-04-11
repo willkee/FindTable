@@ -11,7 +11,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 	const user = useSelector((state) => state.session.user);
 	const [time, setTime] = useState(reservation.time);
 	const [people, setPeople] = useState(reservation.num_people);
-	const [newResDate, setNewResDate] = useState('');
+	const [newResDate, setNewResDate] = useState("");
 	const [errors, setErrors] = useState([]);
 
 	const restaurants = useSelector((state) => state.restaurants);
@@ -28,10 +28,6 @@ export const UpdateReservationForm = ({ reservation }) => {
 	const iso = localTime.toISOString();
 	const isoNoZone = iso.slice(0, 19);
 	const today = isoNoZone.replace("T", " ").slice(0, 10);
-	const [date, setDate] = useState(oldResDate);
-	const [time, setTime] = useState(reservation?.time);
-	const [people, setPeople] = useState(reservation?.num_people);
-	const [errors, setErrors] = useState([]);
 
 	let oldTime;
 	let timeUnit;
@@ -41,7 +37,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 		: (oldTime = reservation.time);
 	reservation.time.length < 2 ||
 	reservation.time === "10" ||
-    reservation.time === "10.5" ||
+	reservation.time === "10.5" ||
 	reservation.time === "11" ||
 	reservation.time === "11.5"
 		? (timeUnit = "AM")
@@ -51,7 +47,6 @@ export const UpdateReservationForm = ({ reservation }) => {
 	reservation.num_people === 1
 		? (peopleEnding = " person")
 		: (peopleEnding = " people");
-
 
 	const hour = new Date().getHours();
 
@@ -136,7 +131,8 @@ export const UpdateReservationForm = ({ reservation }) => {
 					<strong>New date:</strong>
 				</label>
 				<p style={{ padding: "0px", marginTop: "0px" }}>
-					Previous selection: {oldResDate}{}
+					Previous selection: {oldResDate}
+					{}
 				</p>
 				<input
 					type="date"
