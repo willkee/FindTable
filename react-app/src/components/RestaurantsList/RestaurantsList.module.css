@@ -1,72 +1,99 @@
 .container {
-    width: 100%;
-    margin: 0;
-    padding: 0;
+	width: 100%;
+	margin: 0;
+	padding: 0;
 }
 
 .all_container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    width: 100%;
-    gap: 50px 10px;
-    padding: 20px;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	width: 100%;
+	gap: 50px 10px;
+	padding: 20px;
 }
 
 .each_container {
-    border: 1px solid #e1e1e1;
-    width: 100%;
-    height: 250px;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    border-radius: 3px;
-    transition: all linear 0.3s;
-    cursor: pointer;
+	border: 1px solid #e1e1e1;
+	width: 100%;
+	height: 250px;
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+	border-radius: 6px;
+	transition: all linear 0.3s;
+	cursor: pointer;
+	overflow: hidden;
 }
 
 .each_container:hover {
-    filter: drop-shadow(0 3px 6px rgba(87, 87, 87, 0.248));
-    box-shadow: 1px 1px 3px black;
+	animation: restaurant-card 0.25s ease-out;
+	transform: translateY(-10px);
+}
+
+@keyframes restaurant-card {
+	0% {
+		transform: translateY(-5px);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+}
+
+.each_container:hover {
+	filter: drop-shadow(0 3px 6px rgba(87, 87, 87, 0.248));
+	box-shadow: 1px 1px 3px black;
 }
 
 .each_container h3 {
-    margin: 0;
+	margin: 0;
 }
 
 .each_container div {
-    font-size: 14px;
-    width: 100%;
+	font-size: 14px;
+	width: 100%;
 }
 
 .each_container div i {
-    margin-right: 10px;
+	margin-right: 10px;
 }
 
 .card_img img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
+	width: 100%;
+	height: 150px;
+	object-fit: cover;
+	border-radius: 0;
+}
+
+.card_img img:hover {
+	animation: restaurant-card-img 0.2s ease-in-out;
+	transform: scale(1.1);
+}
+
+@keyframes restaurant-card-img {
+	0% {
+		transform: scale(1.1);
+	}
 }
 
 .info {
-    padding: 8px;
+	padding: 8px;
 }
 
 .borough_price {
-    display: flex;
-    justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 .categories {
-    margin-top: 5px;
+	margin-top: 5px;
 }
 
 .each_container a {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
 }
 
 .each_container a:hover {
-    color: rgb(75, 75, 75)
+	color: rgb(75, 75, 75);
 }
