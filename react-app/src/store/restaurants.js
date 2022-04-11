@@ -322,11 +322,8 @@ const restaurantsReducer = (state = {}, action) => {
 			return newState
 		  }
 		case UPDATED_RESERVATION: {
-			console.log(action.payload)
 			const restaurant = newState[action.payload.restaurant_id]
-			console.log(restaurant)
 			const reservations = restaurant.reservations
-			console.log(reservations)
 			reservations[action.payload.id] = action.payload
 			return newState
 		  }
