@@ -20,51 +20,53 @@ export const RestaurantReviews = () => {
 
   return (
     <>
-    <h1>What people are saying about your restaurants</h1>
+    <h1 style={{width: "700px"}}>What people are saying about your restaurants</h1>
     <div className={styles.restaurantContainer}>
       {myRestaurants?.map((restaurant) => (
         <>
         <div className={styles.restaurantName} style={{backgroundColor: `${brightColors[getRandomInt(5)]}`}}>{restaurant.name}</div>
         <div className={styles.container}>
               {Object.values(restaurant?.reviews).map(review => (
-            <div className={styles.rw_parent}>
-              <div className={styles.singleReview}>
-                <>
-                <div className={styles.r_left}>
-                  <div className={styles.iconContainer}>
-                    <div className={styles.icon} style={{backgroundColor: `${colors[getRandomInt(5)]}`,}}>
-                      {allUsers[`${review.user_id}`].first_name[0]}
-                      {allUsers[`${review.user_id}`].last_name[0]}
+              <div style={{display: 'flex', flexDirection: 'row'}}>
+                <div className={styles.rw_parent}>
+                  <div className={styles.singleReview}>
+                    <>
+                    <div className={styles.r_left}>
+                      <div className={styles.iconContainer}>
+                        <div className={styles.icon} style={{backgroundColor: `${colors[getRandomInt(5)]}`,}}>
+                          {allUsers[`${review.user_id}`].first_name[0]}
+                          {allUsers[`${review.user_id}`].last_name[0]}
+                        </div>
+                      </div>
+
+                      <div className={styles.nameAndCount}>
+                          {review.user_first_name}
+                        <div className={styles.reviewCount}>
+                          {<ReviewIcon/>}
+                          {Object.values(allUsers[`${review.user_id}`].reviews).length}
+                        </div>
+                      </div>
+
+
+                      <div className={styles.image}>
+                        <img src={review.img_url} alt="" className={styles.image}/>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className={styles.nameAndCount}>
-                      {review.user_first_name}
-                    <div className={styles.reviewCount}>
-                      {<ReviewIcon/>}
-                      {Object.values(allUsers[`${review.user_id}`].reviews).length}
+                    <div className={styles.r_right}>
+                      <div className={styles.stars}>
+                        {starRender(review.stars)}
+                      </div>
+
+
+                      <div className={styles.content}>
+                        {review.review}
+                      </div>
                     </div>
-                  </div>
-
-
-                  <div className={styles.image}>
-                    <img src={review.img_url} alt="" className={styles.image}/>
-                  </div>
+                    </>
                 </div>
-
-                <div className={styles.r_right}>
-                  <div className={styles.stars}>
-                    {starRender(review.stars)}
-                  </div>
-
-
-                  <div className={styles.content}>
-                    {review.review}
-                  </div>
-                </div>
-                </>
+              </div>
             </div>
-          </div>
               ))}
         </div>
         </>
