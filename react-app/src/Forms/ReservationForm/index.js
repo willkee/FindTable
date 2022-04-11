@@ -41,6 +41,14 @@ export const ReservationForm = ({ restaurant }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
+		if(!date) {
+            alert('Please select a date for your reservation.');
+            return
+        } else if (!time) {
+            alert('Please select a timeslot for your reservation.');
+            return
+        }
+
 		const reservationData = {
 			restaurant_id: restaurant.id,
 			user_id: user.id,
@@ -58,7 +66,7 @@ export const ReservationForm = ({ restaurant }) => {
 		if (newReservation.error) {
 			setErrors(newReservation.error);
 		} else {
-			history.push(`/my_reservations/${newReservation.id}`);
+			history.push("/my-profile");
 		}
 	};
 

@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styles from './ProfileReservationCard.module.css'
 import { DeleteReservation } from "../DeleteReservation";
+import { UpdateReservation } from "../UpdateReservation";
 
 const ReservationContainer = styled.div`
     width: 540px;
@@ -42,14 +43,6 @@ const ActionBox = styled.div`
     align-items: center;
 `
 
-const ModalButton = styled.button`
-    color: #D24E65;
-    font-size: 14px;
-    background-color: rgba(255, 255, 255, 0);
-    border: none;
-`;
-
-
 export const ProfileReservationCard = ({reservation}) => {
     // console.log(reservation)
     const restaurant = useSelector(state => state.restaurants)[reservation.restaurant_id]
@@ -78,7 +71,7 @@ export const ProfileReservationCard = ({reservation}) => {
                     </div>
                 </IconTextBox>
                 <ActionBox>
-                   <ModalButton>Modify</ModalButton>
+                   <UpdateReservation reservation={reservation} />
                     <GreyVerticalLine />
                     <DeleteReservation reservationId={reservation.id}/>
                 </ActionBox>

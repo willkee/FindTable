@@ -6,16 +6,13 @@ import { CuisinesIcon, RestaurantIcon } from '../../components/Icons';
 import styles from './RestaurantForm.module.css'
 import { hideModal } from '../../store/modal';
 
-export const RestaurantForm = ({restaurant}) => {
-    // const { id } = useParams();
-    // const restaurant = useSelector((state) => state.restaurants)[`${id}`];
 
-    // console.log('rest------', restaurant)
-    // console.log('PRICE------', restaurant?.price_rating)
-    // conso
+export const RestaurantForm = ({restaurant}) => {
+
 
     const [name, setName] = useState(restaurant?.name || '')
-    const [priceRating, setPriceRating] = useState(restaurant?.price_rating || 1)
+    const [priceRating, setPriceRating] = useState(restaurant?.price_rating || '')
+    const [pricePreview, setPricePreview] = useState('')
     const [description, setDescription] = useState(restaurant?.description || '')
     const [imageURL, setImageURL] = useState(restaurant?.img_url || '')
     const [phoneNumber, setPhoneNumber] = useState(restaurant?.phone_number || '')
@@ -117,12 +114,23 @@ export const RestaurantForm = ({restaurant}) => {
         history.push('/')
     }
 
+    const joinSettings = () => {
+        let joined = '|';
+        settings?.map(setting => joined = ` ${joined} ${setting} |`)
+        return joined
+    }
+    const joinCuisines = () => {
+        let joined = '';
+        cuisines?.map(cuisine => joined = ` ${joined} ${cuisine} |`)
+        return joined
+    }
+
     return (
-            // <div className={styles.container}>
+            <div className={styles.container}>
                 <div className={styles.form_entries}>
                     <h2>Restaurant Information</h2>
                     <ul>
-                        {errors && errors.map(error => <li key={error} className={styles.error_messages}>{error}</li>)}
+                        {errors && errors.map(error => <li key={error} className={styles.error_messages}>{error.replace('_', ' ')}</li>)}
                     </ul>
                     { restaurant ? <h3 style={{color: 'red'}}> - Please fill out your attributes again. </h3> : null }
                     <form onSubmit={onSubmit}>
@@ -221,7 +229,7 @@ export const RestaurantForm = ({restaurant}) => {
                                         <div className={styles.cuisines_container}>
                                         {cuisinesState.map(cuisine => (
                                         <div key={cuisine.id} className={styles.check_boxes}>
-                                            <input type='checkbox' key={cuisine.id} name='cuisine' value={cuisine.id} onChange={cuisinesSelector}/>
+                                            <input type='checkbox' key={cuisine.id} name='cuisine' value={cuisine.type} onChange={cuisinesSelector}/>
                                             <label htmlFor='cuisine' className={styles.box_label}>{cuisine.type}</label>
                                         </div>
                                         ))}
@@ -235,7 +243,7 @@ export const RestaurantForm = ({restaurant}) => {
                                         <div className={styles.settings_container}>
                                         {settingsState.map(setting => (
                                         <div key={setting.id} className={styles.check_boxes}>
-                                            <input type='checkbox' key={setting.id} name='setting' value={setting.id} onChange={settingsSelector}/>
+                                            <input type='checkbox' key={setting.id} name='setting' value={setting.type} onChange={settingsSelector}/>
                                             <label htmlFor='setting' className={styles.box_label}>{setting.type}</label>
                                         </div>
                                         ))}
@@ -264,30 +272,26 @@ export const RestaurantForm = ({restaurant}) => {
                         </div>
                     </form>
                 </div>
-            //     <div className={styles.form_display}>
-            //         <div className={styles.restaurant_card}>
-            //             <img src={imageURL} alt="" width='300px'></img>
-            //             <h2 className={styles.card_header}>{name}</h2>
-            //             { imageURL && name ?
-            //             <>
-            //                 <div>
-            //                     <RedStar />
-            //                     <RedStar />
-            //                     <RedStar />
-            //                     <RedStar />
-            //                     <RedStar />
-            //                     1234 Reviews
-            //                 </div>
-            //                 <div>
-            //                     {cuisines} | {priceRating} | {borough}
-            //                 </div>
-            //                 <div>
-            //                     {phoneNumber}
-            //                 </div>
-            //             </>
-            //             : null }
-            //         </div>
-            //     </div>
-            // </div>
+            {!restaurant && <div className={styles.form_display}>
+                <h3>Card Preview</h3>
+                <div className={styles.each_container}>
+                    {imageURL &&
+                    <>
+                        <div className={styles.card_img}><img src={imageURL} alt="Your Image"/></div>
+                        <div className={styles.info}>
+                            <h3>{name?.length > 20 ? name?.slice(0, 20) + "..." : name}</h3>
+                            <div className={styles.borough_price}>
+                            <span><i className="fa-solid fa-city"></i>{borough}</span>
+                        </div>
+                            <div className={styles.categories}>
+                                    <span>{accessible ? <i className="fa-brands fa-accessible-icon"></i> : ""}</span>
+                                    <span>{joinSettings()}</span>
+                                    <span>{joinCuisines()}</span>
+                                </div>
+                        </div>
+                    </>}
+                </div>
+            </div> }
+      </div>
     )
 }

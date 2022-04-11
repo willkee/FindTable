@@ -13,5 +13,5 @@ export const DeleteReservation = ({reservationId}) => {
         dispatch(showModal());
       }
 
-  return <div type="button" onClick={showDeleteForm} className={styles.button}>cancel</div>;
+  return <div type="button" onClick={showDeleteForm} className={styles.button}>Cancel</div>;
 };

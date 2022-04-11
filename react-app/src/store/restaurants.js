@@ -143,7 +143,7 @@ async dispatch => {
 
 export const updateReservation = data =>
 async dispatch => {
-  const res = await fetch(`/api/my_reservations/${data.id}`, {
+  const res = await fetch(`/api/my_reservations/${data.reservation_id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
@@ -321,9 +321,12 @@ const restaurantsReducer = (state = {}, action) => {
 			reservations[action.payload.id] = action.payload
 			return newState
 		  }
-		  case UPDATED_RESERVATION: {
+		case UPDATED_RESERVATION: {
+			console.log(action.payload)
 			const restaurant = newState[action.payload.restaurant_id]
+			console.log(restaurant)
 			const reservations = restaurant.reservations
+			console.log(reservations)
 			reservations[action.payload.id] = action.payload
 			return newState
 		  }

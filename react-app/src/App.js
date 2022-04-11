@@ -68,9 +68,6 @@ function App() {
 					<ProtectedRoute exact path="/new-restaurant">
 						<CreateRestaurant />
 					</ProtectedRoute>
-					{/* <ProtectedRoute path='/reservations' exact={true} >
-            <Reservations/>
-          </ProtectedRoute>  */}
 					<ProtectedRoute exact path="/users">
 						<UsersList users={users} />
 					</ProtectedRoute>
@@ -79,9 +76,6 @@ function App() {
 					</ProtectedRoute>
 					<ProtectedRoute exact path="/my-profile">
 						<ProfilePage />
-					</ProtectedRoute>
-					<ProtectedRoute exact path="/my_reservations/:id">
-						<h1>Hello</h1>
 					</ProtectedRoute>
 					<Route exact path="/search/:searchWord">
 						<SearchResults />

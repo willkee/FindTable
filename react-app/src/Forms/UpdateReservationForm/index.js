@@ -5,16 +5,38 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { updateReservation } from "../../store/restaurants";
-import animation from "../../video/FindTable-loading.mp4";
+import { getUser } from "../../store/session";
 
 export const UpdateReservationForm = ({reservation}) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const newDate = new Date(reservation.date);
+    const newDateISO = newDate.toISOString();
+    const newDateISONoZone = newDateISO.slice(0, 19);
+    const oldResDate = newDateISONoZone.replace("T", " ").slice(0, 10);
+
+    const timeObj = new Date();
+    const zone = timeObj.getTimezoneOffset() * 60 * 1000;
+    let tLocal = timeObj - zone;
+    const localTime = new Date(tLocal)
+    const iso = localTime.toISOString()
+    const isoNoZone = iso.slice(0, 19)
+    const today = isoNoZone.replace("T", " ").slice(0, 10)
+
+    let oldTime;
+    let timeUnit;
+
+    reservation.time.includes(".5") ? oldTime = reservation.time.replace(/.5/, ":30") : oldTime = reservation.time;
+    reservation.time.length < 2 || reservation.time === "11" || reservation.time === "11.5" ? timeUnit = 'AM' : timeUnit = 'PM';
+
+    let peopleEnding;
+    reservation.num_people === 1 ? peopleEnding = " person" : peopleEnding = " people"
+
     const user = useSelector(state => state.session.user)
     const restaurant = useSelector(state => state.restaurants)[reservation.restaurant_id]
-
-    const [date, setDate] = useState(reservation.date)
+    console.log(restaurant)
+    const [date, setDate] = useState(oldResDate)
     const [time, setTime] = useState(reservation.time)
     const [people, setPeople] = useState(reservation.num_people)
 
@@ -28,20 +50,6 @@ export const UpdateReservationForm = ({reservation}) => {
     reservations.forEach(reservation => (
         reservationTimes.push(reservation.time)
     ));
-
-    const timeObj = new Date();
-    // convert local time zone offset from minutes to milliseconds
-    const zone = timeObj.getTimezoneOffset() * 60 * 1000;
-    // subtract offset from t
-    let tLocal = timeObj - zone;
-    // create shifted Date object
-    const localTime = new Date(tLocal)
-    // convert to iso format string
-    const iso = localTime.toISOString()
-    // drop the milliseconds and zone
-    const isoNoZone = iso.slice(0, 19)
-    // replace the T
-    const today = isoNoZone.replace("T", " ").slice(0, 10)
 
     const closeModal = async(e) => {
         e.preventDefault();
@@ -59,7 +67,8 @@ export const UpdateReservationForm = ({reservation}) => {
             return
         }
 
-        const reservationData = {
+        const updatedData = {
+            reservation_id: reservation.id,
             restaurant_id: restaurant.id,
             user_id: user.id,
             num_people: people,
@@ -67,23 +76,24 @@ export const UpdateReservationForm = ({reservation}) => {
             time: time
         }
 
-        const newReservation = await dispatch(updateReservation(reservationData));
+        const updatedRes = await dispatch(updateReservation(updatedData));
 
-        if(newReservation.error) {
-            setErrors(newReservation.error)
+        await dispatch(getUser())
+
+        if(updatedRes.error) {
+            setErrors(updatedRes.error)
         } else {
             await dispatch(hideModal());
-            await history.push(`/my_reservations/${newReservation.id}`)
         }
     }
 
     return (
             <form className={styles.form} onSubmit={handleSubmit}>
-                <strong className={styles.title}>Make a reservation</strong>
+                <strong className={styles.title}>Edit your reservation</strong>
                 <hr></hr>
                 <div className={styles.party}>
-                    <strong>Party Size</strong>
-                    <p>If you're party has more than 10 people, please call the restaurant.</p>
+                    <strong>New Party Size</strong>
+                    <p>Previously selection: {reservation.num_people} {peopleEnding}.</p>
                     <select value={people} onChange={(e) => setPeople(e.target.value)}>
                         <option value="">-- Select number of people --</option>
                         <option value={1}>1 person</option>
@@ -100,13 +110,14 @@ export const UpdateReservationForm = ({reservation}) => {
                 </div>
                 <hr></hr>
                 <div className={styles.input}>
-                    <label htmlFor="date" style={{marginTop: "10px"}}><strong>Select a date:</strong></label>
+                    <label htmlFor="date" style={{marginTop: "10px"}}><strong>New date:</strong></label>
+                    <p style={{padding: "0px", marginTop: "0px"}}>Previous selection: {oldResDate} </p>
                     <input type="date" name="date" min={today} value={date} onChange={(e) => setDate(e.target.value)} />
                 </div>
                 <hr></hr>
                 <div className={styles.input}>
-                    <label htmlFor="time" style={{marginTop: "10px"}}><strong>Select a time:</strong></label>
-                    <p style={{padding: "0px", marginTop: "0px"}}>Please pick a time between 8AM and 10:00PM.</p>
+                    <label htmlFor="time" style={{marginTop: "10px"}}><strong>New time:</strong></label>
+                    <p style={{padding: "0px", marginTop: "0px"}}>Previous selection: {oldTime} {timeUnit} </p>
                     <select value={time} onChange={(e) => setTime(e.target.value)}>
                         <option value="">--Select a time--</option>
                         <optgroup label="Breakfast">
