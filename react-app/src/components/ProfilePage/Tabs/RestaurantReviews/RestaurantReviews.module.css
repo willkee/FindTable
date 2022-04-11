@@ -134,3 +134,11 @@
   font-size: 20px;
   font-weight: 500;
 }
+
+.restaurantName:hover {
+  cursor:pointer;
+}
+
+.image:hover {
+  cursor: pointer;
+}
