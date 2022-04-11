@@ -52,13 +52,12 @@ export const DeleteReservationForm = ({ reservationId }) => {
 			<h2>Are you sure you want to cancel your reservation?</h2>
 			<Row>
 				<div
-					""
 					className={styles.yes}
 					onClick={handleDelete}
 				>
 					Yes
 				</div>
-				<div "" className={styles.no} onClick={closeModal}>
+				<div className={styles.no} onClick={closeModal}>
 					No
 				</div>
 			</Row>

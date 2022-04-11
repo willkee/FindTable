@@ -80,21 +80,18 @@ const LoginForm = () => {
 				</div>
 
 				<div
-					""
 					className={styles.div_button}
 					onClick={onLogin}
 				>
 					Login
 				</div>
 				<div
-					""
 					className={styles.div_button}
 					onClick={loginDemo}
 				>
 					Demo User
 				</div>
 				<div
-					""
 					className={styles.switch}
 					onClick={showSignUpForm}
 				>

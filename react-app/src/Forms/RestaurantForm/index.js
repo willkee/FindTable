@@ -369,7 +369,6 @@ export const RestaurantForm = ({ restaurant }) => {
 						{restaurant ? (
 							<div
 								onClick={handleClick_Edit}
-								""
 								className={styles.button}
 							>
 								Cancel
@@ -377,7 +376,6 @@ export const RestaurantForm = ({ restaurant }) => {
 						) : (
 							<div
 								onClick={handleClick_New}
-								""
 								className={styles.button}
 							>
 								Cancel

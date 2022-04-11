@@ -120,14 +120,15 @@ export const SingleRestaurant = () => {
 					<img
 						className={styles.sr_img}
 						src={restaurant.img_url}
-						alt=""
+						alt="restaurant"
 						width="200px"
 					></img>
 					<div className={styles.content_container1}>
 						<div className={styles.left}>
-						{sessionUser && !sessionUser.restaurants[restaurant.id] && (
-							<ReservationForm restaurant={restaurant} />
-						)}
+							{sessionUser &&
+								!sessionUser.restaurants[restaurant.id] && (
+									<ReservationForm restaurant={restaurant} />
+								)}
 						</div>
 						<div className={styles.center}>
 							<h1>{restaurant.name}</h1>
@@ -204,7 +205,6 @@ export const SingleRestaurant = () => {
 							{sessionUser && (
 								<>
 									<div
-										""
 										className={styles.favorite_container}
 										onClick={handleFavorite}
 									>

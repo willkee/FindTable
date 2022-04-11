@@ -3,17 +3,17 @@ import { useSelector } from "react-redux";
 // import { ReviewIcon } from '../../../Icons';
 import styles from "./MyReviews.module.css";
 import { starRender } from "../../../ReviewsDisplay/starRender";
-import {useHistory} from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 export const MyReviews = () => {
 	const restaurants = useSelector((state) => state.restaurants);
-  const history = useHistory()
+	const history = useHistory();
 	const myRev = useSelector((state) =>
 		Object.values(state.session.user.reviews)
 	);
 	const restaurantPage = (id) => {
-    history.push(`/restaurants/${id}`)
-  }
+		history.push(`/restaurants/${id}`);
+	};
 
 	function getRandomInt(max) {
 		return Math.floor(Math.random() * max);
@@ -36,13 +36,17 @@ export const MyReviews = () => {
 					<div className={styles.singleReview}>
 						<div className={styles.imageContainer}>
 							<img
-                className={styles.image}
+								className={styles.image}
 								src={
 									restaurants[`${review.restaurant_id}`]
 										.img_url
 								}
-								alt=""
-                onClick={() => restaurantPage(restaurants[`${review.restaurant_id}`])}
+								alt="review upload"
+								onClick={() =>
+									restaurantPage(
+										restaurants[`${review.restaurant_id}`]
+									)
+								}
 							/>
 						</div>
 						<div
@@ -52,7 +56,11 @@ export const MyReviews = () => {
 									brightColors[getRandomInt(5)]
 								}`,
 							}}
-              onClick={() => restaurantPage(restaurants[`${review.restaurant_id}`])}
+							onClick={() =>
+								restaurantPage(
+									restaurants[`${review.restaurant_id}`]
+								)
+							}
 						>
 							{restaurants[`${review.restaurant_id}`]?.name} - New
 							York, NY |{" "}

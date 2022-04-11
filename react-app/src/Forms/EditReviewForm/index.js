@@ -63,7 +63,7 @@ const EditReviewForm = ({ review }) => {
 					{imgURL ? (
 						<img
 							src={imgURL}
-							alt=""
+							alt="review"
 							height="190px"
 							width="190px"
 							className={styles.image}
@@ -119,14 +119,12 @@ const EditReviewForm = ({ review }) => {
 					<div className={styles.reset_submit}>
 						<div
 							className={styles.reset}
-							""
 							onClick={() => dispatch(hideModal())}
 						>
 							Cancel
 						</div>
 						<div
 							className={styles.submit}
-							""
 							onClick={handleSubmit}
 							disabled={!rating || !content ? true : false}
 						>

@@ -111,21 +111,18 @@ const SignUpForm = () => {
 					</div>
 				</div>
 				<div
-					""
 					className={styles.div_button}
 					onClick={handleSubmit}
 				>
 					Sign Up
 				</div>
 				<div
-					""
 					className={styles.div_button}
 					onClick={loginDemo}
 				>
 					Demo User
 				</div>
 				<div
-					""
 					className={styles.switch}
 					onClick={showLoginForm}
 				>
