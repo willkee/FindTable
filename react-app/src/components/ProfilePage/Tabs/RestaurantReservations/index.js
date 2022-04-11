@@ -40,10 +40,13 @@ export const RestaurantReservations = () => {
                 <h2 style={{marginLeft: "-50px", fontSize: "32px"}}><strong>Upcoming Reservations</strong></h2>
                 {restaurants.map(restaurant => (
                   <div>
-                    {restaurant.name}
+                    <p style={{fontSize: "1.4rem", fontWeight: "bold", padding: "0px", margin: "0px", marginLeft: "-50px"}}>{restaurant.name}</p>
                     {Object.values(restaurant.reservations).map(reservation => (
                       <RestaurantReservationCard reservation={reservation} />
                     ))}
+                    {!Object.values(restaurant.reservations).length && (
+                      <h4 style={{marginLeft: "-50px"}}>No reservations.</h4>
+                    )}
                   </div>
                 ))}
             </Reservations>
