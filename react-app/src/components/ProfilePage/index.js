@@ -37,7 +37,7 @@ const MainContent = styled.div`className={styles.button}
     height: auto;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: top;
 `;
 
@@ -54,7 +54,7 @@ const ProfileInfoBox = styled.aside`
 const TabContent = styled.div`
     width: 600px;
     border-left: 1px solid #C7C7C7;
-    margin-left: 5px;
+    margin-left: 200px;
     padding-left: 20px;
 `
 
@@ -146,7 +146,7 @@ const ProfilePage = () => {
         <PageContainer>
             <UserBox>
                 <UserIconLarge style={{marginLeft: "10px"}}/>
-                <h2 style={{marginLeft: "15px"}}><strong style={{fontSize: "32px"}}>{sessionUser.first_name} {sessionUser.last_name}</strong>  |  member since {memberSince()}</h2>
+                <h2 style={{marginLeft: "15px", width: "500px"}}><strong style={{fontSize: "32px"}}>{sessionUser.first_name} {sessionUser.last_name}</strong>  |  member since {memberSince()}</h2>
             </UserBox>
             <MainContent>
                 <ProfileInfoBox>

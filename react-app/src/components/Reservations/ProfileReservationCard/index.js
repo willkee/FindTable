@@ -26,7 +26,7 @@ const ReservationDetails = styled.div`
 `;
 
 const IconTextBox = styled.div`
-    width: 250px;
+    width: 450px;
     height: 35px;
     display: flex;
     flex-direction: row;
@@ -57,7 +57,7 @@ export const ProfileReservationCard = ({reservation}) => {
         <ReservationContainer>
             <img src={restaurant.img_url} alt={`Restaurant for ${restaurant.name}`}></img>
             <ReservationDetails>
-                <strong>{restaurant.name} - {restaurant.street_address} | {restaurant.borough}</strong>
+                <strong>{restaurant.name} {restaurant.street_address} | {restaurant.borough}</strong>
                 <IconTextBox>
                     <GreenConfirmationButton />
                     <h4>Reservation confirmed</h4>

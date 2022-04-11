@@ -7,11 +7,11 @@ import { ProfileReservationCard } from "../../../Reservations/ProfileReservation
 const Reservations = styled.div`
     width: 900px;
     height: auto;
-    background-color: #F3F3F3;
+    min-height: 90vh;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-start;
     margin: 20px;
     align-items: left;
     padding: 10px 30px;
@@ -35,8 +35,7 @@ export const MyReservations = () => {
     return (
         <ContentFeed>
             <Reservations>
-                <h2><strong>Upcoming Reservations</strong></h2>
-                <hr></hr>
+                <h2 style={{marginLeft: "-50px", fontSize: "32px"}}><strong>Upcoming Reservations</strong></h2>
                 {reservations && reservations.map(reservation => (
                     <ProfileReservationCard reservation={reservation}/>
                 ))}
