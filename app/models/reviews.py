@@ -5,7 +5,7 @@ class Review(db.Model):
 
   id = db.Column(db.Integer, primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-  restaurant_id= db.Column(db.Integer, db.ForeignKey('restaurants.id'))
+  restaurant_id = db.Column(db.Integer, db.ForeignKey('restaurants.id'))
   stars = db.Column(db.Integer, nullable=False)
   img_url = db.Column(db.String(2048), nullable=False)
   review = db.Column(db.Text, nullable=False)

@@ -54,7 +54,7 @@ def create_restaurant():
 
     return new_restaurant.to_dict()
   else:
-    return {'error': error_generator(form.errors)}, 400
+    return {'errors': error_generator(form.errors)}, 400
 
 
 @restaurant_routes.route('/', methods=["GET"])
@@ -83,8 +83,15 @@ def restaurantUpdate(id):
 
   form['csrf_token'].data = request.cookies['csrf_token']
 
+  # print('\n\nREQUEST--------', request.json, '\n\n')
+
+  restaurant = Restaurant.query.get(id)
+
+  if restaurant.phone_number != form.data['phone_number'] and Restaurant.query.filter(Restaurant.phone_number == form.data['phone_number']).first():
+    return {'errors': ["phone_number: Phone number already belongs to another restaurant."]}, 400
+
+
   if form.validate_on_submit():
-    restaurant = Restaurant.query.get(id)
     restaurant.name = form.data['name']
     restaurant.price_rating = form.data['price_rating']
     restaurant.description = form.data['description']
@@ -103,10 +110,14 @@ def restaurantUpdate(id):
     for cuisineId in restaurant_cuisines: # attach cuisines to new restaurant
       restaurant.cuisines.append(Cuisine.query.get(int(cuisineId)))
     db.session.commit()
+    # print('\n\nREST - SUCCESS', restaurant, '\n\n')
 
     return restaurant.to_dict()
+  else:
+    # print('\n\nREST - FAIL', form, '\n\n')
+    # print('\n\nREST - FAIL', form.errors, '\n\n')
+    return {'errors': error_generator(form.errors)}, 400
 
-  return {'errors': error_generator(form.errors)}
 
 @restaurant_routes.route('/<int:id>', methods=['DELETE'])
 def restaurantDelete(id):

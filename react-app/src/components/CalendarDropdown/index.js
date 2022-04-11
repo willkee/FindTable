@@ -1,34 +1,30 @@
 import { useEffect, useState } from "react";
 import { CalendarIcon } from "../Icons";
-import styles from './Calendar.module.css'
+import styles from "./Calendar.module.css";
+import { ReservationNav } from "../Reservations/ReservationNav";
 
-const CalendarIconDropdown = () => {
-    const [showBox, setShowBox] = useState(false)
+const CalendarIconDropdown = ({ reservationsArr }) => {
+	const [showBox, setShowBox] = useState(false);
 
-    const openBox = () => setShowBox(!showBox)
+	const openBox = () => setShowBox(!showBox);
 
-    useEffect(() => {
-        if (!showBox) return;
+	useEffect(() => {
+		if (!showBox) return;
 
-        const closeBox = () => setShowBox(false);
-        document.addEventListener("click", closeBox)
+		const closeBox = () => setShowBox(false);
+		document.addEventListener("click", closeBox);
 
-        return () => document.removeEventListener("click", closeBox)
-    })
+		return () => document.removeEventListener("click", closeBox);
+	});
 
-    return (
-        <div className={styles.calendarOuterContainer}>
-            <div className={styles.calendarIconContainer} onClick={openBox}>
-                <CalendarIcon />
-            </div>
-            {showBox && (
-                <div id="CalendarIcon_dropdown" className={styles.dropdown} onClick={e => e.stopPropagation()}>
-                    <h5>Upcoming Reservations</h5>
-                    <p>You have no upcoming reservations.</p>
-                </div>
-            )}
-        </div>
-    )
-}
+	return (
+		<div className={styles.calendarOuterContainer}>
+			<div className={styles.calendarIconContainer} onClick={openBox}>
+				<CalendarIcon />
+			</div>
+			{showBox && <ReservationNav />}
+		</div>
+	);
+};
 
-export default CalendarIconDropdown
+export default CalendarIconDropdown;

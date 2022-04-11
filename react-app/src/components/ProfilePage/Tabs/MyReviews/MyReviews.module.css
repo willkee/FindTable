@@ -1,0 +1,51 @@
+.name {
+  display: flex;
+  justify-content: left;
+  font-size: 20px;
+  font-weight: 500;
+  grid-area: 1 / 1 / 2 / 6;
+  width: fit-content;
+  height: fit-content;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 5px;
+}
+
+.name:hover {
+  cursor: pointer;
+}
+
+
+
+.reviews {
+  padding-top: 20px;
+}
+
+.stars {
+	/* display: flex;
+	align-items: flex-end; */
+	color: #fc6260;
+}
+
+.reviewAndStars {
+  grid-area: 2 / 3 / 4 / 6;
+}
+
+
+.singleReview {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  border-bottom: 1px solid #C7C7C7;
+  margin-bottom: 30px;
+}
+
+.imageContainer {
+  grid-area: 2 / 1 / 4 / 3;
+}
+
+.image:hover {
+  cursor: pointer;
+}

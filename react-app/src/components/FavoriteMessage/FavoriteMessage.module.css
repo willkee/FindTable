@@ -1,0 +1,10 @@
+.text_container {
+    text-align: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.main_container {
+    text-align: center;
+    border-radius: 20px;
+}

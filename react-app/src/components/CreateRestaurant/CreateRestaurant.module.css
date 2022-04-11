@@ -1,11 +1,19 @@
-.update_button {
-    color: red;
-    font-size: 16px;
-    font-weight: 400;
-    width: 100%;
-  }
+.button {
+  height: 45px;
+  width: 200px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #983937;
+  border-radius: 5px;
+  font-weight: 600;
+  margin-left: 20px;
+  transition: all 0.3s ease 0s;
 
-  .update_button:hover {
-    color: black;
-    background-color: rgba(0,0,0,.03);
-  }
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: #24599D
+}

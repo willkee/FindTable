@@ -4,9 +4,9 @@
     height: 300px;
     background-size: cover;
     background-repeat: no-repeat;
-    /* opacity: 0.95; */
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    opacity: 0.90;
+    /* border-top-left-radius: 5px;
+    border-top-right-radius: 5px; */
     align-items: center;
     justify-content: center;
     display: flex;
@@ -29,10 +29,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #983937;
+    background-color: #da3743;
+    border-radius: 5px;
     font-weight: 600;
+    margin-left: 20px;
+    transition: all 0.3s ease 0s;
 }
 
 .lower_banner_button:hover {
     cursor: pointer;
+    background-color: #bc202b;
 }

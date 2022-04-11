@@ -14,14 +14,17 @@ from app.models import db, Restaurant, Setting, Cuisine
 
 def valid_phone_number(form, field):
   phone_number = field.data
+  # phoneExists = Restaurant.query.filter(Restaurant.phone_number == phone_number).first()
   if not phone_number.isnumeric():
     raise ValidationError('Phone Number must contain only digits')
   if not len(phone_number) == 10:
     raise ValidationError('Phone number must include 10 digits')
+  # if phoneExists:
+  #   raise ValidationError('Phone number already exists')
 
 def valid_image(form, field):
   img_url = field.data
-  if not (img_url.endswith('.jpg') or img_url.endswith('.jpeg') or img_url.endswith('.png')):
+  if not (img_url.endswith('.jpg') or img_url.endswith('.jpeg') or img_url.endswith('.png') or img_url.endswith('.gif')):
     raise ValidationError('Image format must be .jpg, .jpeg, or .png')
 
 # def valid_website(fomr, field):

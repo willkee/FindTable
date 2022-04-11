@@ -1,19 +1,22 @@
 .button {
-    height: 45px;
-    width: 100px;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #983937;
-    border-radius: 5px;
-    font-weight: 600;
-    margin-left: 20px;
-  }
+  height: 45px;
+  width: 100px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #da3743;
+  border-radius: 5px;
+  font-weight: 600;
+  margin-left: 20px;
+  transition: all 0.5s ease 0s;
 
-  .button:hover {
-    cursor: pointer;
-  }
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: #bc202b;
+}
 
   .button_container {
     display: flex;
@@ -26,6 +29,7 @@
 .text_container {
     text-align: center;
     align-items: center;
+    margin: 20px;
 }
 
 .main_container {

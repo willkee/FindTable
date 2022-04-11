@@ -53,7 +53,7 @@ class User(db.Model, UserMixin):
             'restaurants': {restaurant.id:restaurant.to_dict() for restaurant in self.restaurants},
             'reservations': {reservation.id:reservation.to_dict() for reservation in self.reservations},
             'reviews': {review.id:review.to_dict() for review in self.reviews},
-            'favorites': {favorite.id:favorite.to_dict() for favorite in self.favorites},
+            'favorites': {favorite.restaurant_id:favorite.to_dict() for favorite in self.favorites},
             'created_at': self.created_at
         }
 

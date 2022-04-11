@@ -17,7 +17,6 @@
     top: 110%;
     right: 100%;
     background-color: rgb(255, 255, 255);
-    z-index: 999;
     padding: 10px;
     border: 1px solid black;
 }
@@ -117,6 +116,8 @@
 
 .search_button:hover {
     background-color: #bc202b;
+    cursor: pointer;
+
 }
 
 .search_header form {

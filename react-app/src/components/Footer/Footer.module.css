@@ -49,6 +49,7 @@
 
 .devicons i:hover {
     color: rgb(183, 183, 183);
+    cursor: pointer;
 }
 
 .label {
