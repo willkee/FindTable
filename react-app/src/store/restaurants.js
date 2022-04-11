@@ -10,9 +10,10 @@ const CREATED_REVIEW = "/reviews/createdReview";
 const UPDATED_REVIEW = "/reviews/updatedReview";
 const DELETED_REVIEW = "/reviews/deletedReview";
 
-const CREATED_RESERVATION = "/reviews/createdReservation";
-const UPDATED_RESERVATION = "/reviews/updatedReview";
-const DELETED_RESERVATION = "/reviews/deletedReview";
+const CREATED_RESERVATION = '/reservations/createdReservation'
+const UPDATED_RESERVATION = '/reservations/updatedReservation'
+const DELETED_RESERVATION ='/reservations/deletedReservation'
+
 
 //action creators for reservations
 const createdReservation = (payload) => {
@@ -128,38 +129,42 @@ const deletedRestaurant = (payload) => {
 };
 
 //thunks for reservations
-export const createReservation = (data) => async (dispatch) => {
-	const res = await fetch("/api/my_reservations/", {
-		method: "POST",
-		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify(data),
-	});
-	const newReservation = await res.json();
-	dispatch(createdReservation(newReservation));
-	return newReservation;
-};
+export const createReservation = data =>
+async dispatch => {
+  const res = await fetch('/api/my_reservations/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  const newReservation = await res.json()
+  dispatch(createdReservation(newReservation))
+  return newReservation
+}
 
-export const updateReservation = (data) => async (dispatch) => {
-	const res = await fetch(`/api/my_reservations/${data.id}`, {
-		method: "PUT",
-		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify(data),
-	});
+export const updateReservation = data =>
+async dispatch => {
+  const res = await fetch(`/api/my_reservations/${data.reservation_id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
 
-	const editedReservation = await res.json();
-	dispatch(updatedReservation(editedReservation));
-	return editedReservation;
-};
+  const editedReservation = await res.json();
+  dispatch(updatedReservation(editedReservation))
+  return editedReservation
+}
 
-export const deleteReservation = (reservationId) => async (dispatch) => {
-	const res = await fetch(`/api/my_reservations/${reservationId}`, {
-		method: "DELETE",
-	});
+export const deleteReservation = reservationId =>
+async dispatch => {
+  const res = await fetch(`/api/my_reservations/${reservationId}`, {
+    method: 'DELETE'
+  })
 
-	const deleted = await res.json();
-	dispatch(deletedReservation(deleted));
-	return deleted;
-};
+  const deleted = await res.json();
+  console.log(deleted)
+  dispatch(deletedReservation(deleted))
+  return deleted
+}
 
 //thunks for reviews
 export const createReview = (data) => async (dispatch) => {
@@ -311,23 +316,26 @@ const restaurantsReducer = (state = {}, action) => {
 			return newState;
 		}
 		case CREATED_RESERVATION: {
-			const restaurant = newState[action.payload.restaurant_id];
-			const reservations = restaurant.reservations;
-			reservations[action.payload.id] = action.payload;
-			return newState;
-		}
+			const restaurant = newState[action.payload.restaurant_id]
+			const reservations = restaurant.reservations
+			reservations[action.payload.id] = action.payload
+			return newState
+		  }
 		case UPDATED_RESERVATION: {
-			const restaurant = newState[action.payload.restaurant_id];
-			const reservations = restaurant.reservations;
-			reservations[action.payload.id] = action.payload;
-			return newState;
-		}
-		case DELETED_RESERVATION: {
-			const restaurant = newState[action.payload.restaurant_id];
-			const reservations = restaurant.reviews;
-			delete reservations[action.payload.id];
-			return newState;
-		}
+			console.log(action.payload)
+			const restaurant = newState[action.payload.restaurant_id]
+			console.log(restaurant)
+			const reservations = restaurant.reservations
+			console.log(reservations)
+			reservations[action.payload.id] = action.payload
+			return newState
+		  }
+		  case DELETED_RESERVATION: {
+			const restaurant = newState[action.payload.reservation.restaurant_id]
+			const reservations = restaurant.reservations
+			delete reservations[action.payload.id]
+			return newState
+		  }
 		default:
 			return state;
 	}

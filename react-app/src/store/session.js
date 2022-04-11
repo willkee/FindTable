@@ -1,10 +1,9 @@
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
-
+const GOT_USER = 'session/GOT_USER';
 const ADD_FAVORITE = 'session/ADD_FAVORITE';
 const REMOVE_FAVORITE = 'session/REMOVE_FAVORITE';
-
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -23,6 +22,11 @@ const addedFavorite = (newFavorite) => ({
 const removedFavorite = (removedFavorite) => ({
   type: REMOVE_FAVORITE,
   payload: removedFavorite
+});
+
+const gotUser = (payload) => ({
+  type: GOT_USER,
+  payload
 });
 
 export const addFavorite = id =>
@@ -136,6 +140,18 @@ export const signUp = (firstName, lastName, email, password) => async (dispatch)
   }
 }
 
+export const getUser = () => async (dispatch) => {
+  const response = await fetch('/api/auth/');
+  if (response.ok) {
+    const data = await response.json();
+    if (data.errors) {
+      return;
+    }
+    dispatch(gotUser(data));
+  }
+}
+
+
 export default function sessionReducer(state = initialState, action) {
   let newState = {...state}
   switch (action.type) {
@@ -149,6 +165,8 @@ export default function sessionReducer(state = initialState, action) {
     case REMOVE_FAVORITE:
       delete newState.user.favorites[action.payload.restaurant_id]
       return newState
+    case GOT_USER:
+      return {user: action.payload}
     default:
       return state;
   }

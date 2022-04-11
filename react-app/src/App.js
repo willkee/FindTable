@@ -16,6 +16,7 @@ import { SingleRestaurant } from "./components/SingleRestaurant";
 import { PageWrapper } from "../src/components/PageWrapper";
 import { CreateRestaurant } from "./components/CreateRestaurant";
 import ErrorPage from "./components/ErrorPage";
+import { MyReservations } from './components/Pages/MyReservations';
 // import { receiveAllRestaurants } from './store/restaurants';
 import { allUsers } from "./store/users";
 import { retrieveSettings } from "./store/settings";
@@ -67,9 +68,6 @@ function App() {
 					<ProtectedRoute exact path="/new-restaurant">
 						<CreateRestaurant />
 					</ProtectedRoute>
-					{/* <ProtectedRoute path='/reservations' exact={true} >
-            <Reservations/>
-          </ProtectedRoute>  */}
 					<ProtectedRoute exact path="/users">
 						<UsersList users={users} />
 					</ProtectedRoute>
@@ -78,9 +76,6 @@ function App() {
 					</ProtectedRoute>
 					<ProtectedRoute exact path="/my-profile">
 						<ProfilePage />
-					</ProtectedRoute>
-					<ProtectedRoute exact path="/my_reservations/:id">
-						<h1>Hello</h1>
 					</ProtectedRoute>
 					<Route exact path="/search/:searchWord">
 						<SearchResults />
@@ -98,6 +93,7 @@ function App() {
 			</PageWrapper>
 		</BrowserRouter>
 	);
+
 }
 
 export default App;

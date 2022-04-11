@@ -26,5 +26,12 @@ class Reservation(db.Model):
             'updated_at': self.updated_at
         }
 
+    def deleted_info(self):
+        return {
+            'id': self.id,
+            'restaurant_id': self.restaurant_id
+        }
+
+
     # I think adding updated_at to the dict() will be helpful
     # We can do something like => new Date() - updated_at === less than 24hours ? cannot update reservation : update resrvation

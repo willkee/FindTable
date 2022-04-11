@@ -3,8 +3,7 @@ import styled from "styled-components";
 import { GreenConfirmationButton, UserIcon, CalendarIconSmall, GreyVerticalLine } from "../../Icons";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
-import styles from './ReservationCard.module.css'
+import styles from './ProfileReservationCard.module.css'
 import { DeleteReservation } from "../DeleteReservation";
 import { UpdateReservation } from "../UpdateReservation";
 
@@ -44,31 +43,12 @@ const ActionBox = styled.div`
     align-items: center;
 `
 
-const ModalButton = styled.button`
-    color: #D24E65;
-    font-size: 14px;
-    background-color: rgba(255, 255, 255, 0);
-    border: none;
-`;
-
-
-export const ReservationCard = () => {
-    let resId;
-
-    useEffect(() => {
-        const url = window.location.href;
-        resId = url.slice(22, url.length);
-    },[])
-
-    const reservation = useSelector(state => state.session.user.reservations)[resId]
+export const ProfileReservationCard = ({reservation}) => {
     console.log(reservation)
     const restaurant = useSelector(state => state.restaurants)[reservation.restaurant_id]
-    const restaurantRes = restaurant.reservations
-    console.log(restaurantRes)
+
     let resTime;
     let timeUnit;
-
-
 
     reservation.time.includes(".5") ? resTime = reservation.time.replace(/.5/, ":30") : resTime = reservation.time;
     reservation.time.length < 2 || reservation.time === "11" || reservation.time === "11.5" ? timeUnit = 'AM' : timeUnit = 'PM';
@@ -91,7 +71,7 @@ export const ReservationCard = () => {
                     </div>
                 </IconTextBox>
                 <ActionBox>
-                   <UpdateReservation reservation={reservation}>Modify</UpdateReservation>
+                   <UpdateReservation reservation={reservation} />
                     <GreyVerticalLine />
                     <DeleteReservation reservationId={reservation.id}/>
                 </ActionBox>

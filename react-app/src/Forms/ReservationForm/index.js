@@ -4,9 +4,10 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createReservation } from "../../store/restaurants";
+import { getUser } from "../../store/session";
 // import { GreyStar } from "../../components/Icons";
 
-export const ReservationForm = ({ restaurantId }) => {
+export const ReservationForm = ({ restaurant }) => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const user = useSelector((state) => state.session.user);
@@ -30,26 +31,42 @@ export const ReservationForm = ({ restaurantId }) => {
 	// replace the T
 	const today = isoNoZone.replace("T", " ").slice(0, 10);
 
+	const reservationTimes = []
+    const reservations = Object.entries(restaurant.reservations);
+
+    reservations.forEach(reservation => (
+        reservationTimes.push(reservation.time)
+    ));
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
+		if(!date) {
+            alert('Please select a date for your reservation.');
+            return
+        } else if (!time) {
+            alert('Please select a timeslot for your reservation.');
+            return
+        }
+
 		const reservationData = {
-			restaurant_id: restaurantId,
+			restaurant_id: restaurant.id,
 			user_id: user.id,
 			num_people: people,
 			date: date,
 			time: time,
 		};
-		console.log(reservationData);
 
 		const newReservation = await dispatch(
 			createReservation(reservationData)
-		);
+		)
+
+		await dispatch(getUser())
 
 		if (newReservation.error) {
 			setErrors(newReservation.error);
 		} else {
-			history.push(`/my_reservations/${newReservation.id}`);
+			history.push("/my-profile");
 		}
 	};
 

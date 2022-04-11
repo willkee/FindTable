@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import {Link} from "react-router-dom";
+import { useEffect, useState } from "react";
+import {useSelector, useDispatch} from "react-redux";
 import { ReservationNavItem } from "../ReservationNavItem";
+import {getUser} from "../../../store/session";
 
 const ReservationDropdown = styled.div`
     width: 350px;
@@ -19,9 +22,23 @@ const ReservationDropdown = styled.div`
 
 `;
 
-export const ReservationNav = ({reservationsArr}) => {
-    const resCopy = [...reservationsArr].slice(0, 3)
-    console.log(reservationsArr.length)
+
+export const ReservationNav = () => {
+    const dispatch = useDispatch();
+
+    const sessionUser = useSelector(state => state.session.user)
+    let reservations;
+    sessionUser ? reservations = sessionUser.reservations : reservations = null;
+    let reservationsArr;
+    reservations ? reservationsArr = Object.entries(reservations) : reservationsArr = null;
+    const resCopy = [...reservationsArr].slice(0, 3);
+
+    const [myReservations, setMyReservations] = useState(sessionUser.reservations)
+
+    useEffect(() => {
+        console.log(myReservations)
+    },[sessionUser])
+
     if (reservationsArr.length < 1) {
         return (
             <ReservationDropdown>

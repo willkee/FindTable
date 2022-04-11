@@ -1,7 +1,12 @@
+import React from 'react';
 import styled from "styled-components";
+import styles from "./ReservationNavItem.module.css"
 import { RestaurantCircle, UserIcon, ClockIcon, CalendarIconSmall  } from "../../Icons";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { DeleteReservation } from "../DeleteReservation";
+import { UpdateReservation } from "../UpdateReservation";
+import { getUser } from "../../../store/session";
 
 const ReservationContainer = styled.div`
     width: 285px;
@@ -32,38 +37,39 @@ const Row = styled.div`
 
 export const ReservationNavItem = ({reservation}) => {
     const restaurant = useSelector(state => state.restaurants)[reservation.restaurant_id];
-
+    console.log(restaurant)
     let people;
     reservation.num_people === 1 ? people = " person" : people = " people"
 
-    const showCancelModal = (e) => {
-        e.preventDefault();
+    let reservationTime;
+    let timeUnit;
 
-
-    }
+    reservation.time.includes(".5") ? reservationTime = reservation.time.replace(/.5/, ":30") : reservationTime = reservation.time;
+    reservation.time.length < 2 || reservation.time === "11" || reservation.time === "11.5" ? timeUnit = 'AM' : timeUnit = 'PM';
 
     return (
         <ReservationContainer>
             <RestaurantCircle />
             <ReservationInfo>
-                <Row>{restaurant.name} - {restaurant.street_address}</Row>
+                <Row><strong>{restaurant.name} - {restaurant.borough}</strong></Row>
                 <Row>
                     <UserIcon />
                     <h4>Table for {reservation.num_people}{people}.</h4>
                 </Row>
                 <Row>
                     <ClockIcon />
-                    <h4> </h4>
+                    <h4>{reservationTime} {timeUnit}</h4>
                 </Row>
                 <Row>
                     <CalendarIconSmall />
                     <h4>{reservation.date.slice(0, 16)}</h4>
                 </Row>
                 <Row>
-                    <Link to="/my-profile">View</Link>
-                    <Link to={`/my_reservations/${reservation.id}`}>Modify</Link>
+                    <Link className={styles.button} to="/my-profile">View</Link>
+                     <h5>|</h5>
+                    <UpdateReservation reservation={reservation}></UpdateReservation>
                 </Row>
-                <div role="button" onClick={showCancelModal}>Cancel</div>
+                <DeleteReservation reservationId={reservation.id} />
             </ReservationInfo>
         </ReservationContainer>
 
