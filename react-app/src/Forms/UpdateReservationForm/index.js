@@ -483,10 +483,10 @@ export const UpdateReservationForm = ({ reservation }) => {
 				</select>
 			</div>
 			<hr></hr>
-			<div role="button" className={styles.button} onClick={handleSubmit}>
+			<div "" className={styles.button} onClick={handleSubmit}>
 				Reserve table
 			</div>
-			<div role="button" className={styles.button} onClick={closeModal}>
+			<div "" className={styles.button} onClick={closeModal}>
 				Cancel
 			</div>
 		</form>

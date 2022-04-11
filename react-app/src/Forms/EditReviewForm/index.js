@@ -119,14 +119,14 @@ const EditReviewForm = ({ review }) => {
 					<div className={styles.reset_submit}>
 						<div
 							className={styles.reset}
-							role="button"
+							""
 							onClick={() => dispatch(hideModal())}
 						>
 							Cancel
 						</div>
 						<div
 							className={styles.submit}
-							role="button"
+							""
 							onClick={handleSubmit}
 							disabled={!rating || !content ? true : false}
 						>

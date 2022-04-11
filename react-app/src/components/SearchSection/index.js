@@ -32,7 +32,7 @@ const SearchSection = () => {
                 <div>
                     <input className={styles.search_box_field} type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder='Search'/>
                 </div>
-                <div role='button' onClick={handleSubmit} className={styles.search_button}>Let's Go</div>
+                <div "" onClick={handleSubmit} className={styles.search_button}>Let's Go</div>
             </div>
         </div>
     )

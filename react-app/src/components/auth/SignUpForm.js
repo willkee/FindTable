@@ -111,21 +111,21 @@ const SignUpForm = () => {
 					</div>
 				</div>
 				<div
-					role="button"
+					""
 					className={styles.div_button}
 					onClick={handleSubmit}
 				>
 					Sign Up
 				</div>
 				<div
-					role="button"
+					""
 					className={styles.div_button}
 					onClick={loginDemo}
 				>
 					Demo User
 				</div>
 				<div
-					role="button"
+					""
 					className={styles.switch}
 					onClick={showLoginForm}
 				>

@@ -204,7 +204,7 @@ export const SingleRestaurant = () => {
 							{sessionUser && (
 								<>
 									<div
-										role="button"
+										""
 										className={styles.favorite_container}
 										onClick={handleFavorite}
 									>
