@@ -34,10 +34,9 @@ export const ReviewForm = ({ restaurant, review }) => {
 		setRating(1);
 		setContent("");
 		setImgURL("");
-		const data = await dispatch(createReview(formData)).then(() =>
-			dispatch(allUsers())
-		);
-		if (data) return setErrors(data);
+		const data = await dispatch(createReview(formData));
+		if (Array.isArray(data)) return setErrors(data);
+		dispatch(allUsers());
 	};
 
 	const handleReset = (e) => {
