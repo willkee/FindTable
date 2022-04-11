@@ -13,34 +13,37 @@
 
 .rw_parent {
 	width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .singleReview {
 	background-color: white;
 	border-top: 1px solid black;
 	display: grid;
-	grid-template-columns: 20% 15% 35% 30%;
-	grid-template-areas: "name img text";
+  grid-template-columns: repeat(2, 125px) 400px;
+  grid-template-rows: 125px repeat(4, 0);
 	gap: 5px;
-	margin-bottom: 20px;
 	padding-top: 10px;
-	width: 100%;
+	width: 60%;
 }
 
 .r_left {
-	grid-area: name;
+	grid-area: 1 / 1 / 2 / 2;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 
 }
 
 .r_right {
+  grid-area: 1 / 3 / 2 / 4;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: flex-start;
+  align-items: flex-start;
 	padding: 5px;
 	font-size: 14px;
 }
@@ -71,6 +74,7 @@
 }
 
 .image {
+  grid-area: 1 / 2 / 2 / 3;
 	object-fit: cover;
 	width: 125px;
 	border-radius: 20px;
