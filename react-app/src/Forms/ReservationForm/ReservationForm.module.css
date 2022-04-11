@@ -20,7 +20,7 @@ hr {
 	width: 200px;
 	background-color: #c7c7c7;
 	margin-top: -10px;
-	opacity: 50%;
+	opacity: 0.5;
 }
 
 p {
@@ -55,10 +55,10 @@ p {
 	align-items: center;
 	color: white;
 	background-color: #983937;
-	opacity: 50%;
+	opacity: 0.5;
 	border-radius: 5px;
 }
 
 .button:hover {
-	opacity: 100%;
+	opacity: 1;
 }
