@@ -1,8 +1,11 @@
 import styled from "styled-components";
-// import styles from "./RestaurantReservations.module.css";
-import React from "react";
-import { useSelector } from "react-redux";
-import { ProfileReservationCard } from "../../../Reservations/ProfileReservationCard";
+import styles from "./RestaurantReservations.module.css";
+import React, {useEffect, useState} from 'react'
+import { useSelector } from 'react-redux';
+import {RestaurantReservationCard} from "../../../Reservations/RestaurantReservationCard";
+
+// import { RestaurantReservationsCard } from "../../../Reservations/RestaurantReservationsCard";
+
 
 const Reservations = styled.div`
 	width: 900px;
@@ -29,39 +32,27 @@ const ContentFeed = styled.div`
 `;
 
 export const RestaurantReservations = () => {
-	const sessionUser = useSelector((state) => state.session.user);
-	const restaurants = Object.values(sessionUser.restaurants);
-	const reservationsList = [];
-	restaurants.forEach((restaurant) =>
-		reservationsList.push(restaurant.reservations)
-	);
-	const reservations = [];
-	reservationsList.forEach((reservation) => {
-		if (reservation.length > 1) {
-			reservations.push(reservation);
-		}
-	});
-	return (
-		<ContentFeed>
-			<Reservations>
-				<h2 style={{ marginLeft: "-50px", fontSize: "32px" }}>
-					<strong>Upcoming Reservations</strong>
-				</h2>
-				{reservations.length >= 1 &&
-					reservations.map((reservation) => (
-						<ProfileReservationCard reservation={reservation} />
-					))}
-				{reservations.length === 0 && restaurants.length === 1 && (
-					<h3 style={{ marginLeft: "-50px" }}>
-						Your restaurant has no upcoming reservations.
-					</h3>
-				)}
-				{reservations.length === 0 && restaurants.length > 1 && (
-					<h3 style={{ marginLeft: "-50px" }}>
-						Your restaurants have no upcoming reservations.
-					</h3>
-				)}
-			</Reservations>
-		</ContentFeed>
-	);
-};
+    const sessionUser = useSelector(state => state.session.user);
+    const restaurants = Object.values(sessionUser.restaurants);
+
+    return (
+        <ContentFeed>
+            <Reservations>
+                <h2 style={{marginLeft: "-50px", fontSize: "32px"}}><strong>Upcoming Reservations</strong></h2>
+                {restaurants.map(restaurant => (
+                  <div>
+                    <p style={{fontSize: "1.4rem", fontWeight: "bold", padding: "0px", margin: "0px", marginLeft: "-50px"}}>{restaurant.name}</p>
+                    {Object.values(restaurant.reservations).map(reservation => (
+                      <RestaurantReservationCard reservation={reservation} />
+                    ))}
+                    {!Object.values(restaurant.reservations).length && (
+                      <h4 style={{marginLeft: "-50px"}}>No reservations.</h4>
+                    )}
+                  </div>
+                ))}
+            </Reservations>
+        </ContentFeed>
+
+    )
+}
+

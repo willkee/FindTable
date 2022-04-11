@@ -29,20 +29,18 @@ const ContentFeed = styled.div`
 `;
 
 export const MyReservations = () => {
-	const sessionUser = useSelector((state) => state.session.user);
-	const reservations = Object.values(sessionUser.reservations);
+    const sessionUser = useSelector(state => state.session.user);
+    const reservations = Object.values(sessionUser.reservations);
+    return (
+        <ContentFeed>
+            <Reservations>
+                <h2 style={{marginLeft: "-50px", fontSize: "32px"}}><strong>Upcoming Reservations</strong></h2>
+                {reservations && reservations.map(reservation => (
+                    <ProfileReservationCard key={reservation} reservation={reservation}/>
+                ))}
+            </Reservations>
+        </ContentFeed>
 
-	return (
-		<ContentFeed>
-			<Reservations>
-				<h2 style={{ marginLeft: "-50px", fontSize: "32px" }}>
-					<strong>Upcoming Reservations</strong>
-				</h2>
-				{reservations &&
-					reservations.map((reservation) => (
-						<ProfileReservationCard reservation={reservation} />
-					))}
-			</Reservations>
-		</ContentFeed>
-	);
-};
+    )
+}
+

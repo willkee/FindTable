@@ -65,97 +65,101 @@ export const ReviewForm = ({ restaurant, review }) => {
 					</div>
 				)}
 			</div>
-			<form className={styles.reviewContainer}>
-				<div className={styles.sub1}>
-					{imgURL ? (
-						<img
-							src={imgURL}
-							alt="review"
-							height="190px"
-							width="190px"
-							className={styles.image}
-						/>
-					) : (
-						<img
-							className={styles.img_placeholder}
-							src="https://customercare.igloosoftware.com/.api2/api/v1/communities/10068556/previews/thumbnails/4fc20722-5368-e911-80d5-b82a72db46f2?width=680&height=680&crop=False"
-							alt="Preview"
-						/>
-					)}
-				</div>
 
-				<div className={styles.sub2}>
-					<div className={styles.rating_container}>
-						<strong>Rate your experience</strong>
-						<div>
-							<select
-								value={rating}
-								onChange={(e) => setRating(e.target.value)}
-								required
-							>
-								<option value={1}>⭐️</option>
-								<option value={2}>⭐️⭐️</option>
-								<option value={3}>⭐️⭐️⭐️</option>
-								<option value={4}>⭐️⭐️⭐️⭐️</option>
-								<option value={5}>⭐️⭐️⭐️⭐️⭐️</option>
-							</select>
-							{/* <div className={styles.starsContainer}>
-                  <input type="checkbox" id="star5" value={5} onClick={e => setRating(e.target.value)}/>
-                  <label for="star5"></label>
+      <div>
+        <form className={styles.reviewContainer}>
+          <div className={styles.sub1}>
+            {imgURL ? (
+              <img
+                src={imgURL}
+                alt=""
+                height="190px"
+                width="190px"
+                className={styles.image}
+              />
+            ) : (
+              <img
+                className={styles.img_placeholder}
+                src="https://customercare.igloosoftware.com/.api2/api/v1/communities/10068556/previews/thumbnails/4fc20722-5368-e911-80d5-b82a72db46f2?width=680&height=680&crop=False"
+                alt="Preview"
+              />
+            )}
+          </div>
 
-                  <input type="checkbox" id="star4" value={4} onClick={e => setRating(e.target.value)}/>
-                  <label for="star4"></label>
+          <div className={styles.sub2}>
+            <div className={styles.rating_container}>
+              <strong>Rate your experience</strong>
+              <div>
+                <select
+                  value={rating}
+                  onChange={(e) => setRating(e.target.value)}
+                  required
+                  >
+                  <option value={1}>⭐️</option>
+                  <option value={2}>⭐️⭐️</option>
+                  <option value={3}>⭐️⭐️⭐️</option>
+                  <option value={4}>⭐️⭐️⭐️⭐️</option>
+                  <option value={5}>⭐️⭐️⭐️⭐️⭐️</option>
+                </select>
+                {/* <div className={styles.starsContainer}>
+                    <input type="checkbox" id="star5" value={5} onClick={e => setRating(e.target.value)}/>
+                    <label for="star5"></label>
 
-                  <input type="checkbox" id="star3" value={3} onClick={e => setRating(e.target.value)}/>
-                  <label for="star3"></label>
+                    <input type="checkbox" id="star4" value={4} onClick={e => setRating(e.target.value)}/>
+                    <label for="star4"></label>
 
-                  <input type="checkbox" id="star2" value={2} onClick={e => setRating(e.target.value)}/>
-                  <label for="star2"></label>
+                    <input type="checkbox" id="star3" value={3} onClick={e => setRating(e.target.value)}/>
+                    <label for="star3"></label>
 
-                  <input type="checkbox" id="star1" value={1} onClick={e => setRating(e.target.value)}/>
-                  <label for="star1"></label>
-              </div> */}
-						</div>
-					</div>
+                    <input type="checkbox" id="star2" value={2} onClick={e => setRating(e.target.value)}/>
+                    <label for="star2"></label>
 
-					<div className={styles.textbox}>
-						<textarea
-							className={styles.content}
-							name="review"
-							value={content}
-							onChange={(e) => setContent(e.target.value)}
-							required
-							placeholder="Tell us how it was!"
-						></textarea>
-					</div>
+                    <input type="checkbox" id="star1" value={1} onClick={e => setRating(e.target.value)}/>
+                    <label for="star1"></label>
+                </div> */}
+              </div>
+            </div>
 
-					<div>
-						<input
-							type="url"
-							placeholder="Enter your image URL"
-							onChange={(e) => setImgURL(e.target.value)}
-							value={imgURL}
-							className={styles.url}
-						></input>
-					</div>
+            <div className={styles.textbox}>
+              <textarea
+                className={styles.content}
+                name="review"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                required
+                placeholder="Tell us how it was!"
+                ></textarea>
+            </div>
 
-					<div className={styles.reset_submit}>
-						<div
-							className={styles.reset}
-							onClick={handleReset}
-						>
-							Reset
-						</div>
-						<div
-							className={styles.submit}
-							onClick={handleSubmit}
-							disabled={!rating || !content ? true : false}
-						>
-							Submit
-						</div>
-					</div>
-				</div>
-			</form>
+            <div>
+              <input
+                type="url"
+                placeholder="Enter your image URL"
+                onChange={(e) => setImgURL(e.target.value)}
+                value={imgURL}
+                className={styles.url}
+              ></input>
+            </div>
+            <div className={styles.reset_submit}>
+              <div
+                className={styles.reset}
+                role="button"
+                onClick={handleReset}
+              >
+                Reset
+              </div>
+              <div
+                className={styles.submit}
+                role="button"
+                onClick={handleSubmit}
+                disabled={!rating || !content ? true : false}
+                >
+                Submit
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
 		</div>
 	);
 };
