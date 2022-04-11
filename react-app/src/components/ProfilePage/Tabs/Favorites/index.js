@@ -6,7 +6,7 @@ import styles from "./Favorites.module.css";
 export const Favorites = () => {
 	const myFavorites = useSelector((state) =>
 		Object.values(state.session.user.favorites).map(
-			(restaurant) => restaurant.id
+			(restaurant) => restaurant.restaurant_id
 		)
 	);
 	const restaurantState = useSelector((state) => state.restaurants);

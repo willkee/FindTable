@@ -10,6 +10,8 @@
 -   [Technologies](https://github.com/willkee/FindTable#technologies)
 -   [Features](https://github.com/willkee/FindTable#features)
 -   [Wireframes](https://github.com/willkee/FindTable#wireframes)
+-   [Screenshots](https://github.com/willkee/FindTable#screenshots)
+
 
 <br>
 
@@ -61,7 +63,7 @@ FindTable is based on OpenTable specifically centered on the New York City metro
    flask run
    ```
 
-6. To run the React App, go inside the `react-app` directory and type `npm start`. This should open your browser automatically but if not, you may navigate to `localhost:3000` to access the application.
+6. To run the React App, go inside the `react-app` directory, `npm install` and `npm start`. This should open your browser automatically but if not, you may navigate to `localhost:3000` to access the application.
 
 <br>
 <br>
@@ -119,3 +121,16 @@ FindTable is based on OpenTable specifically centered on the New York City metro
 - Design feedback version:
     - [Design review](https://xd.adobe.com/view/f24f50db-4213-46fb-aae1-a84d179022c4-a71c/)
 
+<br>
+
+## Screenshots
+
+<img src="./react-app/public/images/homepage.png" style="width:600px;" />
+<img src="./react-app/public/images/login.png" style="width:600px;" />
+<img src="./react-app/public/images/signup.png" style="width:600px;" />
+<img src="./react-app/public/images/new-restaurant.png" style="width:600px;" />
+<img src="./react-app/public/images/reviews.png" style="width:600px;" />
+<img src="./react-app/public/images/search-modal.png" style="width:600px;" />
+<img src="./react-app/public/images/single_restaurant.png" style="width:600px;" />
+<br>
+<img src="./react-app/public/images/footer.png" style="width:600px;" />
