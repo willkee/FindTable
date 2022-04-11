@@ -7,7 +7,6 @@ import {
 	GreyVerticalLine,
 } from "../../Icons";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import styles from "./ReservationCard.module.css";
 import { DeleteReservation } from "../DeleteReservation";
