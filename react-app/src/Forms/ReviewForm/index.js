@@ -65,6 +65,7 @@ export const ReviewForm = ({ restaurant, review }) => {
 					</div>
 				)}
 			</div>
+
       <div>
         <form className={styles.reviewContainer}>
           <div className={styles.sub1}>
@@ -139,7 +140,6 @@ export const ReviewForm = ({ restaurant, review }) => {
                 className={styles.url}
               ></input>
             </div>
-
             <div className={styles.reset_submit}>
               <div
                 className={styles.reset}

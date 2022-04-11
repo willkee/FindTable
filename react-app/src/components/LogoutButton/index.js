@@ -1,15 +1,19 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { logout } from '../../store/session';
-import styles from './Logout.module.css'
+import React from "react";
+import { useDispatch } from "react-redux";
+import { logout } from "../../store/session";
+import styles from "./Logout.module.css";
 
 const LogoutButton = () => {
-  const dispatch = useDispatch()
-  const onLogout = async () => {
-    await dispatch(logout());
-  };
+	const dispatch = useDispatch();
+	const onLogout = async () => {
+		await dispatch(logout());
+	};
 
-  return <div role='button' onClick={onLogout} className={styles.logout_button}>Sign out</div>;
+	return (
+		<div onClick={onLogout} className={styles.logout_button}>
+			Sign out
+		</div>
+	);
 };
 
 export default LogoutButton;

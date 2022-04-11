@@ -1,12 +1,18 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { ReservationNavItem } from "../ReservationNavItem";
 
+const DropdownAnimation = keyframes`
+	0% { transform: translateY(-20px); }
+	100% { opacity: 1; }
+`;
+
 const ReservationDropdown = styled.div`
 	width: 350px;
 	position: absolute;
+	right: 0;
 	height: auto;
 	min-height: 100px;
 	max-height: 750px;
@@ -18,6 +24,9 @@ const ReservationDropdown = styled.div`
 	align-items: space-around;
 	justify-content: left;
 	padding-left: 15px;
+	padding-right: 15px;
+	animation: ${DropdownAnimation} 0.2s ease-in-out;
+	z-index: 999;
 `;
 
 export const ReservationNav = () => {
@@ -42,7 +51,7 @@ export const ReservationNav = () => {
 		return (
 			<ReservationDropdown>
 				<h3>Upcoming reservations</h3>
-				<hr></hr>
+				<hr style={{ width: "100%" }}></hr>
 				<h4>You have no reservations.</h4>
 			</ReservationDropdown>
 		);
