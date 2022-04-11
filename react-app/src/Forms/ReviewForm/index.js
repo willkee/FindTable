@@ -21,7 +21,7 @@ export const ReviewForm = ({ restaurant, review }) => {
 			setImgURL(review.img_url);
 			setRating(review.stars);
 		}
-	}, []);
+	}, [dispatch, review]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();

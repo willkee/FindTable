@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
 import { hideModal } from "../../store/modal";
 import styles from "./EditReviewForm.module.css";
 import { updateReview } from "../../store/restaurants";
@@ -13,7 +12,6 @@ const EditReviewForm = ({ review }) => {
 
 	const user = useSelector((state) => state.session.user);
 	const dispatch = useDispatch();
-	// const { restaurantId } = useParams();
 
 	useEffect(() => {
 		if (review) {
@@ -21,7 +19,7 @@ const EditReviewForm = ({ review }) => {
 			setImgURL(review.img_url);
 			setRating(review.stars);
 		}
-	}, []);
+	}, [review]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();

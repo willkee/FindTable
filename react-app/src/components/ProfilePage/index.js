@@ -1,16 +1,15 @@
-import React, {useEffect} from 'react'
-import { useSelector } from 'react-redux';
-import { ProfileReservationCard } from "../Reservations/ProfileReservationCard"
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { ProfileReservationCard } from "../Reservations/ProfileReservationCard";
 import styled from "styled-components";
 import styles from "./ProfilePage.module.css";
-import { UserIconLarge } from '../Icons';
-import { PageContainer } from '../PageContainer';
-import { useState } from 'react';
-import { Favorites } from './Tabs/Favorites/index.js';
-import { MyReviews } from './Tabs/MyReviews/index.js';
-import { RestaurantReservations } from './Tabs/RestaurantReservations/index.js';
-import { RestaurantReviews } from './Tabs/RestaurantReviews/index.js';
-
+import { UserIconLarge } from "../Icons";
+import { PageContainer } from "../PageContainer";
+import { useState } from "react";
+import { Favorites } from "./Tabs/Favorites/index.js";
+import { MyReviews } from "./Tabs/MyReviews/index.js";
+import { RestaurantReservations } from "./Tabs/RestaurantReservations/index.js";
+import { RestaurantReviews } from "./Tabs/RestaurantReviews/index.js";
 
 // const Background = styled.div`className={styles.button}
 //     width: 100%;
@@ -43,46 +42,45 @@ const MainContent = styled.div`className={styles.button}
 `;
 
 const ProfileInfoBox = styled.aside`
-    width: 275px;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    top: 30px;
-    left: 30px;
+	width: 275px;
+	height: 300px;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	top: 30px;
+	left: 30px;
 `;
 
 const ContentFeed = styled.div`
-    height: auto;
-    width: fit-content;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+	height: auto;
+	width: fit-content;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
 `;
 
 const Reservations = styled.div`
-    width: 900px;
-    height: auto;
-    background-color: #F3F3F3;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin: 20px;
-    align-items: left;
-    padding: 10px 30px;
-    position: relative;
-    cursor: pointer;
+	width: 900px;
+	height: auto;
+	background-color: #f3f3f3;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	margin: 20px;
+	align-items: left;
+	padding: 10px 30px;
+	position: relative;
+	cursor: pointer;
 `;
 
 const TabContent = styled.div`
-    width: 600px;
-    border-left: 1px solid #C7C7C7;
-    margin-left: 5px;
-    padding-left: 20px;
-`
-
+	width: 600px;
+	border-left: 1px solid #c7c7c7;
+	margin-left: 5px;
+	padding-left: 20px;
+`;
 
 // const PastReservations = styled.div`className={styles.button}
 //     width: 900px;
@@ -94,116 +92,145 @@ const TabContent = styled.div`
 // `;
 
 const ProfilePage = () => {
-    const sessionUser = useSelector(state => state.session.user)
+	const sessionUser = useSelector((state) => state.session.user);
 
-    const reservations = Object.values(sessionUser.reservations);
-    // console.log(reservations)
-    const [selected, setSelected] = useState("");
+	const reservations = Object.values(sessionUser.reservations);
+	// console.log(reservations)
+	const [selected, setSelected] = useState("");
 
+	const memberSince = () => {
+		const dateString = new Date(sessionUser.created_at).toDateString();
+		const month = dateString.split(" ")[1];
+		const year = dateString.split(" ")[3];
+		return <span>{`${month} ${year}`}</span>;
+	};
 
-    const memberSince = () => {
-        const dateString = new Date(sessionUser.created_at).toDateString()
-        const month = dateString.split(" ")[1]
-        const year = dateString.split(" ")[3]
-        return <span>{`${month} ${year}`}</span>
-      }
+	const onClickRestReservations = () => {
+		setSelected(<RestaurantReservations />);
+		if (sessionUser.business_owner) {
+			let tab1 = document?.getElementById("tab1");
+			let tab2 = document?.getElementById("tab2");
+			tab1.style.color = "#FC6260";
+			tab2.style.color = "black";
+		}
+		let tab3 = document?.getElementById("tab3");
+		let tab4 = document?.getElementById("tab4");
+		tab3.style.color = "black";
+		tab4.style.color = "black";
+	};
 
+	const onClickRestReviews = () => {
+		setSelected(<RestaurantReviews />);
+		if (sessionUser.business_owner) {
+			let tab1 = document?.getElementById("tab1");
+			let tab2 = document?.getElementById("tab2");
+			tab1.style.color = "black";
+			tab2.style.color = "#FC6260";
+		}
+		let tab3 = document?.getElementById("tab3");
+		let tab4 = document?.getElementById("tab4");
+		tab3.style.color = "black";
+		tab4.style.color = "black";
+	};
 
-    const onClickRestReservations = () => {
-      setSelected(<RestaurantReservations/>)
-      if (sessionUser.business_owner) {
-        let tab1 = document?.getElementById("tab1")
-        let tab2 = document?.getElementById("tab2")
-        tab1.style.color = "#FC6260"
-        tab2.style.color = "black"
-      }
-      let tab3 = document?.getElementById("tab3")
-      let tab4 = document?.getElementById("tab4")
-      tab3.style.color = "black"
-      tab4.style.color = "black"
-    }
+	const onClickMyReviews = () => {
+		setSelected(<MyReviews />);
+		if (sessionUser.business_owner) {
+			let tab1 = document?.getElementById("tab1");
+			let tab2 = document?.getElementById("tab2");
+			tab1.style.color = "black";
+			tab2.style.color = "black";
+		}
+		let tab3 = document?.getElementById("tab3");
+		let tab4 = document?.getElementById("tab4");
 
-    const onClickRestReviews = () => {
-      setSelected(<RestaurantReviews/>)
-      if (sessionUser.business_owner) {
-        let tab1 = document?.getElementById("tab1")
-        let tab2 = document?.getElementById("tab2")
-        tab1.style.color = "black"
-        tab2.style.color = "#FC6260"
-      }
-      let tab3 = document?.getElementById("tab3")
-      let tab4 = document?.getElementById("tab4")
-      tab3.style.color = "black"
-      tab4.style.color = "black"
-    }
+		tab3.style.color = "#FC6260";
+		tab4.style.color = "black";
+	};
 
-    const onClickMyReviews = () => {
-      setSelected(<MyReviews/>)
-      if (sessionUser.business_owner) {
-        let tab1 = document?.getElementById("tab1")
-        let tab2 = document?.getElementById("tab2")
-        tab1.style.color = "black"
-        tab2.style.color = "black"
+	const onClickFavorites = () => {
+		setSelected(<Favorites />);
+		if (sessionUser.business_owner) {
+			let tab1 = document?.getElementById("tab1");
+			let tab2 = document?.getElementById("tab2");
+			tab1.style.color = "black";
+			tab2.style.color = "black";
+		}
+		let tab3 = document?.getElementById("tab3");
+		let tab4 = document?.getElementById("tab4");
+		tab3.style.color = "black";
+		tab4.style.color = "#FC6260";
+	};
 
-      }
-      let tab3 = document?.getElementById("tab3")
-      let tab4 = document?.getElementById("tab4")
+	useEffect(() => {
+		// console.log(sessionUser)
+	}, [sessionUser, reservations]);
 
-      tab3.style.color = "#FC6260"
-      tab4.style.color = "black"
-    }
+	return (
+		<PageContainer>
+			<UserBox>
+				<UserIconLarge style={{ marginLeft: "10px" }} />
+				<h2 style={{ marginLeft: "15px" }}>
+					<strong style={{ fontSize: "32px" }}>
+						{sessionUser.first_name} {sessionUser.last_name}
+					</strong>{" "}
+					| member since {memberSince()}
+				</h2>
+			</UserBox>
+			<MainContent>
+				<ProfileInfoBox>
+					{sessionUser.business_owner && (
+						<>
+							<div
+								className={styles.button}
+								id="tab1"
+								onClick={() => onClickRestReservations()}
+							>
+								My Restaurants' Reservations
+							</div>
+							<div
+								className={styles.button}
+								id="tab2"
+								onClick={() => onClickRestReviews()}
+							>
+								My Restaurants' Reviews
+							</div>
+						</>
+					)}
+					<div
+						className={styles.button}
+						id="tab3"
+						onClick={() => onClickMyReviews()}
+					>
+						My Reviews
+					</div>
+					<div
+						className={styles.button}
+						id="tab4"
+						onClick={() => onClickFavorites()}
+					>
+						Favorites
+					</div>
+				</ProfileInfoBox>
+				<TabContent>{selected}</TabContent>
+				<ContentFeed>
+					<Reservations>
+						<h2>
+							<strong>Upcoming Reservations</strong>
+						</h2>
+						<hr></hr>
+						{reservations &&
+							reservations.map((reservation) => (
+								<ProfileReservationCard
+									key={reservation.id}
+									reservation={reservation}
+								/>
+							))}
+					</Reservations>
+				</ContentFeed>
+			</MainContent>
+		</PageContainer>
+	);
+};
 
-    const onClickFavorites = () => {
-      setSelected(<Favorites/>)
-      if (sessionUser.business_owner) {
-        let tab1 = document?.getElementById("tab1")
-        let tab2 = document?.getElementById("tab2")
-        tab1.style.color = "black"
-        tab2.style.color = "black"
-      }
-      let tab3 = document?.getElementById("tab3")
-      let tab4 = document?.getElementById("tab4")
-      tab3.style.color = "black"
-      tab4.style.color = "#FC6260"
-    }
-
-    useEffect(() => {
-        // console.log(sessionUser)
-    },[sessionUser, reservations])
-
-
-    return (
-        <PageContainer>
-            <UserBox>
-                <UserIconLarge style={{marginLeft: "10px"}}/>
-                <h2 style={{marginLeft: "15px"}}><strong style={{fontSize: "32px"}}>{sessionUser.first_name} {sessionUser.last_name}</strong>  |  member since {memberSince()}</h2>
-            </UserBox>
-            <MainContent>
-                <ProfileInfoBox>
-                    {sessionUser.business_owner && (
-                        <>
-                            <div className={styles.button} id="tab1" onClick={() => onClickRestReservations()}>My Restaurants' Reservations</div>
-                            <div className={styles.button} id="tab2" onClick={() => onClickRestReviews()}>My Restaurants' Reviews</div>
-                        </>
-                    )}
-                    <div className={styles.button} id="tab3" onClick={() => onClickMyReviews()}>My Reviews</div>
-                    <div className={styles.button} id="tab4" onClick={() => onClickFavorites()}>Favorites</div>
-                </ProfileInfoBox>
-                <TabContent>
-                  {selected}
-                </TabContent>
-                <ContentFeed>
-                    <Reservations>
-                        <h2><strong>Upcoming Reservations</strong></h2>
-                        <hr></hr>
-                        {reservations && reservations.map(reservation => (
-                            <ProfileReservationCard reservation={reservation}/>
-                        ))}
-                    </Reservations>
-                </ContentFeed>
-            </MainContent>
-        </PageContainer>
-    )
-}
-
-export default ProfilePage
+export default ProfilePage;
