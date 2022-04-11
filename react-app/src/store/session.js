@@ -120,7 +120,7 @@ export const signUp =
 				last_name: lastName,
 				email,
 				password,
-				confirmPassword,
+				confirm_password: confirmPassword,
 			}),
 		});
 

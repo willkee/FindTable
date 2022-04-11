@@ -56,7 +56,7 @@ const SignUpForm = () => {
 			{errors.length > 0 && (
 				<div className={styles.error_container}>
 					{errors.map((error, i) => (
-						<div key={i}>{error}</div>
+						<div key={i}>{error.replace("_", " ")}</div>
 					))}
 				</div>
 			)}
