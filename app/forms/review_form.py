@@ -5,13 +5,13 @@ from wtforms.validators import DataRequired, Length, ValidationError
 
 def content_entered(form, field):
   content = form.data['review']
-  print('\n\nCONTENT ---',content, '\n\n')
+  # print('\n\nCONTENT ---',content, '\n\n')
   if not content:
     raise ValidationError('Please enter some text for your review.')
 
 def image_entered(form, field):
   content = form.data['img_url']
-  print('\n\nCONTENT ---',content, '\n\n')
+  # print('\n\nCONTENT ---',content, '\n\n')
   if not content:
     raise ValidationError('Please enter an image URL.')
 

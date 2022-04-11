@@ -10,8 +10,8 @@ export const RestaurantForm = ({restaurant}) => {
     // const { id } = useParams();
     // const restaurant = useSelector((state) => state.restaurants)[`${id}`];
 
-    console.log('rest------', restaurant)
-    console.log('PRICE------', restaurant?.price_rating)
+    // console.log('rest------', restaurant)
+    // console.log('PRICE------', restaurant?.price_rating)
     // conso
 
     const [name, setName] = useState(restaurant?.name || '')

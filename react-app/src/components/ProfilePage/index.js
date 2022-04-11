@@ -79,7 +79,9 @@ const Reservations = styled.div`
 
 const TabContent = styled.div`
     width: 600px;
-
+    border-left: 1px solid #C7C7C7;
+    margin-left: 5px;
+    padding-left: 20px;
 `
 
 
@@ -96,7 +98,7 @@ const ProfilePage = () => {
     const sessionUser = useSelector(state => state.session.user)
 
     const reservations = Object.values(sessionUser.reservations);
-    console.log(reservations)
+    // console.log(reservations)
     const [selected, setSelected] = useState("");
 
 
@@ -179,7 +181,7 @@ const ProfilePage = () => {
     }
 
     useEffect(() => {
-        console.log(sessionUser)
+        // console.log(sessionUser)
     },[sessionUser, reservations])
 
 
@@ -193,8 +195,8 @@ const ProfilePage = () => {
                 <ProfileInfoBox>
                     {sessionUser.business_owner && (
                         <>
-                            <div className={styles.button} id="tab1" onClick={() => onClickRestReservations()}>Restaurant Reservations</div>
-                            <div className={styles.button} id="tab2" onClick={() => onClickRestReviews()}>Restaurant Reviews</div>
+                            <div className={styles.button} id="tab1" onClick={() => onClickRestReservations()}>My Restaurants' Reservations</div>
+                            <div className={styles.button} id="tab2" onClick={() => onClickRestReviews()}>My Restaurants' Reviews</div>
                         </>
                     )}
                     <div className={styles.button} id="tab3" onClick={() => onClickMyReservations()}>My reservations</div>

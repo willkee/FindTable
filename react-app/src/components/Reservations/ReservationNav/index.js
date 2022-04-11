@@ -36,7 +36,7 @@ export const ReservationNav = () => {
     const [myReservations, setMyReservations] = useState(sessionUser.reservations)
 
     useEffect(() => {
-        console.log(myReservations)
+        // console.log(myReservations)
     },[sessionUser])
 
     if (reservationsArr.length < 1) {
