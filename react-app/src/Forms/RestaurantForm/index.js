@@ -5,24 +5,20 @@ import { createRestaurant, updateRestaurant } from '../../store/restaurants';
 import { CuisinesIcon, RestaurantIcon } from '../../components/Icons';
 import styles from './RestaurantForm.module.css'
 import { hideModal } from '../../store/modal';
-import default_img from "../../images/default.png";
+
 
 export const RestaurantForm = ({restaurant}) => {
-    // const { id } = useParams();
-    // const restaurant = useSelector((state) => state.restaurants)[`${id}`];
 
-    console.log('rest------', restaurant)
-    console.log('PRICE------', restaurant?.price_rating)
-    // conso
 
     const [name, setName] = useState(restaurant?.name || '')
-    const [priceRating, setPriceRating] = useState(restaurant?.price_rating || 1)
+    const [priceRating, setPriceRating] = useState(restaurant?.price_rating || '')
+    const [pricePreview, setPricePreview] = useState('')
     const [description, setDescription] = useState(restaurant?.description || '')
     const [imageURL, setImageURL] = useState(restaurant?.img_url || '')
     const [phoneNumber, setPhoneNumber] = useState(restaurant?.phone_number || '')
     const [website, setWebsite] = useState(restaurant?.website || '')
     const [streetAddress, setStreetAddress] = useState(restaurant?.street_address || '')
-    const [borough, setBorough] = useState(restaurant?.borough || '')
+    const [borough, setBorough] = useState(restaurant?.borough || 'Manhattan')
     const [accessible, setAccessible] = useState('')
     const [cuisines, setCuisines] = useState([])
     const [settings, setSettings] = useState([])
@@ -134,7 +130,7 @@ export const RestaurantForm = ({restaurant}) => {
                 <div className={styles.form_entries}>
                     <h2>Restaurant Information</h2>
                     <ul>
-                        {errors && errors.map(error => <li key={error} className={styles.error_messages}>{error}</li>)}
+                        {errors && errors.map(error => <li key={error} className={styles.error_messages}>{error.replace('_', ' ')}</li>)}
                     </ul>
                     { restaurant ? <h3 style={{color: 'red'}}> - Please fill out your attributes again. </h3> : null }
                     <form onSubmit={onSubmit}>
@@ -278,20 +274,22 @@ export const RestaurantForm = ({restaurant}) => {
                 </div>
             {!restaurant && <div className={styles.form_display}>
                 <h3>Card Preview</h3>
-                    <div className={styles.each_container}>
-                        {imageURL && <div className={styles.card_img}><img src={imageURL} alt="Your Image"/></div> }
+                <div className={styles.each_container}>
+                    {imageURL &&
+                    <>
+                        <div className={styles.card_img}><img src={imageURL} alt="Your Image"/></div>
                         <div className={styles.info}>
-                            {name && <h3>{name?.length > 20 ? name?.slice(0, 20) + "..." : name}</h3> }
-                           {borough && priceRating && <div className={styles.borough_price}>
+                            <h3>{name?.length > 20 ? name?.slice(0, 20) + "..." : name}</h3>
+                            <div className={styles.borough_price}>
                             <span><i className="fa-solid fa-city"></i>{borough}</span>
-                            <span>{`${priceRating === 4 ? "$$$$" :
-                                        priceRating === 3 ? "$$$" :
-                                        priceRating === 2 ? "$$" : "$"}`}</span></div> }
-                         {imageURL &&   <div className={styles.categories}>
-                           <span>{accessible ? <i className="fa-brands fa-accessible-icon"></i> : ""}</span>
-                            <span>{joinSettings()}</span>
-                            <span>{joinCuisines()}</span></div>}
                         </div>
+                            <div className={styles.categories}>
+                                    <span>{accessible ? <i className="fa-brands fa-accessible-icon"></i> : ""}</span>
+                                    <span>{joinSettings()}</span>
+                                    <span>{joinCuisines()}</span>
+                                </div>
+                        </div>
+                    </>}
                 </div>
             </div> }
       </div>
