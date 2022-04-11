@@ -23,6 +23,10 @@ export const UpdateReservationForm = ({ reservation }) => {
 	const iso = localTime.toISOString();
 	const isoNoZone = iso.slice(0, 19);
 	const today = isoNoZone.replace("T", " ").slice(0, 10);
+	const [date, setDate] = useState(oldResDate);
+	const [time, setTime] = useState(reservation?.time);
+	const [people, setPeople] = useState(reservation?.num_people);
+	const [errors, setErrors] = useState([]);
 
 	let oldTime;
 	let timeUnit;
@@ -43,11 +47,6 @@ export const UpdateReservationForm = ({ reservation }) => {
 		? (peopleEnding = " person")
 		: (peopleEnding = " people");
 
-	const [date, setDate] = useState(oldResDate);
-	const [time, setTime] = useState(reservation.time);
-	const [people, setPeople] = useState(reservation.num_people);
-
-	const [errors, setErrors] = useState([]);
 
 	const hour = new Date().getHours();
 
