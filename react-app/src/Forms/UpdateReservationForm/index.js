@@ -9,6 +9,11 @@ import { getUser } from "../../store/session";
 export const UpdateReservationForm = ({ reservation }) => {
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.session.user);
+	const [time, setTime] = useState(reservation.time);
+	const [people, setPeople] = useState(reservation.num_people);
+	const [newResDate, setNewResDate] = useState('');
+	const [errors, setErrors] = useState([]);
+
 	const restaurants = useSelector((state) => state.restaurants);
 	const restaurant = restaurants[reservation.restaurant_id];
 	const newDate = new Date(reservation.date);
@@ -43,11 +48,10 @@ export const UpdateReservationForm = ({ reservation }) => {
 		? (peopleEnding = " person")
 		: (peopleEnding = " people");
 
-	const [date, setDate] = useState(oldResDate);
-	const [time, setTime] = useState(reservation.time);
-	const [people, setPeople] = useState(reservation.num_people);
 
-	const [errors, setErrors] = useState([]);
+
+
+
 
 	const hour = new Date().getHours();
 
@@ -66,7 +70,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		if (!date) {
+		if (!newResDate) {
 			alert("Please select a date for your reservation.");
 			return;
 		} else if (!time) {
@@ -79,7 +83,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 			restaurant_id: restaurant.id,
 			user_id: user.id,
 			num_people: people,
-			date: date,
+			date: newResDate,
 			time: time,
 		};
 
@@ -106,7 +110,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 			<div className={styles.party}>
 				<strong>New Party Size</strong>
 				<p>
-					Previously selection: {reservation.num_people}{" "}
+					Previously selection: {reservation.num_people}
 					{peopleEnding}.
 				</p>
 				<select
@@ -132,14 +136,14 @@ export const UpdateReservationForm = ({ reservation }) => {
 					<strong>New date:</strong>
 				</label>
 				<p style={{ padding: "0px", marginTop: "0px" }}>
-					Previous selection: {oldResDate}{" "}
+					Previous selection: {oldResDate}{}
 				</p>
 				<input
 					type="date"
 					name="date"
 					min={today}
-					value={date}
-					onChange={(e) => setDate(e.target.value)}
+					value={newResDate}
+					onChange={(e) => setNewResDate(e.target.value)}
 				/>
 			</div>
 			<hr></hr>
@@ -156,7 +160,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"8"}
 							disabled={
-								(date === today && hour > 6) ||
+								(newResDate === today && hour > 6) ||
 								reservationTimes.includes("8")
 									? true
 									: false
@@ -167,7 +171,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"8.5"}
 							disabled={
-								(date === today && hour > 6) ||
+								(newResDate === today && hour > 6) ||
 								reservationTimes.includes("8.5")
 									? true
 									: false
@@ -178,7 +182,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"9"}
 							disabled={
-								(date === today && hour > 7) ||
+								(newResDate === today && hour > 7) ||
 								reservationTimes.includes("9")
 									? true
 									: false
@@ -189,7 +193,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"9.5"}
 							disabled={
-								(date === today && hour > 7) ||
+								(newResDate === today && hour > 7) ||
 								reservationTimes.includes("9.5")
 									? true
 									: false
@@ -200,7 +204,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"10"}
 							disabled={
-								(date === today && hour > 8) ||
+								(newResDate === today && hour > 8) ||
 								reservationTimes.includes("10")
 									? true
 									: false
@@ -211,7 +215,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"10.5"}
 							disabled={
-								(date === today && hour > 8) ||
+								(newResDate === today && hour > 8) ||
 								reservationTimes.includes("10.5")
 									? true
 									: false
@@ -224,7 +228,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"11"}
 							disabled={
-								(date === today && hour > 9) ||
+								(newResDate === today && hour > 9) ||
 								reservationTimes.includes("11")
 									? true
 									: false
@@ -235,7 +239,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"11.5"}
 							disabled={
-								(date === today && hour > 9) ||
+								(newResDate === today && hour > 9) ||
 								reservationTimes.includes("11.5")
 									? true
 									: false
@@ -246,7 +250,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"12"}
 							disabled={
-								(date === today && hour > 10) ||
+								(newResDate === today && hour > 10) ||
 								reservationTimes.includes("12")
 									? true
 									: false
@@ -257,7 +261,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"12.5"}
 							disabled={
-								(date === today && hour > 10) ||
+								(newResDate === today && hour > 10) ||
 								reservationTimes.includes("12.5")
 									? true
 									: false
@@ -268,7 +272,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"13"}
 							disabled={
-								(date === today && hour > 11) ||
+								(newResDate === today && hour > 11) ||
 								reservationTimes.includes("13")
 									? true
 									: false
@@ -279,7 +283,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"13.5"}
 							disabled={
-								(date === today && hour > 11) ||
+								(newResDate === today && hour > 11) ||
 								reservationTimes.includes("13.5")
 									? true
 									: false
@@ -290,7 +294,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"14"}
 							disabled={
-								(date === today && hour > 12) ||
+								(newResDate === today && hour > 12) ||
 								reservationTimes.includes("14")
 									? true
 									: false
@@ -303,7 +307,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"14.5"}
 							disabled={
-								(date === today && hour > 12) ||
+								(newResDate === today && hour > 12) ||
 								reservationTimes.includes("14.5")
 									? true
 									: false
@@ -314,7 +318,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"15"}
 							disabled={
-								(date === today && hour > 13) ||
+								(newResDate === today && hour > 13) ||
 								reservationTimes.includes("15")
 									? true
 									: false
@@ -325,7 +329,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"15.5"}
 							disabled={
-								(date === today && hour > 13) ||
+								(newResDate === today && hour > 13) ||
 								reservationTimes.includes("15.5")
 									? true
 									: false
@@ -336,7 +340,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"16"}
 							disabled={
-								(date === today && hour > 14) ||
+								(newResDate === today && hour > 14) ||
 								reservationTimes.includes("16")
 									? true
 									: false
@@ -347,7 +351,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"16.5"}
 							disabled={
-								(date === today && hour > 14) ||
+								(newResDate === today && hour > 14) ||
 								reservationTimes.includes("16.5")
 									? true
 									: false
@@ -360,7 +364,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"17"}
 							disabled={
-								(date === today && hour > 15) ||
+								(newResDate === today && hour > 15) ||
 								reservationTimes.includes("17")
 									? true
 									: false
@@ -371,7 +375,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"17.5"}
 							disabled={
-								(date === today && hour > 15) ||
+								(newResDate === today && hour > 15) ||
 								reservationTimes.includes("17.5")
 									? true
 									: false
@@ -382,7 +386,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"18"}
 							disabled={
-								(date === today && hour > 16) ||
+								(newResDate === today && hour > 16) ||
 								reservationTimes.includes("18")
 									? true
 									: false
@@ -393,7 +397,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"18.5"}
 							disabled={
-								(date === today && hour > 16) ||
+								(newResDate === today && hour > 16) ||
 								reservationTimes.includes("18.5")
 									? true
 									: false
@@ -404,7 +408,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"19"}
 							disabled={
-								(date === today && hour > 17) ||
+								(newResDate === today && hour > 17) ||
 								reservationTimes.includes("19")
 									? true
 									: false
@@ -415,7 +419,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"19.5"}
 							disabled={
-								(date === today && hour > 17) ||
+								(newResDate === today && hour > 17) ||
 								reservationTimes.includes("19.5")
 									? true
 									: false
@@ -426,7 +430,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"20"}
 							disabled={
-								(date === today && hour > 18) ||
+								(newResDate === today && hour > 18) ||
 								reservationTimes.includes("20")
 									? true
 									: false
@@ -437,7 +441,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"20.5"}
 							disabled={
-								(date === today && hour > 18) ||
+								(newResDate === today && hour > 18) ||
 								reservationTimes.includes("20.5")
 									? true
 									: false
@@ -448,7 +452,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"21"}
 							disabled={
-								(date === today && hour > 19) ||
+								(newResDate === today && hour > 19) ||
 								reservationTimes.includes("21")
 									? true
 									: false
@@ -459,7 +463,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"21.5"}
 							disabled={
-								(date === today && hour > 19) ||
+								(newResDate === today && hour > 19) ||
 								reservationTimes.includes("21.5")
 									? true
 									: false
@@ -470,7 +474,7 @@ export const UpdateReservationForm = ({ reservation }) => {
 						<option
 							value={"22"}
 							disabled={
-								(date === today && hour > 20) ||
+								(newResDate === today && hour > 20) ||
 								reservationTimes.includes("22")
 									? true
 									: false
