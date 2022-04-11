@@ -125,7 +125,7 @@ export const SingleRestaurant = () => {
 					></img>
 					<div className={styles.content_container1}>
 						<div className={styles.left}>
-						{sessionUser && (
+						{sessionUser && !sessionUser.restaurants[restaurant.id] && (
 							<ReservationForm restaurant={restaurant} />
 						)}
 						</div>

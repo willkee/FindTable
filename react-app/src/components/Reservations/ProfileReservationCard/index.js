@@ -14,6 +14,8 @@ const ReservationContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-left: -50px;
+    margin-bottom: 40px;
 `
 
 const ReservationDetails = styled.div`
