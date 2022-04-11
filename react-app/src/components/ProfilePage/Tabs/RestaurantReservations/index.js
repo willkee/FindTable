@@ -6,6 +6,6 @@ export const RestaurantReservations = () => {
   const myRestaurants = useSelector(state => state.session.user.restaurants)
 
   return (
-    <h1>rest res</h1>
+    <h1>Your restaurants</h1>
   )
 }

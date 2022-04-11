@@ -5,6 +5,6 @@ export const Favorites = () => {
   const myFavorites = useSelector(state => state.session.user.favorites)
 
   return (
-    <h1>favorites</h1>
+    <h1>Your favorite restaurants</h1>
   )
 }

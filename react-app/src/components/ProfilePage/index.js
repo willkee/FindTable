@@ -7,7 +7,6 @@ import { UserIconLarge } from '../Icons';
 import { PageContainer } from '../PageContainer';
 import { useState } from 'react';
 import { Favorites } from './Tabs/Favorites/index.js';
-import { MyReservations } from './Tabs/MyReservations/index.js';
 import { MyReviews } from './Tabs/MyReviews/index.js';
 import { RestaurantReservations } from './Tabs/RestaurantReservations/index.js';
 import { RestaurantReviews } from './Tabs/RestaurantReviews/index.js';
@@ -116,12 +115,10 @@ const ProfilePage = () => {
       let tab2 = document?.getElementById("tab2")
       let tab3 = document?.getElementById("tab3")
       let tab4 = document?.getElementById("tab4")
-      let tab5 = document?.getElementById("tab5")
       tab1.style.color = "#FC6260"
       tab2.style.color = "black"
       tab3.style.color = "black"
       tab4.style.color = "black"
-      tab5.style.color = "black"
     }
 
     const onClickRestReviews = () => {
@@ -130,26 +127,10 @@ const ProfilePage = () => {
       let tab2 = document?.getElementById("tab2")
       let tab3 = document?.getElementById("tab3")
       let tab4 = document?.getElementById("tab4")
-      let tab5 = document?.getElementById("tab5")
       tab1.style.color = "black"
       tab2.style.color = "#FC6260"
       tab3.style.color = "black"
       tab4.style.color = "black"
-      tab5.style.color = "black"
-    }
-
-    const onClickMyReservations = () => {
-      setSelected(<MyReservations/>)
-      let tab1 = document?.getElementById("tab1")
-      let tab2 = document?.getElementById("tab2")
-      let tab3 = document?.getElementById("tab3")
-      let tab4 = document?.getElementById("tab4")
-      let tab5 = document?.getElementById("tab5")
-      tab1.style.color = "black"
-      tab2.style.color = "black"
-      tab3.style.color = "#FC6260"
-      tab4.style.color = "black"
-      tab5.style.color = "black"
     }
 
     const onClickMyReviews = () => {
@@ -158,12 +139,11 @@ const ProfilePage = () => {
       let tab2 = document?.getElementById("tab2")
       let tab3 = document?.getElementById("tab3")
       let tab4 = document?.getElementById("tab4")
-      let tab5 = document?.getElementById("tab5")
+
       tab1.style.color = "black"
       tab2.style.color = "black"
-      tab3.style.color = "black"
-      tab4.style.color = "#FC6260"
-      tab5.style.color = "black"
+      tab3.style.color = "#FC6260"
+      tab4.style.color = "black"
     }
 
     const onClickFavorites = () => {
@@ -172,12 +152,10 @@ const ProfilePage = () => {
       let tab2 = document?.getElementById("tab2")
       let tab3 = document?.getElementById("tab3")
       let tab4 = document?.getElementById("tab4")
-      let tab5 = document?.getElementById("tab5")
       tab1.style.color = "black"
       tab2.style.color = "black"
       tab3.style.color = "black"
-      tab4.style.color = "black"
-      tab5.style.color = "#FC6260"
+      tab4.style.color = "#FC6260"
     }
 
     useEffect(() => {
@@ -199,9 +177,8 @@ const ProfilePage = () => {
                             <div className={styles.button} id="tab2" onClick={() => onClickRestReviews()}>My Restaurants' Reviews</div>
                         </>
                     )}
-                    <div className={styles.button} id="tab3" onClick={() => onClickMyReservations()}>My reservations</div>
-                    <div className={styles.button} id="tab4" onClick={() => onClickMyReviews()}>My Reviews</div>
-                    <div className={styles.button} id="tab5" onClick={() => onClickFavorites()}>Favorites</div>
+                    <div className={styles.button} id="tab3" onClick={() => onClickMyReviews()}>My Reviews</div>
+                    <div className={styles.button} id="tab4" onClick={() => onClickFavorites()}>Favorites</div>
                 </ProfileInfoBox>
                 <TabContent>
                   {selected}
