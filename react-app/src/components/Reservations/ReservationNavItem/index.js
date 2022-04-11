@@ -54,6 +54,8 @@ export const ReservationNavItem = ({ reservation }) => {
 		? (reservationTime = reservation.time.replace(/.5/, ":30"))
 		: (reservationTime = reservation.time);
 	reservation.time.length < 2 ||
+	reservation.time === "10" ||
+    reservation.time === "10.5" ||
 	reservation.time === "11" ||
 	reservation.time === "11.5"
 		? (timeUnit = "AM")
