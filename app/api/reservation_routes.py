@@ -60,7 +60,7 @@ def create_reservation():
     return {'error': error_generator(form.errors)}
 
 @reservation_routes.route('/<int:id>', methods=['PUT'])
-def reservationUpdate():
+def reservationUpdate(id):
   form = ReservationForm()
 
   year = strftime("%Y", localtime())
@@ -84,7 +84,7 @@ def reservationUpdate():
   elif not form.data['time'] in times:
     return {'error': 'Invalid timeslot.', 'message': 'Please do not try to break our app. We have worked countless hours.'}
   elif form.data['time'] in times and form.validate_on_submit():
-    reservation = Reservation.query.get(request.json['reservation_id']) # Use useParams to get reservationid in frontend
+    reservation = Reservation.query.get(id) # Use useParams to get reservationid in frontend
     reservation.num_people = form.data['num_people']
     reservation.date = form.data['date']
     reservation.time = form.data['time']
