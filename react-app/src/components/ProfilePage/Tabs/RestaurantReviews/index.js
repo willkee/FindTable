@@ -53,9 +53,9 @@ export const RestaurantReviews = () => {
                         </div>
                       </div>
 
-                  <div className={styles.image}>
-                    <img src={review.img_url} alt="" className={styles.image} onClick={() => restaurantPage(restaurant.id)}/>
-                  </div>
+                </div>
+                <div className={styles.image}>
+                  <img src={review.img_url} alt="" className={styles.image} onClick={() => restaurantPage(restaurant.id)}/>
                 </div>
 
                     <div className={styles.r_right}>
