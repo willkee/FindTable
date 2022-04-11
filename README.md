@@ -63,7 +63,7 @@ FindTable is based on OpenTable specifically centered on the New York City metro
    flask run
    ```
 
-6. To run the React App, go inside the `react-app` directory and type `npm start`. This should open your browser automatically but if not, you may navigate to `localhost:3000` to access the application.
+6. To run the React App, go inside the `react-app` directory, `npm install` and `npm start`. This should open your browser automatically but if not, you may navigate to `localhost:3000` to access the application.
 
 <br>
 <br>
