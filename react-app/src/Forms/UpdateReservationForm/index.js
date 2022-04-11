@@ -8,7 +8,9 @@ import { getUser } from "../../store/session";
 
 export const UpdateReservationForm = ({ reservation }) => {
 	const dispatch = useDispatch();
-
+	const user = useSelector((state) => state.session.user);
+	const restaurants = useSelector((state) => state.restaurants);
+	const restaurant = restaurants[reservation.restaurant_id];
 	const newDate = new Date(reservation.date);
 	const newDateISO = newDate.toISOString();
 	const newDateISONoZone = newDateISO.slice(0, 19);
@@ -29,6 +31,8 @@ export const UpdateReservationForm = ({ reservation }) => {
 		? (oldTime = reservation.time.replace(/.5/, ":30"))
 		: (oldTime = reservation.time);
 	reservation.time.length < 2 ||
+	reservation.time === "10" ||
+    reservation.time === "10.5" ||
 	reservation.time === "11" ||
 	reservation.time === "11.5"
 		? (timeUnit = "AM")
@@ -39,11 +43,6 @@ export const UpdateReservationForm = ({ reservation }) => {
 		? (peopleEnding = " person")
 		: (peopleEnding = " people");
 
-	const user = useSelector((state) => state.session.user);
-	const restaurant = useSelector((state) => state.restaurants)[
-		reservation.restaurant_id
-	];
-	console.log(restaurant);
 	const [date, setDate] = useState(oldResDate);
 	const [time, setTime] = useState(reservation.time);
 	const [people, setPeople] = useState(reservation.num_people);

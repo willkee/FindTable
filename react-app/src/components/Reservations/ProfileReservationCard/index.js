@@ -63,12 +63,14 @@ export const ProfileReservationCard = ({ reservation }) => {
 		? (resTime = reservation.time.replace(/.5/, ":30"))
 		: (resTime = reservation.time);
 	reservation.time.length < 2 ||
+    reservation.time === "10" ||
+    reservation.time === "10.5" ||
 	reservation.time === "11" ||
 	reservation.time === "11.5"
 		? (timeUnit = "AM")
 		: (timeUnit = "PM");
 
-  
+
     return (
         <ReservationContainer>
             <img src={restaurant.img_url} alt={`Restaurant for ${restaurant.name}`}></img>
@@ -95,4 +97,3 @@ export const ProfileReservationCard = ({ reservation }) => {
         </ReservationContainer>
     )
 }
-
