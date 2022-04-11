@@ -58,8 +58,10 @@ export const ReviewsDisplay = ({ restaurant }) => {
 											allUsers[`${review.user_id}`]
 												.reviews
 										).length
-									}{" "}
-									reviews
+									}
+                  <div>
+									  reviews
+                  </div>
 								</div>
 							</div>
 						</div>
