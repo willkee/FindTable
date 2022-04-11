@@ -125,7 +125,9 @@ export const SingleRestaurant = () => {
 					></img>
 					<div className={styles.content_container1}>
 						<div className={styles.left}>
+						{sessionUser && (
 							<ReservationForm restaurant={restaurant} />
+						)}
 						</div>
 						<div className={styles.center}>
 							<h1>{restaurant.name}</h1>
