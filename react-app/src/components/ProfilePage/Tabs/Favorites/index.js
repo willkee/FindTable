@@ -6,11 +6,9 @@ import styles from "./Favorites.module.css";
 export const Favorites = () => {
 	const myFavorites = useSelector((state) =>
 		Object.values(state.session.user.favorites).map(
-			// (restaurant) => restaurant.id
 			(restaurant) => restaurant.restaurant_id
 		)
 	);
-	console.log('MY FAVORITES ---', myFavorites)
 	const restaurantState = useSelector((state) => state.restaurants);
 	const history = useHistory();
 
