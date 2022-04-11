@@ -45,13 +45,13 @@ const MainContent = styled.div`className={styles.button}
 `;
 
 const ProfileInfoBox = styled.aside`
-    width: 275px;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    top: 30px;
-    left: 30px;
+	width: 275px;
+	height: 300px;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	top: 30px;
+	left: 30px;
 `;
 
 const TabContent = styled.div`

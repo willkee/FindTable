@@ -39,7 +39,6 @@ export const RestaurantReservations = () => {
         reservations.push(reservation)
       }
     })
-    console.log(reservations)
     return (
         <ContentFeed>
             <Reservations>

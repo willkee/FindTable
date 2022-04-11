@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { PageContainer } from "../PageContainer";
 import styles from "./SearchResults.module.css";
-import { Footer } from "../Footer";
 
 const SearchResults = () => {
 	const { searchWord } = useParams();
@@ -52,78 +51,88 @@ const SearchResults = () => {
 							<strong>{`Your search result has returned ${matched_restaurants.length} restaurants: `}</strong>
 						</div>
 						<div className={styles.each_restaurant}>
-							{matched_restaurants.map((restaurant_index) => (
-								<div
-									className={styles.each_wrapper}
-									onClick={() =>
-										sendToRestaurant(restaurant_index)
-									}
-									key={restaurant_index}
-								>
-									<img
-										src={
-											restaurants[restaurant_index]
-												.img_url
+							{matched_restaurants.map(
+								(restaurant_index, idx) => (
+									<div
+										className={styles.each_wrapper}
+										onClick={() =>
+											sendToRestaurant(restaurant_index)
 										}
-										alt=""
-										width="200px"
-									></img>
-									<div className={styles.each_wrapper_info}>
-										<div>
-											{restaurants[restaurant_index].name}
-										</div>
-										<div>
-											<i className="fa-solid fa-map-location-dot"></i>
-											<span>
+										key={idx}
+									>
+										<img
+											src={
+												restaurants[restaurant_index]
+													.img_url
+											}
+											alt=""
+											width="200px"
+										></img>
+										<div
+											className={styles.each_wrapper_info}
+										>
+											<div>
 												{
 													restaurants[
 														restaurant_index
-													].borough
+													].name
 												}
-											</span>
-										</div>
-										<div>
-											<span>
-												{`${
-													restaurants[
-														restaurant_index
-													].price_rating === 4
-														? "$$$$"
-														: restaurants[
-																restaurant_index
-														  ].price_rating === 3
-														? "$$$"
-														: restaurants[
-																restaurant_index
-														  ].price_rating === 2
-														? "$$"
-														: "$"
-												}`}
-											</span>
-										</div>
-										<div>
-											<span>
-												{Object.values(
-													restaurants[
-														restaurant_index
-													].settings
-												).map((setting) => (
-													<span>{` ${setting.type} | `}</span>
-												))}
-											</span>
-											<span>
-												{Object.values(
-													restaurants[
-														restaurant_index
-													].cuisines
-												).map((cuisine) => (
-													<span>{` ${cuisine.type} `}</span>
-												))}
-											</span>
+											</div>
+											<div>
+												<i className="fa-solid fa-map-location-dot"></i>
+												<span>
+													{
+														restaurants[
+															restaurant_index
+														].borough
+													}
+												</span>
+											</div>
+											<div>
+												<span>
+													{`${
+														restaurants[
+															restaurant_index
+														].price_rating === 4
+															? "$$$$"
+															: restaurants[
+																	restaurant_index
+															  ].price_rating ===
+															  3
+															? "$$$"
+															: restaurants[
+																	restaurant_index
+															  ].price_rating ===
+															  2
+															? "$$"
+															: "$"
+													}`}
+												</span>
+											</div>
+											<div>
+												<span>
+													{Object.values(
+														restaurants[
+															restaurant_index
+														].settings
+													).map((setting) => (
+														<span>{` ${setting.type} | `}</span>
+													))}
+												</span>
+												<span>
+													{Object.values(
+														restaurants[
+															restaurant_index
+														].cuisines
+													).map((cuisine) => (
+														<span>{` ${cuisine.type} `}</span>
+													))}
+												</span>
+											</div>
 										</div>
 									</div>
-								</div>
-							))}
+								)
+							)}
 						</div>
 					</div>
 				) : (

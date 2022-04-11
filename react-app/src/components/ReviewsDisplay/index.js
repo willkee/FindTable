@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./ReviewsDisplay.module.css";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ReviewIcon } from "../Icons";
 import { ReviewEdit } from "../ReviewEdit";

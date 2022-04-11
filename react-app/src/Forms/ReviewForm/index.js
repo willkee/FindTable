@@ -15,12 +15,13 @@ export const ReviewForm = ({ restaurant, review }) => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
+		dispatch(allUsers());
 		if (review) {
 			setContent(review.review);
 			setImgURL(review.img_url);
 			setRating(review.stars);
 		}
-	}, []);
+	}, [dispatch, review]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -34,10 +35,9 @@ export const ReviewForm = ({ restaurant, review }) => {
 		setRating(1);
 		setContent("");
 		setImgURL("");
-		const data = await dispatch(createReview(formData)).then(() =>
-			dispatch(allUsers())
-		);
-		if (data) return setErrors(data);
+		const data = await dispatch(createReview(formData));
+		if (Array.isArray(data)) return setErrors(data);
+		dispatch(allUsers());
 	};
 
 	const handleReset = (e) => {
