@@ -65,7 +65,7 @@ const SearchResults = () => {
 												restaurants[restaurant_index]
 													.img_url
 											}
-											alt=""
+											alt="restaurant"
 											width="200px"
 										></img>
 										<div
