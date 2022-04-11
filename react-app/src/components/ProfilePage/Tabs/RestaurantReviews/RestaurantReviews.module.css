@@ -1,0 +1,136 @@
+.container {
+	background-color: white;
+	width: 100%;
+	/* display: grid; */
+	/* gap: 5px;
+   */
+	display: flex;
+	flex-direction: column-reverse;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 100px;
+}
+
+.rw_parent {
+	width: 100%;
+}
+
+.singleReview {
+	background-color: white;
+	border-bottom: 1px solid #C7C7C7;
+  /* border-bottom: 1px solid black; */
+	display: grid;
+	/* grid-template-columns: 20% 23% 55%; */
+	grid-template-columns: 30% 70%;
+	grid-template-areas: "name img text";
+	gap: 5px;
+	/* margin-bottom: 20px; */
+	padding-top: 10px;
+	width: 100%;
+}
+
+.r_left {
+	grid-area: name;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.r_right {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 5px;
+	font-size: 14px;
+}
+
+.iconContainer {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+}
+
+.icon {
+	grid-column: 1 / 2;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 100%;
+	width: 50px;
+	height: 50px;
+	font-weight: bold;
+}
+
+.nameAndCount {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.image {
+	object-fit: cover;
+	width: 100%;
+	border-radius: 20px;
+}
+
+.content {
+	width: 100%;
+	display: flex;
+}
+
+.stars {
+	display: flex;
+	align-items: flex-end;
+	color: #fc6260;
+}
+
+.reviewCount {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	width: 80%;
+	justify-content: space-around;
+	font-size: 14px;
+	margin-top: 10px;
+}
+
+.imageContainer {
+	padding-top: 15px;
+}
+
+.editDelete {
+	grid-column: 1 / 4;
+	display: flex;
+	width: 100%;
+	justify-content: flex-end;
+	top: 0;
+	right: 0;
+}
+
+.delete {
+	margin-left: 15px;
+	cursor: pointer;
+	transition: all linear 0.2s;
+	color: black;
+}
+
+.delete:hover {
+	color: rgb(186, 33, 33);
+}
+
+.restaurantContainer {
+  /* border: 1px solid black; */
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.restaurantName {
+  padding-left: 20px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 500;
+}

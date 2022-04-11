@@ -61,10 +61,10 @@ export const ReservationCard = () => {
     },[])
 
     const reservation = useSelector(state => state.session.user.reservations)[resId]
-    console.log(reservation)
+    // console.log(reservation)
     const restaurant = useSelector(state => state.restaurants)[reservation.restaurant_id]
     const restaurantRes = restaurant.reservations
-    console.log(restaurantRes)
+    // console.log(restaurantRes)
     let resTime;
     let timeUnit;
 

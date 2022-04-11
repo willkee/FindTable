@@ -161,7 +161,7 @@ async dispatch => {
   })
 
   const deleted = await res.json();
-  console.log(deleted)
+  // console.log(deleted)
   dispatch(deletedReservation(deleted))
   return deleted
 }
@@ -206,7 +206,7 @@ export const deleteReview = (reviewId, restaurantId) => async (dispatch) => {
 	});
 
 	const removedReview = await res.json();
-	console.log(removedReview, "removed review \n\n\n\n");
+	// console.log(removedReview, "removed review \n\n\n\n");
 	await dispatch(deletedReview(removedReview.id, restaurantId));
 	return removedReview;
 };
@@ -246,8 +246,8 @@ export const updateRestaurant =
 		});
 
 		const update = await res.json();
-		console.log('UPDATE ---', update)
-		console.log('UPDATE.errors ---', update.errors)
+		// console.log('UPDATE ---', update)
+		// console.log('UPDATE.errors ---', update.errors)
 		if (update.errors) {
 			return update
 		} else {

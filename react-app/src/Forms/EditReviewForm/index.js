@@ -42,7 +42,7 @@ const EditReviewForm = ({ review }) => {
 		return dispatch(hideModal());
 	};
 
-	console.log(rating);
+	// console.log(rating);
 
 	return (
 		<div className={styles.review_form_parent}>
