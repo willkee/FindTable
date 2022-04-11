@@ -111,49 +111,58 @@ const ProfilePage = () => {
 
     const onClickRestReservations = () => {
       setSelected(<RestaurantReservations/>)
-      let tab1 = document?.getElementById("tab1")
-      let tab2 = document?.getElementById("tab2")
+      if (sessionUser.business_owner) {
+        let tab1 = document?.getElementById("tab1")
+        let tab2 = document?.getElementById("tab2")
+        tab1.style.color = "#FC6260"
+        tab2.style.color = "black"
+      }
       let tab3 = document?.getElementById("tab3")
       let tab4 = document?.getElementById("tab4")
-      tab1.style.color = "#FC6260"
-      tab2.style.color = "black"
       tab3.style.color = "black"
       tab4.style.color = "black"
     }
 
     const onClickRestReviews = () => {
       setSelected(<RestaurantReviews/>)
-      let tab1 = document?.getElementById("tab1")
-      let tab2 = document?.getElementById("tab2")
+      if (sessionUser.business_owner) {
+        let tab1 = document?.getElementById("tab1")
+        let tab2 = document?.getElementById("tab2")
+        tab1.style.color = "black"
+        tab2.style.color = "#FC6260"
+      }
       let tab3 = document?.getElementById("tab3")
       let tab4 = document?.getElementById("tab4")
-      tab1.style.color = "black"
-      tab2.style.color = "#FC6260"
       tab3.style.color = "black"
       tab4.style.color = "black"
     }
 
     const onClickMyReviews = () => {
       setSelected(<MyReviews/>)
-      let tab1 = document?.getElementById("tab1")
-      let tab2 = document?.getElementById("tab2")
+      if (sessionUser.business_owner) {
+        let tab1 = document?.getElementById("tab1")
+        let tab2 = document?.getElementById("tab2")
+        tab1.style.color = "black"
+        tab2.style.color = "black"
+
+      }
       let tab3 = document?.getElementById("tab3")
       let tab4 = document?.getElementById("tab4")
 
-      tab1.style.color = "black"
-      tab2.style.color = "black"
       tab3.style.color = "#FC6260"
       tab4.style.color = "black"
     }
 
     const onClickFavorites = () => {
       setSelected(<Favorites/>)
-      let tab1 = document?.getElementById("tab1")
-      let tab2 = document?.getElementById("tab2")
+      if (sessionUser.business_owner) {
+        let tab1 = document?.getElementById("tab1")
+        let tab2 = document?.getElementById("tab2")
+        tab1.style.color = "black"
+        tab2.style.color = "black"
+      }
       let tab3 = document?.getElementById("tab3")
       let tab4 = document?.getElementById("tab4")
-      tab1.style.color = "black"
-      tab2.style.color = "black"
       tab3.style.color = "black"
       tab4.style.color = "#FC6260"
     }
