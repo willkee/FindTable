@@ -66,7 +66,7 @@ export const ReservationForm = ({ restaurant }) => {
 		if (newReservation.error) {
 			setErrors(newReservation.error);
 		} else {
-			history.push(`/my_reservations/${newReservation.id}`);
+			history.push("/my-profile");
 		}
 	};
 

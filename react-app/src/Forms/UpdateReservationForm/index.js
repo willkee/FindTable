@@ -68,7 +68,7 @@ export const UpdateReservationForm = ({reservation}) => {
         }
 
         const updatedData = {
-            id: reservation.id,
+            reservation_id: reservation.id,
             restaurant_id: restaurant.id,
             user_id: user.id,
             num_people: people,
