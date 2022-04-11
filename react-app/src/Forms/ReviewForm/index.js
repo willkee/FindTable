@@ -15,6 +15,7 @@ export const ReviewForm = ({ restaurant, review }) => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
+		dispatch(allUsers());
 		if (review) {
 			setContent(review.review);
 			setImgURL(review.img_url);
