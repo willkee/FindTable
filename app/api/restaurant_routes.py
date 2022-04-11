@@ -85,8 +85,13 @@ def restaurantUpdate(id):
 
   print('\n\nREQUEST--------', request.json, '\n\n')
 
+  restaurant = Restaurant.query.get(id)
+
+  if restaurant.phone_number != form.data['phone_number'] and Restaurant.query.filter(Restaurant.phone_number == form.data['phone_number']).first():
+    return {'errors': ["phone_number: Phone number already belongs to another restaurant."]}, 400
+
+
   if form.validate_on_submit():
-    restaurant = Restaurant.query.get(id)
     restaurant.name = form.data['name']
     restaurant.price_rating = form.data['price_rating']
     restaurant.description = form.data['description']
