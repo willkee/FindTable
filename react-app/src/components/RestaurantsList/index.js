@@ -34,7 +34,7 @@ const RestaurantsList = ({ all_restaurants }) => {
 						key={restaurant.id}
 					>
 						<div className={styles.card_img}>
-							<img src={restaurant.img_url} alt="" />
+							<img src={restaurant.img_url} alt="restaurant" />
 						</div>
 						<div className={styles.info}>
 							<h3>

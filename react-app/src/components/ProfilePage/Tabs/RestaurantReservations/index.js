@@ -6,28 +6,29 @@ import {RestaurantReservationCard} from "../../../Reservations/RestaurantReserva
 
 // import { RestaurantReservationsCard } from "../../../Reservations/RestaurantReservationsCard";
 
+
 const Reservations = styled.div`
-    width: 900px;
-    height: auto;
-    min-height: 90vh;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    margin: 20px;
-    align-items: left;
-    padding: 10px 30px;
-    position: relative;
-    cursor: pointer;
+	width: 900px;
+	height: auto;
+	min-height: 90vh;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	margin: 20px;
+	align-items: left;
+	padding: 10px 30px;
+	position: relative;
+	cursor: pointer;
 `;
 
 const ContentFeed = styled.div`
-    height: auto;
-    width: fit-content;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+	height: auto;
+	width: fit-content;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
 `;
 
 export const RestaurantReservations = () => {
@@ -54,3 +55,4 @@ export const RestaurantReservations = () => {
 
     )
 }
+

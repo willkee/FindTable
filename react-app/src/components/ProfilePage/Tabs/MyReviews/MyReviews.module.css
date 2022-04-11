@@ -11,6 +11,12 @@
   border-radius: 5px;
 }
 
+.name:hover {
+  cursor: pointer;
+}
+
+
+
 .reviews {
   padding-top: 20px;
 }
@@ -36,6 +42,10 @@
   margin-bottom: 30px;
 }
 
-.image {
+.imageContainer {
   grid-area: 2 / 1 / 4 / 3;
+}
+
+.image:hover {
+  cursor: pointer;
 }

@@ -36,7 +36,7 @@ export const Homepage = ({ all_restaurants }) => {
         <h1 className={styles.lower_banner_text}>Restauranteurs Join Us</h1>
         <h2 className={styles.lower_banner_text}> Join a rich community of restaurants which fill seats and</h2>
         <h2 className={styles.lower_banner_text}> build their reputation with FindTable.</h2>
-        <div onClick={handleClick} role='button' className={styles.lower_banner_button}>Create Your Restaurant</div>
+        <div onClick={handleClick} className={styles.lower_banner_button}>Create Your Restaurant</div>
       </div>
       </>
     }

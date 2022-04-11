@@ -3,11 +3,17 @@ import { useSelector } from 'react-redux';
 import { ReviewIcon } from '../../../Icons';
 import styles from './RestaurantReviews.module.css';
 import { starRender } from '../../../ReviewsDisplay/starRender';
+import { useHistory } from 'react-router-dom';
 
 export const RestaurantReviews = () => {
   const myRestaurants = useSelector(state => Object.values(state.session.user.restaurants))
   const allUsers = useSelector(state => state?.users)
+  const history = useHistory()
   // console.log(allUsers[87])
+
+  const restaurantPage = (id) => {
+    history.push(`/restaurants/${id}`)
+  }
 
   function getRandomInt(max) {
 		return Math.floor(Math.random() * max);
@@ -24,7 +30,7 @@ export const RestaurantReviews = () => {
     <div className={styles.restaurantContainer}>
       {myRestaurants?.map((restaurant) => (
         <>
-        <div className={styles.restaurantName} style={{backgroundColor: `${brightColors[getRandomInt(5)]}`}}>{restaurant.name}</div>
+        <div className={styles.restaurantName} style={{backgroundColor: `${brightColors[getRandomInt(5)]}`}} onClick={() => restaurantPage(restaurant.id)}>{restaurant.name}</div>
         <div className={styles.container}>
               {Object.values(restaurant?.reviews).map(review => (
               <div style={{display: 'flex', flexDirection: 'row'}}>
@@ -47,11 +53,10 @@ export const RestaurantReviews = () => {
                         </div>
                       </div>
 
-
-                      <div className={styles.image}>
-                        <img src={review.img_url} alt="" className={styles.image}/>
-                      </div>
-                    </div>
+                  <div className={styles.image}>
+                    <img src={review.img_url} alt="" className={styles.image} onClick={() => restaurantPage(restaurant.id)}/>
+                  </div>
+                </div>
 
                     <div className={styles.r_right}>
                       <div className={styles.stars}>

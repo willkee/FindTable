@@ -1,0 +1,25 @@
+.allFavorites {
+  display: flex;
+
+}
+
+
+
+.singleFavorite {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: fit-content;
+  height:fit-content;
+  margin: 10px;
+}
+
+.singleFavorite:hover {
+  cursor:pointer;
+}
+
+.restaurantName {
+  font-size: 18px;
+  font-weight: bold;
+}

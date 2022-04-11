@@ -345,8 +345,6 @@ export const ReservationForm = ({ restaurant }) => {
 				</select>
 			</div>
 			<div
-				role="button"
-				type="submit"
 				className={styles.button}
 				onClick={handleSubmit}
 			>
