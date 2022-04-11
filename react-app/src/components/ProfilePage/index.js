@@ -1,13 +1,12 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useSelector } from 'react-redux';
-import { ProfileReservationCard } from "../Reservations/ProfileReservationCard"
 import styled from "styled-components";
 import styles from "./ProfilePage.module.css";
 import { UserIconLarge } from '../Icons';
 import { PageContainer } from '../PageContainer';
-import { useState } from 'react';
 import { Favorites } from './Tabs/Favorites/index.js';
 import { MyReviews } from './Tabs/MyReviews/index.js';
+import { MyReservations } from './Tabs/MyReservations';
 import { RestaurantReservations } from './Tabs/RestaurantReservations/index.js';
 import { RestaurantReviews } from './Tabs/RestaurantReviews/index.js';
 
@@ -52,30 +51,6 @@ const ProfileInfoBox = styled.aside`
     left: 30px;
 `;
 
-const ContentFeed = styled.div`
-    height: auto;
-    width: fit-content;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-`;
-
-const Reservations = styled.div`
-    width: 900px;
-    height: auto;
-    background-color: #F3F3F3;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin: 20px;
-    align-items: left;
-    padding: 10px 30px;
-    position: relative;
-    cursor: pointer;
-`;
-
 const TabContent = styled.div`
     width: 600px;
     border-left: 1px solid #C7C7C7;
@@ -83,30 +58,16 @@ const TabContent = styled.div`
     padding-left: 20px;
 `
 
-
-// const PastReservations = styled.div`className={styles.button}
-//     width: 900px;
-//     height: auto;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: space-around;
-//     align-items: left;
-// `;
-
 const ProfilePage = () => {
     const sessionUser = useSelector(state => state.session.user)
-
-    const reservations = Object.values(sessionUser.reservations);
-    // console.log(reservations)
     const [selected, setSelected] = useState("");
-
 
     const memberSince = () => {
         const dateString = new Date(sessionUser.created_at).toDateString()
         const month = dateString.split(" ")[1]
         const year = dateString.split(" ")[3]
         return <span>{`${month} ${year}`}</span>
-      }
+    }
 
 
     const onClickRestReservations = () => {
@@ -115,10 +76,12 @@ const ProfilePage = () => {
       let tab2 = document?.getElementById("tab2")
       let tab3 = document?.getElementById("tab3")
       let tab4 = document?.getElementById("tab4")
+      let tab5 = document?.getElementById("tab5")
       tab1.style.color = "#FC6260"
       tab2.style.color = "black"
       tab3.style.color = "black"
       tab4.style.color = "black"
+      tab5.style.color = "black"
     }
 
     const onClickRestReviews = () => {
@@ -127,10 +90,12 @@ const ProfilePage = () => {
       let tab2 = document?.getElementById("tab2")
       let tab3 = document?.getElementById("tab3")
       let tab4 = document?.getElementById("tab4")
+      let tab5 = document?.getElementById("tab5")
       tab1.style.color = "black"
       tab2.style.color = "#FC6260"
       tab3.style.color = "black"
       tab4.style.color = "black"
+      tab5.style.color = "black"
     }
 
     const onClickMyReviews = () => {
@@ -139,12 +104,29 @@ const ProfilePage = () => {
       let tab2 = document?.getElementById("tab2")
       let tab3 = document?.getElementById("tab3")
       let tab4 = document?.getElementById("tab4")
+      let tab5 = document?.getElementById("tab5")
 
       tab1.style.color = "black"
       tab2.style.color = "black"
       tab3.style.color = "#FC6260"
       tab4.style.color = "black"
+      tab5.style.color = "black"
     }
+
+    const onClickMyReservations = () => {
+        setSelected(<MyReservations/>)
+        let tab1 = document?.getElementById("tab1")
+        let tab2 = document?.getElementById("tab2")
+        let tab3 = document?.getElementById("tab3")
+        let tab4 = document?.getElementById("tab4")
+        let tab5 = document?.getElementById("tab5")
+
+        tab1.style.color = "black"
+        tab2.style.color = "black"
+        tab3.style.color = "black"
+        tab4.style.color = "#FC6260"
+        tab5.style.color = "black"
+      }
 
     const onClickFavorites = () => {
       setSelected(<Favorites/>)
@@ -152,16 +134,13 @@ const ProfilePage = () => {
       let tab2 = document?.getElementById("tab2")
       let tab3 = document?.getElementById("tab3")
       let tab4 = document?.getElementById("tab4")
+      let tab5 = document?.getElementById("tab5")
       tab1.style.color = "black"
       tab2.style.color = "black"
       tab3.style.color = "black"
-      tab4.style.color = "#FC6260"
+      tab4.style.color = "black"
+      tab5.style.color = "#FC6260"
     }
-
-    useEffect(() => {
-        // console.log(sessionUser)
-    },[sessionUser, reservations])
-
 
     return (
         <PageContainer>
@@ -178,20 +157,12 @@ const ProfilePage = () => {
                         </>
                     )}
                     <div className={styles.button} id="tab3" onClick={() => onClickMyReviews()}>My Reviews</div>
-                    <div className={styles.button} id="tab4" onClick={() => onClickFavorites()}>Favorites</div>
+                    <div className={styles.button} id="tab4" onClick={() => onClickMyReservations()}>My Reservations</div>
+                    <div className={styles.button} id="tab5" onClick={() => onClickFavorites()}>Favorites</div>
                 </ProfileInfoBox>
                 <TabContent>
                   {selected}
                 </TabContent>
-                <ContentFeed>
-                    <Reservations>
-                        <h2><strong>Upcoming Reservations</strong></h2>
-                        <hr></hr>
-                        {reservations && reservations.map(reservation => (
-                            <ProfileReservationCard reservation={reservation}/>
-                        ))}
-                    </Reservations>
-                </ContentFeed>
             </MainContent>
         </PageContainer>
     )
