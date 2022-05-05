@@ -51,7 +51,6 @@ const ActionBox = styled.div`
 `;
 
 export const ProfileReservationCard = ({ reservation }) => {
-	// console.log(reservation)
 	const restaurant = useSelector((state) => state.restaurants)[
 		reservation.restaurant_id
 	];

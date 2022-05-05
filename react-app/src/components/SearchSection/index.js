@@ -27,6 +27,12 @@ const SearchSection = () => {
 		return;
 	};
 
+	const handleKeyPress = (e) => {
+		if (e.key === "Enter") {
+			handleSubmit(e);
+		}
+	};
+
 	return (
 		<div className={styles.container}>
 			<h1>Find your table for any occasion</h1>
@@ -37,6 +43,7 @@ const SearchSection = () => {
 						type="text"
 						value={searchQuery}
 						onChange={(e) => setSearchQuery(e.target.value)}
+						onKeyPress={handleKeyPress}
 						placeholder="Search"
 					/>
 				</div>

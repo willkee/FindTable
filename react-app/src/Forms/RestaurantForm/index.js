@@ -31,7 +31,6 @@ export const RestaurantForm = ({ restaurant }) => {
 	const [errors, setErrors] = useState([]);
 	const settingsState = useSelector((state) => Object.values(state.settings));
 	const cuisinesState = useSelector((state) => Object.values(state.cuisines));
-	// console.log(priceRating)
 
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -43,7 +42,6 @@ export const RestaurantForm = ({ restaurant }) => {
 	//     //   await dispatch(retrieveCusines())
 	//     // })();
 	//   }, [ priceRating, ]);
-	// console.log("\n\n UpdateForm ---", restaurant, "\n\n")
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
@@ -113,7 +111,6 @@ export const RestaurantForm = ({ restaurant }) => {
 			cuisines_array.push(e.target.value);
 		}
 		setCuisines(cuisines_array);
-		// console.log(cuisines_array)
 	};
 
 	const handleClick_Edit = () => {

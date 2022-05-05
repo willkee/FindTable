@@ -13,14 +13,6 @@ export const Homepage = ({ all_restaurants }) => {
   const dispatch = useDispatch();
   const handleClick = () => history.push('/new-restaurant')
 
-  // useEffect(() => {
-  //   const load = async () => {
-  //     await dispatch(receiveHomeRestaurants())
-  //     setIsLoaded(true);
-  //   }
-  //   load();
-  // }, [dispatch])
-
   useEffect(() => {
     dispatch(receiveHomeRestaurants())
     setIsLoaded(true);

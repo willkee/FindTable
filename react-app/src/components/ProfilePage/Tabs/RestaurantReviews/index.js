@@ -9,7 +9,6 @@ export const RestaurantReviews = () => {
   const myRestaurants = useSelector(state => Object.values(state.session.user.restaurants))
   const allUsers = useSelector(state => state?.users)
   const history = useHistory()
-  // console.log(allUsers[87])
 
   const restaurantPage = (id) => {
     history.push(`/restaurants/${id}`)

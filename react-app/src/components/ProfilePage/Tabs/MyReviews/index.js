@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-// import { ReviewIcon } from '../../../Icons';
 import styles from "./MyReviews.module.css";
 import { starRender } from "../../../ReviewsDisplay/starRender";
 import { useHistory } from "react-router-dom";
