@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -79,7 +79,15 @@ export const SingleRestaurant = () => {
 		dispatch(receiveOneRestaurant(id))
 			.then(() => setIsLoaded(true))
 			.catch((e) => console.error("Error: ", e));
+
+		return () => {
+			setFavToggle(null);
+			setIsLoaded(false);
+			setMyKey("");
+		};
 	}, [dispatch, id]);
+
+	if (!restaurant) return <Redirect to="/error" />;
 
 	const API_URL = `https://maps.googleapis.com/maps/api/staticmap?center=${restaurant.street_address}&zoom=16&size=300x500&maptype=roadmap&markers=color:red%7Clabel:.%7C${restaurant.street_address}&key=${myKey.key}`;
 
