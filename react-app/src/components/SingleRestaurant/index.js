@@ -42,8 +42,6 @@ export const SingleRestaurant = () => {
 
 	const dispatch = useDispatch();
 
-	// console.log('isFavorite ---', isFavorite)
-
 	// set isOwner to true if the current user owns the restaurant being viewed
 	// this will display the update/delete restaurant buttons
 	let isOwner = false;

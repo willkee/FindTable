@@ -1,6 +1,5 @@
 import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { ReservationNavItem } from "../ReservationNavItem";
 
@@ -40,12 +39,6 @@ export const ReservationNav = () => {
 		? (reservationsArr = Object.entries(reservations))
 		: (reservationsArr = null);
 	const resCopy = [...reservationsArr].slice(0, 3);
-
-	// const [myReservations, setMyReservations] = useState(sessionUser.reservations)
-
-	useEffect(() => {
-		// console.log(myReservations)
-	}, [sessionUser]);
 
 	if (reservationsArr.length < 1) {
 		return (

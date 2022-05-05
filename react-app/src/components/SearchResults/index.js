@@ -8,24 +8,22 @@ const SearchResults = () => {
 	const { searchWord } = useParams();
 	const history = useHistory();
 
-	const restaurants = useSelector((state) =>
-		Object.values(state.restaurants)
-	);
+	const restaurants = useSelector((state) => state.restaurants);
 
 	const restaurants_set = new Set();
-	restaurants.forEach((restaurant, index) => {
+	Object.values(restaurants).forEach((restaurant, index) => {
 		if (restaurant.name.toLowerCase().includes(searchWord.toLowerCase())) {
-			restaurants_set.add(index);
+			restaurants_set.add(restaurant.id);
 		}
 		if (
 			restaurant.borough.toLowerCase().includes(searchWord.toLowerCase())
 		) {
-			restaurants_set.add(index);
+			restaurants_set.add(restaurant.id);
 		}
 	});
 
 	const sendToRestaurant = (restaurant_index) => {
-		history.push(`/restaurants/${restaurant_index + 1}`);
+		history.push(`/restaurants/${restaurant_index}`);
 	};
 
 	const matched_restaurants = Array.from(restaurants_set);

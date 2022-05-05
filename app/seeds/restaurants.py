@@ -313,7 +313,7 @@ restaurant_list = [
 		'phone_number': "2127499467",
 		'website':
 			"https://www.yelp.com/biz/tian-jin-dumpling-house-%E5%A4%A9%E6%B4%A5%E5%8C%85%E5%AD%90-flushing",
-		'street_address': "41-41 Kissena Blvd #101, 11354",
+		'street_address': "41 Kissena Blvd, 11354",
 		'borough': "Manhattan",
 		'accessible': True,
 		'hours': "8:00AM - 2:00PM",

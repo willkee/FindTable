@@ -22,17 +22,25 @@ const SearchHeader = () => {
 		return;
 	};
 
+	const handleKeyPress = (e) => {
+		if (e.key === "Enter") {
+			handleSubmit(e);
+		}
+	};
+
 	return (
 		<div className={styles.search_header}>
 			<h1>Find your table for any occasion</h1>
-			<form>
+			<div>
 				<div className={styles.search_inputs}>
 					<div className={styles.search_inner_div}>
 						<input
 							className={styles.search_box_field}
+							id="searchbox"
 							type="text"
 							value={searchQuery}
 							onChange={(e) => setSearchQuery(e.target.value)}
+							onKeyPress={handleKeyPress}
 							placeholder="Search"
 						></input>
 					</div>
@@ -40,7 +48,7 @@ const SearchHeader = () => {
 				<div onClick={handleSubmit} className={styles.search_button}>
 					Let's Go
 				</div>
-			</form>
+			</div>
 		</div>
 	);
 };

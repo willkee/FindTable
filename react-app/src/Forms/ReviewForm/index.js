@@ -9,8 +9,6 @@ export const ReviewForm = ({ restaurant, review }) => {
 	const [content, setContent] = useState("");
 	const [imgURL, setImgURL] = useState("");
 	const [errors, setErrors] = useState([]);
-	// console.log(review, "SDFSDFSDF");
-	// const [star, setStar] = useState(<OutlineGreyStar />)
 	const user = useSelector((state) => state.session.user);
 	const dispatch = useDispatch();
 
@@ -46,8 +44,6 @@ export const ReviewForm = ({ restaurant, review }) => {
 		setContent("");
 		setImgURL("");
 	};
-
-	// console.log(rating);
 
 	return (
 		<div className={styles.review_form_parent}>

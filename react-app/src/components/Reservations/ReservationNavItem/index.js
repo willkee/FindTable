@@ -43,7 +43,6 @@ export const ReservationNavItem = ({ reservation }) => {
 	const restaurant = useSelector((state) => state.restaurants)[
 		reservation.restaurant_id
 	];
-	console.log(restaurant);
 	let people;
 	reservation.num_people === 1 ? (people = " person") : (people = " people");
 

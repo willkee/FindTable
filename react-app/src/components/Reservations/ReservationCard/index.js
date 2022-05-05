@@ -66,12 +66,9 @@ export const ReservationCard = () => {
 	const reservation = useSelector((state) => state.session.user.reservations)[
 		resId
 	];
-	// console.log(reservation)
 	const restaurant = useSelector((state) => state.restaurants)[
 		reservation.restaurant_id
 	];
-	// const restaurantRes = restaurant.reservations
-	// console.log(restaurantRes)
 	let resTime;
 	let timeUnit;
 
@@ -80,7 +77,7 @@ export const ReservationCard = () => {
 		: (resTime = reservation.time);
 	reservation.time.length < 2 ||
 	reservation.time === "10" ||
-    reservation.time === "10.5" ||
+	reservation.time === "10.5" ||
 	reservation.time === "11" ||
 	reservation.time === "11.5"
 		? (timeUnit = "AM")
