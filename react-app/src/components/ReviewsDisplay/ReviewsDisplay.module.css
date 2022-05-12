@@ -13,16 +13,16 @@
 
 .rw_parent {
 	width: 100%;
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .singleReview {
 	background-color: white;
 	border-top: 1px solid black;
 	display: grid;
-  grid-template-columns: repeat(2, 125px) 400px;
-  grid-template-rows: 125px repeat(4, 0);
+	grid-template-columns: repeat(2, 1fr) 5fr;
+	grid-template-rows: 125px repeat(4, 0);
 	gap: 5px;
 	padding-top: 10px;
 	width: 60%;
@@ -34,18 +34,19 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-
 }
 
 .r_right {
-  grid-area: 1 / 3 / 2 / 4;
+	grid-area: 1 / 3 / 2 / 4;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-  align-items: flex-start;
+	align-items: flex-start;
 	padding: 5px;
 	font-size: 14px;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 .iconContainer {
@@ -74,12 +75,12 @@
 }
 
 .image {
-  grid-area: 1 / 2 / 2 / 3;
+	grid-area: 1 / 2 / 2 / 3;
 	object-fit: cover;
 	width: 125px;
 	border-radius: 20px;
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .content {

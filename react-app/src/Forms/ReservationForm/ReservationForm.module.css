@@ -57,8 +57,18 @@ p {
 	background-color: #983937;
 	opacity: 0.5;
 	border-radius: 5px;
+	cursor: pointer;
 }
 
 .button:hover {
 	opacity: 1;
+}
+
+.select1:hover {
+	cursor: pointer;
+}
+
+.custom_error {
+	font-size: 14px;
+	color: red;
 }
