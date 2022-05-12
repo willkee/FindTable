@@ -1,2 +1,0 @@
-Add an image tag with src={import name}
-Add a background-image property in CSS to that <img>
