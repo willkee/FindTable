@@ -15,6 +15,8 @@ export const ReservationForm = ({ restaurant }) => {
 	const [time, setTime] = useState("");
 	const [people, setPeople] = useState(1);
 	const [errors, setErrors] = useState([]);
+	const [dateError, setDateError] = useState("");
+	const [timeError, setTimeError] = useState("");
 	const hour = new Date().getHours();
 
 	const timeObj = new Date();
@@ -31,23 +33,26 @@ export const ReservationForm = ({ restaurant }) => {
 	// replace the T
 	const today = isoNoZone.replace("T", " ").slice(0, 10);
 
-	const reservationTimes = []
-    const reservations = Object.entries(restaurant.reservations);
+	const reservationTimes = [];
+	const reservations = Object.entries(restaurant.reservations);
 
-    reservations.forEach(reservation => (
-        reservationTimes.push(reservation.time)
-    ));
+	reservations.forEach((reservation) =>
+		reservationTimes.push(reservation.time)
+	);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		if(!date) {
-            alert('Please select a date for your reservation.');
-            return
-        } else if (!time) {
-            alert('Please select a timeslot for your reservation.');
-            return
-        }
+		if (!date) {
+			setDateError("Please select a date.");
+			return;
+		}
+		setDateError("");
+		if (!time) {
+			setTimeError("Please select a timeslot.");
+			return;
+		}
+		setTimeError("");
 
 		const reservationData = {
 			restaurant_id: restaurant.id,
@@ -59,9 +64,9 @@ export const ReservationForm = ({ restaurant }) => {
 
 		const newReservation = await dispatch(
 			createReservation(reservationData)
-		)
+		);
 
-		await dispatch(getUser())
+		await dispatch(getUser());
 
 		if (newReservation.error) {
 			setErrors(newReservation.error);
@@ -72,20 +77,22 @@ export const ReservationForm = ({ restaurant }) => {
 
 	return (
 		<form className={styles.form} onSubmit={handleSubmit}>
-			<ul>{errors && errors.map((error) => <li>{error}</li>)}</ul>
+			<div>
+				{errors &&
+					errors.map((error, idx) => <div key={idx}>{error}</div>)}
+			</div>
 			<strong className={styles.title}>Make a reservation</strong>
 			<hr></hr>
 			<div className={styles.party}>
 				<strong>Party Size</strong>
 				<p>
-					If you're party has more than 10 people, please call the
-					restaurant.
+					10+ people? <br /> Please call the restaurant.
 				</p>
 				<select
 					value={people}
+					className={styles.select1}
 					onChange={(e) => setPeople(e.target.value)}
 				>
-					<option value="">-- Select number of people --</option>
 					<option value={1}>1 person</option>
 					<option value={2}>2 people</option>
 					<option value={3}>3 people</option>
@@ -103,6 +110,9 @@ export const ReservationForm = ({ restaurant }) => {
 				<label htmlFor="date" style={{ marginTop: "10px" }}>
 					<strong>Select a date:</strong>
 				</label>
+				{dateError && (
+					<div className={styles.custom_error}>{dateError}</div>
+				)}
 				<input
 					type="date"
 					name="date"
@@ -113,10 +123,15 @@ export const ReservationForm = ({ restaurant }) => {
 				<label htmlFor="time" style={{ marginTop: "10px" }}>
 					<strong>Select a time:</strong>
 				</label>
-				<p style={{ padding: "0px", marginTop: "0px" }}>
-					Please pick a time between 8AM and 10:00PM.
-				</p>
-				<select value={time} onChange={(e) => setTime(e.target.value)}>
+				{timeError && (
+					<div className={styles.custom_error}>{timeError}</div>
+				)}
+				<select
+					className={styles.select1}
+					disabled={!date}
+					value={time}
+					onChange={(e) => setTime(e.target.value)}
+				>
 					<option value="">--Select a time--</option>
 					<optgroup label="Breakfast">
 						<option
@@ -344,10 +359,7 @@ export const ReservationForm = ({ restaurant }) => {
 					</optgroup>
 				</select>
 			</div>
-			<div
-				className={styles.button}
-				onClick={handleSubmit}
-			>
+			<div className={styles.button} onClick={handleSubmit}>
 				Reserve table
 			</div>
 		</form>
