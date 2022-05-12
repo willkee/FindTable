@@ -30,10 +30,19 @@ def create_reservation():
   form_month = form_date[5:7]
   form_day = form_date[8:10]
 
+  if form.validate_on_submit():
+    new_reservation = Reservation(
+        restaurant_id = request.json['restaurant_id'],
+        user_id = current_user.id,
+        num_people = form.data['num_people'],
+        date = form.data['date'],
+        time = form.data['time']
+    )
+
     db.session.add(new_reservation)
     db.session.commit()
-
     return new_reservation.to_dict()
+
   else:
     return {'error': error_generator(form.errors)}
 
@@ -51,6 +60,16 @@ def reservationUpdate(id):
   form_year = update_date[6:11]
   form_month = update_date[0:2]
   form_day = update_date[3:5]
+
+  if form.validate_on_submit():
+    reservation = Reservation.query.get(id) # Use useParams to get reservationid in frontend
+    reservation.num_people = form.data['num_people']
+    reservation.date = form.data['date']
+    reservation.time = form.data['time']
+    db.session.commit()
+    return reservation.to_dict()
+  else:
+    return {'errors': error_generator(form.errors)}
 
 @reservation_routes.route('/<int:id>', methods=['DELETE'])
 def reservationDelete(id):
