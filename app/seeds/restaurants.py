@@ -38,12 +38,12 @@ restaurant_list = [
 		'name': "Toms Restaurant",
 		'price_rating': 2,
 		'img_url':
-			"https://www.nycgo.com/images/venues/4689/toms-restaurant-laura-miller__medium.jpg",
+			"https://static01.nyt.com/images/2015/06/28/travel/28SEINFELD1/28SEINFELD1-superJumbo.jpg",
 		'phone_number': "2129697806",
 		'website': "https://www.tomsrestaurant.net/",
 		'street_address': "2880 Broadway, 10025",
 		'borough': "Manhattan",
-		'accessible': True,
+		'accessible': False,
 		'hours': "5:00PM - 10:00PM",
 		'description':
 			"Wake up early to avoid the weekend line and youll be rewarded with a sodium bomb of corned beef, bottomless cups of passable coffee, and absurdly crispy diner fries. The fluffiest pancake rumors are true, and the Christmas décor comes down for no season. After all, who can resist that kind of cheer? Bring cash!",
@@ -401,7 +401,7 @@ restaurant_list = [
 		'name': "Santa Ana Deli & Grocery",
 		'price_rating': 2,
 		'img_url':
-			"https://images.bushwickdaily.com/spai/w_998+q_lossy+ret_img/http://cdn.bushwickdaily.com/post_image-image/n13IgzYrBfq3tOFxUO32Eg.jpg",
+			"https://s3-media0.fl.yelpcdn.com/bphoto/aEpRC8ZZDn74nN0ZjFHqrA/o.jpg",
 		'phone_number': "2129115682",
 		'website': "https://www.yelp.com/biz/santa-ana-deli-and-grocery-brooklyn",
 		'street_address': "171 Irving Ave, 11237",
@@ -445,7 +445,7 @@ restaurant_list = [
 		'name': "Cafe Kashkar",
 		'price_rating': 2,
 		'img_url':
-			"https://www.villagevoice.com/wp-content/uploads/2013/07/8954030.0.jpg",
+			"https://www.kashkar-cafe.com/photo/plugin/gallery/2019/1563562773_4977-org.jpg",
 		'phone_number': "2125009287",
 		'website': "https://www.kashkar-cafe.com/",
 		'street_address': "1141 Brighton Beach Ave, 11235",
@@ -654,7 +654,7 @@ restaurant_list = [
 		'name': "Cervos",
 		'price_rating': 1,
 		'img_url':
-			"https://www.carpecity.com/wp-content/uploads/2019/09/Cervos-Restaurant.jpg",
+			"https://carpecity.com/wp-content/uploads/2022/07/Cervos-Restaurant-Lower-East-Side.jpg",
 		'phone_number': "2127806806",
 		'website': "https://www.cervosnyc.com/",
 		'street_address': "43 Canal St, 10002",
@@ -819,7 +819,7 @@ restaurant_list = [
 		'name': "Bernies",
 		'price_rating': 1,
 		'img_url':
-			"https://byoblikeaboss.com/wp-content/uploads/2018/11/bernies-2.w710.h473.2x.jpg",
+			"https://res.cloudinary.com/the-infatuation/image/upload/v1656120175/cms/reviews/bernies/KatePrevite_Bernies_Burger_1.jpg",
 		'phone_number': "2127712947",
 		'website': "https://www.berniesnyc.com/",
 		'street_address': "332 driggs ave, 11222",
@@ -849,7 +849,7 @@ restaurant_list = [
 		'name': "L&B Spumoni Gardens",
 		'price_rating': 1,
 		'img_url':
-			"https://1w0eqx36klwk3lol8s1na5ig-wpengine.netdna-ssl.com/wp-content/uploads/2019/04/IMG_2826.jpeg",
+			"https://spumonigardens.com/wp-content/uploads/2020/03/D85_2403.jpg",
 		'phone_number': "2129687953",
 		'website': "https://spumonigardens.com/",
 		'street_address': "2725 86th St, 11223",
@@ -1326,7 +1326,7 @@ restaurant_list = [
 		'name': "New Flushing Bakery",
 		'price_rating': 1,
 		'img_url':
-			"https://michaelminn.net/newyork/food/queens/new-flushing-bakery/2020-05-26_16-04-15.jpg",
+			"https://media-cdn.tripadvisor.com/media/photo-s/1a/12/90/2c/new-flushing-bakery.jpg",
 		'phone_number': "2129958077",
 		'website': "https://www.yelp.com/biz/new-flushing-bakery-flushing",
 		'street_address': "135-45 Roosevelt Ave, 11354",

@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import styles from "./RestaurantsList.module.css";
+import imgError from "../../utils/imgError";
 
 const RestaurantsList = ({ all_restaurants }) => {
 	const history = useHistory();
@@ -24,6 +25,8 @@ const RestaurantsList = ({ all_restaurants }) => {
 		return;
 	};
 
+
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.all_container}>
@@ -34,7 +37,10 @@ const RestaurantsList = ({ all_restaurants }) => {
 						key={restaurant.id}
 					>
 						<div className={styles.card_img}>
-							<img src={restaurant.img_url} alt="restaurant" />
+							<img src={restaurant.img_url}
+							onError={({ currentTarget }) => imgError(currentTarget)}
+							alt="restaurant"
+							/>
 						</div>
 						<div className={styles.info}>
 							<h3>
