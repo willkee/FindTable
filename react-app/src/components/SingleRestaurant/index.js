@@ -22,6 +22,8 @@ import StarCount from "./StarCount";
 import { ReviewForm } from "../../Forms/ReviewForm";
 import { GreyStar, RedStar } from "../Icons";
 
+import imgError from "../../utils/imgError";
+
 export const SingleRestaurant = () => {
 	const sessionUser = useSelector((state) => state?.session?.user);
 	const { id } = useParams();
@@ -128,6 +130,7 @@ export const SingleRestaurant = () => {
 						src={restaurant.img_url}
 						alt="restaurant"
 						width="200px"
+						onError={({ currentTarget }) => imgError(currentTarget)}
 					></img>
 					<div className={styles.content_container1}>
 						<div className={styles.left}>

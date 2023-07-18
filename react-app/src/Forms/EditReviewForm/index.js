@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { hideModal } from "../../store/modal";
 import styles from "./EditReviewForm.module.css";
 import { updateReview } from "../../store/restaurants";
+import imgError from "../../utils/imgError";
 
 const EditReviewForm = ({ review }) => {
 	const [rating, setRating] = useState(review.stars);
@@ -71,6 +72,7 @@ const EditReviewForm = ({ review }) => {
 							className={styles.img_placeholder}
 							src="https://customercare.igloosoftware.com/.api2/api/v1/communities/10068556/previews/thumbnails/4fc20722-5368-e911-80d5-b82a72db46f2?width=680&height=680&crop=False"
 							alt="Preview"
+							onError={({ currentTarget }) => imgError(currentTarget)}
 						/>
 					)}
 				</div>
